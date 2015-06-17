@@ -130,7 +130,7 @@ from
 	omop.condition_occurrence co
 	join pcornet.encounter enc on cast(co.visit_occurrence_id as text)=enc.encounterid
 	-- find source coding system name for raw_dx_type
-	join cz.cz_omop_pcornet_concept_map m1 on split_part(condition_source_value,'|||',2) = cast(m1.source_concept_id as text) AND m1.source_concept_class ='Source Coding System'
+	left join cz.cz_omop_pcornet_concept_map m1 on split_part(condition_source_value,'|||',2) = cast(m1.source_concept_id as text) AND m1.source_concept_class ='Source Coding System'
 
 
 -- procedure_occurrence -> Procedure
