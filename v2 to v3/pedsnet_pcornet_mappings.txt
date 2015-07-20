@@ -1,6 +1,7 @@
 Y|Biobank flag|4001345|4188539|Yes
 N|Biobank flag|4001345|4188540|No
-N|Biobank flag|4001345|44814650|No informationN|Biobank flag|4001345|44814653|Unknown
+N|Biobank flag|4001345|44814650|No information
+N|Biobank flag|4001345|44814653|Unknown
 N|Hispanic|38003564|NULL|No
 Y|Hispanic|38003563|NULL|Yes
 OT|Hispanic|44814649|NULL|Other
