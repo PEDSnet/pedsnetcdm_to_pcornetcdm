@@ -2,12 +2,126 @@ Y|Biobank flag|4001345|4188539|Yes
 N|Biobank flag|4001345|4188540|No
 N|Biobank flag|4001345|44814650|No information
 N|Biobank flag|4001345|44814653|Unknown
+N|Biobank flag|4001345|NULL|NULL
+N|Biobank flag|4001345|0|Other
 N|Hispanic|38003564|NULL|No
 Y|Hispanic|38003563|NULL|Yes
 OT|Hispanic|44814649|NULL|Other
 UN|Hispanic|44814653|NULL|Unknown
 NI|Hispanic|44814650|NULL|No information
-NULL|Hispanic|NULL|NULL|NULL
+OT|Hispanic|0|NULL|Other
+F|Gender|8532|NULL|Female
+M|Gender|8507|NULL|Male
+A|Gender|44814664|NULL|Ambiguous
+UN|Gender|44814653|NULL|Unknown 
+NI|Gender|44814650|NULL|No information
+OT|Gender|44814649|NULL|Other
+OT|Gender|0|NULL|Other
+AF|Admitting source|4145666|38004205|Adult Foster Home 
+AL|Admitting source|4145666|38004301|Assisted Living Facility 
+AV|Admitting source|4145666|44814672|Ambulatory Visit 
+ED|Admitting source|4145666|8870|Emergency Department 
+HH|Admitting source|4145666|38004195|Home Health 
+HO|Admitting source|4145666|8536|Home / Self Care 
+HS|Admitting source|4145666|8546|Hospice 
+IP|Admitting source|4145666|38004279|Other Acute Inpatient Hospital 
+NH|Admitting source|4145666|8676|Nursing Home (Includes ICF) 
+RH|Admitting source|4145666|8920|Rehabilitation Facility 
+RS|Admitting source|4145666|44814680|Residential Facility 
+SN|Admitting source|4145666|8863|Skilled Nursing Facility 
+NULL|Admitting source|4145666|NULL|NULL
+NI|Admitting source|4145666|44814650|No information 
+UN|Admitting source|4145666|44814653|Unknown 
+OT|Admitting source|4145666|44814649|Other
+OT|Admitting source|4145666|0|Other
+A|Discharge disposition|44813951|4161979|Discharged alive 
+E|Discharge disposition|44813951|4216643|Expired 
+NI|Discharge disposition|44813951|44814650|No information
+NULL|Discharge disposition|44813951|NULL|NULL
+UN|Discharge disposition|44813951|44814653|Unknown 
+OT|Discharge disposition|44813951|44814649|Other
+OT|Discharge disposition|44813951|0|Other
+AF|Discharge status|4137274|38004205|Adult Foster Home 
+AL|Discharge status|4137274|38004301|Assisted Living Facility 
+AM|Discharge status|4137274|4021968|Against Medical Advice 
+AW|Discharge status|4137274|44814693|Absent without leave 
+EX|Discharge status|4137274|4216643|Expired 
+HH|Discharge status|4137274|38004195|Home Health 
+HO|Discharge status|4137274|8536|Home / Self Care 
+HS|Discharge status|4137274|8546|Hospice 
+IP|Discharge status|4137274|38004279|Other Acute Inpatient Hospital 
+NH|Discharge status|4137274|8676|Nursing Home (Includes ICF) 
+RH|Discharge status|4137274|8920|Rehabilitation Facility 
+RS|Discharge status|4137274|44814680|Residential Facility 
+SH|Discharge status|4137274|8717|Still In Hospital 
+SN|Discharge status|4137274|8863|Skilled Nursing Facility 
+OT|Discharge status|4137274|0|Other
+NULL|Discharge status|4137274|NULL|NULL
+NI|Discharge status|4137274|44814650|No information
+UN|Discharge status|4137274|44814653|Unknown
+OT|Discharge status|4137274|44814649|Other
+OT|Discharge status|4137274|0|Other
+IP|Encounter type|9201|NULL|Inpatient Hospital Stay 
+AV|Encounter type|9202|NULL|Ambulatory Visit
+ED|Encounter type|9203|NULL|Emergency Department 
+IS|Encounter type|42898160|NULL|Long Term Care Visit
+IS|Encounter type|44814710|NULL|Non-Acute Institutional Stay 
+OA|Encounter type|44814711|NULL|Other ambulatory visit
+UN|Encounter type|44814653|NULL|Unknown 
+NI|Encounter type|44814650|NULL|No information
+OT|Encounter type|44814649|NULL|Other
+Y|Chart availability|4030450|4188539|Yes
+N|Chart availability|4030450|4188540|No
+N|Chart availability|4030450|44814653|Unknown
+N|Chart availability|4030450|44814650|No information
+N|Chart availability|4030450|NULL|NULL
+N|Chart availability|4030450|0|Other
+N|Chart availability|NULL|NULL|NULL
+1|BP Position|3018586|NULL|Sitting (Systolic)
+2|BP Position|3035856|NULL|Standing (Systolic)
+3|BP Position|3009395|NULL|Supine (Systolic)
+1|BP Position|3034703|NULL|Sitting (Diastolic)
+2|BP Position|3019962|NULL|Standing (Diastolic)
+3|BP Position|3013940|NULL|Supine (Diastolic)
+NI|BP Position|44814650|NULL|No information
+UN|BP Position|44814653|NULL|Unknown
+OT|BP Position|44814649|NULL|Other
+PR|Vital source|4481472|NULL|Patient reported
+HC|Vital source|38000280|NULL|Healthcare delivery setting
+NI|Vital source|44814650|NULL|No information
+UN|Vital source|44814653|NULL|Unknown
+OT|Vital source|44814649|NULL|Other
+NULL|Vital source|NULL|NULL|NULL
+09|Procedure Code Type|2|NULL|ICD-9-CM
+10|Procedure Code Type|70|NULL|ICD-10-PCS
+11|Procedure Code Type|-1|NULL|ICD-11-PCS (N/A)
+C2|Procedure Code Type|-1|NULL|CPT Category II
+C3|Procedure Code Type|-1|NULL|CPT Category III
+C4|Procedure Code Type|4|NULL|CPT-4 (i.e., HCPCS Level I)
+H3|Procedure Code Type|-1|NULL|HCPCS Level III
+HC|Procedure Code Type|5|NULL|HCPCS (i.e., HCPCS Level II)
+LC|Procedure Code Type|6|NULL|LOINC
+ND|Procedure Code Type|9|NULL|NDC
+RE|Procedure Code Type|43|NULL|Revenue
+CPT-4|Source Coding System|NULL|NULL|"CPT-4, HCPCS Level I"
+HCPCS|Source Coding System|2|NULL|"HCPCS, HCPCS Level II"
+HCPCS Level 3|Source Coding System|3|NULL|HCPCS Level III
+CPT Category 2|Source Coding System|4|NULL|CPT Category II
+CPT Category 3|Source Coding System|5|NULL|CPT Category III
+ICD-9|Source Coding System|6|NULL|"ICD-9, ICD9, ICD-9-CM"
+ICD-9-Proc|Source Coding System|7|NULL|ICD-9-Proc
+ICD-10-PCS|Source Coding System|8|NULL|ICD-10-PCS
+ICD-11-PCS|Source Coding System|9|NULL|ICD-11-PCS
+LOINC|Source Coding System|10|NULL|LOINC
+NDC|Source Coding System|11|NULL|NDC
+Revenue|Source Coding System|12|NULL|Revenue
+BJC-MED|Source Coding System|13|NULL|BJC-MED
+NDF-RT|Source Coding System|14|NULL|NDF-RT Indications
+FDB|Source Coding System|15|NULL|FDB Indications
+Oxmis|Source Coding System|16|NULL|Oxmis
+Read|Source Coding System|17|NULL|Read
+ICD-10|Source Coding System|18|NULL|"ICD-10, ICD10, ICD-10-CM"
+Other|Source Coding System|NULL|NULL|"NULL, N/A"
 01|Race|8657|NULL|American Indian or Alaska Native
 02|Race|8515|NULL|Asian
 03|Race|8516|NULL|Black or African American
@@ -15,10 +129,9 @@ NULL|Hispanic|NULL|NULL|NULL
 05|Race|8527|NULL|White
 06|Race|44814659|NULL|Multiple race
 07|Race|44814660|NULL|Refuse to answer
-UN|Race|8552|NULL|Unknown 
-OT|Race|8522|NULL|Other
-NULL|Race|NULL|NULL|NULL
-NI|Race|44814661|NULL|No information
+UN|Race|44814653|NULL|Unknown 
+OT|Race|44814649|NULL|Other
+NI|Race|44814650|NULL|No information
 OT|Race|9178|NULL|Non-white
 OT|Race|38003600|NULL|African
 OT|Race|38003601|NULL|Bahamian
@@ -70,108 +183,45 @@ OT|Race|38003597|NULL|Madagascar
 03|Race|44814656|NULL|Black or African American
 04|Race|44814657|NULL|Native Hawaiian or Other Pacific Islander
 05|Race|44814658|NULL|White
-F|Gender|8532|NULL|Female
-M|Gender|8507|NULL|Male
-A|Gender|8570|NULL|Ambiguous
-UN|Gender|8551|NULL|Unknown 
-NULL|Gender|NULL|NULL|NULL
-NI|Gender|44814667|NULL|No information
-OT|Gender|8521|NULL|Other
-AF|Admitting source|4145666|44814670|Adult Foster Home 
-AL|Admitting source|4145666|44814671|Assisted Living Facility 
-AV|Admitting source|4145666|44814672|Ambulatory Visit 
-ED|Admitting source|4145666|8870|Emergency Department 
-HH|Admitting source|4145666|44814674|Home Health 
-HO|Admitting source|4145666|44814675|Home / Self Care 
-HS|Admitting source|4145666|8546|Hospice 
-IP|Admitting source|4145666|4164916|Other Acute Inpatient Hospital 
-NH|Admitting source|4145666|44814678|Nursing Home (Includes ICF) 
-RH|Admitting source|4145666|44814679|Rehabilitation Facility 
-RS|Admitting source|4145666|44814680|Residential Facility 
-SN|Admitting source|4145666|8863|Skilled Nursing Facility 
-NULL|Admitting source|4145666|NULL|NULL
-NI|Admitting source|4145666|44814682|No information 
-UN|Admitting source|4145666|44814683|Unknown 
-OT|Admitting source|4145666|44814684|Other
-A|Discharge disposition|44813951|4161979|Discharged alive 
-E|Discharge disposition|44813951|4216643|Expired 
-NI|Discharge disposition|44813951|44814687|No information
-NULL|Discharge disposition|44813951|NULL|NULL
-UN|Discharge disposition|44813951|44814688|Unknown 
-OT|Discharge disposition|44813951|44814689|Other
-AF|Discharge status|4137274|38004205|Adult Foster Home 
-AL|Discharge status|4137274|38004301|Assisted Living Facility 
-AM|Discharge status|4137274|4021968|Against Medical Advice 
-AW|Discharge status|4137274|44814693|Absent without leave 
-EX|Discharge status|4137274|4216643|Expired 
-HH|Discharge status|4137274|38004195|Home Health 
-HO|Discharge status|4137274|8536|Home / Self Care 
-HS|Discharge status|4137274|8546|Hospice 
-IP|Discharge status|4137274|38004279|Other Acute Inpatient Hospital 
-NH|Discharge status|4137274|8676|Nursing Home (Includes ICF) 
-RH|Discharge status|4137274|8920|Rehabilitation Facility 
-RS|Discharge status|4137274|44814701|Residential Facility 
-SH|Discharge status|4137274|8717|Still In Hospital 
-SN|Discharge status|4137274|8863|Skilled Nursing Facility 
-OT|Discharge status|4137274|0|Other 
-NULL|Discharge status|4137274|NULL|NULL
-NI|Discharge status|4137274|44814704|No information
-UN|Discharge status|4137274|44814705|Unknown
-OT|Discharge status|4137274|44814706|Other
-IP|Encounter type|9201|NULL|Inpatient Hospital Stay 
-AV|Encounter type|9202|NULL|Ambulatory Visit
-ED|Encounter type|9203|NULL|Emergency Department 
-IS|Encounter type|42898160|NULL|Long Term Care Visit
-IS|Encounter type|44814710|NULL|Non-Acute institutional stay
-OA|Encounter type|44814711|NULL|Other ambulatory visit 
-UN|Encounter type|44814653|NULL|Unknown 
-NI|Encounter type|44814650|NULL|No information
-NULL|Encounter type|NULL|NULL|NULL
-OT|Encounter type|44814649|NULL|Other
-Y|Chart availability|4030450|4188539|Yes
-N|Chart availability|4030450|4188540|No
-N|Chart availability|4030450|44814653|Unknown
-N|Chart availability|4030450|44814650|No information
-01|BP Position|3018586|NULL|Sitting (Systolic)
-02|BP Position|3035856|NULL|Standing (Systolic)
-03|BP Position|3009395|NULL|Supine (Systolic)
-UN|BP Position|3004249|NULL|Unknown (Systolic)
-01|BP Position|3034703|NULL|Sitting (Diastolic)
-02|BP Position|3019962|NULL|Standing (Diastolic)
-03|BP Position|3013940|NULL|Supine (Diastolic)
-UN|BP Position|3012888|NULL|Unknown (Diastolic)
-NI|BP Position|NULL|NULL|NULL
-PR|Vital source|4481472|NULL|Patient reported
-HC|Vital source|38000280|NULL|Healthcare delivery setting
-NULL|Vital source|NULL|NULL|NULL
-OT|Vital source|0|NULL|Other
-09|Procedure Code Type|2|NULL|ICD-9-CM
-10|Procedure Code Type|70|NULL|ICD-10-PCS
-11|Procedure Code Type|-1|NULL|ICD-11-PCS (N/A)
-C2|Procedure Code Type|-1|NULL|CPT Category II
-C3|Procedure Code Type|-1|NULL|CPT Category III
-C4|Procedure Code Type|4|NULL|CPT-4 (i.e., HCPCS Level I)
-H3|Procedure Code Type|-1|NULL|HCPCS Level III
-HC|Procedure Code Type|5|NULL|HCPCS (i.e., HCPCS Level II)
-LC|Procedure Code Type|6|NULL|LOINC
-ND|Procedure Code Type|9|NULL|NDC
-RE|Procedure Code Type|43|NULL|Revenue
-CPT-4|Source Coding System|1|NULL|CPT-4, HCPCS Level I
-HCPCS|Source Coding System|2|NULL|HCPCS, HCPCS Level II
-HCPCS Level 3|Source Coding System|3|NULL|HCPCS Level III
-CPT Category 2|Source Coding System|4|NULL|CPT Category II
-CPT Category 3|Source Coding System|5|NULL|CPT Category III
-ICD-9|Source Coding System|6|NULL|ICD-9, ICD9, ICD-9-CM
-ICD-9-Proc|Source Coding System|7|NULL|ICD-9-Proc
-ICD-10-PCS|Source Coding System|8|NULL|ICD-10-PCS
-ICD-11-PCS|Source Coding System|9|NULL|ICD-11-PCS
-LOINC|Source Coding System|10|NULL|LOINC
-NDC|Source Coding System|11|NULL|NDC
-Revenue|Source Coding System|12|NULL|Revenue
-BJC-MED|Source Coding System|13|NULL|BJC-MED
-NDF-RT|Source Coding System|14|NULL|NDF-RT Indications
-FDB|Source Coding System|15|NULL|FDB Indications
-Oxmis|Source Coding System|16|NULL|Oxmis
-Read|Source Coding System|17|NULL|Read
-ICD-10|Source Coding System|18|NULL|ICD-10, ICD10, ICD-10-CM
-Other|Source Coding System|NULL|NULL|NULL, N/A
+AD|dx_source|4021918|4203942|Admitting
+FI|dx_source|4021918|4230359|Final
+IN|dx_source|4021918|4033240|Interim
+NI|dx_source|4021918|44814650|No information
+UN|dx_source|4021918|44814653|Unknown
+OT|dx_source|4021918|44814649|Other
+NULL|dx_source|4021918|NULL|NULL
+P|pdx|44786627|NULL|Principal
+S|pdx|44786629|NULL|Secondary
+NI|pdx|44814650|NULL|No information
+UN|pdx|44814653|NULL|Unknown
+OT|pdx|44814649|NULL|Other
+08|tobacco|4209585|NULL|Light tobacco smoker
+07|tobacco|4209006|NULL|Heavy tobacco smoker
+07|tobacco|4044778|NULL|Heavy tobacco smoker
+05|tobacco|4298794|NULL|"Smoker, current status unknown"
+01|tobacco|42709996|NULL|Current everyday smoker
+02|tobacco|428041000124106|NULL|Current someday smoker
+03|tobacco|4310250|NULL|Former smoker
+04|tobacco|4144272|NULL|Never smoker
+06|tobacco|4141786|NULL|Unknown if ever smoked
+NI|tobacco|44814650|NULL|No information
+UN|tobacco|44814653|NULL|Unknown
+OT|tobacco|44814649|NULL|Other
+01|tobacco type|4276526|NULL|Cigarettes only
+01|tobacco type|4092281|NULL|Cigarettes only
+02|tobacco type|4246415|NULL|Other tobacco only
+02|tobacco type|4052949|NULL|Other tobacco only
+02|tobacco type|4218917|NULL|Other tobacco only
+02|tobacco type|4052465|NULL|Other tobacco only
+03|tobacco type|4276526|NULL|Cigarettes and other tobacco
+03|tobacco type|424615|NULL|Cigarettes and other tobacco
+03|tobacco type|4218917|NULL|Cigarettes and other tobacco
+03|tobacco type|4092281|NULL|Cigarettes and other tobacco
+03|tobacco type|4052949|NULL|Cigarettes and other tobacco
+03|tobacco type|4052465|NULL|Cigarettes and other tobacco
+04|tobacco type|4144272|NULL|None
+OT|tobacco type|4038707|NULL|Other
+OT|tobacco type|4038706|NULL|Other
+OT|tobacco type|44814649|NULL|Other
+NI|tobacco type|44814650|NULL|No information
+UN|tobacco type|44814653|NULL|Unknown
