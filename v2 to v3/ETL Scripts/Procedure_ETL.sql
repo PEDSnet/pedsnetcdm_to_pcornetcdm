@@ -1,12 +1,15 @@
 ﻿
--- procedure_occurrence -> Procedure
+-- procedure_occurrence -> Procedures
 -- Changes from previous version:
 -- No longer need source coding system info. Use source_concept_id instead.
+-- updated the table name to procedures
+-- included the primary key field in the insertion value set
 
-insert into pcornet_cdm.procedure(
-            patid, encounterid, enc_type, admit_date, providerid, px, px_type, 
+insert into pcornet_cdm.procedures(
+            proceduresid,patid, encounterid, enc_type, admit_date, providerid, px, px_type, 
             raw_px, raw_px_type)
 select distinct 
+	cast(procedure_occurrence_id as text) as proceduresid,
 	cast(person_id as text) as patid,
 	cast(visit_occurrence_id as text) as encounterid,
 	enc.enc_type as enc_type,
@@ -31,9 +34,9 @@ from
 	join pcornet_cdm.encounter enc on cast(po.visit_occurrence_id as text)=enc.encounterid
 	join concept c on po.procedure_source_concept_id=c.concept_id
 	-- get the vocabulary from procedure concept id - to populate the PX_TYPE field (case 1)
-	left join pcornet_cdm.cz_omop_pcornet_concept_map m1 on c.vocabulary_id = m1.source_concept_id AND m1.source_concept_class='Procedure Code Type'
+	left join pcornet_cdm.cz_omop_pcornet_concept_map m1 on c.vocabulary_id = cast(m1.source_concept_id as text) AND m1.source_concept_class='Procedure Code Type'
 	-- get the vocabulary for the RAW_PX_TYPE field - for all cases. 
 	left join concept c2 on po.procedure_source_concept_id = c2.concept_id 
 	-- get the vocabulary from the procedure source value to populate the PX_TYPE field (case 2a)
-	left join pcornet_cdm.cz_omop_pcornet_concept_map m3 on c.vocabulary_id = m3.source_concept_id AND m3.source_concept_class='Procedure Code Type' 
+	left join pcornet_cdm.cz_omop_pcornet_concept_map m3 on c.vocabulary_id = cast(m3.source_concept_id as text) AND m3.source_concept_class='Procedure Code Type' 
 
