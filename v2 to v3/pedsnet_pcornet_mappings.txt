@@ -225,3 +225,11 @@ OT|tobacco type|4038706|NULL|Other
 OT|tobacco type|44814649|NULL|Other
 NI|tobacco type|44814650|NULL|No information
 UN|tobacco type|44814653|NULL|Unknown
+09|condition type|NULL|NULL|ICD9CM
+10|condition type|NULL|NULL|ICD10CM
+11|condition type|NULL|NULL|ICD11CM
+SM|condition type|NULL|NULL|SNOMED
+HP|condition type|NULL|NULL|Human Phenotype Ontology
+AG|condition type|NULL|NULL|Algorithmic
+NI|condition type|NULL|NULL|NULL
+UN|condition type|NULL|NULL|Unknown
