@@ -26,7 +26,7 @@ select distinct
 	case when c.concept_name = 'No matching concept' then 
 		case when m3.source_concept_id IS NOT NULL then m3.target_concept 
 	else 'OT' end 
-	else coalesce(m1.target_concept,'NI') end as px_type,
+	else coalesce(m1.target_concept,'OT') end as px_type,
 	split_part(procedure_source_value,'.',1) as raw_px,
 	case when c2.vocabulary_id IS Null then 'Other' else c2.vocabulary_id end as raw_px_type
 from

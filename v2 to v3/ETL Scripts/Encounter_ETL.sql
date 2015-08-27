@@ -53,7 +53,7 @@ from
 	left join o2 on v.visit_occurrence_id = o2.visit_occurrence_id 
 	left join o3 on v.visit_occurrence_id = o3.visit_occurrence_id 
 	left join o4 on v.visit_occurrence_id = o4.visit_occurrence_id 
-	left join pcornet_cdm.cz_omop_pcornet_concept_map m1 on case when v.visit_concept_id is null AND m1.source_concept_id is null then true else 	v.visit_concept_id = m1.source_concept_id end and m1.source_concept_class='Encounter type'
+	left join pcornet_cdm.cz_omop_pcornet_concept_map m1 on case when v.visit_concept_id is null AND m1.source_concept_id is null then true else 	cast(v.visit_concept_id as text)= m1.source_concept_id end and m1.source_concept_class='Encounter type'
 	left join pcornet_cdm.cz_omop_pcornet_concept_map m2 on case when o1.value_as_concept_id is null AND m2.value_as_concept_id is null then true else o1.value_as_concept_id = m2.value_as_concept_id end and m2.source_concept_class='Discharge disposition'
 	left join pcornet_cdm.cz_omop_pcornet_concept_map m3 on case when o3.value_as_concept_id is null AND m3.value_as_concept_id is null then true else o3.value_as_concept_id = m3.value_as_concept_id end and m3.source_concept_class='Discharge status'
 	left join pcornet_cdm.cz_omop_pcornet_concept_map m4 on case when o4.value_as_concept_id is null AND m4.value_as_concept_id is null then true else o4.value_as_concept_id = m4.value_as_concept_id end and m4.source_concept_class='Admitting source'

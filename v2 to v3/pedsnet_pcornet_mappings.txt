@@ -92,36 +92,17 @@ NI|Vital source|44814650|NULL|No information
 UN|Vital source|44814653|NULL|Unknown
 OT|Vital source|44814649|NULL|Other
 NULL|Vital source|NULL|NULL|NULL
-09|Procedure Code Type|2|NULL|ICD-9-CM
-10|Procedure Code Type|70|NULL|ICD-10-PCS
+09|Procedure Code Type|ICD9CM|NULL|ICD-9-CM
+10|Procedure Code Type|ICD10PCS|NULL|ICD-10-PCS
 11|Procedure Code Type|-1|NULL|ICD-11-PCS (N/A)
 C2|Procedure Code Type|-1|NULL|CPT Category II
 C3|Procedure Code Type|-1|NULL|CPT Category III
-C4|Procedure Code Type|4|NULL|CPT-4 (i.e., HCPCS Level I)
+C4|Procedure Code Type|CPT4|NULL|CPT-4 (i.e., HCPCS Level I)
 H3|Procedure Code Type|-1|NULL|HCPCS Level III
-HC|Procedure Code Type|5|NULL|HCPCS (i.e., HCPCS Level II)
-LC|Procedure Code Type|6|NULL|LOINC
-ND|Procedure Code Type|9|NULL|NDC
-RE|Procedure Code Type|43|NULL|Revenue
-CPT-4|Source Coding System|NULL|NULL|"CPT-4, HCPCS Level I"
-HCPCS|Source Coding System|2|NULL|"HCPCS, HCPCS Level II"
-HCPCS Level 3|Source Coding System|3|NULL|HCPCS Level III
-CPT Category 2|Source Coding System|4|NULL|CPT Category II
-CPT Category 3|Source Coding System|5|NULL|CPT Category III
-ICD-9|Source Coding System|6|NULL|"ICD-9, ICD9, ICD-9-CM"
-ICD-9-Proc|Source Coding System|7|NULL|ICD-9-Proc
-ICD-10-PCS|Source Coding System|8|NULL|ICD-10-PCS
-ICD-11-PCS|Source Coding System|9|NULL|ICD-11-PCS
-LOINC|Source Coding System|10|NULL|LOINC
-NDC|Source Coding System|11|NULL|NDC
-Revenue|Source Coding System|12|NULL|Revenue
-BJC-MED|Source Coding System|13|NULL|BJC-MED
-NDF-RT|Source Coding System|14|NULL|NDF-RT Indications
-FDB|Source Coding System|15|NULL|FDB Indications
-Oxmis|Source Coding System|16|NULL|Oxmis
-Read|Source Coding System|17|NULL|Read
-ICD-10|Source Coding System|18|NULL|"ICD-10, ICD10, ICD-10-CM"
-Other|Source Coding System|NULL|NULL|"NULL, N/A"
+HC|Procedure Code Type|HCPCS|NULL|HCPCS (i.e., HCPCS Level II)
+LC|Procedure Code Type|LOINC|NULL|LOINC
+ND|Procedure Code Type|NDC|NULL|NDC
+RE|Procedure Code Type|Revenue Code|NULL|Revenue
 01|Race|8657|NULL|American Indian or Alaska Native
 02|Race|8515|NULL|Asian
 03|Race|8516|NULL|Black or African American
@@ -225,3 +206,11 @@ OT|tobacco type|4038706|NULL|Other
 OT|tobacco type|44814649|NULL|Other
 NI|tobacco type|44814650|NULL|No information
 UN|tobacco type|44814653|NULL|Unknown
+09|condition type|ICD9CM|NULL|ICD9CM
+10|condition type|ICD10CM|NULL|ICD10CM
+11|condition type|ICD11CM|NULL|ICD11CM
+SM|condition type|SNOMED|NULL|SNOMED
+HP|condition type|Human Phenotype Ontology|NULL|Human Phenotype Ontology
+AG|condition type|Algorithmic|NULL|Algorithmic
+NI|condition type|NULL|NULL|NULL
+UN|condition type|Unknown|NULL|Unknown
