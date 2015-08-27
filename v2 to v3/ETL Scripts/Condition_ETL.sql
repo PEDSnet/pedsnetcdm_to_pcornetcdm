@@ -5,8 +5,8 @@
 select distinct
 	cast(co.condition_occurrence_id as text),
 	cast(co.person_id as text) as patid,
-	--cast(co.visit_occurrence_id as text) as encounterid,
-	null as encounterid,
+	cast(co.visit_occurrence_id as text) as encounterid,
+	--null as encounterid,
 	co.condition_start_date as report_date,
 	co.condition_end_date as resolve_date,
 	cast (null as date) as onset_date, -- null for now, 
@@ -22,10 +22,10 @@ select distinct
 from
 	condition_occurrence co
 	join pcornet_cdm.demographic d on d.patid = cast(co.person_id as text)
-	--join pcornet_cdm.encounter e on e.encounterid = cast(co.visit_occurrence_id as text)
+	left join pcornet_cdm.encounter e on e.encounterid = cast(co.visit_occurrence_id as text)
 	join concept c1 on co.condition_concept_id = c1.concept_id
 	join concept c2 on co.condition_source_concept_id = c2.concept_id
-	left join pcornet_cdm.cz_omop_pcornet_concept_map cz on cz.concept_description = c1.vocabulary_id 
+	left join pcornet_cdm.cz_omop_pcornet_concept_map cz on cz.source_concept_id= c1.vocabulary_id and source_concept_class ='condition type'
 where
 	co.condition_type_concept_id = '38000245' -- Problem list, not current condition (need to clarify)
 
