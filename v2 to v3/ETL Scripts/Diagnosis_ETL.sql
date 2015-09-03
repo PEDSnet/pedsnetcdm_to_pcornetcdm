@@ -5,9 +5,10 @@
 ---- Populate Pdx,raw_pdx, raw_dx_source
 
 insert into pcornet_cdm.diagnosis(
-            patid, encounterid, enc_type, admit_date, providerid, dx, dx_type, 
+            diagnosisid,patid, encounterid, enc_type, admit_date, providerid, dx, dx_type, 
             dx_source, pdx, raw_dx, raw_dx_type, raw_dx_source, raw_pdx)
 select distinct 
+	cast(co.condition_occurrence_id as text) as diagnosisid,
 	cast(co.person_id as text) as patid,
 	cast(co.visit_occurrence_id as text) encounterid,
 	enc.enc_type,
@@ -25,16 +26,15 @@ select distinct
 	coalesce(m2.target_concept,'OT') as pdx,
 	condition_source_value as raw_dx,
 	case when co.condition_source_concept_id = '44814649' then 'OT' else c3.vocabulary_id end as raw_dx_type,
-	o.observation_source_value as raw_dx_source,
+        c4.concept_name as raw_dx_source,	
 	case when co.condition_type_concept_id IN ('44786627','44786629') then c4.concept_name else NULL end as raw_pdx
 from
 	condition_occurrence co
 	join pcornet_cdm.encounter enc on cast(co.visit_occurrence_id as text)=enc.encounterid
 	join concept c2 on co.condition_concept_id = c2.concept_id -- Join or LEFT JOIN
-	left join fact_relationship fr on domain_concept_id_1 = 19 AND fact_id_1 = co.condition_occurrence_id AND domain_concept_id_1 = 27
-	join Observation o on fr.fact_id_2 = observation_concept_id AND observation_concept_id = '4021918'
-	join pcornet_cdm.cz_omop_pcornet_concept_map m1 on case when o.value_as_concept_id is null AND m1.source_concept_id is null then true else o.value_as_concept_id = m1.source_concept_id end and m1.source_concept_class='dx_source'
-	join pcornet_cdm.cz_omop_pcornet_concept_map m2 on case when co.condition_type_concept_id is null AND m2.source_concept_id is null then true else co.condition_type_concept_id = m2.source_concept_id end and m1.source_concept_class='pdx'
+	left join pcornet_cdm.cz_omop_pcornet_concept_map m1 on m1.source_concept_class='dx_source' and cast(co.condition_type_concept_id as text) = m1.source_concept_id
+	left join pcornet_cdm.cz_omop_pcornet_concept_map m2 on case when co.condition_type_concept_id is null AND m2.source_concept_id is null then true else cast(co.condition_type_concept_id as text) = m2.source_concept_id end and m1.source_concept_class='pdx'
 	left join concept c3 on co.condition_source_concept_id = c3.concept_id
 	left join concept c4 on co.condition_type_concept_id = c4.concept_id 
+where co.condition_type_concept_id not in (38000245)
 
