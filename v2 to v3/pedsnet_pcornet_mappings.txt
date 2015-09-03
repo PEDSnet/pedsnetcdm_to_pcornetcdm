@@ -164,15 +164,21 @@ OT|Race|38003597|NULL|Madagascar
 03|Race|44814656|NULL|Black or African American
 04|Race|44814657|NULL|Native Hawaiian or Other Pacific Islander
 05|Race|44814658|NULL|White
-AD|dx_source|4021918|4203942|Admitting
-FI|dx_source|4021918|4230359|Final
-IN|dx_source|4021918|4033240|Interim
-NI|dx_source|4021918|44814650|No information
-UN|dx_source|4021918|44814653|Unknown
-OT|dx_source|4021918|44814649|Other
-NULL|dx_source|4021918|NULL|NULL
+AD|dx_source|-1|NULL|Admitting
+DI|dx_source|38000199|NULL|Discharge
+DI|dx_source|38000201|NULL|Discharge
+FI|dx_source|38000230|NULL|Final
+FI|dx_source|38000231|NULL|Final
+IN|dx_source|-1|NULL|Interim
+NI|dx_source|NULL|NULL|No information
+UN|dx_source|-1|NULL|Unknown
+OT|dx_source|-1|NULL|Other
 P|pdx|44786627|NULL|Principal
 S|pdx|44786629|NULL|Secondary
+X|pdx|9292|NULL|
+X|pdx|9293|NULL|
+X|pdx|44814711|NULL|
+NULL|pdx|NULL|NULL|NULL
 NI|pdx|44814650|NULL|No information
 UN|pdx|44814653|NULL|Unknown
 OT|pdx|44814649|NULL|Other
