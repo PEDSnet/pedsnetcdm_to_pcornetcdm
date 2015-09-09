@@ -226,3 +226,7 @@ NULL|prescribing|NULL|NULL|NULL
 OT|prescribing|44814650|NULL|Other
 NI|prescribing|44814653|NULL|No Information
 UN|prescribing|44814649|NULL|Unknown
+09|death cause code|ICD9CM|NULL|ICD9CM
+10|death cause code|ICD10|NULL|ICD10
+NI|death cause code|NULL|NULL|No Information
+UN|death cause code|Unknown|NULL|Unknown
