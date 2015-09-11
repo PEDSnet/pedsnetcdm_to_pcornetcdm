@@ -1,11 +1,12 @@
 ﻿
 -- drug exposure --> Dispensing
 -- join with demographic to make sure there are no orphan records 
---- assuming that we have changed the datatype of dispensingid to serial
+
 insert into pcornet_cdm.dispensing(
-            patid, prescribingid, 
+            dispensingid, patid, prescribingid, 
             dispense_date, ndc, dispense_sup, dispense_amt, raw_ndc)
 select distinct
+	de.drug_exposure_id,
 	cast(de.person_id as text) as patid,
 	null as prescribingid, -- null for now
 	de.drug_exposure_start_date as dispense_date,
@@ -19,4 +20,5 @@ from
 	join concept c1 on concept_id= de.drug_source_concept_id -- 
 where	
 	de.drug_type_concept_id = '38000175' -- Dispensing only
+
 
