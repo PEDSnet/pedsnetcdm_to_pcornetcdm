@@ -1,9 +1,3 @@
-Y|Biobank flag|4001345|4188539|Yes
-N|Biobank flag|4001345|4188540|No
-N|Biobank flag|4001345|44814650|No information
-N|Biobank flag|4001345|44814653|Unknown
-N|Biobank flag|4001345|NULL|NULL
-N|Biobank flag|4001345|0|Other
 N|Hispanic|38003564|NULL|No
 Y|Hispanic|38003563|NULL|Yes
 OT|Hispanic|44814649|NULL|Other
@@ -70,13 +64,6 @@ OA|Encounter type|44814711|NULL|Other ambulatory visit
 UN|Encounter type|44814653|NULL|Unknown 
 NI|Encounter type|44814650|NULL|No information
 OT|Encounter type|44814649|NULL|Other
-Y|Chart availability|4030450|4188539|Yes
-N|Chart availability|4030450|4188540|No
-N|Chart availability|4030450|44814653|Unknown
-N|Chart availability|4030450|44814650|No information
-N|Chart availability|4030450|NULL|NULL
-N|Chart availability|4030450|0|Other
-N|Chart availability|NULL|NULL|NULL
 1|BP Position|3018586|NULL|Sitting (Systolic)
 2|BP Position|3035856|NULL|Standing (Systolic)
 3|BP Position|3009395|NULL|Supine (Systolic)
