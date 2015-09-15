@@ -246,3 +246,34 @@ UL|Unit|9665|NULL|Micro liter (source vocab = UCUM)
 OT|Unit|44814649|NULL|Other
 UN|Unit|44814653|NULL|Unkown
 NI|Unit|44814650|NULL|No Information
+PN-0001|PRO Item|40764338|NULL|In general, would you say your health is 
+PN-0002|PRO Item|40764339|NULL|In general, would you say your quality of life is
+PN-0003|PRO Item|NULL|NULL|NULL
+PN-0004|PRO Item|NULL|NULL|NULL
+PN-0005|PRO Item|NULL|NULL|NULL
+PN-0006|PRO Item|NULL|NULL|NULL
+PN-0007|PRO Item|NULL|NULL|NULL
+PN-0008|PRO Item|NULL|NULL|NULL
+PN-0009|PRO Item|NULL|NULL|NULL
+PN-0010|PRO Item|NULL|NULL|NULL
+PN-0011|PRO Item|NULL|NULL|NULL
+PN-0012|PRO Item|40764856|NULL|NULL
+PN-0013|PRO Item|2000000000|NULL|How often do you feel really sad?
+PN-0014|PRO Item|2000000001|NULL|How often do you have fun with friends?
+PN-0015|PRO Item|2000000002|NULL|How often do you feel that your parents listen to your ideas?
+PN-0016|PRO Item|40764340|NULL|In general, how would you rate your physical health
+PN-0017|PRO Item|40764341|NULL|In general, how would you rate your mental health including your mood and your ability to think?
+PN-0018|PRO Item|NULL|NULL|NULL
+PN-0019|PRO Item|NULL|NULL|NULL
+PN-0020|PRO Item|NULL|NULL|NULL
+PN-0021|PRO Item|NULL|NULL|NULL
+5|PRO Response|45881924|NULL|Excellent
+4|PRO Response|45884457|NULL|Very Good
+3|PRO Response|45876386|NULL|Good
+2|PRO Response|45876387|NULL|Fair
+1|PRO Response|45876751|NULL|Poor
+1|PRO Response|45876662|NULL|Never
+2|PRO Response|45876672|NULL|Rarely
+3|PRO Response|45882528|NULL|Sometimes
+4|PRO Response|45884455|NULL|Often
+5|PRO Response|45882536|NULL|Always
