@@ -217,3 +217,32 @@ UN|prescribing|44814649|NULL|Unknown
 10|death cause code|ICD10|NULL|ICD10
 NI|death cause code|NULL|NULL|No Information
 UN|death cause code|Unknown|NULL|Unknown
+EQ|Result modifier|4172703|NULL|EQUAL
+GE|Result modifier|4171755|NULL|Greater than or equal to
+GT|Result modifier|4172704|NULL|Greater than
+NO|Result modifier|[TBD]|NULL|No lower limit
+OT|Result modifier|44814649|NULL|Other
+UN|Result modifier|44814653|NULL|Unkown
+NI|Result modifier|44814650|NULL|No Information
+BIL|Unit|44777660|NULL|Billion (source vocab = UCUM)
+CELL|Unit|45756929|NULL|Cells (source vocab = SNOMED)
+DG|Unit|9485|NULL|Decigram  (source vocab = UCUM)
+DL|Unit|9486|NULL|Deciliter (source vocab = UCUM)
+G|Unit|8504|NULL|Gram (source vocab = SNOMED)
+IU|Unit|8718|NULL|International Units  (source vocab = UCUM)
+K|Unit|8566|NULL|Thousand (source vocab = UCUM)
+L|Unit|8519|NULL|Liter (source vocab = UCUM)
+MG|Unit|8576|NULL|Miligram  (source vocab = UCUM)
+MIU|Unit|44777577|NULL|Mili-International units (source vocab = UCUM)
+ML|Unit|8587|NULL|Milliliter (source vocab = UCUM)
+NG|Unit|9600|NULL|Nanogram (source vocab = UCUM)
+NL|Unit|9606|NULL|Nanoliter (source vocab = UCUM)
+PERCENT|Unit|8554|NULL|Percent (source vocab = UCUM)
+RATIO|Unit|8523|NULL|Ratio (source vocab = UCUM)
+U|Unit|8510|NULL|Units (source vocab = UCUM)
+UG|Unit|9655|NULL|Microgram (source vocab = UCUM)
+UL|Unit|8686|NULL|Cubic Millimeter (source vocab = UCUM)
+UL|Unit|9665|NULL|Micro liter (source vocab = UCUM)
+OT|Unit|44814649|NULL|Other
+UN|Unit|44814653|NULL|Unkown
+NI|Unit|44814650|NULL|No Information
