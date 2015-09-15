@@ -22,7 +22,7 @@ select
 	m2.target_concept as specimen_source,
 	c1.concept_code as lab_loinc,
 	null as priority,  -- null for now
-	null as result_loc, -- where to get result location? is it available in the visit occurrence table?
+	'UN' as result_loc, -- making this 'UN' for now - work in progress to edit the measurement table to include this. 	
 	null as lab_px, -- null for now
 	null as lab_px_type,
 	null as lab_order_date, -- not available in PEDSnet CDM
