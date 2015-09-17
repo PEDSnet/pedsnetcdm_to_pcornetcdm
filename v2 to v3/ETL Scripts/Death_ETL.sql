@@ -5,9 +5,9 @@
 Select 
 	de.person_id as patid,
 	de.death_date as death_date,
-	'N' as death_impute, -- No for now, where to store this information in PEDSnet CDM?
-	'L' as death_source, -- death data from the EHR
-	null as death_match_confidence -- null since records are not from an external source. Possibly record linkage use case
+	'NI' as death_impute, -- default for now until next ETL cycle
+	'L' as death_source, --  default for now until next ETL cycle
+	null as death_match_confidence -- null 
 From
 	death de
 	join pcornet_cdm.demographic d on d.patid = cast(de.person_id as text)
