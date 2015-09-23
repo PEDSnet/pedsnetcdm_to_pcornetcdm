@@ -169,36 +169,6 @@ NULL|pdx|NULL|NULL|NULL
 NI|pdx|44814650|NULL|No information
 UN|pdx|44814653|NULL|Unknown
 OT|pdx|44814649|NULL|Other
-08|tobacco|4209585|NULL|Light tobacco smoker
-07|tobacco|4209006|NULL|Heavy tobacco smoker
-07|tobacco|4044778|NULL|Heavy tobacco smoker
-05|tobacco|4298794|NULL|"Smoker, current status unknown"
-01|tobacco|42709996|NULL|Current everyday smoker
-02|tobacco|428041000124106|NULL|Current someday smoker
-03|tobacco|4310250|NULL|Former smoker
-04|tobacco|4144272|NULL|Never smoker
-06|tobacco|4141786|NULL|Unknown if ever smoked
-NI|tobacco|44814650|NULL|No information
-UN|tobacco|44814653|NULL|Unknown
-OT|tobacco|44814649|NULL|Other
-01|tobacco type|4276526|NULL|Cigarettes only
-01|tobacco type|4092281|NULL|Cigarettes only
-02|tobacco type|4246415|NULL|Other tobacco only
-02|tobacco type|4052949|NULL|Other tobacco only
-02|tobacco type|4218917|NULL|Other tobacco only
-02|tobacco type|4052465|NULL|Other tobacco only
-03|tobacco type|4276526|NULL|Cigarettes and other tobacco
-03|tobacco type|424615|NULL|Cigarettes and other tobacco
-03|tobacco type|4218917|NULL|Cigarettes and other tobacco
-03|tobacco type|4092281|NULL|Cigarettes and other tobacco
-03|tobacco type|4052949|NULL|Cigarettes and other tobacco
-03|tobacco type|4052465|NULL|Cigarettes and other tobacco
-04|tobacco type|4144272|NULL|None
-OT|tobacco type|4038707|NULL|Other
-OT|tobacco type|4038706|NULL|Other
-OT|tobacco type|44814649|NULL|Other
-NI|tobacco type|44814650|NULL|No information
-UN|tobacco type|44814653|NULL|Unknown
 09|condition type|ICD9CM|NULL|ICD9CM
 10|condition type|ICD10CM|NULL|ICD10CM
 11|condition type|ICD11CM|NULL|ICD11CM
@@ -277,3 +247,33 @@ PN-0021|PRO Item|NULL|NULL|NULL
 3|PRO Response|45882528|NULL|Sometimes
 4|PRO Response|45884455|NULL|Often
 5|PRO Response|45882536|NULL|Always
+1|tobacco|4005823|4005823|Current user
+2|tobacco|4005823|45765920|Never
+3|tobacco|4005823|45765917|Quit/Former smoker
+4|tobacco|4005823|4030580|Passive or environmental exposure
+NI|tobacco|4005823|44814650|No information
+UN|tobacco|4005823|44814653|Unknown
+OT|tobacco|4005823|44814649|Other
+08|smoking|4275495|4209585|Light tobacco smoker
+07|smoking|4275495|4209006|Heavy tobacco smoker
+07|smoking|4275495|4044778|Heavy tobacco smoker
+05|smoking|4275495|4298794|Smoker, current status unknown
+01|smoking|4275495|42709996|Current everyday smoker
+02|smoking|4275495|428041000124106|Current someday smoker
+03|smoking|4275495|4310250|Former smoker
+04|smoking|4275495|4144272|Never smoker
+06|smoking|4275495|4141786|Unknown if ever smoked
+NI|smoking|4275495|44814650|No information
+UN|smoking|4275495|44814653|Unknown
+OT|smoking|4275495|44814649|Other
+01|tobacco type|4219336|4298794|Smoked tobacco only
+01|tobacco type|4219336|4224317|Pipe smoking tobacco
+01|tobacco type|4219336|4282779|Cigarette smoking tobacco
+01|tobacco type|4219336|4132133|Cigar smoking tobacco
+04|tobacco type|4219336|4218917|None
+04|tobacco type|4219336|4052465|None
+03|tobacco type|4219336|4219234|Chewing tobacco
+03|tobacco type|4219336|4218197|Snuff tobacco
+OT|tobacco type|4219336|44814649|Other
+NI|tobacco type|4219336|44814650|No information
+UN|tobacco type|4219336|44814653|Unknown
