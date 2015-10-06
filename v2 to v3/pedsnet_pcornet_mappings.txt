@@ -277,3 +277,16 @@ OT|smoking|4275495|44814649|Other
 OT|tobacco type|4219336|44814649|Other
 NI|tobacco type|4219336|44814650|No information
 UN|tobacco type|4219336|44814653|Unknown
+A1C|Lab name|4548-4|NULL|Hemoglobin A1c/Hemoglobin total in blood
+CK|Lab name|2157-6|NULL|Creatine kinase total
+CK_MB|Lab name|32673-6|NULL|Creatine kinase MB
+CK_MBI|Lab name|20569-0|NULL|Creatine kinase MB/creatine kinase total
+CREATININE|Lab name|2160-0|NULL|Creatinine
+CREATININE|Lab name|5912-1|NULL|Creatinine
+HGB|Lab name|718-7|NULL|Hemoglobin
+LDL|Lab name|18262-6|NULL|Low-density lipoprotein
+LDL|Lab name|2089-1|NULL|Low-density lipoprotein
+INR|Lab name|6301-6|NULL|International normalized ratio
+TROP_I|Lab name|10839-9|NULL|Troponin I cardiac
+TROP_T_QL|Lab name|48426-1|NULL|Troponin T cardiac (qualitative)
+TROP_T_QN|Lab name|48425-3|NULL|Troponin T cardiac (quantitative)
