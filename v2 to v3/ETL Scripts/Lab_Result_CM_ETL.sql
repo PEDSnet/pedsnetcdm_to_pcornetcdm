@@ -1,4 +1,5 @@
-﻿insert into pcornet_cdm.lab_result_cm (
+﻿
+insert into pcornet_cdm.lab_result_cm (
 	lab_result_cm_id,
 	patid, encounterid,
 	lab_name, specimen_source,
@@ -22,7 +23,7 @@ select
 	'BLOOD' as specimen_source, -- defaulting to blood until we have a good solution for sites to figure out how to infer specimen source from labs in the EHR data
 	c1.concept_code as lab_loinc,
 	null as priority,  -- null for now
-	'UN' as result_loc, -- making this 'UN' for now - work in progress to edit the measurement table to include this. 
+	case when measurement_source_value like 'POC%' then 'P' else 'L' end as result_loc, -- using logic to distinguish between POC and L for now - work in progress to explicitly include this in measurement table
 	null as lab_px, -- null for now
 	null as lab_px_type,
 	m.measurement_date as lab_order_date, -- default:  populate all dates using the measurement date (only date that we have at the moment)- until new conventions
