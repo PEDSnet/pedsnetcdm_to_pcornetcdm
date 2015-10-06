@@ -1,9 +1,13 @@
 ﻿
 -- drug exposure --> Dispensing
--- join with demographic to make sure there are no orphan records 
+-- join with demographic to make sure there are no orphan records
+
+set role pcor_et_user;
+
+truncate table pcornet_cdm.dispensing;
 
 insert into pcornet_cdm.dispensing(
-            dispensingid, patid, prescribingid, 
+            dispensingid, patid, prescribingid,
             dispense_date, ndc, dispense_sup, dispense_amt, raw_ndc)
 select distinct
 	de.drug_exposure_id,
@@ -17,8 +21,6 @@ select distinct
 from
 	drug_exposure de  -- 7.7M
 	join pcornet_cdm.demographic d on d.patid = cast(de.person_id as text) --7.7M (with all above line in 9399 ms)
-	join concept c1 on concept_id= de.drug_source_concept_id -- 
-where	
+	join concept c1 on concept_id= de.drug_source_concept_id --
+where
 	de.drug_type_concept_id = '38000175' -- Dispensing only
-
-

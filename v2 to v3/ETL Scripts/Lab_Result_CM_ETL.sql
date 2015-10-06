@@ -1,11 +1,14 @@
-﻿
+set role pcor_et_user;
+
+truncate table pcornet_cdm.lab_result_cm;
+
 insert into pcornet_cdm.lab_result_cm (
 	lab_result_cm_id,
 	patid, encounterid,
 	lab_name, specimen_source,
 	lab_loinc, priority, result_loc,
 	lab_px, lab_px_type,
-	lab_order_date, 
+	lab_order_date,
 	specimen_date, specimen_time,
 	result_date, result_time, result_qual, result_num, result_modifier, result_unit,
 	norm_range_low, norm_modifier_low,
@@ -14,7 +17,7 @@ insert into pcornet_cdm.lab_result_cm (
 	raw_lab_name, raw_lab_code, raw_panel, raw_result, raw_unit, raw_order_dept, raw_facility_code
 )
 
-select 
+select
 	m.measurement_id as lab_result_cm_id,
 	m.person_id as patid,
 	e.encounterid encounterid,
@@ -28,7 +31,7 @@ select
 	null as lab_px_type,
 	m.measurement_date as lab_order_date, -- default:  populate all dates using the measurement date (only date that we have at the moment)- until new conventions
 	m.measurement_date as specimen_date,  -- default:  populate all dates using the measurement date (only date that we have at the moment)- until new conventions
-	date_part('hour',m.measurement_time)||':'||date_part('minute',m.measurement_time) as specimen_time, -- HH:MI format 
+	date_part('hour',m.measurement_time)||':'||date_part('minute',m.measurement_time) as specimen_time, -- HH:MI format
 	m.measurement_date as result_date, -- default:  populate all dates using the measurement date (only date that we have at the moment) - until new conventions
 	null as result_time,
 	'NI' as result_qual, -- Assert NI for now --- until new conventions evolve
@@ -46,9 +49,9 @@ select
 	c2.concept_name || m.value_as_number::text as raw_result,
 	unit_source_value as raw_unit,
 	null as raw_order_dept,
-	null as raw_facility_code 
-	
-from	 
+	null as raw_facility_code
+
+from
 	measurement m
 	join pcornet_cdm.demographic d on cast(m.person_id as text)= d.patid
 	join pcornet_cdm.encounter e on cast(m.visit_occurrence_id as text) = e.encounterid
@@ -58,4 +61,3 @@ from
 	--left join pcornet_cdm.cz_omop_pcornet_concept_map m2 on c1.concept_code = m2.source_concept_id and m2.source_concept_class = 'Specimen source'
 	left join pcornet_cdm.cz_omop_pcornet_concept_map m3 on cast(m.operator_concept_id as text) = m3.source_concept_id and m3.source_concept_class = 'Result modifier'
 	left join pcornet_cdm.cz_omop_pcornet_concept_map m4 on cast(m.unit_concept_id as text)= m4.source_concept_id and m4.source_concept_class = 'Unit'
-
