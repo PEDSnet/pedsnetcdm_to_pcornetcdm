@@ -2,9 +2,9 @@
 -- drug exposure --> Dispensing
 -- join with demographic to make sure there are no orphan records
 
-set role pcor_et_user;
+--set role pcor_et_user;
 
-truncate table pcornet_cdm.dispensing;
+--drop table if exists pcornet_cdm.dispensing;
 
 insert into pcornet_cdm.dispensing(
             dispensingid, patid, prescribingid,

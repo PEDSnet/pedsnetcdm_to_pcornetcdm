@@ -2,9 +2,9 @@
 -- Changes from previous version:
 	-- defaulting the biobank flag to N
 
-set role pcor_et_user;
+--set role pcor_et_user;
 
-truncate table pcornet_cdm.demographic;
+--drop table if exists pcornet_cdm.demographic;
 
 insert into pcornet_cdm.demographic (patid, birth_date, birth_time, sex, hispanic, race, biobank_flag, raw_sex, raw_hispanic, raw_race)
 select distinct

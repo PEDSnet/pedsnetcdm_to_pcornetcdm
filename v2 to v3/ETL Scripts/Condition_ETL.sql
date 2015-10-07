@@ -1,6 +1,7 @@
-set role pcor_et_user;
 
-truncate table pcornet_cdm.condition;
+--set role pcor_et_user;
+
+drop table if exists pcornet_cdm.condition;
 
 insert into pcornet_cdm.condition(
             conditionid, patid, encounterid, report_date, resolve_date, onset_date,

@@ -4,10 +4,19 @@
 -- Changes from previous version:
    -- default chart abstraction flag to yes, In PEDSnet we do not ask sites to provide this information to keep it simple
 
-set role pcor_et_user;
+--set role pcor_et_user;
 
-truncate table pcornet_cdm.enrollment;
+--drop table if exists pcornet_cdm.enrollment;
 
+CREATE TABLE pcornet_cdm.enrollment (
+	patid VARCHAR(1028) NOT NULL,
+	enr_start_date VARCHAR(10) NOT NULL,
+	enr_end_date VARCHAR(10),
+	chart VARCHAR(1),
+	enr_basis VARCHAR(1) NOT NULL
+
+)
+;
 
 insert into pcornet_cdm.enrollment (patid, enr_start_date, enr_end_date, chart, enr_basis)
 select distinct

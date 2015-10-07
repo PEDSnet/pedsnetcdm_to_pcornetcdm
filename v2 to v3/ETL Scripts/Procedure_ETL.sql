@@ -5,9 +5,9 @@
 -- updated the table name to procedures
 -- included the primary key field in the insertion value set
 
-set role pcor_et_user;
+--set role pcor_et_user;
 
-truncate table pcornet_cdm.procedures
+--drop table if exists pcornet_cdm.procedures;
 
 insert into pcornet_cdm.procedures(
             proceduresid,patid, encounterid, enc_type, admit_date, providerid, px, px_type,

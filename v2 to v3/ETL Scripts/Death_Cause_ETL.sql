@@ -1,6 +1,7 @@
-set role pcor_et_user;
 
-truncate table pcornet_cdm.death_cause;
+--set role pcor_et_user;
+
+--drop table if exists pcornet_cdm.death_cause;
 
 Insert into pcornet_cdm.death_cause(
 	patid,

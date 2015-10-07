@@ -1,8 +1,8 @@
 ﻿-- PRO_CM query
 
-set role pcor_et_user;
+--set role pcor_et_user;
 
-truncate table pcornet_cdm.pro_cm
+--drop table if exists pcornet_cdm.pro_cm;
 
 Insert into pcornet_cdm.pro_cm(
 	patid, encounterid,

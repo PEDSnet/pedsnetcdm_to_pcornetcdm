@@ -4,9 +4,9 @@
 ---- Drive dx_source from Observation.value_as_concept_id
 ---- Populate Pdx,raw_pdx, raw_dx_source
 
-set role pcor_et_user;
+--set role pcor_et_user;
 
-truncate table pcornet_cdm.diagnosis;
+--drop table if exists pcornet_cdm.diagnosis;
 
 insert into pcornet_cdm.diagnosis(
             diagnosisid,patid, encounterid, enc_type, admit_date, providerid, dx, dx_type,

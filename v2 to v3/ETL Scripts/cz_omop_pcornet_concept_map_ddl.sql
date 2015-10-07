@@ -1,6 +1,6 @@
 set role pcor_et_user;
 
-truncate table pcornet_cdm.cz_omop_pcornet_concept_map;
+drop table if exists pcornet_cdm.cz_omop_pcornet_concept_map;
 
 CREATE TABLE pcornet_cdm.cz_omop_pcornet_concept_map
 (

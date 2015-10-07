@@ -8,9 +8,9 @@
 ---- Change source column for raw_ target columns from value_as_concept_id to observation_source_value
 ---- changed the logic to extract DRGs (only MS-DRGs are needed by PCORnet)
 
-set role pcor_et_user;
+--set role pcor_et_user;
 
-truncate table pcornet_cdm.encounter;
+--drop table if exists pcornet_cdm.encounter;
 
 insert into pcornet_cdm.encounter (
             patid, encounterid, admit_date, admit_time, discharge_date, discharge_time,

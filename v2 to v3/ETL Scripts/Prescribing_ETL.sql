@@ -1,7 +1,8 @@
 ﻿-- PRESCRIBING table
-set role pcor_et_user;
 
-truncate table pcornet_cdm.prescribing;
+--set role pcor_et_user;
+
+--drop table if exists pcornet_cdm.prescribing;
 
 insert into pcornet_cdm.prescribing (prescribingid,
             patid, encounterid,

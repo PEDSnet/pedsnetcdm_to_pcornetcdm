@@ -1,6 +1,7 @@
-set role pcor_et_user;
 
-truncate table pcornet_cdm.lab_result_cm;
+--set role pcor_et_user;
+
+--drop table if exists pcornet_cdm.lab_result_cm;
 
 insert into pcornet_cdm.lab_result_cm (
 	lab_result_cm_id,

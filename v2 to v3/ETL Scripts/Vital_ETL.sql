@@ -8,9 +8,10 @@
 --- The query is agnostic to the concept id of the relationship.
 -- We use a concatenated PK (based on ht, wt, dia, sys, bmi measurement ids
 
-set role pcor_et_user;
 
-truncate table pcornet_cdm.vital
+--set role pcor_et_user;
+
+--drop table if exists pcornet_cdm.vital;
 
 insert into pcornet_cdm.vital(
             vitalid, patid, encounterid, measure_date, measure_time, vital_source,
