@@ -29,3 +29,5 @@ export SCRIPTNAME="Prescribing_ETL.sql"     && echo "Beginning Execution of $SCR
 export SCRIPTNAME="Vital_ETL.sql"           && echo "Beginning Execution of $SCRIPTNAME" >> log/"$DATABASE"_etl.log && PGPASSWORD="$ETL_DATABASE_USER_PASSWORD"   nohup time psql --host="$DBHOSTNAME"   --user="$ETL_DATABASE_USER"  --dbname="$DATABASE" < "$SCRIPTNAME" >> log/"$DATABASE"_etl.log
 
 export SCRIPTNAME="Lab_Result_CM_ETL.sql"   && echo "Beginning Execution of $SCRIPTNAME" >> log/"$DATABASE"_etl.log && PGPASSWORD="$ETL_DATABASE_USER_PASSWORD"   nohup time psql --host="$DBHOSTNAME"   --user="$ETL_DATABASE_USER"  --dbname="$DATABASE" < "$SCRIPTNAME" >> log/"$DATABASE"_etl.log
+
+#PGPASSWORD=$ETL_DATABASE_USER_PASSWORD nohup time psql  --host localhost --user $ETL_DATABASE_USER   $DATABASE < PCORnet_CDM_V1_pgsql.ddl > log/"$DATABASE"_PCORnet_CDM_V1_pgsql.ddl.log

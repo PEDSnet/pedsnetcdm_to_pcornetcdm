@@ -265,18 +265,19 @@ CREATE TABLE pcornet_cdm.prescribing (
 	raw_rx_med_name VARCHAR(255),
 	raw_rxnorm_cui VARCHAR(255),
 	rx_basis VARCHAR(2),
-	rx_days_supply NUMERIC(16, 8),
+	rx_days_supply NUMERIC(20, 2),
 	rx_end_date DATE,
 	rx_frequency VARCHAR(2),
 	rx_order_date DATE,
 	rx_order_time VARCHAR(5),
 	rx_providerid VARCHAR(255),
-	rx_quantity NUMERIC(16, 8),
-	rx_refills NUMERIC(16, 8),
+	rx_quantity NUMERIC(20, 2),
+	rx_refills NUMERIC(20, 2),
 	rx_start_date DATE,
-	rxnorm_cui NUMERIC(16, 8),
+	rxnorm_cui NUMERIC(20, 2),
 	CONSTRAINT xpk_prescribing PRIMARY KEY (prescribingid)
 );
+
 
 
 drop table if exists pcornet_cdm.pro_cm cascade;
