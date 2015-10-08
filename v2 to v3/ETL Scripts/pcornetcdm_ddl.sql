@@ -103,9 +103,9 @@ CREATE TABLE pcornet_cdm.diagnosis (
 drop table if exists pcornet_cdm.dispensing cascade;
 
 CREATE TABLE pcornet_cdm.dispensing (
-	dispense_amt NUMERIC(10, 8),
+	dispense_amt NUMERIC(16, 8),
 	dispense_date DATE NOT NULL,
-	dispense_sup NUMERIC(10, 8),
+	dispense_sup NUMERIC(16, 8),
 	dispensingid VARCHAR(255) NOT NULL,
 	ndc VARCHAR(11) NOT NULL,
 	patid VARCHAR(255) NOT NULL,
@@ -160,7 +160,7 @@ drop table if exists pcornet_cdm.harvest cascade;
 CREATE TABLE pcornet_cdm.harvest (
 	admit_date_mgmt VARCHAR(255),
 	birth_date_mgmt VARCHAR(255),
-	cdm_version NUMERIC(10, 8),
+	cdm_version NUMERIC(16, 8),
 	datamart_claims VARCHAR(2),
 	datamart_ehr VARCHAR(2),
 	datamart_name VARCHAR(20),
@@ -229,7 +229,7 @@ CREATE TABLE pcornet_cdm.lab_result_cm (
 	result_date DATE NOT NULL,
 	result_loc VARCHAR(2),
 	result_modifier VARCHAR(2),
-	result_num NUMERIC(10, 8),
+	result_num NUMERIC(16, 8),
 	result_qual VARCHAR(12),
 	result_time VARCHAR(5),
 	result_unit VARCHAR(11),
@@ -265,16 +265,16 @@ CREATE TABLE pcornet_cdm.prescribing (
 	raw_rx_med_name VARCHAR(255),
 	raw_rxnorm_cui VARCHAR(255),
 	rx_basis VARCHAR(2),
-	rx_days_supply NUMERIC(10, 8),
+	rx_days_supply NUMERIC(16, 8),
 	rx_end_date DATE,
 	rx_frequency VARCHAR(2),
 	rx_order_date DATE,
 	rx_order_time VARCHAR(5),
 	rx_providerid VARCHAR(255),
-	rx_quantity NUMERIC(10, 8),
-	rx_refills NUMERIC(10, 8),
+	rx_quantity NUMERIC(16, 8),
+	rx_refills NUMERIC(16, 8),
 	rx_start_date DATE,
-	rxnorm_cui NUMERIC(10, 8),
+	rxnorm_cui NUMERIC(16, 8),
 	CONSTRAINT xpk_prescribing PRIMARY KEY (prescribingid)
 );
 
@@ -291,7 +291,7 @@ CREATE TABLE pcornet_cdm.pro_cm (
 	pro_loinc VARCHAR(10),
 	pro_method VARCHAR(2),
 	pro_mode VARCHAR(2),
-	pro_response NUMERIC(10, 8) NOT NULL,
+	pro_response NUMERIC(16, 8) NOT NULL,
 	pro_time VARCHAR(5),
 	raw_pro_code VARCHAR(255),
 	raw_pro_response VARCHAR(255),
@@ -322,12 +322,12 @@ drop table if exists pcornet_cdm.vital cascade;
 
 CREATE TABLE pcornet_cdm.vital (
 	bp_position VARCHAR(2),
-	diastolic NUMERIC(10, 4),
+	diastolic NUMERIC(16, 8),
 	encounterid VARCHAR(255),
-	ht NUMERIC(10, 8),
+	ht NUMERIC(16, 8),
 	measure_date DATE NOT NULL,
 	measure_time VARCHAR(5),
-	original_bmi NUMERIC(10, 8),
+	original_bmi NUMERIC(16, 8),
 	patid VARCHAR(255) NOT NULL,
 	raw_bp_position VARCHAR(255),
 	raw_diastolic VARCHAR(255),
@@ -335,12 +335,12 @@ CREATE TABLE pcornet_cdm.vital (
 	raw_tobacco VARCHAR(255),
 	raw_tobacco_type VARCHAR(255),
 	smoking VARCHAR(2),
-	systolic NUMERIC(10, 4),
+	systolic NUMERIC(16, 8),
 	tobacco VARCHAR(2),
 	tobacco_type VARCHAR(2),
 	vital_source VARCHAR(2) NOT NULL,
 	vitalid VARCHAR(255) NOT NULL,
-	wt NUMERIC(10, 8),
+	wt NUMERIC(16, 8),
 	CONSTRAINT xpk_vital PRIMARY KEY (vitalid)
 );
 
