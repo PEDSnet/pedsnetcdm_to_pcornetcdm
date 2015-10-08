@@ -25,7 +25,7 @@ WITH  o1 as (select distinct person_id,visit_occurrence_id,value_as_concept_id, 
 select distinct 
 	cast(v.person_id as text) as pat_id,
 	cast(v.visit_occurrence_id as text) as encounterid ,
-	cast(cast(date_part('year', visit_start_date) as text)||'-'||lpad(cast(date_part('month', visit_start_date) as text),2,'0')||'-'||lpad(cast(date_part('day', 	visit_start_date) as text),2,'0') 
+	cast(cast(date_part('year', visit_start_date) as text)||'-'||lpad(cast(date_part('month', visit_start_date) as text),2,'0')||'-'||lpad(cast(date_part('day', visit_start_date) as text),2,'0') 
 	as date) as admit_date,
     date_part('hour',visit_start_date)||':'||date_part('minute',visit_start_date) as admit_time,
 	cast(cast(date_part('year', visit_end_date) as text)||'-'||lpad(cast(date_part('month', visit_end_date) as text),2,'0')||'-'||lpad(cast(date_part('day', visit_end_date) as text),2,'0')
@@ -37,7 +37,7 @@ select distinct
     v.care_site_id as facilityid,
     case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when o1.person_id is null then 'NI' else coalesce(m2.target_concept,'OT') end end as discharge_disposition,
     min(case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when o3.person_id is null then 'NI' else coalesce(m3.target_concept,'OT') end end) as discharge_status,
-    case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else o2.value_as_string end as drg,
+    min(case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else o2.value_as_string end) as drg, -- -records having multiple DRGs
 	case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when visit_start_date<'2007-10-01' then '01' else '02' end end as drg_type,
 	case when o4.person_id is null then 'NI' else coalesce(m4.target_concept,'OT') end as admitting_source,
 	v.visit_source_value as raw_enc_type,
@@ -69,11 +69,10 @@ group by
     coalesce(m1.target_concept,'OT'),
     v.care_site_id,
     case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when o1.person_id is null then 'NI' else coalesce(m2.target_concept,'OT') end end,
-    case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else o2.value_as_string end,
+    --case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else o2.value_as_string end,
     case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when visit_start_date<'2007-10-01' then '01' else '02' end end,
     case when o4.person_id is null then 'NI' else coalesce(m4.target_concept,'OT') end,
     v.visit_concept_id,
     case when o1.person_id is null then null else cast(o1.observation_source_value as text) end,
     case when o4.person_id is null then null else cast(o4.observation_source_value as text) end
-
 
