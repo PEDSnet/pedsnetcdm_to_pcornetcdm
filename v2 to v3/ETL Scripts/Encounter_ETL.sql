@@ -35,13 +35,13 @@ select distinct
 	left(l.zip,3) as facility_location,
     coalesce(m1.target_concept,'OT') as enc_type,
     v.care_site_id as facilityid,
-    case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when o1.person_id is null then 'NI' else coalesce(m2.target_concept,'OT') end end as discharge_disposition,
+    min(case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when o1.person_id is null then 'NI' else coalesce(m2.target_concept,'OT') end end) as discharge_disposition, -- Colorado having multiple discharge dispoition 
     min(case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when o3.person_id is null then 'NI' else coalesce(m3.target_concept,'OT') end end) as discharge_status,
     min(case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else o2.value_as_string end) as drg, -- -records having multiple DRGs
 	case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when visit_start_date<'2007-10-01' then '01' else '02' end end as drg_type,
 	case when o4.person_id is null then 'NI' else coalesce(m4.target_concept,'OT') end as admitting_source,
 	v.visit_source_value as raw_enc_type,
-	min(case when o1.person_id is null then null else o1.observation_source_value end) as raw_discharge_disposition,
+	min(case when o1.person_id is null then null else o1.observation_source_value end) as raw_discharge_disposition, -- having multiple records for Colorado 
 	min(case when o3.person_id is null then null else o3.observation_source_value end) as raw_discharge_status,
 	null as raw_drg_type,
 	min(case when o4.person_id is null then null else o4.observation_source_value end) as raw_admitting_source
@@ -60,7 +60,7 @@ from
 group by
     v.person_id,
     v.visit_occurrence_id,
-    cast(date_part('year', visit_start_date) as text)||'-'||lpad(cast(date_part('month', visit_start_date) as text),2,'0')||'-'||lpad(cast(date_part('day', 	visit_start_date) as text),2,'0'),
+    cast(date_part('year', visit_start_date) as text)||'-'||lpad(cast(date_part('month', visit_start_date) as text),2,'0')||'-'||lpad(cast(date_part('day',visit_start_date) as text),2,'0'),
     date_part('hour',visit_start_date)||':'||date_part('minute',visit_start_date),
     cast(date_part('year', visit_end_date) as text)||'-'||lpad(cast(date_part('month', visit_end_date) as text),2,'0')||'-'||lpad(cast(date_part('day', visit_end_date) as text),2,'0'),
     date_part('hour',visit_end_date)||':'||date_part('minute',visit_end_date),
@@ -68,11 +68,11 @@ group by
     left(l.zip,3),
     coalesce(m1.target_concept,'OT'),
     v.care_site_id,
-    case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when o1.person_id is null then 'NI' else coalesce(m2.target_concept,'OT') end end,
+    --case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when o1.person_id is null then 'NI' else coalesce(m2.target_concept,'OT') end end,
     --case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else o2.value_as_string end,
     case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when visit_start_date<'2007-10-01' then '01' else '02' end end,
     case when o4.person_id is null then 'NI' else coalesce(m4.target_concept,'OT') end,
     v.visit_concept_id,
-    case when o1.person_id is null then null else cast(o1.observation_source_value as text) end,
+   -- case when o1.person_id is null then null else cast(o1.observation_source_value as text) end,
     case when o4.person_id is null then null else cast(o4.observation_source_value as text) end
 
