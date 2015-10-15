@@ -1,0 +1,7 @@
+etl:
+  build: etl.dockerfile
+  volumes:
+    - .:/opt/apps/pedsnetcdm_to_pcornet_cdm:ro
+   user: root
+   command:
+     - run

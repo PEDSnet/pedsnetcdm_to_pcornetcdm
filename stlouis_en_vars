@@ -1,0 +1,8 @@
+export DATABASE=pedsnet_seattle
+export EXTRACTDBHOSTNAME="reslnpedsndb02.research.chop.edu"
+export LOADDBHOSTNAME="reslnpedsndb01.research.chop.edu"
+export DUMPFILENAME="${DATABASE}_${EXTRACTDBHOSTNAME}_pcornetcdm.dump.psql"
+export LOADFILENAME="${DATABASE}_${LOADDBHOSTNAME}_pcornetcdm.dump.psql"
+export PCOR_ET_USER_PASSWORD=
+export ETL_DATABASE_USER_PASSWORD=
+export ETL_DATABASE_USER=
