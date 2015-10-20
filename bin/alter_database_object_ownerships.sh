@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#Extract (Test)
+
+DATABASE=$DATABASE
+
 SCHEMAOWNER=dcc_owner
 
 HOSTNAME=$LOADDBHOSTNAME
@@ -22,6 +26,20 @@ for tbl in `PGPASSWORD="$ETL_DATABASE_USER_PASSWORD" psql --host="$HOSTNAME" --u
 for tbl in `PGPASSWORD="$ETL_DATABASE_USER_PASSWORD" psql --host="$HOSTNAME" --user="davidsonl2" --dbname="${DATABASE}" -qAt -c "select tablename from pg_tables where schemaname = 'pedsnet_cdm';"` ; do  PGPASSWORD="$ETL_DATABASE_USER_PASSWORD" psql --host="$LOADDBHOSTNAME" --user="davidsonl2" --dbname="${DATABASE}" -c "alter table pedsnet_cdm.\"$tbl\" owner to $SCHEMAOWNER" ; done
 
 
-Load (Production)
+#Load (Production)
 
-psql  --dbname="$DATABASE" -c "alter schema pcornet_cdm owner to $SCHEMAOWNER;"
+DATABASE=$DATABASE
+
+SCHEMAOWNER=dcc_owner
+
+HOSTNAME=$LOADDBHOSTNAME
+
+HOSTNAME=localhost
+
+SCHEMA=pcornet_cdm
+
+psql  --dbname="$DATABASE" -c "alter schema $SCHEMA owner to $SCHEMAOWNER;"
+
+psql   --dbname="$DATABASE" -c "alter database $DATABASE owner to $SCHEMAOWNER;"
+
+for tbl in `psql --dbname="${DATABASE}" -qAt -c "select tablename from pg_tables where schemaname = 'pcornet_cdm';"` ; do psql --dbname="${DATABASE}" -c "alter table pcornet_cdm.\"$tbl\" owner to $SCHEMAOWNER" ; done
