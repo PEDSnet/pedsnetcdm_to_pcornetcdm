@@ -6,6 +6,8 @@
 
 --drop table if exists pcornet_cdm.dispensing;
 
+set search_path to pedsnet_cdm;
+
 insert into pcornet_cdm.dispensing(
             dispensingid, patid, prescribingid,
             dispense_date, ndc, dispense_sup, dispense_amt, raw_ndc)

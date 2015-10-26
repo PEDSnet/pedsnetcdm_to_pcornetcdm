@@ -8,6 +8,8 @@
 
 --drop table if exists pcornet_cdm.enrollment;
 
+set search_path to pedsnet_cdm;
+
 insert into pcornet_cdm.enrollment (patid, enr_start_date, enr_end_date, chart, enr_basis)
 select distinct
 	cast(op.person_id as text) as pat_id,

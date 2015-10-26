@@ -9,6 +9,8 @@
 
 --drop table if exists pcornet_cdm.procedures;
 
+set search_path to pedsnet_cdm;
+
 insert into pcornet_cdm.procedures(
             proceduresid,patid, encounterid, enc_type, admit_date, providerid, px, px_type,
             raw_px, raw_px_type)

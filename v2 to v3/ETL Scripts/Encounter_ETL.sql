@@ -7,6 +7,7 @@
 ---- Replace specific concept_id for No information/Unknown/Other with generic concept id
 ---- Change source column for raw_ target columns from value_as_concept_id to observation_source_value
 ---- changed the logic to extract DRGs (only MS-DRGs are needed by PCORnet)
+set search_path to pedsnet_cdm;
 
 insert into pcornet_cdm.encounter (
             patid, encounterid, admit_date, admit_time, discharge_date, discharge_time,

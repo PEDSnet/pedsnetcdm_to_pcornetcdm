@@ -3,6 +3,8 @@
 
 --drop table if exists pcornet_cdm.lab_result_cm;
 
+set search_path to pedsnet_cdm;
+
 insert into pcornet_cdm.lab_result_cm (
 	lab_result_cm_id,
 	patid, encounterid,

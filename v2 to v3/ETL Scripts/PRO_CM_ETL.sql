@@ -4,6 +4,8 @@
 
 --drop table if exists pcornet_cdm.pro_cm;
 
+set search_path to pedsnet_cdm;
+
 Insert into pcornet_cdm.pro_cm(
 	patid, encounterid,
 	pro_item, pro_loinc,

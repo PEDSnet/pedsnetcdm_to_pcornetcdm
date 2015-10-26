@@ -3,6 +3,8 @@
 
 --drop table if exists pcornet_cdm.condition;
 
+set search_path to pedsnet_cdm;
+
 insert into pcornet_cdm.condition(
             conditionid, patid, encounterid, report_date, resolve_date, onset_date,
             condition_status, condition, condition_type, condition_source,

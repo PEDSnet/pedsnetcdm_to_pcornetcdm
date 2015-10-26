@@ -3,6 +3,8 @@
 
 --drop table if exists pcornet_cdm.death_cause;
 
+set search_path to pedsnet_cdm;
+
 Insert into pcornet_cdm.death_cause(
 	patid,
 	death_cause, death_cause_code, death_cause_type,

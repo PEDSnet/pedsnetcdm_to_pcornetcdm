@@ -8,6 +8,8 @@
 
 --drop table if exists pcornet_cdm.diagnosis;
 
+set search_path to pedsnet_cdm;
+
 insert into pcornet_cdm.diagnosis(
             diagnosisid,patid, encounterid, enc_type, admit_date, providerid, dx, dx_type,
             dx_source, pdx, raw_dx, raw_dx_type, raw_dx_source, raw_pdx)

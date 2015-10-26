@@ -6,6 +6,8 @@
 
 --drop table if exists pcornet_cdm.demographic;
 
+set search_path to pedsnet_cdm;
+
 insert into pcornet_cdm.demographic (patid, birth_date, birth_time, sex, hispanic, race, biobank_flag, raw_sex, raw_hispanic, raw_race)
 select distinct
 	cast(p.person_id as text) as pat_id,

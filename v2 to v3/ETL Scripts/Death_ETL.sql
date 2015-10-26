@@ -3,6 +3,8 @@
 
 --drop table if exists pcornet_cdm.death;
 
+set search_path to pedsnet_cdm;
+
 Insert into pcornet_cdm.death(
 	patid, death_date, death_date_impute,
 	death_source, death_match_confidence

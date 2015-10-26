@@ -13,6 +13,8 @@
 
 --drop table if exists pcornet_cdm.vital;
 
+set search_path to pedsnet_cdm;
+
 insert into pcornet_cdm.vital(
             vitalid, patid, encounterid, measure_date, measure_time, vital_source,
             ht, wt, diastolic, systolic, original_bmi, bp_position,

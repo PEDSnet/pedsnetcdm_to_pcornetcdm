@@ -4,6 +4,8 @@
 
 --drop table if exists pcornet_cdm.prescribing;
 
+set search_path to pedsnet_cdm;
+
 insert into pcornet_cdm.prescribing (prescribingid,
             patid, encounterid,
             rx_providerid, rx_order_date, rx_order_time,
