@@ -66,7 +66,7 @@ ms_dia.measurement_source_value as raw_diastolic,
 ms_sys.measurement_source_value as raw_systolic,
 null as raw_bp_position
 FROM
-ms
+pedsnet_cdm.ms
 left join ms_ht on ms.visit_occurrence_id = ms_ht.visit_occurrence_id
 and ms.measurement_time = ms_ht.measurement_time
 left join ms_wt on ms.visit_occurrence_id = ms_wt.visit_occurrence_id

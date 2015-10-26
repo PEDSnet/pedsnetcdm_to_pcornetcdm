@@ -29,7 +29,7 @@ select distinct
 	de.effective_drug_dose as raw_rx_frequency,
 	c2.concept_code as raw_rxnorm_cui
 from
-	drug_exposure de
+	pedsnet_cdm.drug_exposure de
 	join pcornet_cdm.demographic d on d.patid = cast(de.person_id as text)
 	join pcornet_cdm.encounter e on cast(de.visit_occurrence_id as text) = e.encounterid
 	left join pcornet_cdm.cz_omop_pcornet_concept_map m1 on case when de.drug_type_concept_id is null

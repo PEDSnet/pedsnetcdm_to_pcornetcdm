@@ -25,7 +25,7 @@ select distinct
 	c2.vocabulary_id as raw_condition_type,
 	null as raw_condition_source
 from
-	condition_occurrence co
+	pedsnet_cdm.condition_occurrence co
 	join pcornet_cdm.demographic d on d.patid = cast(co.person_id as text)
 	left join pcornet_cdm.encounter e on e.encounterid = cast(co.visit_occurrence_id as text)
 	join concept c1 on co.condition_concept_id = c1.concept_id

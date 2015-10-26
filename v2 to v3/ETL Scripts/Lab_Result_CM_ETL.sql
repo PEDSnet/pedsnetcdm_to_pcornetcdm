@@ -53,7 +53,7 @@ select
 	null as raw_facility_code
 
 from
-	measurement m
+	pedsnet_cdm.measurement m
 	join pcornet_cdm.demographic d on cast(m.person_id as text)= d.patid
 	join pcornet_cdm.encounter e on cast(m.visit_occurrence_id as text) = e.encounterid
 	join concept c1 on m.measurement_concept_id = c1.concept_id and c1.vocabulary_id = 'LOINC'

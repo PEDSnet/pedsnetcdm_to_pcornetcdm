@@ -21,4 +21,4 @@ select distinct
 	'Y' as chart, -- defaulting to yes
 	'E' as ENR_basis
 from
-	observation_period op
+	pedsnet_cdm.observation_period op

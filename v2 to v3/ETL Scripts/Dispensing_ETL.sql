@@ -19,7 +19,7 @@ select distinct
 	de.quantity as dispense_amt,
 	c1.concept_code as raw_ndc
 from
-	drug_exposure de  -- 7.7M
+	pedsnet_cdm.drug_exposure de  -- 7.7M
 	join pcornet_cdm.demographic d on d.patid = cast(de.person_id as text) --7.7M (with all above line in 9399 ms)
 	join concept c1 on concept_id= de.drug_source_concept_id --
 where

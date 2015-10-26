@@ -33,7 +33,7 @@ select distinct
         c4.concept_name as raw_dx_source,
 	case when co.condition_type_concept_id IN ('44786627','44786629') then c4.concept_name else NULL end as raw_pdx
 from
-	condition_occurrence co
+	pedsnet_cdm.condition_occurrence co
 	join pcornet_cdm.encounter enc on cast(co.visit_occurrence_id as text)=enc.encounterid
 	join concept c2 on co.condition_concept_id = c2.concept_id -- Join or LEFT JOIN
 	left join pcornet_cdm.cz_omop_pcornet_concept_map m1 on m1.source_concept_class='dx_source' and cast(co.condition_type_concept_id as text) = m1.source_concept_id

@@ -34,7 +34,7 @@ select distinct
 	split_part(procedure_source_value,'.',1) as raw_px,
 	case when c2.vocabulary_id IS Null then 'Other' else c2.vocabulary_id end as raw_px_type
 from
-	procedure_occurrence po
+	pedsnet_cdm.procedure_occurrence po
 	join pcornet_cdm.encounter enc on cast(po.visit_occurrence_id as text)=enc.encounterid
 	join concept c on po.procedure_source_concept_id=c.concept_id
 	-- get the vocabulary from procedure concept id - to populate the PX_TYPE field (case 1)
