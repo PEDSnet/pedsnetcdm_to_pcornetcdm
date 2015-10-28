@@ -47,7 +47,7 @@ ob_tobacco_data as (select ob_tobacco.visit_occurrence_id, ob_tobacco.observatio
 SELECT distinct
  coalesce(cast(ms_ht.measurement_id as text),'')||'-'||coalesce(cast(ms_wt.measurement_id as text),'')
  ||'-'||coalesce(cast(ms_sys.measurement_id as text),'')||
- '-'||coalesce(cast(ms_dia.measurement_id as text),'')||'-'||coalesce(cast(ms_bmi.measurement_id as text),'') as vitalid,
+ '-'||coalesce(cast(ms_dia.measurement_id as text),'')||'-'||coalesce(cast(ms_bmi.measurement_id as text),'')||'-'||coalesce(cast(ms.person_id as text),'') as vitalid,
 cast(ms.person_id as text) as patid,
 cast(ms.visit_occurrence_id as text) as encounterid,
 cast(cast(date_part('year', ms.measurement_date) as text)||'-'||lpad(cast(date_part('month', ms.measurement_date) as text),2,'0')||'-'||lpad(cast(date_part('day', ms.measurement_date) as text),2,'0') as date)
