@@ -7,7 +7,7 @@ Select
 	de.death_date as death_date,
 	'NI' as death_impute, -- default for now until next ETL cycle
 	'L' as death_source, --  default for now until next ETL cycle
-	null as death_match_confidence -- null 
+	null as death_match_confidence --  we do not capture it dicretely in the EHRs 
 From
 	death de
 	join pcornet_cdm.demographic d on d.patid = cast(de.person_id as text)

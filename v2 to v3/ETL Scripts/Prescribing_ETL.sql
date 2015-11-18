@@ -11,7 +11,7 @@ select distinct
 	cast(de.person_id as text) as patid,
 	encounterid as encounterid,
 	de.provider_id as rx_providerid,
-	drug_exposure_start_date as rx_order_date, -- making this same as start date 
+	drug_exposure_start_date as rx_order_date, -- making this same as start date -- looks OK as per PEDSnet conventions doc 
 	date_part('hour',drug_exposure_start_time)||':'||date_part('minute',drug_exposure_start_time) as rx_order_time, -- same as above
 	drug_exposure_start_date as rx_start_date,
 	drug_exposure_end_date as rx_end_date,

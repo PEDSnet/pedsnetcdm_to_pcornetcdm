@@ -59,7 +59,7 @@ ob_tobacco_data.tobacco_type as tobacco_type,
 ob_tobacco_data.smoking as smoking,
 ms_dia.measurement_source_value as raw_diastolic,
 ms_sys.measurement_source_value as raw_systolic,
-null as raw_bp_position
+null as raw_bp_position -- Charlie saying not to capture this even though some sties may have store this explicitly - too much effort for populating a raw field 
 FROM 
 ms
 left join ms_ht on ms.visit_occurrence_id = ms_ht.visit_occurrence_id 

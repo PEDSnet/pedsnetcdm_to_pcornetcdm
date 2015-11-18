@@ -43,7 +43,7 @@ select distinct
 	v.visit_source_value as raw_enc_type,
 	min(case when o1.person_id is null then null else o1.observation_source_value end) as raw_discharge_disposition, -- having multiple records for Colorado 
 	min(case when o3.person_id is null then null else o3.observation_source_value end) as raw_discharge_status,
-	null as raw_drg_type,
+	null as raw_drg_type, -- since it is not discretely captured in the EHRs
 	min(case when o4.person_id is null then null else o4.observation_source_value end) as raw_admitting_source
 from 
 	visit_occurrence v

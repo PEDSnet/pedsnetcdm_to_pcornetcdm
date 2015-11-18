@@ -7,9 +7,9 @@ select
 	person_id as patid,
 	cause_source_value as death_cause, 
 	coalesce(m1.target_concept,'OT') as death_cause_code,
-	'NI' as death_cause_type, -- cannot be NULL
+	'NI' as death_cause_type, 
 	'L' as death_cause_source,
-	null as death_cause_confidence 
+	null as death_cause_confidence -- not dicretely captured in the EHRs
 From
 	death de
 	join pcornet_cdm.demographic d on cast(de.person_id as text) = d.patid
