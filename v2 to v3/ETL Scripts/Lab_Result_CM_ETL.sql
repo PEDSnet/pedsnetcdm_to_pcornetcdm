@@ -1,4 +1,4 @@
-﻿
+﻿-- more changes likely to be made based on decisions in data models #203 and #204
 insert into pcornet_cdm.lab_result_cm (
 	lab_result_cm_id,
 	patid, encounterid,
@@ -22,10 +22,10 @@ select
 	--m2.target_concept as specimen_source,
 	'BLOOD' as specimen_source, -- defaulting to blood until we have a good solution for sites to figure out how to infer specimen source from labs in the EHR data
 	c1.concept_code as lab_loinc,
-	null as priority,  -- null for now
+	null as priority,  -- null for now bring discussed in Data Models #203
 	case when measurement_source_value like 'POC%' then 'P' else 'L' end as result_loc, -- using logic to distinguish between POC and L for now - work in progress to explicitly include this in measurement table
-	null as lab_px, -- null for now
-	null as lab_px_type,
+	null as lab_px, -- null for now bring discussed in Data Models #204
+	null as lab_px_type, -- null for now bring discussed in Data Models #204
 	m.measurement_date as lab_order_date, -- default:  populate all dates using the measurement date (only date that we have at the moment)- until new conventions
 	m.measurement_date as specimen_date,  -- default:  populate all dates using the measurement date (only date that we have at the moment)- until new conventions
 	date_part('hour',m.measurement_time)||':'||date_part('minute',m.measurement_time) as specimen_time, -- HH:MI format 
