@@ -32,7 +32,7 @@ select distinct
 from
 	procedure_occurrence po
 	join pcornet_cdm.encounter enc on cast(po.visit_occurrence_id as text)=enc.encounterid
-	join concept c on po.procedure_source_concept_id=c.concept_id
+	join concept c on po.procedure_concept_id=c.concept_id
 	-- get the vocabulary from procedure concept id - to populate the PX_TYPE field (case 1)
 	left join pcornet_cdm.cz_omop_pcornet_concept_map m1 on c.vocabulary_id = cast(m1.source_concept_id as text) AND m1.source_concept_class='Procedure Code Type'
 	-- get the vocabulary for the RAW_PX_TYPE field - for all cases. 
