@@ -16,14 +16,14 @@ select distinct
 	enc.admit_date as admit_date,
 	enc.providerid as providerid,
 	-- case 2
-	case when c.concept_name = 'No matching concept' then
+	case when c.concept_id = 0 then
 	---- case 2a
 	case when m3.source_concept_id IS NOT NULL then split_part(procedure_source_value,'.',1)  
 	---- case 2b
 	else left(coalesce(po.procedure_source_value,'NM'||cast(round(random()*1000000000) as text)),11) end
 	--case 1
 	else left(c.concept_code,11) end as px,
-	case when c.concept_name = 'No matching concept' then 
+	case when c.concept_id = 0 then 
 		case when m3.source_concept_id IS NOT NULL then m3.target_concept 
 	else 'OT' end 
 	else coalesce(m1.target_concept,'OT') end as px_type,
