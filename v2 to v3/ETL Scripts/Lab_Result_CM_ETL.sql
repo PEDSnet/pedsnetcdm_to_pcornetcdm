@@ -26,19 +26,19 @@ select
 	case when measurement_source_value like 'POC%' then 'P' else 'L' end as result_loc, -- using logic to distinguish between POC and L for now - work in progress to explicitly include this in measurement table
 	null as lab_px, -- null for now bring discussed in Data Models #204
 	null as lab_px_type, -- null for now bring discussed in Data Models #204
-	m.measurement_date as lab_order_date, -- default:  populate all dates using the measurement date (only date that we have at the moment)- until new conventions
-	m.measurement_date as specimen_date,  -- default:  populate all dates using the measurement date (only date that we have at the moment)- until new conventions
+	m.measurement_order_date as lab_order_date,
+	m.measurement_date as specimen_date,  
 	date_part('hour',m.measurement_time)||':'||date_part('minute',m.measurement_time) as specimen_time, -- HH:MI format 
-	m.measurement_date as result_date, -- default:  populate all dates using the measurement date (only date that we have at the moment) - until new conventions
-	null as result_time,
+	measurement_result_date as result_date, -- default:  populate all dates using the measurement date (only date that we have at the moment) - until new conventions
+	date_part('hour',m.measurement_result_time)||':'||date_part('minute',m.measurement_result_time) as specimen_time as result_time,
 	'NI' as result_qual, -- Assert NI for now --- until new conventions evolve
 	m.value_as_number as result_num,
 	m3.target_concept as result_modifier,
 	m4.target_concept as result_unit,
-	m.range_low::text as norm_range_low, -- waiting on new conventions 2.1
-	null as norm_modifier_low, -- -- waiting on new conventions 2.1
-	m.range_high::text as norm_range_high, -- waiting on new conventions 2.1
-	null as norm_modifier_high, -- -- waiting on new conventions 2.1
+	left(m.range_low::text,10) as norm_range_low, 
+	m5.target_concept as norm_modifier_low, 
+	left(m.range_high::text,10) as norm_range_high,
+	m6.target_concept as norm_modifier_high, 
 	null as abn_ind, -- null for now
 	c1.concept_name as raw_lab_name,
 	m.measurement_id as raw_lab_code,
@@ -58,4 +58,6 @@ from
 	--left join pcornet_cdm.cz_omop_pcornet_concept_map m2 on c1.concept_code = m2.source_concept_id and m2.source_concept_class = 'Specimen source'
 	left join pcornet_cdm.cz_omop_pcornet_concept_map m3 on cast(m.operator_concept_id as text) = m3.source_concept_id and m3.source_concept_class = 'Result modifier'
 	left join pcornet_cdm.cz_omop_pcornet_concept_map m4 on cast(m.unit_concept_id as text)= m4.source_concept_id and m4.source_concept_class = 'Unit'
+	left join pcornet_cdm.cz_omop_pcornet_concept_map m5 on cast(m.range_low_operator_concept_id as text)= m5.source_concept_id and m5.source_concept_class = 'Result modifier'
+	left join pcornet_cdm.cz_omop_pcornet_concept_map m6 on cast(m.range_high_operator_concept_id as text)= m6.source_concept_id and m6.source_concept_class = 'Result modifier'
 

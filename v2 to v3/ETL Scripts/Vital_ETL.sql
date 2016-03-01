@@ -8,6 +8,9 @@
 --- The query is agnostic to the concept id of the relationship.
 -- We use a concatenated PK (based on ht, wt, dia, sys, bmi measurement ids
 
+drop sequence if exists sq_vitalid;
+create sequence sq_vitalid start 1;
+
 insert into pcornet_cdm.vital(
             vitalid, patid, encounterid, measure_date, measure_time, vital_source, 
             ht, wt, diastolic, systolic, original_bmi, bp_position, 
@@ -38,9 +41,7 @@ ob_tobacco_data as (select ob_tobacco.visit_occurrence_id, ob_tobacco.observatio
 	left join fact_relationship fr3 on ob_tobacco.observation_id = fr3.fact_id_1 
 	join ob_smoking on fr3.fact_id_2 = ob_smoking.observation_id)
 SELECT distinct
- coalesce(cast(ms.person_id as text),'')||'-'||coalesce(cast(ms_ht.measurement_id as text),'')||'-'||coalesce(cast(ms_wt.measurement_id as text),'')
- ||'-'||coalesce(cast(ms_sys.measurement_id as text),'')||
- '-'||coalesce(cast(ms_dia.measurement_id as text),'')||'-'||coalesce(cast(ms_bmi.measurement_id as text),'') as vitalid,
+nextval('sq_vitalid') as vitalid,
 cast(ms.person_id as text) as patid,
 cast(ms.visit_occurrence_id as text) as encounterid,
 cast(cast(date_part('year', ms.measurement_date) as text)||'-'||lpad(cast(date_part('month', ms.measurement_date) as text),2,'0')||'-'||lpad(cast(date_part('day', ms.measurement_date) as text),2,'0') as date) 

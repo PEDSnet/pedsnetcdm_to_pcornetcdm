@@ -5,7 +5,7 @@
 )
 select 
 	person_id as patid,
-	cause_source_value as death_cause, 
+	left(cause_source_value,8) as death_cause,
 	coalesce(m1.target_concept,'OT') as death_cause_code,
 	'NI' as death_cause_type, 
 	'L' as death_cause_source,
