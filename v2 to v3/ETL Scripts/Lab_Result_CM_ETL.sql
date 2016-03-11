@@ -30,7 +30,7 @@ select
 	m.measurement_date as specimen_date,  
 	date_part('hour',m.measurement_time)||':'||date_part('minute',m.measurement_time) as specimen_time, -- HH:MI format 
 	measurement_result_date as result_date, -- default:  populate all dates using the measurement date (only date that we have at the moment) - until new conventions
-	date_part('hour',m.measurement_result_time)||':'||date_part('minute',m.measurement_result_time) as specimen_time as result_time,
+	date_part('hour',m.measurement_result_time)||':'||date_part('minute',m.measurement_result_time) as result_time,
 	'NI' as result_qual, -- Assert NI for now --- until new conventions evolve
 	m.value_as_number as result_num,
 	m3.target_concept as result_modifier,
