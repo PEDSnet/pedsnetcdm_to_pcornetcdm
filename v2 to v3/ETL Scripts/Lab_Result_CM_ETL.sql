@@ -29,7 +29,7 @@ select
 	m.measurement_order_date as lab_order_date,
 	m.measurement_date as specimen_date,  
 	date_part('hour',m.measurement_time)||':'||date_part('minute',m.measurement_time) as specimen_time, -- HH:MI format 
-	measurement_result_date as result_date, -- default:  populate all dates using the measurement date (only date that we have at the moment) - until new conventions
+	coalesce(measurement_result_date, measurement_date) as result_date, -- temp fix: use measurement_date is result date is unavailable 
 	date_part('hour',m.measurement_result_time)||':'||date_part('minute',m.measurement_result_time) as result_time,
 	'NI' as result_qual, -- Assert NI for now --- until new conventions evolve
 	m.value_as_number as result_num,
