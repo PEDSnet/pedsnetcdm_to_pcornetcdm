@@ -16,7 +16,7 @@ select distinct
 	enc.providerid,
 	-- case 1 - when source value in pcornet vocabulary 
 	case when c2.vocabulary_id = 'ICD9CM' then condition_source_value
-	-- case 2: when source value doesnt exist... check if concept id = non-zero and source vocab is one of the five, then include concept id (SNOMED CT code) else random number
+	-- case 2: when source vocab not in one of the five, then include concept id (SNOMED CT code) else random number
 		else case when condition_concept_id>0 then (select distinct concept_code from concept c where c.concept_id = co.condition_concept_id)
 		else 'NM'||cast(round(random()*10000000000000) as text) end end as dx,
 	case when c2.vocabulary_id = 'ICD9CM' then '09'
@@ -31,7 +31,7 @@ select distinct
 from
 	condition_occurrence co
 	join pcornet_cdm.encounter enc on cast(co.visit_occurrence_id as text)=enc.encounterid
-	join concept c2 on co.condition_concept_id = c2.concept_id -- Join or LEFT JOIN
+	join concept c2 on co.condition_source_concept_id = c2.concept_id -- Join or LEFT JOIN
 	left join pcornet_cdm.cz_omop_pcornet_concept_map m1 on m1.source_concept_class='dx_source' and cast(co.condition_type_concept_id as text) = m1.source_concept_id
 	left join pcornet_cdm.cz_omop_pcornet_concept_map m2 on case when co.condition_type_concept_id is null AND m2.source_concept_id is null then true else cast(co.condition_type_concept_id as text) = m2.source_concept_id end and m1.source_concept_class='pdx'
 	left join concept c3 on co.condition_source_concept_id = c3.concept_id

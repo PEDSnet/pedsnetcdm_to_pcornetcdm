@@ -6,7 +6,7 @@
 -- included the primary key field in the insertion value set
 
 insert into pcornet_cdm.procedures(
-            proceduresid,patid, encounterid, enc_type, admit_date, providerid, px, px_type, 
+            proceduresid,patid, encounterid, enc_type, admit_date, providerid, px_date,px, px_type, 
             raw_px, raw_px_type)
 select distinct 
 	cast(procedure_occurrence_id as text) as proceduresid,
@@ -15,6 +15,7 @@ select distinct
 	enc.enc_type as enc_type,
 	enc.admit_date as admit_date,
 	enc.providerid as providerid,
+	procedure_date as px_date,
 	-- case 2
 	case when c.concept_id = 0 then
 	---- case 2a
