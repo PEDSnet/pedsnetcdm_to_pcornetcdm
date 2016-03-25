@@ -1,4 +1,4 @@
-﻿
+
 -- condition_occurrence --> Diagnosis
 -- Changes from previous version:
 ---- Drive dx_source from Observation.value_as_concept_id
@@ -23,17 +23,17 @@ select distinct
 		else case when condition_concept_id>0  then 'SM' else 'OT' end
 	end as dx_type,
 	coalesce(m1.target_concept,'OT') as dx_source,
-	coalesce(m2.target_concept,'OT') as pdx,
+	case when enc_type in ('IP','IS') then coalesce(m2.target_concept,'OT') else case when enc_type in ('ED','AV','OA') then 'X' else NULL end end as pdx,
 	condition_source_value as raw_dx,
 	case when co.condition_source_concept_id = '44814649' then 'OT' else c3.vocabulary_id end as raw_dx_type,
         c4.concept_name as raw_dx_source,	
-	case when co.condition_type_concept_id IN ('44786627','44786629') then c4.concept_name else NULL end as raw_pdx
+	case when co.condition_type_concept_id IN ('38000199','38000201') then c4.concept_name else NULL end as raw_pdx
 from
 	condition_occurrence co
 	join pcornet_cdm.encounter enc on cast(co.visit_occurrence_id as text)=enc.encounterid
 	join concept c2 on co.condition_source_concept_id = c2.concept_id -- Join or LEFT JOIN
 	left join pcornet_cdm.cz_omop_pcornet_concept_map m1 on m1.source_concept_class='dx_source' and cast(co.condition_type_concept_id as text) = m1.source_concept_id
-	left join pcornet_cdm.cz_omop_pcornet_concept_map m2 on case when co.condition_type_concept_id is null AND m2.source_concept_id is null then true else cast(co.condition_type_concept_id as text) = m2.source_concept_id end and m1.source_concept_class='pdx'
+	left join cz_omop_pcornet_concept_map m2 on  cast(co.condition_type_concept_id as text) = m2.source_concept_id  and m2.source_concept_class='pdx'
 	left join concept c3 on co.condition_source_concept_id = c3.concept_id
 	left join concept c4 on co.condition_type_concept_id = c4.concept_id 
 where co.condition_type_concept_id not in (38000245)
