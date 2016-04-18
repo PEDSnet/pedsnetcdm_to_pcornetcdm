@@ -39,3 +39,10 @@ This file contains the ETL source code, i.e. table-wise SQL queries to extract t
     - [Prescribing](./ETL%20Scripts/Prescribing_ETL.sql)
     - [Vital](./ETL%20Scripts/Vital_ETL.sql)
     - [Lab\_Result\_CM](./ETL%20Scripts/Lab_Result_CM_ETL.sql)
+
+### Schema Conventions
+
+- The PEDSnet CDM tables are stored in the "dcc_pedsnet" schema
+- The OMOP to PCORnet mapping table is stored in the "public" schema
+- The PCORnet CDM tables are stored in the "dcc_pcornet" schema
+- The vocbaulary tables are stored in the "vocabulary" schema 

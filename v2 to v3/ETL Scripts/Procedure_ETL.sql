@@ -1,12 +1,12 @@
-﻿
+
 -- procedure_occurrence -> Procedures
 -- Changes from previous version:
 -- No longer need source coding system info. Use source_concept_id instead.
 -- updated the table name to procedures
 -- included the primary key field in the insertion value set
 
-insert into pcornet_cdm.procedures(
-            proceduresid,patid, encounterid, enc_type, admit_date, providerid, px_date,px, px_type, 
+insert into dcc_pcornet.procedures(
+            proceduresid,patid, encounterid, enc_type, admit_date, providerid, px_date,px, px_type, px_source,
             raw_px, raw_px_type)
 select distinct 
 	cast(procedure_occurrence_id as text) as proceduresid,
@@ -28,16 +28,17 @@ select distinct
 		case when m3.source_concept_id IS NOT NULL then m3.target_concept 
 	else 'OT' end 
 	else coalesce(m1.target_concept,'OT') end as px_type,
+	'OT' as px_source, —- tentative until we evolve PEDSnet CDM to capture this info
 	split_part(procedure_source_value,'.',1) as raw_px,
 	case when c2.vocabulary_id IS Null then 'Other' else c2.vocabulary_id end as raw_px_type
 from
-	procedure_occurrence po
-	join pcornet_cdm.encounter enc on cast(po.visit_occurrence_id as text)=enc.encounterid
-	join concept c on po.procedure_concept_id=c.concept_id
+	dcc_pedsnet.procedure_occurrence po
+	join dcc_pcornet.encounter enc on cast(po.visit_occurrence_id as text)=enc.encounterid
+	join vocabulary.concept c on po.procedure_concept_id=c.concept_id
 	-- get the vocabulary from procedure concept id - to populate the PX_TYPE field (case 1)
-	left join pcornet_cdm.cz_omop_pcornet_concept_map m1 on c.vocabulary_id = m1.source_concept_id AND m1.source_concept_class='Procedure Code Type'
+	left join public.cz_omop_pcornet_concept_map m1 on c.vocabulary_id = m1.source_concept_id AND m1.source_concept_class='Procedure Code Type'
 	-- get the vocabulary for the RAW_PX_TYPE field - for all cases. 
-	left join concept c2 on po.procedure_source_concept_id = c2.concept_id 
+	left join vocabulary.concept c2 on po.procedure_source_concept_id = c2.concept_id 
 	-- get the vocabulary from the procedure source value to populate the PX_TYPE field (case 2a)
-	left join pcornet_cdm.cz_omop_pcornet_concept_map m3 on c2.vocabulary_id = m3.source_concept_id AND m3.source_concept_class='Procedure Code Type';
+	left join public.cz_omop_pcornet_concept_map m3 on c2.vocabulary_id = m3.source_concept_id AND m3.source_concept_class='Procedure Code Type';
 
