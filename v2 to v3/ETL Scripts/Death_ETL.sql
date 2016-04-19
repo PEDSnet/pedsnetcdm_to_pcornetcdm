@@ -6,7 +6,7 @@ Select
 	de.person_id as patid,
 	de.death_date as death_date,
 	coalesce(m1.target_concept,'OT') as death_impute, 
-	'L' as death_source, --  default for now until next ETL cycle
+	'L' as death_source, --  default for now until new conventions
 	null as death_match_confidence --  we do not capture it dicretely in the EHRs 
 From
 	dcc_pedsnet.death de
