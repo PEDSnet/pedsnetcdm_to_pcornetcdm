@@ -13,6 +13,7 @@ select
 From
 	dcc_pedsnet.death de
 	join dcc_pcornet.demographic d on cast(de.person_id as text) = d.patid
-	left join cz_omop_pcornet_concept_map m1 on cast(cause_concept_id as text) = source_concept_id 
+	join vocabulary.concept on cause_source_concept_id = concept_id
+	left join cz_omop_pcornet_concept_map m1 on cast(vocabulary_id as text) = source_concept_id 
 	AND m1.source_concept_class='death cause code' 
 where cause_concept_id>0
