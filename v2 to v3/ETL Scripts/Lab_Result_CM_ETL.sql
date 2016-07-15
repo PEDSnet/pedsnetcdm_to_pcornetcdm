@@ -22,10 +22,10 @@ select
 	--m2.target_concept as specimen_source,
 	'BLOOD' as specimen_source, -- defaulting to blood until we have a good solution for sites to figure out how to infer specimen source from labs in the EHR data
 	c1.concept_code as lab_loinc,
-	null as priority,  -- null for now bring discussed in Data Models #203
+	m7.target_concept as priority,  -- null for now bring discussed in Data Models #203
 	case when measurement_source_value like 'POC%' then 'P' else 'L' end as result_loc, -- using logic to distinguish between POC and L for now - work in progress to explicitly include this in measurement table
-	null as lab_px, -- null for now bring discussed in Data Models #204
-	null as lab_px_type, -- null for now bring discussed in Data Models #204
+	null as lab_px, -- null as discussed in Data Models #204
+	null as lab_px_type, -- null as discussed in Data Models #204
 	m.measurement_order_date as lab_order_date,
 	m.measurement_date as specimen_date,  
 	date_part('hour',m.measurement_time)||':'||date_part('minute',m.measurement_time) as specimen_time, -- HH:MI format 
@@ -60,4 +60,5 @@ from
 	left join public.cz_omop_pcornet_concept_map m4 on cast(m.unit_concept_id as text)= m4.source_concept_id and m4.source_concept_class = 'Unit'
 	left join public.cz_omop_pcornet_concept_map m5 on cast(m.range_low_operator_concept_id as text)= m5.source_concept_id and m5.source_concept_class = 'Result modifier'
 	left join public.cz_omop_pcornet_concept_map m6 on cast(m.range_high_operator_concept_id as text)= m6.source_concept_id and m6.source_concept_class = 'Result modifier'
+	left join public.cz_omop_pcornet_concept_map m7 on cast(m.priority_concept_id as text)= m7.source_concept_id and m7.source_concept_class = 'Lab priority'
 
