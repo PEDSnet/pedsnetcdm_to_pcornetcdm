@@ -15,7 +15,8 @@ select distinct
 	enc.admit_date,
 	enc.providerid,
 	case when condition_concept_id>0 then c1.concept_code
-		else  condition_source_value 
+			else  case when site='chop' then split_part(condition_source_value,'|',3) -- for chop
+			        else  condition_source_value end 
 		end as dx,
 	case when condition_concept_id>0 then  'SM'
 		else case 
@@ -42,4 +43,3 @@ from
 	left join vocabulary.concept c4 on co.condition_type_concept_id = c4.concept_id 
 where co.condition_type_concept_id not in (38000245)
 
-dcc

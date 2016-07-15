@@ -15,7 +15,7 @@ select distinct
 	date_part('hour',drug_exposure_start_time)||':'||date_part('minute',drug_exposure_start_time) as rx_order_time, -- same as above
 	drug_exposure_start_date as rx_start_date,
 	drug_exposure_end_date as rx_end_date,
-	quantity as rx_quantity,
+	round(quantity,2) as rx_quantity,
 	refills as rx_refills, 
 	days_supply as rx_days_supply,
 	null as rx_frequency, --  keeping it null for now until we have a method to extract from sig field (or new convention in PEDSnet)

@@ -16,4 +16,4 @@ From
 	join vocabulary.concept on cause_source_concept_id = concept_id
 	left join cz_omop_pcornet_concept_map m1 on cast(vocabulary_id as text) = source_concept_id 
 	AND m1.source_concept_class='death cause code' 
-where cause_concept_id>0
+where cause_source_value is not null and cause_source_concept_id<>44814650

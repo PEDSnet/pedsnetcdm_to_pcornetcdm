@@ -11,10 +11,10 @@ select distinct
 	cast(de.person_id as text) as patid,
 	null as prescribingid, -- null for now until some decision in Data Models #202
 	de.drug_exposure_start_date as dispense_date,
-	case when c1.concept_id = 0 then 'NM'||cast(round(random()*10000000) as text) else c1.concept_code end as ndc,
+	case when c1.vocabulary_id='NDC' then c1.concept_code else 'NM'||cast(round(random()*10000000) as text)  end as ndc,
 	de.days_supply as dispense_sup,
 	de.quantity as dispense_amt,
-	c1.concept_code as raw_ndc
+	case when c1.vocabulary_id='NDC' then c1.concept_code else null end as raw_ndc
 from
 	dcc_pedsnet.drug_exposure de  
 	join dcc_pcornet.demographic d on d.patid = cast(de.person_id as text) 

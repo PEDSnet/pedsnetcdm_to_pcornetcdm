@@ -18,7 +18,7 @@ WITH  o1 as (select distinct person_id,visit_occurrence_id,value_as_concept_id, 
      ,o2 as (select distinct person_id,visit_occurrence_id, value_as_string
 		from dcc_pedsnet.observation
 		where observation_concept_id = 3040464 and observation_date >'2007-10-01'
-			and value_as_string in (select concept_code from concept where invalid_reason is null and concept_class_id = 'MS-DRG' and vocabulary_id='DRG' ) 
+			and value_as_string in (select concept_code from vocabulary.concept where invalid_reason is null and concept_class_id = 'MS-DRG' and vocabulary_id='DRG' ) 
 		)
      ,o3 as (select distinct person_id,visit_occurrence_id, value_as_concept_id,observation_source_value from dcc_pedsnet.observation where observation_concept_id = 4137274)
      ,o4 as (select distinct value_as_concept_id, visit_occurrence_id, person_id,observation_source_value from dcc_pedsnet.observation where observation_concept_id = 4145666)
