@@ -22,11 +22,35 @@ This document contains the DDL script to create the source-to-concept mapping ta
 ### ETL Scripts/tablename_ETL.sql
 This file contains the ETL source code, i.e. table-wise SQL queries to extract the PCORnet instance from a given PEDSnet CDM instance and the source-to-concept mapping table. 
 
-## Steps for Executing the Scripts 
-1. Execute the [PCORnet Schema DDL](http://dmsa.a0b.io/pcornet/3.0.0/) into the pcornet_cdm schema
-2. Execute the [Mapping table DDL] (./ETL%20Scripts/cz_omop_pcornet_concept_map_ddl.sql) 
-3. Populate the mapping table created in Step 2 by importing the [pedsnet\_pcornet\_mappings.txt file] (../pedsnet_pcornet_mappings.txt). The setting for import in PostgreSQL include, format=text, delimiter=|, NULL String=NULL.
-4. Execute the ETL scripts in the following order 
+## Steps for creating the PCORnet data model 
+Use the Makefile below, which is kind of gnarly and uses lots of Unix-foo and run it as `make -f create_pcornet_tables.Makefile DB=pedsnet_dcc_v22 VER=3.0.0`.
+The important bit is that, for each empty pcornet schema FOO_pcornet, you should run `set role pcor_et_user`; followed by the SQL obtained from `http://data-models-sqlalchemy.research.chop.edu/pcornet/${VER}/ddl/postgresql/tables/`.
+
+```
+cat <(echo SET ROLE pcor_et_user\;) <(curl -s http://data-models-sqlalchemy.research.chop.edu/pcornet/${VER}/ddl/postgresql/tables/) | docker exec -i pedsnet_postgres_1 gosu postgres env PGOPTIONS="-c search_path=${@}_pcornet" psql 
+```
+```
+SHELL=/bin/bash   # needed for full, non-Posix features (process substitution via `<()`)                                                                                                                    
+DB?=none    # Set this on the command line via `make ... DB=thedb` or as an env variable                                                                                                                    
+VER?=none   # Set this on the command line via `make ... VER=theversion` or as an env variable                                                                                                              
+
+LOGDIR=logs_create_pcornet
+
+.PHONY: all
+all: chop colorado nationwide nemours seattle stlouis
+
+%:
+        @if [ "${DB}" == "none" ]; then echo "Invoke as: make -f create_pcornet_tables.Makefile DB=thedb VER=theversion"; false; fi
+        @if [ "${VER}" == "none" ]; then echo "Invoke as: make -f create_pcornet_tables.Makefile DB=thedb VER=theversion"; false; fi
+        mkdir -p ${LOGDIR}
+        cat <(echo SET ROLE pcor_et_user\;) <(curl -s http://data-models-sqlalchemy.research.chop.edu/pcornet/${VER}/ddl/postgresql/tables/) | docker exec -i pedsnet_postgres_1 gosu postgres env PGOPTIONS="-c search_path=${@}_pcornet" psql -a ${DB} >> ${LOGDIR}/$@.log 2>&1
+```
+
+
+## Steps for Executing the ETL Scripts 
+1. Execute the [Mapping table DDL] (./ETL%20Scripts/cz_omop_pcornet_concept_map_ddl.sql) 
+2. Populate the mapping table created in Step 2 by importing the [pedsnet\_pcornet\_mappings.txt file] (../pedsnet_pcornet_mappings.txt). The setting for import in PostgreSQL include, format=text, delimiter=|, NULL String=NULL.
+3. Execute the ETL scripts in the following order 
     - [Demographic](./ETL%20Scripts/Demographic_ETL.sql)
     - [Enrollment](./ETL%20Scripts/Enrollment_ETL.sql)
     - [Death](./ETL%20Scripts/Death_ETL.sql)
