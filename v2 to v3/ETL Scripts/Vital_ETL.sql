@@ -15,9 +15,9 @@ insert into dcc_pcornet.vital(
             vitalid, patid, encounterid, measure_date, measure_time, vital_source, 
             ht, wt, diastolic, systolic, original_bmi, bp_position, 
 	    tobacco, tobacco_type, smoking
-            ,raw_diastolic, raw_systolic, raw_bp_position)
+            ,raw_diastolic, raw_systolic, raw_bp_position,siteid)
  WITH
-ms as (select distinct person_id, visit_occurrence_id,measurement_date, measurement_time  from dcc_pedsnet.measurement where measurement_concept_id IN ('3023540','3013762','3034703','3019962','3013940','3012888','3018586','3035856','3009395','3004249','3038553')),
+ms as (select distinct person_id, site_id,visit_occurrence_id,measurement_date, measurement_time  from dcc_pedsnet.measurement where measurement_concept_id IN ('3023540','3013762','3034703','3019962','3013940','3012888','3018586','3035856','3009395','3004249','3038553')),
 ms_ht as (select distinct measurement_id, visit_occurrence_id, measurement_date, measurement_time, value_as_number  from dcc_pedsnet.measurement where measurement_concept_id = '3023540'),
 ms_wt as (select distinct measurement_id,visit_occurrence_id, measurement_date, measurement_time, value_as_number  from dcc_pedsnet.measurement where measurement_concept_id = '3013762'),
 ms_bmi as (select distinct measurement_id,visit_occurrence_id, measurement_date, measurement_time, value_as_number  from dcc_pedsnet.measurement where measurement_concept_id = '3038553'),
@@ -60,7 +60,8 @@ ob_tobacco_data.tobacco_type as tobacco_type,
 ob_tobacco_data.smoking as smoking,
 ms_dia.measurement_source_value as raw_diastolic,
 ms_sys.measurement_source_value as raw_systolic,
-null as raw_bp_position -- Charlie saying not to capture this even though some sties may have store this explicitly - too much effort for populating a raw field 
+null as raw_bp_position, -- Charlie saying not to capture this even though some sties may have store this explicitly - too much effort for populating a raw field 
+ms.site_id as siteid
 FROM 
 ms
 left join ms_ht on ms.visit_occurrence_id = ms_ht.visit_occurrence_id 

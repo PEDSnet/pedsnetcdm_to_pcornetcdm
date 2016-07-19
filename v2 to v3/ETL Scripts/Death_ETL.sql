@@ -1,13 +1,14 @@
 Insert into dcc_pcornet.death(
 	patid, death_date, death_date_impute,
-	death_source, death_match_confidence	
+	death_source, death_match_confidence, siteid
 )
 Select 
 	de.person_id as patid,
 	de.death_date as death_date,
 	coalesce(m1.target_concept,'OT') as death_impute, 
 	'L' as death_source, --  default for now until new conventions
-	null as death_match_confidence --  we do not capture it dicretely in the EHRs 
+	null as death_match_confidence, --  we do not capture it dicretely in the EHRs 
+	site_id as siteid
 From
 	dcc_pedsnet.death de
 	join dcc_pcornet.demographic d on d.patid = cast(de.person_id as text)
