@@ -1,7 +1,7 @@
 Insert into dcc_pcornet.death_cause(
 	patid,
 	death_cause, death_cause_code, death_cause_type,
-	death_cause_source, death_cause_confidence	
+	death_cause_source, death_cause_confidence, siteid
 )
 select 
 	person_id as patid,
@@ -9,7 +9,8 @@ select
 	coalesce(m1.target_concept,'OT') as death_cause_code,
 	'NI' as death_cause_type, 
 	'L' as death_cause_source,
-	null as death_cause_confidence -- not dicretely captured in the EHRs
+	null as death_cause_confidence, -- not dicretely captured in the EHRs
+	site_id as siteid
 From
 	dcc_pedsnet.death de
 	join dcc_pcornet.demographic d on cast(de.person_id as text) = d.patid

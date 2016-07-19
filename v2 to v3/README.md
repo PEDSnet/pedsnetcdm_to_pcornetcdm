@@ -37,7 +37,7 @@ VER?=none   # Set this on the command line via `make ... VER=theversion` or as a
 LOGDIR=logs_create_pcornet
 
 .PHONY: all
-all: chop colorado nationwide nemours seattle stlouis
+all: dcc chop colorado nationwide nemours seattle stlouis
 
 %:
         @if [ "${DB}" == "none" ]; then echo "Invoke as: make -f create_pcornet_tables.Makefile DB=thedb VER=theversion"; false; fi
@@ -46,6 +46,24 @@ all: chop colorado nationwide nemours seattle stlouis
         cat <(echo SET ROLE pcor_et_user\;) <(curl -s http://data-models-sqlalchemy.research.chop.edu/pcornet/${VER}/ddl/postgresql/tables/) | docker exec -i pedsnet_postgres_1 gosu postgres env PGOPTIONS="-c search_path=${@}_pcornet" psql -a ${DB} >> ${LOGDIR}/$@.log 2>&1
 ```
 
+Execute the following alter table commands: 
+
+```
+alter table dcc_pcornet.demographic add column siteid VARCHAR(256) NOT NULL;
+alter table dcc_pcornet.enrollment add column siteid varchar(256) not null;
+alter table dcc_pcornet.death add column siteid varchar(256) not null;
+alter table dcc_pcornet.death_cause add column siteid varchar(256) not null;
+alter table dcc_pcornet.encounter add column siteid varchar(256) not null;
+alter table dcc_pcornet.condition add column siteid varchar(256) not null;
+alter table dcc_pcornet.diagnosis add column siteid varchar(256) not null;
+alter table dcc_pcornet.procedures add column siteid varchar(256) not null;
+alter table dcc_pcornet.dispensing   add column siteid varchar(256) not null;
+alter table dcc_pcornet.prescribing   add column siteid varchar(256) not null;
+alter table dcc_pcornet.prescribing alter rx_quantity type numeric(20,2);
+alter table dcc_pcornet.vital   add column siteid varchar(256) not null;
+alter table dcc_pcornet.lab_result_cm   add column siteid varchar(256) not null;
+
+```
 
 ## Steps for Executing the ETL Scripts 
 1. Execute the [Mapping table DDL] (./ETL%20Scripts/cz_omop_pcornet_concept_map_ddl.sql) 

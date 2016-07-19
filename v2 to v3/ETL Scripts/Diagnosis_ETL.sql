@@ -6,7 +6,7 @@
 
 insert into dcc_pcornet.diagnosis(
             diagnosisid,patid, encounterid, enc_type, admit_date, providerid, dx, dx_type, 
-            dx_source, pdx, raw_dx, raw_dx_type, raw_dx_source, raw_pdx)
+            dx_source, pdx, raw_dx, raw_dx_type, raw_dx_source, raw_pdx,siteid)
 select distinct 
 	cast(co.condition_occurrence_id as text) as diagnosisid,
 	cast(co.person_id as text) as patid,
@@ -31,7 +31,8 @@ select distinct
 	condition_source_value as raw_dx,
 	case when co.condition_source_concept_id = '44814649' then 'OT' else c3.vocabulary_id end as raw_dx_type,
         c4.concept_name as raw_dx_source,	
-	case when co.condition_type_concept_id IN ('38000199','38000201') then c4.concept_name else NULL end as raw_pdx
+	case when co.condition_type_concept_id IN ('38000199','38000201') then c4.concept_name else NULL end as raw_pdx,
+	site_id as siteid
 from
 	dcc_pedsnet.condition_occurrence co
 	join dcc_pcornet.encounter enc on cast(co.visit_occurrence_id as text)=enc.encounterid

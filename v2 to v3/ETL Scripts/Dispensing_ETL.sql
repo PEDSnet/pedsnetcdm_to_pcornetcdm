@@ -5,7 +5,7 @@
 -- more changes likely to be made based on Data Models #202
 insert into dcc_pcornet.dispensing(
             dispensingid, patid, prescribingid, 
-            dispense_date, ndc, dispense_sup, dispense_amt, raw_ndc)
+            dispense_date, ndc, dispense_sup, dispense_amt, raw_ndc,siteid)
 select distinct
 	de.drug_exposure_id,
 	cast(de.person_id as text) as patid,
@@ -14,7 +14,8 @@ select distinct
 	case when c1.vocabulary_id='NDC' then c1.concept_code else 'NM'||cast(round(random()*10000000) as text)  end as ndc,
 	de.days_supply as dispense_sup,
 	de.quantity as dispense_amt,
-	case when c1.vocabulary_id='NDC' then c1.concept_code else null end as raw_ndc
+	case when c1.vocabulary_id='NDC' then c1.concept_code else null end as raw_ndc,
+	site_id as siteid
 from
 	dcc_pedsnet.drug_exposure de  
 	join dcc_pcornet.demographic d on d.patid = cast(de.person_id as text) 

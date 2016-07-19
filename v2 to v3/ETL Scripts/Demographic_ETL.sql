@@ -2,7 +2,7 @@
 -- Changes from previous version:
 	-- defaulting the biobank flag to N
 
-insert into dcc_pcornet.demographic (patid, birth_date, birth_time, sex, hispanic, race, biobank_flag, raw_sex, raw_hispanic, raw_race)
+insert into dcc_pcornet.demographic (patid, birth_date, birth_time, sex, hispanic, race, biobank_flag, raw_sex, raw_hispanic, raw_race, siteid)
 select distinct 
 	cast(p.person_id as text) as pat_id,
 	cast(
@@ -18,7 +18,8 @@ select distinct
 	'N' as Biobank_flag, -- defaulting to No . In PEDSnet, we do not ask sites to send this information and just default it to No
 	gender_source_value,
 	ethnicity_source_value,
-	race_source_value
+	race_source_value,
+	site_id as siteid
 from
 	dcc_pedsnet.person p
 	left join public.cz_omop_pcornet_concept_map m1 on case when cast(p.gender_concept_id as text) is null AND m1.source_concept_id is null then true else cast(p.gender_concept_id as text) = m1.source_concept_id end and m1.source_concept_class='Gender'
