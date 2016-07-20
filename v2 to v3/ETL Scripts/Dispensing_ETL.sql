@@ -6,21 +6,36 @@
 insert into dcc_pcornet.dispensing(
             dispensingid, patid, prescribingid, 
             dispense_date, ndc, dispense_sup, dispense_amt, raw_ndc,siteid)
+with rxnorm_ndc_crosswalk
+as 
+ (select min(ndc_codes.concept_code) as min_ndc_code, rxnorm_codes.concept_id as rxnorm_concept_id
+     from vocabulary.concept ndc_codes 
+	join vocabulary.concept_relationship cr on concept_id_1 = ndc_codes.concept_id and relationship_id='Maps to'
+	join vocabulary.concept rxnorm_codes on concept_id_2 = rxnorm_codes.concept_id
+     where ndc_codes.vocabulary_id='NDC' and rxnorm_codes.vocabulary_id='RxNorm'
+     group by rxnorm_codes.concept_id 
+    )         
 select distinct
 	de.drug_exposure_id,
 	cast(de.person_id as text) as patid,
 	null as prescribingid, -- null for now until some decision in Data Models #202
 	de.drug_exposure_start_date as dispense_date,
-	case when c1.vocabulary_id='NDC' then c1.concept_code else 'NM'||cast(round(random()*10000000) as text)  end as ndc,
+	case when ndc.vocabulary_id='NDC' then ndc.concept_code -- if source vocabulary is NDC
+		else -- get NDC through the rxnorm concept stored in drug_concept_id
+			case when rxnorm_ndc_crosswalk.rxnorm_concept_id is not null 
+			then rxnorm_ndc_crosswalk.min_ndc_code 
+			else
+			'NM'||cast(round(random()*10000000) as text)  end
+			end
+		 as ndc,
 	de.days_supply as dispense_sup,
 	de.quantity as dispense_amt,
-	case when c1.vocabulary_id='NDC' then c1.concept_code else null end as raw_ndc,
+	drug_source_value as raw_ndc,
 	site_id as siteid
 from
 	dcc_pedsnet.drug_exposure de  
 	join dcc_pcornet.demographic d on d.patid = cast(de.person_id as text) 
-	join vocabulary.concept c1 on concept_id= de.drug_source_concept_id 
+	left join vocabulary.concept ndc on concept_id= de.drug_source_concept_id 
+	left join rxnorm_ndc_crosswalk on drug_concept_id = rxnorm_concept_id
 where	
 	de.drug_type_concept_id = '38000175' -- Dispensing only
-
-
