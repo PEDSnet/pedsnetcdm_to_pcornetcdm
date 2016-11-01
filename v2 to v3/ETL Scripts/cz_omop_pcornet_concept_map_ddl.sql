@@ -1,4 +1,4 @@
-CREATE TABLE cz_omop_pcornet_concept_map
+CREATE TABLE dcc_pcornet.cz_omop_pcornet_concept_map
 (
   target_concept character varying(200),
   source_concept_class character varying(200),

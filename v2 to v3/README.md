@@ -84,7 +84,6 @@ alter table dcc_pcornet.lab_result_cm   add column siteid varchar(256) not null;
 
 ### Schema Conventions
 
-- The PEDSnet CDM tables are stored in the "dcc_pedsnet" schema
-- The OMOP to PCORnet mapping table is stored in the "public" schema
-- The PCORnet CDM tables are stored in the "dcc_pcornet" schema
-- The vocbaulary tables are stored in the "vocabulary" schema 
+- The PEDSnet CDM tables are stored in the `dcc_pedsnet` schema
+- The PCORnet CDM tables and the OMOP to PCORnet mapping tables are stored in the `dcc_pcornet` schema
+- The vocbaulary tables are stored in the `vocabulary` schema 
