@@ -27,7 +27,7 @@ select
 from
 	dcc_pedsnet.observation o
 	join dcc_pcornet.demographic d on on o.person_id = d.patid
-	join public.cz_omop_pcornet_concept_map m1 on o.observation_concept_id = m1.standard_concept_id and m1.source_concept_class = 'PRO Item'
+	join dcc_pcornet.cz_omop_pcornet_concept_map m1 on o.observation_concept_id = m1.standard_concept_id and m1.source_concept_class = 'PRO Item'
 	join vocabulary.concept c1 on o.observation_concept_id = c1.concept_id 
 	
 	
