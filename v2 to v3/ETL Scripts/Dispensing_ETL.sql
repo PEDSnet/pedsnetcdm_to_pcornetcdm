@@ -1,6 +1,5 @@
 ﻿-- drug exposure --> Dispensing
 -- join with demographic to make sure there are no orphan records 
-
 -- more changes likely to be made based on Data Models #202
 insert into dcc_pcornet.dispensing(
             dispensingid, patid, prescribingid, 
@@ -33,6 +32,8 @@ from
 	left join rxnorm_ndc_crosswalk on drug_concept_id = rxnorm_concept_id -- get NDC through the rxnorm concept stored in drug_concept_id
 where	
 	de.drug_type_concept_id = '38000175' -- Dispensing only
-	and (ndc.concept_code is not null or rxnorm_ndc_crosswalk.min_ndc_code is not null or char_length(split_part(drug_source_value,'|',1))=11
-	 or char_length(split_part(drug_source_value,'|',1))=9)
+	and (ndc.concept_code is not null 
+		or rxnorm_ndc_crosswalk.min_ndc_code is not null 
+		or (char_length(split_part(drug_source_value,'|',1))=11 and split_part(drug_source_value,'|',1) not like  '%.%'))
+	 
     
