@@ -1,5 +1,4 @@
-
--- drug exposure --> Dispensing
+﻿-- drug exposure --> Dispensing
 -- join with demographic to make sure there are no orphan records 
 
 -- more changes likely to be made based on Data Models #202
@@ -20,13 +19,8 @@ select distinct
 	cast(de.person_id as text) as patid,
 	null as prescribingid, -- null for now until some decision in Data Models #202
 	de.drug_exposure_start_date as dispense_date,
-	case when ndc.vocabulary_id='NDC' then ndc.concept_code -- if source vocabulary is NDC
-		else -- get NDC through the rxnorm concept stored in drug_concept_id
-			case when rxnorm_ndc_crosswalk.rxnorm_concept_id is not null 
-			then rxnorm_ndc_crosswalk.min_ndc_code 
-			else
-			'NM'||cast(round(random()*10000000) as text)  end
-			end
+	COALESCE(ndc.concept_code, rxnorm_ndc_crosswalk.min_ndc_code, 
+			split_part(drug_source_value,'|',1))
 		 as ndc,
 	de.days_supply as dispense_sup,
 	de.quantity as dispense_amt,
@@ -35,7 +29,10 @@ select distinct
 from
 	dcc_pedsnet.drug_exposure de  
 	join dcc_pcornet.demographic d on d.patid = cast(de.person_id as text) 
-	left join vocabulary.concept ndc on concept_id= de.drug_source_concept_id 
-	left join rxnorm_ndc_crosswalk on drug_concept_id = rxnorm_concept_id
+	left join vocabulary.concept ndc on concept_id= de.drug_source_concept_id and ndc.vocabulary_id='NDC' -- if source vocabulary is NDC
+	left join rxnorm_ndc_crosswalk on drug_concept_id = rxnorm_concept_id -- get NDC through the rxnorm concept stored in drug_concept_id
 where	
 	de.drug_type_concept_id = '38000175' -- Dispensing only
+	and (ndc.concept_code is not null or rxnorm_ndc_crosswalk.min_ndc_code is not null or char_length(split_part(drug_source_value,'|',1))=11
+	 or char_length(split_part(drug_source_value,'|',1))=9)
+    

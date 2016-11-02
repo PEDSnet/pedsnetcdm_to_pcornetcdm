@@ -1,5 +1,4 @@
 ﻿
-
 -- Visit occurrence -> encounter
 -- Observation_period -> Enrollment
 -- Changes from previous version:
@@ -32,7 +31,7 @@ select distinct
 	 as date) as discharge_date,
 	date_part('hour',visit_end_date)||':'||date_part('minute',visit_end_date) as discharge_time,
 	v.provider_id as providerid,
-	left(l.zip,3) as facility_location,
+	left(l.zip,3) as facility_location,	
     coalesce(m1.target_concept,'OT') as enc_type,
     v.care_site_id as facilityid,
     min(case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when o1.person_id is null then 'NI' else coalesce(m2.target_concept,'OT') end end) as discharge_disposition, -- Colorado having multiple discharge dispoition 

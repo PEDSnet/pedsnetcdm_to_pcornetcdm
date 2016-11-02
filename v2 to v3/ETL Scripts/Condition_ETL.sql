@@ -1,4 +1,4 @@
-
+﻿
 -- more changes likely to be made in the future based on Data Models issues 200 and 201
 insert into dcc_pcornet.condition(
             conditionid, patid, encounterid, report_date, resolve_date, onset_date,
@@ -26,6 +26,6 @@ from
 	left join dcc_pcornet.encounter e on e.encounterid = cast(co.visit_occurrence_id as text)
 	join vocabulary.concept c1 on co.condition_concept_id = c1.concept_id
 	join vocabulary.concept c2 on co.condition_source_concept_id = c2.concept_id
-	left join cz_omop_pcornet_concept_map cz on cz.source_concept_id= c1.vocabulary_id and source_concept_class ='condition type'
+	left join dcc_pcornet.cz_omop_pcornet_concept_map cz on cz.source_concept_id= c1.vocabulary_id and source_concept_class ='condition type'
 where
 	co.condition_type_concept_id = '38000245' -- Problem list only
