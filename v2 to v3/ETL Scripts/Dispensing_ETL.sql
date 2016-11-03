@@ -1,7 +1,6 @@
-
+﻿delete from dcc_pcornet.dispensing
 -- drug exposure --> Dispensing
 -- join with demographic to make sure there are no orphan records 
-
 -- more changes likely to be made based on Data Models #202
 insert into dcc_pcornet.dispensing(
             dispensingid, patid, prescribingid, 
@@ -14,19 +13,16 @@ as
 	join vocabulary.concept rxnorm_codes on concept_id_2 = rxnorm_codes.concept_id
      where ndc_codes.vocabulary_id='NDC' and rxnorm_codes.vocabulary_id='RxNorm'
      group by rxnorm_codes.concept_id 
-    )         
+    ), 
+ ndc_concepts as 
+ (select concept_code, concept_id from  vocabulary.concept where vocabulary_id='NDC')     
 select distinct
 	de.drug_exposure_id,
 	cast(de.person_id as text) as patid,
 	null as prescribingid, -- null for now until some decision in Data Models #202
 	de.drug_exposure_start_date as dispense_date,
-	case when ndc.vocabulary_id='NDC' then ndc.concept_code -- if source vocabulary is NDC
-		else -- get NDC through the rxnorm concept stored in drug_concept_id
-			case when rxnorm_ndc_crosswalk.rxnorm_concept_id is not null 
-			then rxnorm_ndc_crosswalk.min_ndc_code 
-			else
-			'NM'||cast(round(random()*10000000) as text)  end
-			end
+	COALESCE(ndc.concept_code, rxnorm_ndc_crosswalk.min_ndc_code, 
+			split_part(drug_source_value,'|',1))
 		 as ndc,
 	de.days_supply as dispense_sup,
 	de.quantity as dispense_amt,
@@ -35,7 +31,14 @@ select distinct
 from
 	dcc_pedsnet.drug_exposure de  
 	join dcc_pcornet.demographic d on d.patid = cast(de.person_id as text) 
-	left join vocabulary.concept ndc on concept_id= de.drug_source_concept_id 
-	left join rxnorm_ndc_crosswalk on drug_concept_id = rxnorm_concept_id
+	left join rxnorm_ndc_crosswalk on drug_concept_id = rxnorm_concept_id -- get NDC through the rxnorm concept stored in drug_concept_id
+	left join ndc_concepts ndc on concept_id = drug_source_concept_id
 where	
 	de.drug_type_concept_id = '38000175' -- Dispensing only
+	and ( rxnorm_ndc_crosswalk.min_ndc_code is not null 
+		--or (char_length(split_part(drug_source_value,'|',1))=11 and split_part(drug_source_value,'|',1) not like  '%.%'))
+		or  ndc.concept_id is not null 
+		or  split_part(drug_source_value,'|',1) in (select concept_code from ndc_concepts)
+		)
+	 
+    

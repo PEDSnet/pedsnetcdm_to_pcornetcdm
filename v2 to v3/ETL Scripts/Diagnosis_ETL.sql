@@ -1,5 +1,4 @@
-
--- condition_occurrence --> Diagnosis
+﻿-- condition_occurrence --> Diagnosis
 -- Changes from previous version:
 ---- Drive dx_source from Observation.value_as_concept_id
 ---- Populate Pdx,raw_pdx, raw_dx_source
@@ -15,8 +14,9 @@ select distinct
 	enc.admit_date,
 	enc.providerid,
 	case when condition_concept_id>0 then c1.concept_code
-			else  case when site='chop' then split_part(condition_source_value,'|',3) -- for chop
-			        else  condition_source_value end 
+			else  case when site in('chop','nemours','stlouis') then split_part(condition_source_value,'|',2) 
+			            else case when site = ('colorado') then split_part(condition_source_value,'|',1) 
+					else  condition_source_value end end
 		end as dx,
 	case when condition_concept_id>0 then  'SM'
 		else case 

@@ -1,5 +1,4 @@
-
--- procedure_occurrence -> Procedures
+﻿-- procedure_occurrence -> Procedures
 -- Changes from previous version:
 -- No longer need source coding system info. Use source_concept_id instead.
 -- updated the table name to procedures
