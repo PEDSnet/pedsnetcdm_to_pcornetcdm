@@ -1,4 +1,5 @@
-﻿-- drug exposure --> Dispensing
+﻿delete from dcc_pcornet.dispensing
+-- drug exposure --> Dispensing
 -- join with demographic to make sure there are no orphan records 
 -- more changes likely to be made based on Data Models #202
 insert into dcc_pcornet.dispensing(
@@ -12,7 +13,9 @@ as
 	join vocabulary.concept rxnorm_codes on concept_id_2 = rxnorm_codes.concept_id
      where ndc_codes.vocabulary_id='NDC' and rxnorm_codes.vocabulary_id='RxNorm'
      group by rxnorm_codes.concept_id 
-    )         
+    ), 
+ ndc_concepts as 
+ (select concept_code, concept_id from  vocabulary.concept where vocabulary_id='NDC')     
 select distinct
 	de.drug_exposure_id,
 	cast(de.person_id as text) as patid,
@@ -28,12 +31,14 @@ select distinct
 from
 	dcc_pedsnet.drug_exposure de  
 	join dcc_pcornet.demographic d on d.patid = cast(de.person_id as text) 
-	left join vocabulary.concept ndc on concept_id= de.drug_source_concept_id and ndc.vocabulary_id='NDC' -- if source vocabulary is NDC
 	left join rxnorm_ndc_crosswalk on drug_concept_id = rxnorm_concept_id -- get NDC through the rxnorm concept stored in drug_concept_id
+	left join ndc_concepts ndc on concept_id = drug_source_concept_id
 where	
 	de.drug_type_concept_id = '38000175' -- Dispensing only
-	and (ndc.concept_code is not null 
-		or rxnorm_ndc_crosswalk.min_ndc_code is not null 
-		or (char_length(split_part(drug_source_value,'|',1))=11 and split_part(drug_source_value,'|',1) not like  '%.%'))
+	and ( rxnorm_ndc_crosswalk.min_ndc_code is not null 
+		--or (char_length(split_part(drug_source_value,'|',1))=11 and split_part(drug_source_value,'|',1) not like  '%.%'))
+		or  ndc.concept_id is not null 
+		or  split_part(drug_source_value,'|',1) in (select concept_code from ndc_concepts)
+		)
 	 
     
