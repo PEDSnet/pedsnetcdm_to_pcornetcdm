@@ -6,7 +6,7 @@
 
 insert into dcc_pcornet.procedures(
             proceduresid,patid, encounterid, enc_type, admit_date, providerid, px_date,px, px_type, px_source,
-            raw_px, raw_px_type,siteid)
+            raw_px, raw_px_type,site)
 select distinct 
 	cast(procedure_occurrence_id as text) as proceduresid,
 	cast(person_id as text) as patid,
@@ -30,7 +30,7 @@ select distinct
 	'OT' as px_source, -- tentative until we evolve PEDSnet CDM to capture this info
 	split_part(procedure_source_value,'.',1) as raw_px,
 	case when c2.vocabulary_id IS Null then 'Other' else c2.vocabulary_id end as raw_px_type,
-	site_id as siteid
+	site as site
 from
 	dcc_pedsnet.procedure_occurrence po
 	join dcc_pcornet.encounter enc on cast(po.visit_occurrence_id as text)=enc.encounterid

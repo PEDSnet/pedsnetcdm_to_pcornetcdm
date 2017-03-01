@@ -15,9 +15,9 @@ insert into dcc_pcornet.vital(
             vitalid, patid, encounterid, measure_date, measure_time, vital_source, 
             ht, wt, diastolic, systolic, original_bmi, bp_position, 
 	    tobacco, tobacco_type, smoking
-            ,raw_diastolic, raw_systolic, raw_bp_position,siteid)
+            ,raw_diastolic, raw_systolic, raw_bp_position,site)
  WITH
-ms as (select  person_id, min(site_id) as min_site_id,visit_occurrence_id,measurement_date, measurement_time  
+ms as (select  person_id, min(site) as site,visit_occurrence_id,measurement_date, measurement_time  
 		from dcc_pedsnet.measurement where measurement_concept_id IN ('3023540','3013762','3034703','3019962','3013940','3012888','3018586','3035856','3009395','3004249','3038553')
 		group by person_id, visit_occurrence_id,measurement_date, measurement_time  
 		),
@@ -64,7 +64,7 @@ ob_tobacco_data.smoking as smoking,
 ms_dia.measurement_source_value as raw_diastolic,
 ms_sys.measurement_source_value as raw_systolic,
 null as raw_bp_position, -- Charlie saying not to capture this even though some sties may have store this explicitly - too much effort for populating a raw field 
-ms.min_site_id as siteid
+ms.site as site
 FROM 
 ms
 left join ms_ht on ms.visit_occurrence_id = ms_ht.visit_occurrence_id 

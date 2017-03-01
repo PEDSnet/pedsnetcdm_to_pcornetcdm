@@ -49,19 +49,18 @@ all: dcc chop colorado nationwide nemours seattle stlouis
 Execute the following alter table commands: 
 
 ```
-alter table dcc_pcornet.demographic add column siteid VARCHAR(256) NOT NULL;
-alter table dcc_pcornet.enrollment add column siteid varchar(256) not null;
-alter table dcc_pcornet.death add column siteid varchar(256) not null;
-alter table dcc_pcornet.death_cause add column siteid varchar(256) not null;
-alter table dcc_pcornet.encounter add column siteid varchar(256) not null;
-alter table dcc_pcornet.condition add column siteid varchar(256) not null;
-alter table dcc_pcornet.diagnosis add column siteid varchar(256) not null;
-alter table dcc_pcornet.procedures add column siteid varchar(256) not null;
-alter table dcc_pcornet.dispensing   add column siteid varchar(256) not null;
-alter table dcc_pcornet.prescribing   add column siteid varchar(256) not null;
-alter table dcc_pcornet.prescribing alter rx_quantity type numeric(20,2);
-alter table dcc_pcornet.vital   add column siteid varchar(256) not null;
-alter table dcc_pcornet.lab_result_cm   add column siteid varchar(256) not null;
+alter table dcc_pcornet.demographic add column site character varying not NULL;
+alter table dcc_pcornet.enrollment add column site character varying not null;
+alter table dcc_pcornet.death add column site character varying not null;
+alter table dcc_pcornet.death_cause add column site character varying not null;
+alter table dcc_pcornet.encounter add column site character varying not null;
+alter table dcc_pcornet.condition add column site character varying not null;
+alter table dcc_pcornet.diagnosis add column site character varying not null;
+alter table dcc_pcornet.procedures add column site character varying not null;
+alter table dcc_pcornet.dispensing   add column site character varying not null;
+alter table dcc_pcornet.prescribing   add column site character varying not null;
+alter table dcc_pcornet.vital   add column site character varying not null;
+alter table dcc_pcornet.lab_result_cm   add column site character varying not null;
 
 ```
 Execute the following add constraints commands

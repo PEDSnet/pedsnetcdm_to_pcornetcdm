@@ -11,7 +11,7 @@ insert into dcc_pcornet.lab_result_cm (
 	norm_range_low, norm_modifier_low,
 	norm_range_high, norm_modifier_high,
 	abn_ind,
-	raw_lab_name, raw_lab_code, raw_panel, raw_result, raw_unit, raw_order_dept, raw_facility_code, siteid
+	raw_lab_name, raw_lab_code, raw_panel, raw_result, raw_unit, raw_order_dept, raw_facility_code, site
 )
 
 select 
@@ -47,7 +47,7 @@ select
 	unit_source_value as raw_unit,
 	null as raw_order_dept,
 	null as raw_facility_code,
-	site_id as siteid 
+	site as site 
 	
 from	 
 	dcc_pedsnet.measurement m

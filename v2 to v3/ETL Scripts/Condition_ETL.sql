@@ -3,7 +3,7 @@
 insert into dcc_pcornet.condition(
             conditionid, patid, encounterid, report_date, resolve_date, onset_date,
             condition_status, condition, condition_type, condition_source, 
-            raw_condition_status, raw_condition, raw_condition_type, raw_condition_source,siteid)
+            raw_condition_status, raw_condition, raw_condition_type, raw_condition_source,site)
 select distinct
 	cast(co.condition_occurrence_id as text),
 	cast(co.person_id as text) as patid,
@@ -19,7 +19,7 @@ select distinct
 	co.condition_source_value as raw_condition,
 	c2.vocabulary_id as raw_condition_type,
 	null as raw_condition_source ,-- it is not discretely captured in the EHRs
-	site_id as siteid
+	site as site
 from
 	dcc_pedsnet.condition_occurrence co
 	join dcc_pcornet.demographic d on d.patid = cast(co.person_id as text)
