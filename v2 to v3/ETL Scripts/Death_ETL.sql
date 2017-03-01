@@ -1,7 +1,7 @@
 ﻿
 Insert into dcc_pcornet.death(
 	patid, death_date, death_date_impute,
-	death_source, death_match_confidence, siteid
+	death_source, death_match_confidence, site
 )
 Select 
 	de.person_id as patid,
@@ -9,7 +9,7 @@ Select
 	coalesce(m1.target_concept,'OT') as death_impute, 
 	'L' as death_source, --  default for now until new conventions
 	null as death_match_confidence, --  we do not capture it dicretely in the EHRs 
-	min(site_id) as siteid -- retrieve one record in case of multiple death causes
+	min(site) as site -- retrieve one record in case of multiple death causes
 From
 	dcc_pedsnet.death de
 	join dcc_pcornet.demographic d on d.patid = cast(de.person_id as text)

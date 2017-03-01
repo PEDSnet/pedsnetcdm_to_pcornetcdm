@@ -12,7 +12,7 @@ insert into dcc_pcornet.encounter (
             providerid, facility_location, enc_type, facilityid, discharge_disposition, 
             discharge_status, drg, drg_type, admitting_source, raw_enc_type, 
             raw_discharge_disposition, raw_discharge_status, raw_drg_type, 
-            raw_admitting_source,siteid)
+            raw_admitting_source,site)
 WITH  o1 as (select distinct person_id,visit_occurrence_id,value_as_concept_id, observation_source_value from dcc_pedsnet.observation where observation_concept_id = 44813951)
      ,o2 as (select distinct person_id,visit_occurrence_id, value_as_string
 		from dcc_pedsnet.observation
@@ -44,7 +44,7 @@ select distinct
 	min(case when o3.person_id is null then null else o3.observation_source_value end) as raw_discharge_status,
 	null as raw_drg_type, -- since it is not discretely captured in the EHRs
 	min(case when o4.person_id is null then null else o4.observation_source_value end) as raw_admitting_source,
-	v.site_id as siteid
+	v.site as site
 from 
 	dcc_pedsnet.visit_occurrence v
 	left join dcc_pedsnet.care_site c on v.care_site_id = c.care_site_id

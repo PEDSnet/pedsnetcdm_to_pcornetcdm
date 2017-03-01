@@ -4,7 +4,7 @@
 -- more changes likely to be made based on Data Models #202
 insert into dcc_pcornet.dispensing(
             dispensingid, patid, prescribingid, 
-            dispense_date, ndc, dispense_sup, dispense_amt, raw_ndc,siteid)
+            dispense_date, ndc, dispense_sup, dispense_amt, raw_ndc,site)
 with rxnorm_ndc_crosswalk
 as 
  (select min(ndc_codes.concept_code) as min_ndc_code, rxnorm_codes.concept_id as rxnorm_concept_id
@@ -27,7 +27,7 @@ select distinct
 	de.days_supply as dispense_sup,
 	de.quantity as dispense_amt,
 	drug_source_value as raw_ndc,
-	site_id as siteid
+	site as site
 from
 	dcc_pedsnet.drug_exposure de  
 	join dcc_pcornet.demographic d on d.patid = cast(de.person_id as text) 

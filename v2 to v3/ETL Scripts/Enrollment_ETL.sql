@@ -4,7 +4,7 @@
 -- Changes from previous version:
    -- default chart abstraction flag to yes, In PEDSnet we do not ask sites to provide this information to keep it simple
 
-insert into dcc_pcornet.enrollment (patid, enr_start_date, enr_end_date, chart, enr_basis, siteid)
+insert into dcc_pcornet.enrollment (patid, enr_start_date, enr_end_date, chart, enr_basis, site)
 select distinct 
 	cast(op.person_id as text) as pat_id,
 	cast(
@@ -16,6 +16,6 @@ select distinct
 	as enr_end_date,
 	'Y' as chart, -- defaulting to yes
 	'E' as ENR_basis, 
-	site_id as siteid
+	site as site
 from
 	dcc_pedsnet.observation_period op
