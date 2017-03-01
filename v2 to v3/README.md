@@ -66,14 +66,8 @@ alter table dcc_pcornet.lab_result_cm   add column siteid varchar(256) not null;
 ```
 Execute the following add constraints commands
 
-```
-ALTER TABLE dcc_pcornet.enrollment ADD CONSTRAINT enrfk FOREIGN KEY ( patid ) REFERENCES dcc_pcornet.demographic (patid); 
-
-ALTER TABLE dcc_pcornet.death ADD CONSTRAINT deathfk FOREIGN KEY ( patid ) REFERENCES dcc_pcornet.demographic (patid); 
-
-
-ALTER TABLE dcc_pcornet.death_cause ADD CONSTRAINT death_cause_fk FOREIGN KEY ( patid ) REFERENCES dcc_pcornet.demographic (patid); 
-```
+- [Add foreign keys](FK_statements.sql)
+- [Add indices](index_statements.sql)
 
 ## Steps for Executing the ETL Scripts 
 1. Execute the [Mapping table DDL] (./ETL%20Scripts/cz_omop_pcornet_concept_map_ddl.sql) 

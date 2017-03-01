@@ -6,7 +6,6 @@ CREATE INDEX idx_death_cause_patid ON dcc_pcornet.death_cause (patid);
 
 CREATE INDEX idx_encounter_patid ON dcc_pcornet.encounter (patid); 
 
--- running
 CREATE INDEX idx_encounter_enctype ON dcc_pcornet.encounter (enc_type); 
 
 CREATE INDEX idx_cond_patid ON dcc_pcornet.condition (patid); 
@@ -19,7 +18,7 @@ CREATE INDEX idx_diag_patid ON dcc_pcornet.diagnosis (patid);
 
 CREATE INDEX idx_diag_encid ON dcc_pcornet.diagnosis (encounterid); 
 
-CREATE INDEX idx_diag_ccode ON dcc_pcornet.diagnosis (dx);
+CREATE INDEX idx_diag_code ON dcc_pcornet.diagnosis (dx);
 
 
 CREATE INDEX idx_proc_patid ON dcc_pcornet.procedures (patid); 
