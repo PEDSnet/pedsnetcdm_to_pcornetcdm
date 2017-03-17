@@ -22,7 +22,7 @@ select distinct
 	coalesce (m1.target_concept,'OT') as rx_basis,
 	CAST(nullif(c1.concept_code, '') AS integer) as rxnorm_cui,
 	c1.concept_name as raw_rx_med_name,
-	de.effective_drug_dose as raw_rx_frequency,
+	de.frequency as raw_rx_frequency,
 	c2.concept_code as raw_rxnorm_cui,
 	site as site
 from
