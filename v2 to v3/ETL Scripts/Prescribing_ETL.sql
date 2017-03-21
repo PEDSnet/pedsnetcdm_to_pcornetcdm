@@ -22,9 +22,9 @@ select distinct
 	coalesce (m1.target_concept,'OT') as rx_basis,
 	CAST(nullif(c1.concept_code, '') AS integer) as rxnorm_cui,
 	c1.concept_name as raw_rx_med_name,
-	de.effective_drug_dose as raw_rx_frequency,
+	de.frequency as raw_rx_frequency,
 	c2.concept_code as raw_rxnorm_cui,
-	site as site
+	de.site as site
 from
 	dcc_pedsnet.drug_exposure de
 	join dcc_pcornet.demographic d on d.patid = cast(de.person_id as text)
