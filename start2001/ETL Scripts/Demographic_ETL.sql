@@ -26,7 +26,7 @@ from
 	left join chop_start2001_pcornet.cz_omop_pcornet_concept_map m2 on case when p.ethnicity_concept_id is null AND m2.source_concept_id is null then true else cast(p.ethnicity_concept_id as text) = m2.source_concept_id end and m2.source_concept_class='Hispanic'
 	left join chop_start2001_pcornet.cz_omop_pcornet_concept_map m3 on case when p.race_concept_id is null AND m3.source_concept_id is null then true else cast(p.race_concept_id as text) = m3.source_concept_id end and m3.source_concept_class = 'Race'
 where
-	p.person_id IN (select person_id from chop_start2001_pcornet.person_visit_start2001);
+	p.person_id IN (select person_id from chop_start2001_pcornet.person_visit_start2001)
 
 
 
