@@ -21,9 +21,12 @@ select distinct
 	race_source_value,
 	site as site
 from
-	dcc_pedsnet.person p
+	chop_pedsnet.person p
 	left join chop_start2001_pcornet.cz_omop_pcornet_concept_map m1 on case when cast(p.gender_concept_id as text) is null AND m1.source_concept_id is null then true else cast(p.gender_concept_id as text) = m1.source_concept_id end and m1.source_concept_class='Gender'
 	left join chop_start2001_pcornet.cz_omop_pcornet_concept_map m2 on case when p.ethnicity_concept_id is null AND m2.source_concept_id is null then true else cast(p.ethnicity_concept_id as text) = m2.source_concept_id end and m2.source_concept_class='Hispanic'
 	left join chop_start2001_pcornet.cz_omop_pcornet_concept_map m3 on case when p.race_concept_id is null AND m3.source_concept_id is null then true else cast(p.race_concept_id as text) = m3.source_concept_id end and m3.source_concept_class = 'Race'
+where
+	p.person_id IN (select person_id from chop_start2001_pcornet.person_visit_start2001);
+
 
 
