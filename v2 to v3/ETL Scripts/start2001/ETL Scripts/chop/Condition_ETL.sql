@@ -28,5 +28,5 @@ from
 	join vocabulary.concept c2 on co.condition_source_concept_id = c2.concept_id
 	left join chop_start2001_pcornet.cz_omop_pcornet_concept_map cz on cz.source_concept_id= c1.vocabulary_id and source_concept_class ='condition type'
 where
-	co.visit_occurrence_id IN (select visit_id from chop_start2001_pcornet.person_visit_start2001) and
+	co.person_id IN (select person_id from chop_start2001_pcornet.person_visit_start2001) and
 	co.condition_type_concept_id = '38000245' -- Problem list only
