@@ -47,7 +47,7 @@ select
 	unit_source_value as raw_unit,
 	null as raw_order_dept,
 	null as raw_facility_code,
-	site as site 
+	m.site as site 
 	
 from	 
 	chop_pedsnet.measurement m
@@ -63,5 +63,5 @@ from
 	left join chop_start2001_pcornet.cz_omop_pcornet_concept_map m6 on cast(m.range_high_operator_concept_id as text)= m6.source_concept_id and m6.source_concept_class = 'Result modifier'
 	left join chop_start2001_pcornet.cz_omop_pcornet_concept_map m7 on cast(m.priority_concept_id as text)= m7.source_concept_id and m7.source_concept_class = 'Lab priority'
 where
-	m.visit_occurrence_id IN (select visit_id from chop_start2001_pcornet.person_visit_start2001)
+	m.visit_occurrence_id IN (select visit_id from chop_start2001_pcornet.person_visit_start2001);
 

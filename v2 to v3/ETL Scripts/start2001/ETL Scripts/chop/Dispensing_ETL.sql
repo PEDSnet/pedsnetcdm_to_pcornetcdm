@@ -27,7 +27,7 @@ select distinct
 	de.days_supply as dispense_sup,
 	de.quantity as dispense_amt,
 	drug_source_value as raw_ndc,
-	site as site
+	de.site as site
 from
 	chop_pedsnet.drug_exposure de  
 	join chop_start2001_pcornet.demographic d on d.patid = cast(de.person_id as text) 
@@ -41,5 +41,3 @@ where
 		or  ndc.concept_id is not null 
 		or  split_part(drug_source_value,'|',1) in (select concept_code from ndc_concepts)
 		)
-	 
-    
