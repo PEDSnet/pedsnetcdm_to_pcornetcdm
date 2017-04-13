@@ -11,7 +11,7 @@ as
      from vocabulary.concept ndc_codes 
 	join vocabulary.concept_relationship cr on concept_id_1 = ndc_codes.concept_id and relationship_id='Maps to'
 	join vocabulary.concept rxnorm_codes on concept_id_2 = rxnorm_codes.concept_id
-     where ndc_codes.vocabulary_id='NDC' and rxnorm_codes.vocabulary_id='RxNorm' and  and ndc_codes.concept_class_id='11-digit NDC'
+     where ndc_codes.vocabulary_id='NDC' and rxnorm_codes.vocabulary_id='RxNorm' and  ndc_codes.concept_class_id='11-digit NDC'
      group by rxnorm_codes.concept_id 
     ), 
  ndc_concepts as 
