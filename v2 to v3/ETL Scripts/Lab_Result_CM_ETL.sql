@@ -36,7 +36,7 @@ select
 	m3.target_concept as result_modifier,
 	m4.target_concept as result_unit,
 	left(m.range_low::text,10) as norm_range_low, 
-	case when m5.target_concept in ('LT','LE') then 'OT' else m5.target_concept as norm_modifier_low, 
+	case when m5.target_concept in ('LT','LE') then 'OT' else m5.target_concept end as norm_modifier_low, 
 	left(m.range_high::text,10) as norm_range_high,
 	m6.target_concept in ('GT','GE') then 'OT' else m6.target_concept end as norm_modifier_high, 
 	null as abn_ind, -- null for now until new conventions evolve
