@@ -17,9 +17,7 @@ select distinct
 	enc.providerid,
 	-- look for ICDs, followed by SNOMED, following by others
 	case when c3.vocabulary_id in ('ICD9CM', 'ICD10','ICD10CM') 
-		then 
-		case when condition_source_Value  like '%|%' then trim(split_part(condition_source_value,'|',2))
-			else  trim(condition_source_value)  end
+		then c3.concept_code
 		else case when co.condition_concept_id>0
 		 then c2.concept_code 
 		 else case when condition_source_Value  like '%|%' then trim(split_part(condition_source_value,'|',2))
