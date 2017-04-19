@@ -40,7 +40,7 @@ from
 	-- get the vocabulary for the RAW_PX_TYPE field - for all cases. 
 	left join vocabulary.concept c2 on po.procedure_source_concept_id = c2.concept_id 
 	-- get the vocabulary from the procedure source value to populate the PX_TYPE field (case 2a)
-	left join dcc_start2001_pcornet.cz_omop_pcornet_concept_map m3 on c2.vocabulary_id = m3.source_concept_id AND m3.source_concept_class='Procedure Code Type';
+	left join dcc_start2001_pcornet.cz_omop_pcornet_concept_map m3 on c2.vocabulary_id = m3.source_concept_id AND m3.source_concept_class='Procedure Code Type'
 where
 	po.visit_occurrence_id IN (select visit_id from dcc_start2001_pcornet.person_visit_start2001)
 
