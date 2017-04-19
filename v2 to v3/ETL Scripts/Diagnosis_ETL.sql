@@ -1,4 +1,4 @@
-﻿-- condition_occurrence --> Diagnosis
+-- condition_occurrence --> Diagnosis
 -- Changes from previous version:
 ---- Drive dx_source from Observation.value_as_concept_id
 ---- Populate Pdx,raw_pdx, raw_dx_source
@@ -17,10 +17,12 @@ select distinct
 	enc.providerid,
 	-- look for ICDs, followed by SNOMED, following by others
 	case when c3.vocabulary_id in ('ICD9CM', 'ICD10','ICD10CM') 
-		then split_part(condition_source_value,'|',2) 
+		then 
+		c3.concept_code
 		else case when co.condition_concept_id>0
 		 then c2.concept_code 
-		 else split_part(condition_source_value,'|',2)  end end 
+		 else case when condition_source_Value  like '%|%' then trim(split_part(condition_source_value,'|',2))
+				else  trim(condition_source_value)  end  end end 
 			           as dx,
 	case when c3.vocabulary_id = 'ICD9CM'  then '09' 
 		else 
@@ -43,5 +45,6 @@ from
 	left join dcc_pcornet.cz_omop_pcornet_concept_map m2 on  cast(co.condition_type_concept_id as text) = m2.source_concept_id  and m2.source_concept_class='pdx'
 	left join vocabulary.concept c3 on co.condition_source_concept_id = c3.concept_id
 	left join vocabulary.concept c4 on co.condition_type_concept_id = c4.concept_id 
-where co.condition_type_concept_id not in (38000245)
+where 
+	co.condition_type_concept_id not in (38000245)
 
