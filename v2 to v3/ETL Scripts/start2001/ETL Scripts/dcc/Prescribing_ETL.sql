@@ -35,5 +35,8 @@ from
 	left join vocabulary.concept c2 on de.drug_source_concept_id = c2.concept_id
 where
 	de.drug_type_concept_id IN ('38000177') -- 38000177 = Prescription written
-	and de.person_id IN (select person_id from dcc_start2001_pcornet.person_visit_start2001)
+	and de.person_id IN (select person_id from dcc_start2001_pcornet.person_visit_start2001);
+
+
+DELETE FROM dcc_start2001_pcornet.prescribing WHERE EXTRACT(YEAR FROM rx_order_date) < 2001;
 
