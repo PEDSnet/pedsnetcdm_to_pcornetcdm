@@ -63,10 +63,6 @@ alter table dcc_pcornet.vital   add column site character varying not null;
 alter table dcc_pcornet.lab_result_cm   add column site character varying not null;
 
 ```
-Execute the following add constraints commands
-
-- [Add foreign keys](FK_statements.sql)
-- [Add indices](index_statements.sql)
 
 ## Steps for Executing the ETL Scripts 
 1. Execute the [Mapping table DDL] (./ETL%20Scripts/cz_omop_pcornet_concept_map_ddl.sql) 
@@ -84,6 +80,10 @@ Execute the following add constraints commands
     - [Prescribing](./ETL%20Scripts/Prescribing_ETL.sql)
     - [Vital](./ETL%20Scripts/Vital_ETL.sql)
     - [Lab\_Result\_CM](./ETL%20Scripts/Lab_Result_CM_ETL.sql)
+4. Execute the following add constraints commands
+
+	- [Add foreign keys](FK_statements.sql)
+	- [Add indices](index_statements.sql)
 
 ### Schema Conventions
 
