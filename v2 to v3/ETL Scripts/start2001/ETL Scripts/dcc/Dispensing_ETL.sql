@@ -40,6 +40,6 @@ where
 		--or (char_length(split_part(drug_source_value,'|',1))=11 and split_part(drug_source_value,'|',1) not like  '%.%'))
 		or  ndc.concept_id is not null 
 		or  split_part(drug_source_value,'|',1) in (select concept_code from ndc_concepts)
-		)
+		);
 
-
+DELETE FROM dcc_start2001_pcornet.dispensing WHERE EXTRACT(YEAR FROM dispense_date) < 2001;

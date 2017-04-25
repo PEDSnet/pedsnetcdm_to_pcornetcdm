@@ -63,5 +63,9 @@ from
 	left join dcc_start2001_pcornet.cz_omop_pcornet_concept_map m6 on cast(m.range_high_operator_concept_id as text)= m6.source_concept_id and m6.source_concept_class = 'Result modifier'
 	left join dcc_start2001_pcornet.cz_omop_pcornet_concept_map m7 on cast(m.priority_concept_id as text)= m7.source_concept_id and m7.source_concept_class = 'Lab priority'
 where
-	m.visit_occurrence_id IN (select visit_id from dcc_start2001_pcornet.person_visit_start2001)
+	m.visit_occurrence_id IN (select visit_id from dcc_start2001_pcornet.person_visit_start2001);
+
+
+DELETE FROM dcc_start2001_pcornet.lab_result_cm WHERE EXTRACT(YEAR FROM specimen_date) < 2001;
+
 

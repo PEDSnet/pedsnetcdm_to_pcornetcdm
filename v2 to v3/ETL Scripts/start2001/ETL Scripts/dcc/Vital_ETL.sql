@@ -84,4 +84,7 @@ left join dcc_start2001_pcornet.cz_omop_pcornet_concept_map m on cast(ms_sys.mea
 left join ob_tobacco_data on ms.visit_occurrence_id = ob_tobacco_data.visit_occurrence_id 
 and ms.measurement_time = ob_tobacco_data.observation_time
 where coalesce(ms_ht.value_as_number, ms_wt.value_as_number, ms_dia.value_as_number, ms_sys.value_as_number, ms_bmi.value_as_number) is not null and
-ms.visit_occurrence_id IN (select visit_id from dcc_start2001_pcornet.person_visit_start2001)
+ms.visit_occurrence_id IN (select visit_id from dcc_start2001_pcornet.person_visit_start2001);
+
+
+DELETE FROM dcc_start2001_pcornet.vital WHERE EXTRACT(YEAR FROM measure_date) < 2001;

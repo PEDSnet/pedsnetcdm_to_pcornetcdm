@@ -30,3 +30,6 @@ from
 where
 	co.visit_occurrence_id IN (select visit_id from dcc_start2001_pcornet.person_visit_start2001) and
 	co.condition_type_concept_id = '38000245' -- Problem list only
+;
+
+DELETE FROM dcc_start2001_pcornet.condition WHERE EXTRACT(YEAR FROM report_date) < 2001;

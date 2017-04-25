@@ -42,5 +42,11 @@ from
 	-- get the vocabulary from the procedure source value to populate the PX_TYPE field (case 2a)
 	left join dcc_start2001_pcornet.cz_omop_pcornet_concept_map m3 on c2.vocabulary_id = m3.source_concept_id AND m3.source_concept_class='Procedure Code Type'
 where
-	po.visit_occurrence_id IN (select visit_id from dcc_start2001_pcornet.person_visit_start2001)
+	po.visit_occurrence_id IN (select visit_id from dcc_start2001_pcornet.person_visit_start2001);
+
+DROP TABLE dcc_start2001_pcornet.procedures_backup;
+
+CREATE TABLE dcc_start2001_pcornet.procedures_backup AS SELECT * FROM dcc_start2001_pcornet.procedures;
+
+DELETE FROM dcc_start2001_pcornet.procedures WHERE EXTRACT(YEAR FROM px_date) < 2001;
 
