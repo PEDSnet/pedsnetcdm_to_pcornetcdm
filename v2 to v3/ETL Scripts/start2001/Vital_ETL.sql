@@ -17,8 +17,4 @@ select
 	* from dcc_pcornet.vital
 where
 	encounterid IN (select cast(visit_id as text) from dcc_start2001_pcornet.person_visit_start2001) and
-
-
-
-
-DELETE FROM dcc_start2001_pcornet.vital WHERE EXTRACT(YEAR FROM measure_date) >= 2001;
+EXTRACT(YEAR FROM measure_date) >= 2001;
