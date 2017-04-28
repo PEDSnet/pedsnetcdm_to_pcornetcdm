@@ -1,7 +1,7 @@
-#The ETL scripts for PEDSnet CDM V2.* to PCORnet CDM V3.1 transformation
+# The ETL scripts for PEDSnet CDM V2.* to PCORnet CDM V3.1 transformation
 
 ## Contents 
-###pedsnet_pcornet_mappings.xls
+### pedsnet_pcornet_mappings.xls
 
 This document contains the mappings from PEDSnet vocabulary to PCORnet vocabulary. Each column in this file denotes the following:
 
@@ -11,7 +11,7 @@ This document contains the mappings from PEDSnet vocabulary to PCORnet vocabular
 - Value_as_concept: value_as_concept_id field in the the Observation table in PEDsnet (only applicable for fields that are recorded as observations in the PEDSnet CDM)
 - Concept_Description: Natural language description of the value
 
-###pedsnet_pcornet_mappings.txt
+### pedsnet_pcornet_mappings.txt
 
 This document is a text version of the pedsnet_pcornet_mappings.xls file. The fields are pipe-delimited.
 
@@ -23,7 +23,7 @@ This document contains the DDL script to create the source-to-concept mapping ta
 This file contains the ETL source code, i.e. table-wise SQL queries to extract the PCORnet instance from a given PEDSnet CDM instance and the source-to-concept mapping table. 
 
 ## Steps for creating the PCORnet v3.1 data model 
-1. Use the [Makefile](create_pcornet_3.1_tables.Makefile) to create the PCORnet 3.1 tables
+1. Use the [Makefile] (create_pcornet_3.1_tables.Makefile) to create the PCORnet 3.1 tables
 `make -f create_pcornet_tables.Makefile DB=pedsnet_dcc_v24 VER=3.1.0`
 
 2. Add the `site` column to various fields using the following alter table commands: 
