@@ -18,7 +18,7 @@ select
 	m.measurement_id as lab_result_cm_id,
 	m.person_id as patid,
 	e.encounterid encounterid,
-	m1.target_concept as lab_name,
+	coalesce( m1.target_concept,'OT') as lab_name,
 	--m2.target_concept as specimen_source,
 	'BLOOD' as specimen_source, -- defaulting to blood until we have a good solution for sites to figure out how to infer specimen source from labs in the EHR data
 	c1.concept_code as lab_loinc,
@@ -54,8 +54,8 @@ from
 	join dcc_3dot1_pcornet.demographic d on cast(m.person_id as text)= d.patid
 	join dcc_3dot1_pcornet.encounter e on cast(m.visit_occurrence_id as text) = e.encounterid
 	join vocabulary.concept c1 on m.measurement_concept_id = c1.concept_id and c1.vocabulary_id = 'LOINC'
-	join vocabulary.concept c2 on m.operator_concept_id = c2.concept_id and c2.domain_id = 'Meas Value Operator'
-	join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m1 on c1.concept_code = m1.source_concept_id and m1.source_concept_class = 'Lab name'
+	left join vocabulary.concept c2 on m.operator_concept_id = c2.concept_id and c2.domain_id = 'Meas Value Operator'
+	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m1 on c1.concept_code = m1.source_concept_id and m1.source_concept_class = 'Lab name'
 	--left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m2 on c1.concept_code = m2.source_concept_id and m2.source_concept_class = 'Specimen source'
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m3 on cast(m.operator_concept_id as text) = m3.source_concept_id and m3.source_concept_class = 'Result modifier'
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m4 on cast(m.unit_concept_id as text)= m4.source_concept_id and m4.source_concept_class = 'Unit'
