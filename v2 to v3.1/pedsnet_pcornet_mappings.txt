@@ -59,6 +59,7 @@ IP|Encounter type|9201|NULL|Inpatient Hospital Stay
 AV|Encounter type|9202|NULL|Ambulatory Visit
 ED|Encounter type|9203|NULL|Emergency Department 
 EI|Encounter type|2000000048|NULL|Emergency Department Admit to Inpatient Hospital Stay
+OS|Encounter type|2000000088|NULL|Observational Stay
 IS|Encounter type|42898160|NULL|Long Term Care Visit
 IS|Encounter type|44814710|NULL|Non-Acute Institutional Stay 
 OA|Encounter type|44814711|NULL|Other ambulatory visit
