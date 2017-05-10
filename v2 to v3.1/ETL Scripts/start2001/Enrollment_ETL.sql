@@ -1,4 +1,4 @@
-
+﻿
 
 -- Observation_period -> Enrollment
 -- Changes from previous version:
@@ -6,6 +6,7 @@
 
 insert into dcc_3dot1_start2001_pcornet.enrollment (patid, enr_start_date, enr_end_date, chart, enr_basis, site)
 select
-	* from dcc_3dot1_pcornet.enrollment
+	patid, enr_start_date, enr_end_date, chart, enr_basis, site
+	 from dcc_3dot1_pcornet.enrollment
 where
 	patid IN (select cast(person_id as text) from dcc_3dot1_start2001_pcornet.person_visit_start2001);
