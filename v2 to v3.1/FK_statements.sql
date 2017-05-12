@@ -2,10 +2,8 @@
 
 ALTER TABLE dcc_3dot1_pcornet.condition ADD CONSTRAINT cond_fk_1 FOREIGN KEY ( patid ) REFERENCES dcc_3dot1_pcornet.demographic (patid); 
 
--- following was done
 ALTER TABLE dcc_3dot1_pcornet.condition ADD CONSTRAINT cond_fk_2 FOREIGN KEY ( encounterid ) REFERENCES dcc_3dot1_pcornet.encounter (encounterid); 
 
--- following was done
 ALTER TABLE dcc_3dot1_pcornet.diagnosis ADD CONSTRAINT diag_fk_1 FOREIGN KEY ( patid ) REFERENCES dcc_3dot1_pcornet.demographic (patid); 
 
 ALTER TABLE dcc_3dot1_pcornet.diagnosis ADD CONSTRAINT diag_fk_2 FOREIGN KEY ( encounterid ) REFERENCES dcc_3dot1_pcornet.encounter (encounterid); 
