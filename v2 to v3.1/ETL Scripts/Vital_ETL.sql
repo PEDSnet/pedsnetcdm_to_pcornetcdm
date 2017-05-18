@@ -8,6 +8,9 @@
 --- The query is agnostic to the concept id of the relationship.
 -- We use a concatenated PK (based on ht, wt, dia, sys, bmi measurement ids
 
+
+ALTER TABLE dcc_3dot1_pcornet.vital ALTER original_bmi SET DATA TYPE NUMERIC(20,8);
+
 drop sequence if exists sq_vitalid;
 create sequence sq_vitalid start 1;
 
