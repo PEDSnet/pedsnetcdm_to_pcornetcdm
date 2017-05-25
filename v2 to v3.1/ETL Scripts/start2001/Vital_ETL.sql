@@ -8,6 +8,9 @@
 --- The query is agnostic to the concept id of the relationship.
 -- We use a concatenated PK (based on ht, wt, dia, sys, bmi measurement ids
 
+ALTER TABLE dcc_3dot1_start2001_pcornet.vital ALTER original_bmi SET DATA TYPE NUMERIC(20,8);
+
+
 insert into dcc_3dot1_start2001_pcornet.vital(
             vitalid, patid, encounterid, measure_date, measure_time, vital_source, 
             ht, wt, diastolic, systolic, original_bmi, bp_position, 
