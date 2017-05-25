@@ -22,3 +22,13 @@ select
 where
 	patid IN (select cast(person_id as text) from dcc_3dot1_start2001_pcornet.person_visit_start2001) and EXTRACT(YEAR FROM rx_order_date) >= 2001;
 
+
+
+
+CREATE INDEX idx_pres_encid ON dcc_3dot1_start2001_pcornet.prescribing (encounterid); 
+
+delete from dcc_3dot1_start2001_pcornet.prescribing C
+	where encounterid IS not NULL 
+	and encounterid in (select cast(visit_occurrence_id as text) from dcc_pedsnet.visit_occurrence V where
+					extract(year from visit_start_date)<2001);
+					
