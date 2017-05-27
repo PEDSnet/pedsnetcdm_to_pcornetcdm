@@ -1,3 +1,8 @@
+﻿
+alter table dcc_3dot1_pcornet.lab_result_cm  alter result_num SET DATA TYPE NUMERIC(20,8);
+
+alter table dcc_3dot1_pcornet.lab_result_cm  alter lab_loinc SET DATA TYPE CHARACTER VARYING(256);
+
 -- more changes likely to be made based on decisions in data models #203 and #204
 insert into dcc_3dot1_pcornet.lab_result_cm (
 	lab_result_cm_id,
@@ -13,16 +18,23 @@ insert into dcc_3dot1_pcornet.lab_result_cm (
 	abn_ind,
 	raw_lab_name, raw_lab_code, raw_panel, raw_result, raw_unit, raw_order_dept, raw_facility_code, site
 )
-
+with lab_measurements as 
+(select measurement_id, person_id, visit_occurrence_id, measurement_concept_id, measurement_source_Concept_id, measurement_source_value,
+	measurement_order_date, measurement_time, measurement_date, measurement_Result_date, measurement_result_time, 
+	value_as_number, range_low, range_high, unit_source_value, unit_concept_id, 
+	operator_concept_id,range_low_operator_concept_id, range_high_operator_concept_id, priority_concept_id
+	,site
+	from dcc_pedsnet.measurement 
+	where measurement_type_Concept_id = 44818702)
 select 
 	m.measurement_id as lab_result_cm_id,
-	m.person_id as patid,
-	e.encounterid encounterid,
+	cast(m.person_id as text) as patid,
+	cast(m.visit_occurrence_id as text) as encounterid,
 	coalesce( m1.target_concept,'OT') as lab_name,
 	--m2.target_concept as specimen_source,
 	'BLOOD' as specimen_source, -- defaulting to blood until we have a good solution for sites to figure out how to infer specimen source from labs in the EHR data
 	c1.concept_code as lab_loinc,
-	m7.target_concept as priority,  -- null for now bring discussed in Data Models #203
+	m7.target_concept as priority,  
 	case when measurement_source_value like 'POC%' then 'P' else 'L' end as result_loc, -- using logic to distinguish between POC and L for now - work in progress to explicitly include this in measurement table
 	null as lab_px, -- null as discussed in Data Models #204
 	null as lab_px_type, -- null as discussed in Data Models #204
@@ -47,13 +59,11 @@ select
 	unit_source_value as raw_unit,
 	null as raw_order_dept,
 	null as raw_facility_code,
-	site as site 
+	m.site as site 
 	
 from	 
-	dcc_pedsnet.measurement m
-	join dcc_3dot1_pcornet.demographic d on cast(m.person_id as text)= d.patid
-	join dcc_3dot1_pcornet.encounter e on cast(m.visit_occurrence_id as text) = e.encounterid
-	join vocabulary.concept c1 on m.measurement_concept_id = c1.concept_id and c1.vocabulary_id = 'LOINC'
+	lab_measurements m
+	join vocabulary.concept c1 on m.measurement_concept_id = c1.concept_id --and c1.vocabulary_id = 'LOINC' 
 	left join vocabulary.concept c2 on m.operator_concept_id = c2.concept_id and c2.domain_id = 'Meas Value Operator'
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m1 on c1.concept_code = m1.source_concept_id and m1.source_concept_class = 'Lab name'
 	--left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m2 on c1.concept_code = m2.source_concept_id and m2.source_concept_class = 'Specimen source'
@@ -62,4 +72,4 @@ from
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m5 on cast(m.range_low_operator_concept_id as text)= m5.source_concept_id and m5.source_concept_class = 'Result modifier'
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m6 on cast(m.range_high_operator_concept_id as text)= m6.source_concept_id and m6.source_concept_class = 'Result modifier'
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m7 on cast(m.priority_concept_id as text)= m7.source_concept_id and m7.source_concept_class = 'Lab priority'
-
+;
