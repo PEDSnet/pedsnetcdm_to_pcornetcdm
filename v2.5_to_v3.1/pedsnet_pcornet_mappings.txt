@@ -180,6 +180,7 @@ NI|prescribing|44814653|NULL|No information
 UN|prescribing|44814649|NULL|Unknown
 09|death cause code|ICD9CM|NULL|ICD9CM
 10|death cause code|ICD10|NULL|ICD10
+10|death cause code|ICD10CM|NULL|ICD10CM
 NI|death cause code|NULL|NULL|No information
 UN|death cause code|Unknown|NULL|Unknown
 EQ|Result modifier|4172703|NULL|EQUAL
