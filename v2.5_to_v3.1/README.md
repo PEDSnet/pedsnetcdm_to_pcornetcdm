@@ -23,8 +23,17 @@ This document contains the DDL script to create the source-to-concept mapping ta
 This file contains the ETL source code, i.e. table-wise SQL queries to extract the PCORnet instance from a given PEDSnet CDM instance and the source-to-concept mapping table. 
 
 ## Steps for creating the PCORnet v3.1 data model 
-1. Use the [Makefile] (create_pcornet_3.1_tables.Makefile) to create the PCORnet 3.1 tables
-`make -f create_pcornet_tables.Makefile DB=pedsnet_dcc_v25 VER=3.1.0`
+1. Create the schemas 
+
+```
+create schema dcc_3dot1_pcornet AUTHORIZATION pcor_et_user;
+create schema dcc_3dot1_start2001_pcornet AUTHORIZATION pcor_et_user;
+create schema chop_3dot1_pcornet AUTHORIZATION pcor_et_user;
+create schema chop_3dot1_start2001_pcornet AUTHORIZATION pcor_et_user;
+```
+
+1. Use the [Makefile](create_pcornet_3.1_tables.Makefile) to create the PCORnet 3.1 tables
+`make -f create_pcornet_3.1_tables.Makefile DB=pedsnet_dcc_v25 VER=3.1.0`
 
 2. Add the `site` column to various fields using the following alter table commands: 
 
@@ -60,7 +69,7 @@ alter table dcc_3dot1_start2001_pcornet.lab_result_cm   add column site characte
 
 ```
 ## Steps for Executing the ETL Scripts 
-1. Execute the [Mapping table DDL] (./ETL%20Scripts/cz_omop_pcornet_concept_map_ddl.sql) 
+1. Execute the [Mapping table DDL] (cz_omop_pcornet_concept_map_ddl.sql) 
 2. Populate the mapping table created in Step 2 by importing the [pedsnet\_pcornet\_mappings.txt file] (../pedsnet_pcornet_mappings.txt). The setting for import in PostgreSQL include, format=text, delimiter=|, NULL String=NULL.
 3. Execute the ETL scripts in the following order 
     - [Demographic](./ETL%20Scripts/Demographic_ETL.sql)
