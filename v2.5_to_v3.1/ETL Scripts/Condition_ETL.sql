@@ -12,8 +12,21 @@ select distinct
 	co.condition_end_date as resolve_date,
 	cast (null as date) as onset_date, -- null for now, being discussed in Data Models issue#200 
 	case when condition_end_date is null then 'AC' else 'RS' end as condition_status, 
-	case when c1.concept_id = 0 then 'NM'||cast(round(random()*10000000000000) as text) else c1.concept_code end as condition,
-	COALESCE(cz.target_concept,'OT') as condition_type, 
+	-- look for ICDs, followed by SNOMED, following by others
+	case when c2.vocabulary_id in ('ICD9CM', 'ICD10','ICD10CM') 
+		then 
+		c2.concept_code
+		else case when co.condition_concept_id>0
+		 then c1.concept_code 
+		 else case when condition_source_Value  like '%|%' then trim(split_part(condition_source_value,'|',2))
+				else  trim(condition_source_value)  end  end end 
+	 as condition,
+	case when c3.vocabulary_id = 'ICD9CM'  then '09' 
+		else 
+		case when  c3.vocabulary_id in ('ICD10','ICD10CM') then '10' else 
+		case when co.condition_concept_id> 0 then 'SM' else 'OT' end  
+		end 
+	end  as condition_type, 
 	'HC' as condition_source,
 	null as raw_condition_status, -- null for now, being discussed in Data Models issue#201
 	co.condition_source_value as raw_condition,
@@ -26,6 +39,6 @@ from
 	left join dcc_3dot1_pcornet.encounter e on e.encounterid = cast(co.visit_occurrence_id as text)
 	join vocabulary.concept c1 on co.condition_concept_id = c1.concept_id
 	join vocabulary.concept c2 on co.condition_source_concept_id = c2.concept_id
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map cz on cz.source_concept_id= c1.vocabulary_id and source_concept_class ='condition type'
+	--left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map cz on cz.source_concept_id= c1.vocabulary_id and source_concept_class ='condition type'
 where
 	co.condition_type_concept_id = '38000245' -- Problem list only
