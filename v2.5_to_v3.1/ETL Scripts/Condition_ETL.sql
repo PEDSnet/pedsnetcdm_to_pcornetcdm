@@ -21,9 +21,9 @@ select distinct
 		 else case when condition_source_Value  like '%|%' then trim(split_part(condition_source_value,'|',2))
 				else  trim(condition_source_value)  end  end end 
 	 as condition,
-	case when c3.vocabulary_id = 'ICD9CM'  then '09' 
+	case when c2.vocabulary_id = 'ICD9CM'  then '09' 
 		else 
-		case when  c3.vocabulary_id in ('ICD10','ICD10CM') then '10' else 
+		case when  c2.vocabulary_id in ('ICD10','ICD10CM') then '10' else 
 		case when co.condition_concept_id> 0 then 'SM' else 'OT' end  
 		end 
 	end  as condition_type, 
