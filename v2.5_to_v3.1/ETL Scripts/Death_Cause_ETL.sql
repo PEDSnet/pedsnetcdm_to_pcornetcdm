@@ -10,7 +10,7 @@ select
 	'NI' as death_cause_type, 
 	'L' as death_cause_source,
 	null as death_cause_confidence, -- not dicretely captured in the EHRs
-	min(site) as site
+	min(de.site) as site
 From
 	dcc_pedsnet.death de
 	join dcc_3dot1_pcornet.demographic d on cast(de.person_id as text) = d.patid
