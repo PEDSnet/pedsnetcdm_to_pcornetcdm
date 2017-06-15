@@ -1,12 +1,5 @@
 ﻿
 -- Visit occurrence -> encounter
--- Observation_period -> Enrollment
--- Changes from previous version:
----- Change Concept ID for Residential Facility for Admitting source to 44814680'
----- Replace specific concept_id for No information/Unknown/Other with generic concept id
----- Change source column for raw_ target columns from value_as_concept_id to observation_source_value
----- changed the logic to extract DRGs (only MS-DRGs are needed by PCORnet)
-
 insert into dcc_3dot1_pcornet.encounter (
             patid, encounterid, admit_date, admit_time, discharge_date, discharge_time, 
             providerid, facility_location, enc_type, facilityid, discharge_disposition, 
@@ -38,12 +31,12 @@ select distinct
     min(case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when o3.person_id is null then 'NI' else coalesce(m3.target_concept,'OT') end end) as discharge_status,
     min(case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else o2.value_as_string end) as drg, -- -records having multiple DRGs
 	case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when visit_start_date<'2007-10-01' then '01' else '02' end end as drg_type,
-	case when o4.person_id is null then 'NI' else coalesce(m4.target_concept,'OT') end as admitting_source,
+	coalesce(m4.target_concept,'OT')  as admitting_source,
 	v.visit_source_value as raw_enc_type,
 	min(case when o1.person_id is null then null else o1.observation_source_value end) as raw_discharge_disposition, -- having multiple records for Colorado 
 	min(case when o3.person_id is null then null else o3.observation_source_value end) as raw_discharge_status,
 	null as raw_drg_type, -- since it is not discretely captured in the EHRs
-	min(case when o4.person_id is null then null else o4.observation_source_value end) as raw_admitting_source,
+	v.admitting_source_value as raw_admitting_source,
 	v.site as site
 from 
 	dcc_pedsnet.visit_occurrence v
@@ -52,11 +45,12 @@ from
 	left join o1 on v.visit_occurrence_id = o1.visit_occurrence_id 
 	left join o2 on v.visit_occurrence_id = o2.visit_occurrence_id 
 	left join o3 on v.visit_occurrence_id = o3.visit_occurrence_id 
-	left join o4 on v.visit_occurrence_id = o4.visit_occurrence_id 
+	--left join o4 on v.visit_occurrence_id = o4.visit_occurrence_id 
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m1 on case when v.visit_concept_id is null AND m1.source_concept_id is null then true else 	cast(v.visit_concept_id as text)= m1.source_concept_id end and m1.source_concept_class='Encounter type'
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m2 on case when o1.value_as_concept_id is null AND m2.value_as_concept_id is null then true else o1.value_as_concept_id = m2.value_as_concept_id end and m2.source_concept_class='Discharge disposition'
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m3 on case when o3.value_as_concept_id is null AND m3.value_as_concept_id is null then true else o3.value_as_concept_id = m3.value_as_concept_id end and m3.source_concept_class='Discharge status'
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m4 on case when o4.value_as_concept_id is null AND m4.value_as_concept_id is null then true else o4.value_as_concept_id = m4.value_as_concept_id end and m4.source_concept_class='Admitting source'
+	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m4 on cast(v.admitting_source_concept_id as text)= m4.source_concept_id
+			and m4.source_concept_class='Admitting source'
 group by
     v.person_id,
     v.visit_occurrence_id,
@@ -68,11 +62,7 @@ group by
     left(l.zip,3),
     coalesce(m1.target_concept,'OT'),
     v.care_site_id,
-    --case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when o1.person_id is null then 'NI' else coalesce(m2.target_concept,'OT') end end,
-    --case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else o2.value_as_string end,
-    case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when visit_start_date<'2007-10-01' then '01' else '02' end end,
-    case when o4.person_id is null then 'NI' else coalesce(m4.target_concept,'OT') end,
-    v.visit_concept_id,
-   -- case when o1.person_id is null then null else cast(o1.observation_source_value as text) end,
-    case when o4.person_id is null then null else cast(o4.observation_source_value as text) end
-
+     case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when visit_start_date<'2007-10-01' then '01' else '02' end end,
+    coalesce(m4.target_concept,'OT'),
+    v.visit_concept_id
+  

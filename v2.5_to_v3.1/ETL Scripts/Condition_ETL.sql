@@ -28,7 +28,7 @@ select distinct
 		end 
 	end  as condition_type, 
 	'HC' as condition_source,
-	null as raw_condition_status, -- null for now, being discussed in Data Models issue#201
+	condition_status_source_value as raw_condition_status,
 	co.condition_source_value as raw_condition,
 	c2.vocabulary_id as raw_condition_type,
 	null as raw_condition_source ,-- it is not discretely captured in the EHRs
@@ -41,4 +41,4 @@ from
 	join vocabulary.concept c2 on co.condition_source_concept_id = c2.concept_id
 	--left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map cz on cz.source_concept_id= c1.vocabulary_id and source_concept_class ='condition type'
 where
-	co.condition_type_concept_id = '38000245' -- Problem list only
+	co.condition_type_concept_id in ( 2000000089, 2000000090, 2000000091)-- Problem list only
