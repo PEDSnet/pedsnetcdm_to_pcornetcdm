@@ -27,10 +27,10 @@ select distinct
 	left(l.zip,3) as facility_location,	
     coalesce(m1.target_concept,'OT') as enc_type,
     v.care_site_id as facilityid,
-    min(case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when o1.person_id is null then 'NI' else coalesce(m2.target_concept,'OT') end end) as discharge_disposition, -- Colorado having multiple discharge dispoition 
-    min(case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when o3.person_id is null then 'NI' else coalesce(m3.target_concept,'OT') end end) as discharge_status,
-    min(case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else o2.value_as_string end) as drg, -- -records having multiple DRGs
-	case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when visit_start_date<'2007-10-01' then '01' else '02' end end as drg_type,
+    case when o1.person_id is null then 'NI' else coalesce(m2.target_concept,'OT') end as discharge_disposition, -- Colorado having multiple discharge dispoition 
+    case when o3.person_id is null then 'NI' else coalesce(m3.target_concept,'OT') end as discharge_status,
+    o2.value_as_string as drg, -- -records having multiple DRGs
+	case when visit_start_date<'2007-10-01' then '01' else '02' end as drg_type,
 	coalesce(m4.target_concept,'OT')  as admitting_source,
 	v.visit_source_value as raw_enc_type,
 	min(case when o1.person_id is null then null else o1.observation_source_value end) as raw_discharge_disposition, -- having multiple records for Colorado 
@@ -63,7 +63,7 @@ group by
     left(l.zip,3),
     coalesce(m1.target_concept,'OT'),
     v.care_site_id,
-     case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when visit_start_date<'2007-10-01' then '01' else '02' end end,
+    case when visit_start_date<'2007-10-01' then '01' else '02' end,
     coalesce(m4.target_concept,'OT'),
     v.visit_source_value, 
     v.admitting_source_value, 
