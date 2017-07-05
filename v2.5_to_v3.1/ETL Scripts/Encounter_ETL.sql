@@ -19,10 +19,10 @@ select distinct
 	cast(v.visit_occurrence_id as text) as encounterid ,
 	cast(cast(date_part('year', visit_start_date) as text)||'-'||lpad(cast(date_part('month', visit_start_date) as text),2,'0')||'-'||lpad(cast(date_part('day', visit_start_date) as text),2,'0') 
 	as date) as admit_date,
-    date_part('hour',visit_start_date)||':'||date_part('minute',visit_start_date) as admit_time,
+    date_part('hour',visit_start_time)||':'||date_part('minute',visit_start_time) as admit_time,
 	cast(cast(date_part('year', visit_end_date) as text)||'-'||lpad(cast(date_part('month', visit_end_date) as text),2,'0')||'-'||lpad(cast(date_part('day', visit_end_date) as text),2,'0')
 	 as date) as discharge_date,
-	date_part('hour',visit_end_date)||':'||date_part('minute',visit_end_date) as discharge_time,
+	date_part('hour',visit_end_time)||':'||date_part('minute',visit_end_time) as discharge_time,
 	v.provider_id as providerid,
 	left(l.zip,3) as facility_location,	
     coalesce(m1.target_concept,'OT') as enc_type,
@@ -46,7 +46,8 @@ from
 	left join o2 on v.visit_occurrence_id = o2.visit_occurrence_id 
 	left join o3 on v.visit_occurrence_id = o3.visit_occurrence_id 
 	--left join o4 on v.visit_occurrence_id = o4.visit_occurrence_id 
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m1 on case when v.visit_concept_id is null AND m1.source_concept_id is null then true else 	cast(v.visit_concept_id as text)= m1.source_concept_id end and m1.source_concept_class='Encounter type'
+	 join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m1 
+		on cast(v.visit_concept_id as text)= m1.source_concept_id end and m1.source_concept_class='Encounter type'
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m2 on case when o1.value_as_concept_id is null AND m2.value_as_concept_id is null then true else o1.value_as_concept_id = m2.value_as_concept_id end and m2.source_concept_class='Discharge disposition'
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m3 on case when o3.value_as_concept_id is null AND m3.value_as_concept_id is null then true else o3.value_as_concept_id = m3.value_as_concept_id end and m3.source_concept_class='Discharge status'
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m4 on cast(v.admitting_source_concept_id as text)= m4.source_concept_id
@@ -55,14 +56,16 @@ group by
     v.person_id,
     v.visit_occurrence_id,
     cast(date_part('year', visit_start_date) as text)||'-'||lpad(cast(date_part('month', visit_start_date) as text),2,'0')||'-'||lpad(cast(date_part('day',visit_start_date) as text),2,'0'),
-    date_part('hour',visit_start_date)||':'||date_part('minute',visit_start_date),
+    date_part('hour',visit_start_time)||':'||date_part('minute',visit_start_time),
     cast(date_part('year', visit_end_date) as text)||'-'||lpad(cast(date_part('month', visit_end_date) as text),2,'0')||'-'||lpad(cast(date_part('day', visit_end_date) as text),2,'0'),
-    date_part('hour',visit_end_date)||':'||date_part('minute',visit_end_date),
+    date_part('hour',visit_end_time)||':'||date_part('minute',visit_end_time),
     v.provider_id,
     left(l.zip,3),
     coalesce(m1.target_concept,'OT'),
     v.care_site_id,
      case when coalesce(m1.target_concept,'OT') in ('AV','OA') then null else case when visit_start_date<'2007-10-01' then '01' else '02' end end,
     coalesce(m4.target_concept,'OT'),
-    v.visit_concept_id
-  
+    v.visit_source_value, 
+    v.admitting_source_value, 
+    v.visit_concept_id, 
+   v. site
