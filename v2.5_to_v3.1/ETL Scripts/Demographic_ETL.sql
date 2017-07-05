@@ -4,7 +4,7 @@
 
 insert into dcc_3dot1_pcornet.demographic (patid, birth_date, birth_time, sex, hispanic, race, biobank_flag, raw_sex, raw_hispanic, raw_race, site)
 select distinct 
-	cast(p.person_id as text) as pat_id,
+	cast(p.person_id as text) as patid,
 	cast(
 	cast(year_of_birth as text)
         ||(case when month_of_birth is null then '-01' else '-'||lpad(cast(month_of_birth as text),2,'0') end)
