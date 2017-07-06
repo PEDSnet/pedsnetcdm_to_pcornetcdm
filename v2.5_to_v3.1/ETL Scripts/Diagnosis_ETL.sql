@@ -2,7 +2,7 @@
 
 insert into dcc_3dot1_pcornet.diagnosis(
             diagnosisid,patid, encounterid, enc_type, admit_date, providerid, dx, dx_type, 
-            dx_source, pdx, raw_dx, raw_dx_type, raw_dx_source, raw_pdx,site)
+            dx_source, pdx, dx_origin, raw_dx, raw_dx_type, raw_dx_source, raw_pdx,site)
 select distinct 
 	cast(co.condition_occurrence_id as text) as diagnosisid,
 	cast(co.person_id as text) as patid,
@@ -27,6 +27,7 @@ select distinct
 	end as dx_type,
 	coalesce(m1.target_concept,'OT') as dx_source,
 	case when enc_type in ('IP','IS') then coalesce(m2.target_concept,'OT') else case when enc_type in ('ED','AV','OA') then 'X' else NULL end end as pdx,
+	coalesce(m3.target_concept,'OT') as dx_origin, 
 	condition_source_value as raw_dx,
 	case when co.condition_source_concept_id = '44814649' then 'OT' else c3.vocabulary_id end as raw_dx_type,
         c4.concept_name as raw_dx_source,	
@@ -39,6 +40,7 @@ from
 	join dcc_3dot1_pcornet.encounter enc on cast(co.visit_occurrence_id as text)=enc.encounterid
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m1 on m1.source_concept_class='dx_source' and cast(co.condition_type_concept_id as text) = m1.source_concept_id
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m2 on  cast(co.condition_type_concept_id as text) = m2.source_concept_id  and m2.source_concept_class='pdx'
+	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m3 on  cast(co.condition_type_concept_id as text) = m3.source_concept_id  and m3.source_concept_class='dx origin'
 	left join vocabulary.concept c3 on co.condition_source_concept_id = c3.concept_id
 	left join vocabulary.concept c4 on co.condition_type_concept_id = c4.concept_id 
 where 
