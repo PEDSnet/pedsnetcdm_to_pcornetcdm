@@ -125,11 +125,22 @@ IN|dx_source|-1|NULL|Interim
 NI|dx_source|44814650|NULL|No information
 UN|dx_source|44814653|NULL|Unknown
 OT|dx_source|44814649|NULL|Other
-P|pdx|38000199|NULL|Principal
-S|pdx|38000201|NULL|Secondary
+P|pdx|2000000095|NULL|Principal
+P|pdx|2000000096|NULL|Principal
+P|pdx|2000000097|NULL|Principal
+P|pdx|2000000092|NULL|Principal
+P|pdx|2000000093|NULL|Principal
+P|pdx|2000000094|NULL|Principal
+S|pdx|2000000098|NULL|Secondary
+S|pdx|2000000099|NULL|Secondary
+S|pdx|2000000100|NULL|Secondary
+S|pdx|2000000101|NULL|Secondary
+S|pdx|2000000102|NULL|Secondary
+S|pdx|2000000103|NULL|Secondary
 NI|pdx|44814650|NULL|No information
 UN|pdx|44814653|NULL|Unknown
 OT|pdx|44814649|NULL|Other
+OD|dx origin|2000000098|NULL|OrderOD|dx origin|2000000101|NULL|OrderOD|dx origin|2000000089|NULL|OrderOD|dx origin|2000000095|NULL|OrderOD|dx origin|2000000092|NULL|OrderBI|dx origin|2000000096|NULL|BillingBI|dx origin|2000000093|NULL|BillingBI|dx origin|2000000099|NULL|BillingBI|dx origin|2000000102|NULL|BillingBI|dx origin|2000000090|NULL|BillingCL|dx origin|2000000097|NULL|ClaimCL|dx origin|2000000094|NULL|ClaimCL|dx origin|2000000100|NULL|ClaimCL|dx origin|2000000103|NULL|ClaimCL|dx origin|2000000091|NULL|ClaimNI|dx origin|44814653|NULL|No informationUN|dx origin|44814649|NULL|UnknownOT|dx origin|44814650|NULL|Other
 09|condition type|ICD9CM|NULL|ICD9CM
 10|condition type|ICD10CM|NULL|ICD10CM
 11|condition type|ICD11CM|NULL|ICD11CM
