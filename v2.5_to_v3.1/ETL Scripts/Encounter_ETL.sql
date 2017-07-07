@@ -7,10 +7,11 @@ insert into dcc_3dot1_pcornet.encounter (
             raw_discharge_disposition, raw_discharge_status, raw_drg_type, 
             raw_admitting_source,site)
 WITH  o1 as (select distinct person_id,visit_occurrence_id,value_as_concept_id, observation_source_value from dcc_pedsnet.observation where observation_concept_id = 44813951) --- discharge disposition in PCORnet
-     ,o2 as (select distinct person_id,visit_occurrence_id, value_as_string
+     ,o2 as (select distinct person_id,visit_occurrence_id, min(value_as_string) as value_as_string
 		from dcc_pedsnet.observation
 		where observation_concept_id = 3040464 and observation_date >'2007-10-01'
 			and value_as_string in (select concept_code from vocabulary.concept where invalid_reason is null and concept_class_id = 'MS-DRG' and vocabulary_id='DRG' ) 
+			group by value_as_string
 		)
      ,o3 as (select distinct person_id,visit_occurrence_id, value_as_concept_id,observation_source_value from dcc_pedsnet.observation where observation_concept_id = 4137274) -- discharge status in PCORnet
      ,o4 as (select distinct value_as_concept_id, visit_occurrence_id, person_id,observation_source_value from dcc_pedsnet.observation where observation_concept_id = 4145666) --- admitting source in PCORnet
@@ -47,16 +48,16 @@ from
 	left join o3 on v.visit_occurrence_id = o3.visit_occurrence_id 
 	left join o4 on v.visit_occurrence_id = o4.visit_occurrence_id 
 	 join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m1 
-		on cast(v.visit_concept_id as text)= m1.source_concept_id end and m1.source_concept_class='Encounter type'
+		on cast(v.visit_concept_id as text)= m1.source_concept_id and m1.source_concept_class='Encounter type'
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m2 on case when o1.value_as_concept_id is null AND m2.value_as_concept_id is null then true else 
 				o1.value_as_concept_id = m2.value_as_concept_id end and m2.source_concept_class='Discharge disposition'
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m3 on case when o3.value_as_concept_id is null AND m3.value_as_concept_id is null then true else 
 				o3.value_as_concept_id = m3.value_as_concept_id end and m3.source_concept_class='Discharge status'
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m4 on case when o4.value_as_concept_id is null AND m4.value_as_concept_id is null then true else 
 				o4.value_as_concept_id = m4.value_as_concept_id end and m4.source_concept_class='Admitting source'
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m4a on cast(v.admitting_source_concept_id as text)= m4a.value_as_concept_id
+	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m4a on v.admitting_source_concept_id = m4a.value_as_concept_id
 			and m4a.source_concept_class='Admitting source'
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m3a on cast(v.discharge_concept_id as text)= m3a.value_as_concept_id
+	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m3a on v.discharge_to_concept_id = m3a.value_as_concept_id
 			and m3a.source_concept_class='Discharge status'
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m2a on cast(v.discharge_concept_id as text)= m2a.source_concept_id
+	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m2a on cast(v.discharge_to_concept_id as text) = m2a.source_concept_id
 			and m3a.source_concept_class='Discharge disposition via visit'

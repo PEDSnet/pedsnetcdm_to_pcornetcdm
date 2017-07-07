@@ -25,17 +25,17 @@ This file contains the ETL source code, i.e. table-wise SQL queries to extract t
 ## Steps for creating the PCORnet v3.1 data model 
 1. Create the schemas 
 
-```
-create schema dcc_3dot1_pcornet AUTHORIZATION pcor_et_user;
-create schema dcc_3dot1_start2001_pcornet AUTHORIZATION pcor_et_user;
-create schema chop_3dot1_pcornet AUTHORIZATION pcor_et_user;
-create schema chop_3dot1_start2001_pcornet AUTHORIZATION pcor_et_user;
-```
+	```
+	create schema dcc_3dot1_pcornet AUTHORIZATION pcor_et_user;
+	create schema dcc_3dot1_start2001_pcornet AUTHORIZATION pcor_et_user;
+	create schema chop_3dot1_pcornet AUTHORIZATION pcor_et_user;
+	create schema chop_3dot1_start2001_pcornet AUTHORIZATION pcor_et_user;
+	```
 
-1. Use the [Makefile](create_pcornet_3.1_tables.Makefile) to create the PCORnet 3.1 tables
+2. Use the [Makefile](create_pcornet_3.1_tables.Makefile) to create the PCORnet 3.1 tables
 `make -f create_pcornet_3.1_tables.Makefile DB=pedsnet_dcc_v25 VER=3.1.0`
 
-2. Add the `site` column to various fields using the following alter table commands: 
+3. Add the `site` column to various fields using the following alter table commands: 
 
 ```
 alter table dcc_3dot1_pcornet.demographic add column site character varying not NULL;
