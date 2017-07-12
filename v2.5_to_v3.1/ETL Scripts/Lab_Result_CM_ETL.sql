@@ -1,8 +1,6 @@
 ﻿
 alter table dcc_3dot1_pcornet.lab_result_cm  alter result_num SET DATA TYPE NUMERIC(20,8);
 
-alter table dcc_3dot1_pcornet.lab_result_cm  alter lab_loinc SET DATA TYPE CHARACTER VARYING(256);
-
 -- more changes likely to be made based on decisions in data models #203 and #204
 insert into dcc_3dot1_pcornet.lab_result_cm (
 	lab_result_cm_id,
@@ -63,7 +61,7 @@ select
 	
 from	 
 	lab_measurements m
-	join vocabulary.concept c1 on m.measurement_concept_id = c1.concept_id --and c1.vocabulary_id = 'LOINC' 
+	left join vocabulary.concept c1 on m.measurement_concept_id = c1.concept_id and c1.vocabulary_id = 'LOINC' 
 	left join vocabulary.concept c2 on m.operator_concept_id = c2.concept_id and c2.domain_id = 'Meas Value Operator'
 	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m1 on c1.concept_code = m1.source_concept_id and m1.source_concept_class = 'Lab name'
 	--left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m2 on c1.concept_code = m2.source_concept_id and m2.source_concept_class = 'Specimen source'
