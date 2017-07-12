@@ -11,9 +11,13 @@ WITH  o1 as (select distinct person_id,visit_occurrence_id,value_as_concept_id, 
 		from dcc_pedsnet.observation
 		where observation_concept_id = 3040464 and observation_date >'2007-10-01'
 			and value_as_string in (select concept_code from vocabulary.concept where invalid_reason is null and concept_class_id = 'MS-DRG' and vocabulary_id='DRG' ) 
-			group by value_as_string
+			group by person_id,visit_occurrence_id
 		)
-     ,o3 as (select distinct person_id,visit_occurrence_id, value_as_concept_id,observation_source_value from dcc_pedsnet.observation where observation_concept_id = 4137274) -- discharge status in PCORnet
+     ,o3 as (select  person_id,visit_occurrence_id, min(value_as_concept_id) as value_as_concept_id
+     			--,observation_source_value 
+     			from dcc_pedsnet.observation where observation_concept_id = 4137274
+     			group by person_id,visit_occurrence_id -- since Colorado has multiple discharge status 
+     			) -- discharge status in PCORnet
      ,o4 as (select distinct value_as_concept_id, visit_occurrence_id, person_id,observation_source_value from dcc_pedsnet.observation where observation_concept_id = 4145666) --- admitting source in PCORnet
 select distinct 
 	cast(v.person_id as text) as pat_id,
