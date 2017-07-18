@@ -30,7 +30,15 @@ select
 	cast(m.visit_occurrence_id as text) as encounterid,
 	coalesce( m1.target_concept,'OT') as lab_name,
 	--m2.target_concept as specimen_source,
-	'BLOOD' as specimen_source, -- defaulting to blood until we have a good solution for sites to figure out how to infer specimen source from labs in the EHR data
+	case when lower(specimen_source_value) like %blood% 
+		then 'BLOOD'  
+		else case when lower(specimen_source_value) like '%csf%' then 'CSF'
+		 else case when lower(specimen_source_value) like '%plasma%' then 'PLASMA'
+		 else case when lower(specimen_source_value) like '%serum%' then 'SERUM'
+		 else case when lower(specimen_source_value) like '%urine%' then 'URINE' 
+		 else case when specimen_source_value is not null then 'OT' else 'NI' 
+		end end end end end 
+		as specimen_source, 
 	c1.concept_code as lab_loinc,
 	m7.target_concept as priority,  
 	case when measurement_source_value like 'POC%' then 'P' else 'L' end as result_loc, -- using logic to distinguish between POC and L for now - work in progress to explicitly include this in measurement table

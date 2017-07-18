@@ -1,7 +1,6 @@
 
 alter table dcc_3dot1_start2001_pcornet.lab_result_cm  alter result_num SET DATA TYPE NUMERIC(20,8);
 
-alter table dcc_3dot1_start2001_pcornet.lab_result_cm  alter lab_loinc SET DATA TYPE CHARACTER VARYING(256);
 
 -- more changes likely to be made based on decisions in data models #203 and #204
 insert into dcc_3dot1_start2001_pcornet.lab_result_cm (
