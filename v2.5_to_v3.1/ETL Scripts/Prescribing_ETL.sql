@@ -2,7 +2,7 @@
 
 --- to accomodate NDC / GPI source codes that are longer than 8 characters. 
 ALTER TABLE dcc_3dot1_pcornet.prescribing ALTER raw_rxnorm_cui SET DATA TYPE character varying(20); 
-
+alter table dcc_3dot1_pcornet.prescribing alter rxnorm_cui SET DATA TYPE character varying(8);
 ALTER TABLE dcc_3dot1_pcornet.prescribing ALTER rx_quantity SET DATA TYPE NUMERIC(20,2);
 ALTER TABLE dcc_3dot1_pcornet.prescribing ALTER rx_refills SET DATA TYPE NUMERIC(20,2);
 ALTER TABLE dcc_3dot1_pcornet.prescribing ALTER rx_days_supply SET DATA TYPE NUMERIC(20,2);
