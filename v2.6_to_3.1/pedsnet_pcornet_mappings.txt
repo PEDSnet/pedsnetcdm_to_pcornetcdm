@@ -1,0 +1,297 @@
+N|Hispanic|38003564|NULL|No
+Y|Hispanic|38003563|NULL|Yes
+OT|Hispanic|44814649|NULL|Other
+UN|Hispanic|44814653|NULL|Unknown
+NI|Hispanic|44814650|NULL|No information
+OT|Hispanic|0|NULL|Other
+F|Gender|8532|NULL|Female
+M|Gender|8507|NULL|Male
+A|Gender|44814664|NULL|Ambiguous
+UN|Gender|44814653|NULL|Unknown 
+NI|Gender|44814650|NULL|No information
+OT|Gender|44814649|NULL|Other
+OT|Gender|0|NULL|Other
+AF|Admitting source|4145666|44814670|Adult Foster Home
+AL|Admitting source|4145666|44814671|Assisted Living Facility
+AV|Admitting source|4145666|44814672|Ambulatory Visit
+ED|Admitting source|4145666|8870|Emergency Department
+HH|Admitting source|4145666|44814674|Home Health
+HO|Admitting source|4145666|44814675|Home / Self Care
+HS|Admitting source|4145666|8546|Hospice
+IP|Admitting source|4145666|38004279|Other Acute Inpatient Hospital
+NH|Admitting source|4145666|44814678|Nursing Home (Includes ICF)
+RH|Admitting source|4145666|44814679|Rehabilitation Facility
+RS|Admitting source|4145666|44814680|Residential Facility
+SN|Admitting source|4145666|8863|Skilled Nursing Facility
+NULL|Admitting source|4145666|4145666|NULL
+NI|Admitting source|4145666|44814650|No information 
+UN|Admitting source|4145666|44814653|Unknown 
+OT|Admitting source|4145666|44814649|Other
+A|Discharge disposition|44813951|4161979|Discharged alive 
+E|Discharge disposition|44813951|4216643|Expired 
+NI|Discharge disposition|44813951|44814650|No information
+NULL|Discharge disposition|44813951|NULL|NULL
+UN|Discharge disposition|44813951|44814653|Unknown 
+OT|Discharge disposition|44813951|44814649|Other
+OT|Discharge disposition|44813951|0|Other
+A|Discharge disposition via visit|38004205|NULL|Adult Foster Home 
+A|Discharge disposition via visit|38004301|NULL|Assisted Living Facility 
+A|Discharge disposition via visit|4021968|NULL|Against Medical Advice 
+OT|Discharge disposition via visit|44814693|NULL|Absent without leave 
+E|Discharge disposition via visit|4216643|NULL|Expired 
+A|Discharge disposition via visit|38004195|NULL|Home Health 
+A|Discharge disposition via visit|8536|NULL|Home / Self Care 
+A|Discharge disposition via visit|8546|NULL|Hospice 
+OT|Discharge disposition via visit|38004279|NULL|Other Acute Inpatient Hospital 
+A|Discharge disposition via visit|8676|NULL|Nursing Home (Includes ICF) 
+A|Discharge disposition via visit|8920|NULL|Rehabilitation Facility 
+A|Discharge disposition via visit|44814701|NULL|Residential Facility 
+OT|Discharge disposition via visit|8717|NULL|Still In Hospital 
+A|Discharge disposition via visit|8863|NULL|Skilled Nursing Facility 
+NULL|Discharge disposition via visit|NULL|NULL|NULL
+NI|Discharge disposition via visit|44814650|NULL|No information
+UN|Discharge disposition via visit|44814653|NULL|Unknown
+OT|Discharge disposition via visit|44814649|NULL|Other
+OT|Discharge disposition via visit|0|NULL|Other
+AF|Discharge status|4137274|38004205|Adult Foster Home 
+AL|Discharge status|4137274|38004301|Assisted Living Facility 
+AM|Discharge status|4137274|4021968|Against Medical Advice 
+AW|Discharge status|4137274|44814693|Absent without leave 
+EX|Discharge status|4137274|4216643|Expired 
+HH|Discharge status|4137274|38004195|Home Health 
+HO|Discharge status|4137274|8536|Home / Self Care 
+HS|Discharge status|4137274|8546|Hospice 
+IP|Discharge status|4137274|38004279|Other Acute Inpatient Hospital 
+NH|Discharge status|4137274|8676|Nursing Home (Includes ICF) 
+RH|Discharge status|4137274|8920|Rehabilitation Facility 
+RS|Discharge status|4137274|44814701|Residential Facility 
+SH|Discharge status|4137274|8717|Still In Hospital 
+SN|Discharge status|4137274|8863|Skilled Nursing Facility 
+NULL|Discharge status|4137274|NULL|NULL
+NI|Discharge status|4137274|44814650|No information
+UN|Discharge status|4137274|44814653|Unknown
+OT|Discharge status|4137274|44814649|Other
+OT|Discharge status|4137274|0|Other
+IP|Encounter type|9201|NULL|Inpatient Hospital Stay 
+AV|Encounter type|9202|NULL|Ambulatory Visit
+ED|Encounter type|9203|NULL|Emergency Department 
+EI|Encounter type|2000000048|NULL|Emergency Department Admit to Inpatient Hospital Stay
+OS|Encounter type|2000000088|NULL|Observational Stay
+IS|Encounter type|42898160|NULL|Long Term Care Visit
+IS|Encounter type|44814710|NULL|Non-Acute Institutional Stay 
+OA|Encounter type|44814711|NULL|Other ambulatory visit
+UN|Encounter type|44814653|NULL|Unknown 
+NI|Encounter type|44814650|NULL|No information
+OT|Encounter type|44814649|NULL|Other
+01|BP Position|3018586|NULL|Sitting (Systolic)
+02|BP Position|3035856|NULL|Standing (Systolic)
+03|BP Position|3009395|NULL|Supine (Systolic)
+01|BP Position|3034703|NULL|Sitting (Diastolic)
+02|BP Position|3019962|NULL|Standing (Diastolic)
+03|BP Position|3013940|NULL|Supine (Diastolic)
+NI|BP Position|44814650|NULL|No information
+UN|BP Position|44814653|NULL|Unknown
+OT|BP Position|44814649|NULL|Other
+PR|Vital source|4481472|NULL|Patient reported
+HC|Vital source|38000280|NULL|Healthcare delivery setting
+NI|Vital source|44814650|NULL|No information
+UN|Vital source|44814653|NULL|Unknown
+OT|Vital source|44814649|NULL|Other
+NULL|Vital source|NULL|NULL|NULL
+09|Procedure Code Type|ICD9Proc|NULL|ICD-9-PCS
+10|Procedure Code Type|ICD10PCS|NULL|ICD-10-PCS
+11|Procedure Code Type|-1|NULL|ICD-11-PCS
+CH|Procedure Code Type|CPT4|NULL|CPT
+CH|Procedure Code Type|HCPCS|NULL|HCPCS
+LC|Procedure Code Type|LOINC|NULL|LOINC
+ND|Procedure Code Type|NDC|NULL|NDC
+RE|Procedure Code Type|Revenue Code|NULL|Revenue
+01|Race|8657|NULL|American Indian or Alaska Native
+02|Race|8515|NULL|Asian
+03|Race|8516|NULL|Black or African American
+04|Race|8557|NULL|Native Hawaiian or Other Pacific Islander
+05|Race|8527|NULL|White
+06|Race|44814659|NULL|Multiple race
+07|Race|44814660|NULL|Refuse to answer
+UN|Race|44814653|NULL|Unknown 
+OT|Race|44814649|NULL|Other
+NI|Race|44814650|NULL|No information
+AD|dx_source|-1|NULL|Admitting
+DI|dx_source|38000199|NULL|Discharge
+DI|dx_source|38000201|NULL|Discharge
+FI|dx_source|38000230|NULL|Final
+FI|dx_source|38000231|NULL|Final
+IN|dx_source|-1|NULL|Interim
+NI|dx_source|44814650|NULL|No information
+UN|dx_source|44814653|NULL|Unknown
+OT|dx_source|44814649|NULL|Other
+P|pdx|2000000095|NULL|Principal
+P|pdx|2000000096|NULL|Principal
+P|pdx|2000000097|NULL|Principal
+P|pdx|2000000092|NULL|Principal
+P|pdx|2000000093|NULL|Principal
+P|pdx|2000000094|NULL|Principal
+S|pdx|2000000098|NULL|Secondary
+S|pdx|2000000099|NULL|Secondary
+S|pdx|2000000100|NULL|Secondary
+S|pdx|2000000101|NULL|Secondary
+S|pdx|2000000102|NULL|Secondary
+S|pdx|2000000103|NULL|Secondary
+NI|pdx|44814650|NULL|No information
+UN|pdx|44814653|NULL|Unknown
+OT|pdx|44814649|NULL|Other
+OD|dx origin|2000000098|NULL|Order
+OD|dx origin|2000000101|NULL|Order
+OD|dx origin|2000000089|NULL|Order
+OD|dx origin|2000000095|NULL|Order
+OD|dx origin|2000000092|NULL|Order
+BI|dx origin|2000000096|NULL|Billing
+BI|dx origin|2000000093|NULL|Billing
+BI|dx origin|2000000099|NULL|Billing
+BI|dx origin|2000000102|NULL|Billing
+BI|dx origin|2000000090|NULL|Billing
+CL|dx origin|2000000097|NULL|Claim
+CL|dx origin|2000000094|NULL|Claim
+CL|dx origin|2000000100|NULL|Claim
+CL|dx origin|2000000103|NULL|Claim
+CL|dx origin|2000000091|NULL|Claim
+NI|dx origin|44814653|NULL|No information
+UN|dx origin|44814649|NULL|Unknown
+OT|dx origin|44814650|NULL|Other
+09|condition type|ICD9CM|NULL|ICD9CM
+10|condition type|ICD10CM|NULL|ICD10CM
+11|condition type|ICD11CM|NULL|ICD11CM
+SM|condition type|SNOMED|NULL|SNOMED
+HP|condition type|Human Phenotype Ontology|NULL|Human Phenotype Ontology
+AG|condition type|Algorithmic|NULL|Algorithmic
+NI|condition type|NULL|NULL|NULL
+UN|condition type|Unknown|NULL|Unknown
+01|prescribing|38000177|NULL|Dispensing
+02|prescribing|38000180|NULL|Administration
+NULL|prescribing|NULL|NULL|NULL
+OT|prescribing|44814650|NULL|Other
+NI|prescribing|44814653|NULL|No information
+UN|prescribing|44814649|NULL|Unknown
+09|death cause code|ICD9CM|NULL|ICD9CM
+10|death cause code|ICD10|NULL|ICD10
+10|death cause code|ICD10CM|NULL|ICD10CM
+NI|death cause code|NULL|NULL|No information
+UN|death cause code|Unknown|NULL|Unknown
+EQ|Result modifier|4172703|NULL|EQUAL
+GE|Result modifier|4171755|NULL|Greater than or equal to
+GT|Result modifier|4172704|NULL|Greater than
+LT|Result modifier|4171756|NULL|Less than
+LE|Result modifier|4171754|NULL|Less than or equal to
+NO|Result modifier|[TBD]|NULL|No lower limit
+OT|Result modifier|44814649|NULL|Other
+UN|Result modifier|44814653|NULL|Unkown
+NI|Result modifier|44814650|NULL|No Information
+BIL|Unit|44777660|NULL|Billion (source vocab = UCUM)
+CELL|Unit|45756929|NULL|Cells (source vocab = SNOMED)
+DG|Unit|9485|NULL|Decigram  (source vocab = UCUM)
+DL|Unit|9486|NULL|Deciliter (source vocab = UCUM)
+G|Unit|8504|NULL|Gram (source vocab = SNOMED)
+IU|Unit|8718|NULL|International Units  (source vocab = UCUM)
+K|Unit|8566|NULL|Thousand (source vocab = UCUM)
+L|Unit|8519|NULL|Liter (source vocab = UCUM)
+MG|Unit|8576|NULL|Miligram  (source vocab = UCUM)
+MIU|Unit|44777577|NULL|Mili-International units (source vocab = UCUM)
+ML|Unit|8587|NULL|Milliliter (source vocab = UCUM)
+NG|Unit|9600|NULL|Nanogram (source vocab = UCUM)
+NL|Unit|9606|NULL|Nanoliter (source vocab = UCUM)
+PERCENT|Unit|8554|NULL|Percent (source vocab = UCUM)
+RATIO|Unit|8523|NULL|Ratio (source vocab = UCUM)
+U|Unit|8510|NULL|Units (source vocab = UCUM)
+UG|Unit|9655|NULL|Microgram (source vocab = UCUM)
+UL|Unit|8686|NULL|Cubic Millimeter (source vocab = UCUM)
+UL|Unit|9665|NULL|Micro liter (source vocab = UCUM)
+OT|Unit|44814649|NULL|Other
+UN|Unit|44814653|NULL|Unkown
+NI|Unit|44814650|NULL|No Information
+PN-0001|PRO Item|40764338|NULL|In general, would you say your health is 
+PN-0002|PRO Item|40764339|NULL|In general, would you say your quality of life is
+PN-0003|PRO Item|NULL|NULL|NULL
+PN-0004|PRO Item|NULL|NULL|NULL
+PN-0005|PRO Item|NULL|NULL|NULL
+PN-0006|PRO Item|NULL|NULL|NULL
+PN-0007|PRO Item|NULL|NULL|NULL
+PN-0008|PRO Item|NULL|NULL|NULL
+PN-0009|PRO Item|NULL|NULL|NULL
+PN-0010|PRO Item|NULL|NULL|NULL
+PN-0011|PRO Item|NULL|NULL|NULL
+PN-0012|PRO Item|40764856|NULL|NULL
+PN-0013|PRO Item|2000000000|NULL|How often do you feel really sad?
+PN-0014|PRO Item|2000000001|NULL|How often do you have fun with friends?
+PN-0015|PRO Item|2000000002|NULL|How often do you feel that your parents listen to your ideas?
+PN-0016|PRO Item|40764340|NULL|In general, how would you rate your physical health
+PN-0017|PRO Item|40764341|NULL|In general, how would you rate your mental health including your mood and your ability to think?
+PN-0018|PRO Item|NULL|NULL|NULL
+PN-0019|PRO Item|NULL|NULL|NULL
+PN-0020|PRO Item|NULL|NULL|NULL
+PN-0021|PRO Item|NULL|NULL|NULL
+5|PRO Response|45881924|NULL|Excellent
+4|PRO Response|45884457|NULL|Very Good
+3|PRO Response|45876386|NULL|Good
+2|PRO Response|45876387|NULL|Fair
+1|PRO Response|45876751|NULL|Poor
+1|PRO Response|45876662|NULL|Never
+2|PRO Response|45876672|NULL|Rarely
+3|PRO Response|45882528|NULL|Sometimes
+4|PRO Response|45884455|NULL|Often
+5|PRO Response|45882536|NULL|Always
+01|tobacco|4005823|4005823|Current user
+02|tobacco|4005823|45765920|Never
+03|tobacco|4005823|45765917|Quit/Former smoker
+04|tobacco|4005823|4030580|Passive or environmental exposure
+NI|tobacco|4005823|44814650|No information
+UN|tobacco|4005823|44814653|Unknown
+OT|tobacco|4005823|44814649|Other
+08|smoking|4275495|4209585|Light tobacco smoker
+07|smoking|4275495|4209006|Heavy tobacco smoker
+07|smoking|4275495|4044778|Heavy tobacco smoker
+05|smoking|4275495|4298794|Smoker, current status unknown
+01|smoking|4275495|42709996|Current everyday smoker
+02|smoking|4275495|428041000124106|Current someday smoker
+03|smoking|4275495|4310250|Former smoker
+04|smoking|4275495|4144272|Never smoker
+06|smoking|4275495|4141786|Unknown if ever smoked
+NI|smoking|4275495|44814650|No information
+UN|smoking|4275495|44814653|Unknown
+OT|smoking|4275495|44814649|Other
+01|tobacco type|4219336|4298794|Smoked tobacco only
+01|tobacco type|4219336|4224317|Pipe smoking tobacco
+01|tobacco type|4219336|4282779|Cigarette smoking tobacco
+01|tobacco type|4219336|4132133|Cigar smoking tobacco
+04|tobacco type|4219336|4218917|None
+04|tobacco type|4219336|4052465|None
+03|tobacco type|4219336|4219234|Chewing tobacco
+03|tobacco type|4219336|4218197|Snuff tobacco
+OT|tobacco type|4219336|44814649|Other
+NI|tobacco type|4219336|44814650|No information
+UN|tobacco type|4219336|44814653|Unknown
+A1C|Lab name|4548-4|NULL|Hemoglobin A1c/Hemoglobin total in blood
+CK|Lab name|2157-6|NULL|Creatine kinase total
+CK_MB|Lab name|32673-6|NULL|Creatine kinase MB
+CK_MBI|Lab name|20569-0|NULL|Creatine kinase MB/creatine kinase total
+CREATININE|Lab name|2160-0|NULL|Creatinine
+CREATININE|Lab name|5912-1|NULL|Creatinine
+HGB|Lab name|718-7|NULL|Hemoglobin
+LDL|Lab name|18262-6|NULL|Low-density lipoprotein
+LDL|Lab name|2089-1|NULL|Low-density lipoprotein
+INR|Lab name|6301-6|NULL|International normalized ratio
+TROP_I|Lab name|10839-9|NULL|Troponin I cardiac
+TROP_T_QL|Lab name|48426-1|NULL|Troponin T cardiac (qualitative)
+TROP_T_QN|Lab name|48425-3|NULL|Troponin T cardiac (quantitative)
+E|Lab priority|2000000059|NULL|Expedite
+R|Lab priority|2000000061|NULL|Routine
+S|Lab priority|2000000060|NULL|Stat
+NI|Lab priority|44814650|NULL|No Information
+UN|Lab priority|44814653|NULL|Unknown
+OT|Lab priority|44814649|NULL|Other
+B|Death date impute|2000000034|NULL|Both month and data imputed
+D|Death date impute|2000000035|NULL|Day imputed
+M|Death date impute|2000000036|NULL|Month imputed
+N|Death date impute|2000000037|NULL|Not imputed
+NI|Death date impute|44814650 |NULL|No information
+UN|Death date impute|44814653|NULL|Unknown
+OT|Death date impute|44814649|NULL|Other
