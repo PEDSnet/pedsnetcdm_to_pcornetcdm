@@ -1,28 +1,10 @@
 # The ETL scripts for PEDSnet CDM v2.5 to PCORnet CDM v3.1 transformation
 
 ## Contents 
-### pedsnet_pcornet_mappings.xls
-
-This document contains the mappings from PEDSnet vocabulary to PCORnet vocabulary. Each column in this file denotes the following:
-
-- Source_Concept_Class: Concept class in the OMOP vocabulary (refers to the name of a field in PCORnet model that needs to be encoded into the PCORnet vocabulary)
-- PCORNET_Concept: value as represented in the PCORnet vocabulary
-- Standard_Concept_ID: concept_id in the OMOP vocabulary (this columns refers to the observation_concept_id field of the Observation table, in case of PCORnet fields that are recorded as observations in the OMOP model)
-- Value_as_concept: value_as_concept_id field in the the Observation table in PEDsnet (only applicable for fields that are recorded as observations in the PEDSnet CDM)
-- Concept_Description: Natural language description of the value
-
-### pedsnet_pcornet_mappings.txt
-
-This document is a text version of the pedsnet_pcornet_mappings.xls file. The fields are pipe-delimited.
 
 
-### ETL Scripts/cz\_omop\_pcornet\_concept\_map\_ddl.sql
-This document contains the DDL script to create the source-to-concept mapping table (i.e. PEDSnet->PCORnet vocabulary mapping) into database. 
 
-### ETL Scripts/tablename_ETL.sql
-This file contains the ETL source code, i.e. table-wise SQL queries to extract the PCORnet instance from a given PEDSnet CDM instance and the source-to-concept mapping table. 
-
-## Steps for creating the PCORnet v3.1 data model 
+## Steps for creating the PCORnet v3.1 data model tables
 1. Create the schemas 
 
 	```
@@ -33,7 +15,7 @@ This file contains the ETL source code, i.e. table-wise SQL queries to extract t
 	```
 
 2. Use the [Makefile](create_pcornet_3.1_tables.Makefile) to create the PCORnet 3.1 tables
-`make -f create_pcornet_3.1_tables.Makefile DB=pedsnet_dcc_v25 VER=3.1.0`
+`make -f create_pcornet_3.1_tables.Makefile DB=pedsnet_dcc_v26 VER=3.1.0`
 
 3. Add the `site` column to various fields using the following alter table commands: 
 
@@ -68,10 +50,19 @@ alter table dcc_3dot1_start2001_pcornet.vital   add column site character varyin
 alter table dcc_3dot1_start2001_pcornet.lab_result_cm   add column site character varying not null;
 
 ```
+## Steps for generating the transformation valuset map
+1. Navigate to transform_map folder, and install the CLI Tool
+
+	 `pip install setup.py`
+2.  Load the tool and the valuest map 
+	
+	 `loading -u <username> -h <hostname> -d <dbname> -s <schemaname>`
+	 
+
+
 ## Steps for Executing the ETL Scripts 
-1. Execute the [Mapping table DDL] (cz_omop_pcornet_concept_map_ddl.sql) 
-2. Populate the mapping table created in Step 2 by importing the [pedsnet\_pcornet\_mappings.txt file] (../pedsnet_pcornet_mappings.txt). The setting for import in PostgreSQL include, format=text, delimiter=|, NULL String=NULL.
-3. Execute the ETL scripts in the following order 
+
+1. Execute the ETL scripts in the following order 
     - [Demographic](./ETL%20Scripts/Demographic_ETL.sql)
     - [Enrollment](./ETL%20Scripts/Enrollment_ETL.sql)
     - [Death](./ETL%20Scripts/Death_ETL.sql)
@@ -84,10 +75,13 @@ alter table dcc_3dot1_start2001_pcornet.lab_result_cm   add column site characte
     - [Prescribing](./ETL%20Scripts/Prescribing_ETL.sql)
     - [Vital](./ETL%20Scripts/Vital_ETL.sql)
     - [Lab\_Result\_CM](./ETL%20Scripts/Lab_Result_CM_ETL.sql)
-4. Execute the following add constraints commands
+5. Execute the following add constraints commands
 
 	- [Add foreign keys](FK_statements.sql)
 	- [Add indices](index_statements.sql)
+
+6. 	follow steps in [start 2001 readme](./ETL%20Scripts/start2001/README.md)
+7. Create views on start2001 schema tables 
 
 ### Schema Conventions
 
