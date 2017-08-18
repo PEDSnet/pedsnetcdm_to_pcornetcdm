@@ -1,4 +1,0 @@
-Click
-psycopg2
-requests
-ConfigParser
