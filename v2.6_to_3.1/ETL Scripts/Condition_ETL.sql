@@ -5,7 +5,7 @@ insert into dcc_3dot1_pcornet.condition(
             condition_status, condition, condition_type, condition_source, 
             raw_condition_status, raw_condition, raw_condition_type, raw_condition_source,site)
 select distinct
-	cast(co.condition_occurrence_id as text),
+	cast(co.condition_occurrence_id as text) as conditionid,
 	cast(co.person_id as text) as patid,
 	cast(co.visit_occurrence_id as text) as encounterid,
 	co.condition_start_date as report_date,
