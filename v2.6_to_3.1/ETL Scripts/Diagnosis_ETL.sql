@@ -40,9 +40,9 @@ from
 	dcc_pedsnet.condition_occurrence co
 	join vocabulary.concept c2 on co.condition_concept_id = c2.concept_id
 	join dcc_3dot1_pcornet.encounter enc on cast(co.visit_occurrence_id as text)=enc.encounterid
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m1 on m1.source_concept_class='dx_source' and cast(co.condition_type_concept_id as text) = m1.source_concept_id
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m2 on  cast(co.condition_type_concept_id as text) = m2.source_concept_id  and m2.source_concept_class='pdx'
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m3 on  cast(co.condition_type_concept_id as text) = m3.source_concept_id  and m3.source_concept_class='dx origin'
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m1 on m1.source_concept_class='dx_source' and cast(co.condition_type_concept_id as text) = m1.source_concept_id
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m2 on  cast(co.condition_type_concept_id as text) = m2.source_concept_id  and m2.source_concept_class='pdx'
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m3 on  cast(co.condition_type_concept_id as text) = m3.source_concept_id  and m3.source_concept_class='dx origin'
 	left join vocabulary.concept c3 on co.condition_source_concept_id = c3.concept_id
 	left join vocabulary.concept c4 on co.condition_type_concept_id = c4.concept_id 
 where 
