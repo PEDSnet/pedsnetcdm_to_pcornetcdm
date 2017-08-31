@@ -34,6 +34,7 @@ NULL,Discharge disposition,44813951,NULL,NULL
 UN,Discharge disposition,44813951,44814653,Unknown 
 OT,Discharge disposition,44813951,44814649,Other
 OT,Discharge disposition,44813951,0,Other
+OT,Discharge disposition,2000000104,,Administrative visit
 A,Discharge disposition via visit,38004205,NULL,Adult Foster Home 
 A,Discharge disposition via visit,38004301,NULL,Assisted Living Facility 
 A,Discharge disposition via visit,4021968,NULL,Against Medical Advice 
