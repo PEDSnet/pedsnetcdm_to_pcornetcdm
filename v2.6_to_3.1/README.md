@@ -81,7 +81,7 @@ alter table dcc_3dot1_start2001_pcornet.lab_result_cm   add column site characte
 	- [Add indices](index_statements.sql)
 
 6. 	follow steps in [start 2001 readme](./ETL%20Scripts/start2001/README.md)
-7. Create views on start2001 schema tables 
+7. Create views on start2001 schema tables (./view-creation/func_upper_tbl_name.sql)
 
 ### Schema Conventions
 
