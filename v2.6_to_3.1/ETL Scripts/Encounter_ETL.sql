@@ -36,7 +36,7 @@ select distinct
 	coalesce(m3a.target_concept,'NI') as discharge_status,
     o2.value_as_string as drg, -- -records having multiple DRGs
 	case when visit_start_date<'2007-10-01' then '01' else '02' end as drg_type,
-	coalesce(m4.target_concept,coalesce(m4a.target_concept,'NI'))  as admitting_source,
+	coalesce(m4a.target_concept,'NI') as admitting_source,
 	v.visit_source_value as raw_enc_type,
 	v.discharge_to_source_value as raw_discharge_disposition, 
 	v.discharge_to_source_value as raw_discharge_status,
