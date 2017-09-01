@@ -1,3 +1,4 @@
+target_concept,source_concept_class,source_concept_id,value_as_concept_id character,concept_description
 N,Hispanic,38003564,NULL,No
 Y,Hispanic,38003563,NULL,Yes
 OT,Hispanic,44814649,NULL,Other
@@ -11,67 +12,48 @@ UN,Gender,44814653,NULL,Unknown
 NI,Gender,44814650,NULL,No information
 OT,Gender,44814649,NULL,Other
 OT,Gender,0,NULL,Other
-AF,Admitting source,4145666,44814670,Adult Foster Home
-AL,Admitting source,4145666,44814671,Assisted Living Facility
-AV,Admitting source,4145666,44814672,Ambulatory Visit
-ED,Admitting source,4145666,8870,Emergency Department
-HH,Admitting source,4145666,44814674,Home Health
-HO,Admitting source,4145666,44814675,Home / Self Care
-HS,Admitting source,4145666,8546,Hospice
-IP,Admitting source,4145666,38004279,Other Acute Inpatient Hospital
-NH,Admitting source,4145666,44814678,Nursing Home (Includes ICF)
-RH,Admitting source,4145666,44814679,Rehabilitation Facility
-RS,Admitting source,4145666,44814680,Residential Facility
-SN,Admitting source,4145666,8863,Skilled Nursing Facility
-NULL,Admitting source,4145666,4145666,NULL
-NI,Admitting source,4145666,44814650,No information 
-UN,Admitting source,4145666,44814653,Unknown 
-OT,Admitting source,4145666,44814649,Other
+AF,Admitting source,44814670,,Adult Foster Home
+AL,Admitting source,44814671,,Assisted Living Facility
+AV,Admitting source,44814672,,Ambulatory Visit
+ED,Admitting source,8870,,Emergency Department
+HH,Admitting source,44814674,,Home Health
+HO,Admitting source,44814675,,Home / Self Care
+HS,Admitting source,8546,,Hospice
+IP,Admitting source,38004279,,Other Acute Inpatient Hospital
+NH,Admitting source,44814678,,Nursing Home (Includes ICF)
+RH,Admitting source,44814679,,Rehabilitation Facility
+RS,Admitting source,44814680,,Residential Facility
+SN,Admitting source,8863,,Skilled Nursing Facility
+NULL,Admitting source,4145666,,NULL
+NI,Admitting source,44814650,,No information 
+UN,Admitting source,44814653,,Unknown 
+OT,Admitting source,44814649,,Other
 A,Discharge disposition,44813951,4161979,Discharged alive 
 E,Discharge disposition,44813951,4216643,Expired 
 NI,Discharge disposition,44813951,44814650,No information
 NULL,Discharge disposition,44813951,NULL,NULL
 UN,Discharge disposition,44813951,44814653,Unknown 
 OT,Discharge disposition,44813951,44814649,Other
-OT,Discharge disposition,44813951,0,Other
-A,Discharge disposition via visit,38004205,NULL,Adult Foster Home 
-A,Discharge disposition via visit,38004301,NULL,Assisted Living Facility 
-A,Discharge disposition via visit,4021968,NULL,Against Medical Advice 
-OT,Discharge disposition via visit,44814693,NULL,Absent without leave 
-E,Discharge disposition via visit,4216643,NULL,Expired 
-A,Discharge disposition via visit,38004195,NULL,Home Health 
-A,Discharge disposition via visit,8536,NULL,Home / Self Care 
-A,Discharge disposition via visit,8546,NULL,Hospice 
-OT,Discharge disposition via visit,38004279,NULL,Other Acute Inpatient Hospital 
-A,Discharge disposition via visit,8676,NULL,Nursing Home (Includes ICF) 
-A,Discharge disposition via visit,8920,NULL,Rehabilitation Facility 
-A,Discharge disposition via visit,44814701,NULL,Residential Facility 
-OT,Discharge disposition via visit,8717,NULL,Still In Hospital 
-A,Discharge disposition via visit,8863,NULL,Skilled Nursing Facility 
-NULL,Discharge disposition via visit,NULL,NULL,NULL
-NI,Discharge disposition via visit,44814650,NULL,No information
-UN,Discharge disposition via visit,44814653,NULL,Unknown
-OT,Discharge disposition via visit,44814649,NULL,Other
 OT,Discharge disposition via visit,0,NULL,Other
-AF,Discharge status,4137274,38004205,Adult Foster Home 
-AL,Discharge status,4137274,38004301,Assisted Living Facility 
-AM,Discharge status,4137274,4021968,Against Medical Advice 
-AW,Discharge status,4137274,44814693,Absent without leave 
-EX,Discharge status,4137274,4216643,Expired 
-HH,Discharge status,4137274,38004195,Home Health 
-HO,Discharge status,4137274,8536,Home / Self Care 
-HS,Discharge status,4137274,8546,Hospice 
-IP,Discharge status,4137274,38004279,Other Acute Inpatient Hospital 
-NH,Discharge status,4137274,8676,Nursing Home (Includes ICF) 
-RH,Discharge status,4137274,8920,Rehabilitation Facility 
-RS,Discharge status,4137274,44814701,Residential Facility 
-SH,Discharge status,4137274,8717,Still In Hospital 
-SN,Discharge status,4137274,8863,Skilled Nursing Facility 
-NULL,Discharge status,4137274,NULL,NULL
-NI,Discharge status,4137274,44814650,No information
-UN,Discharge status,4137274,44814653,Unknown
-OT,Discharge status,4137274,44814649,Other
-OT,Discharge status,4137274,0,Other
+AF,Discharge status,38004205,,Adult Foster Home 
+AL,Discharge status,38004301,,Assisted Living Facility 
+AM,Discharge status,4021968,,Against Medical Advice 
+AW,Discharge status,44814693,,Absent without leave 
+EX,Discharge status,4216643,,Expired 
+HH,Discharge status,38004195,,Home Health 
+HO,Discharge status,8536,,Home / Self Care 
+HS,Discharge status,8546,,Hospice 
+IP,Discharge status,38004279,,Other Acute Inpatient Hospital 
+NH,Discharge status,8676,,Nursing Home (Includes ICF) 
+RH,Discharge status,8920,,Rehabilitation Facility 
+RS,Discharge status,44814701,,Residential Facility 
+SH,Discharge status,8717,,Still In Hospital 
+SN,Discharge status,8863,,Skilled Nursing Facility 
+NULL,Discharge status,NULL,,NULL
+NI,Discharge status,44814650,,No information
+UN,Discharge status,44814653,,Unknown
+OT,Discharge status,44814649,,Other
+OT,Discharge status,0,,Other
 OT,Encounter type, 2000000104,,Administrative visit
 IP,Encounter type,9201,NULL,Inpatient Hospital Stay 
 AV,Encounter type,9202,NULL,Ambulatory Visit
