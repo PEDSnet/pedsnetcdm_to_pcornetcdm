@@ -28,7 +28,7 @@ select distinct
 	end  as condition_type, 
 	'HC' as condition_source,
 	condition_status_source_value as raw_condition_status,
-	co.condition_source_value as raw_condition,
+	concat(split_part(condition_source_value,'|',1) as raw_condition, split_part(condition_source_value,'|',3)) as raw_condition,
 	c2.vocabulary_id as raw_condition_type,
 	null as raw_condition_source ,-- it is not discretely captured in the EHRs
 	co.site as site
