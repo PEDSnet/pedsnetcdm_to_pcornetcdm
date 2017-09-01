@@ -33,7 +33,7 @@ select distinct
     coalesce(m1.target_concept,'OT') as enc_type,
     v.care_site_id as facilityid,
     coalesce(m2.target_concept)  as discharge_disposition,
-	coalesce(m3.target_concept,coalesce(m3a.target_concept,'NI'))  as discharge_status,
+	coalesce(m3a.target_concept,'NI') as discharge_status,
     o2.value_as_string as drg, -- -records having multiple DRGs
 	case when visit_start_date<'2007-10-01' then '01' else '02' end as drg_type,
 	coalesce(m4.target_concept,coalesce(m4a.target_concept,'NI'))  as admitting_source,
@@ -55,8 +55,6 @@ from
 		on cast(v.visit_concept_id as text)= m1.source_concept_id and m1.source_concept_class='Encounter type'
 	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m2 on case when o1.value_as_concept_id is null AND m2.value_as_concept_id is null then true else 
 				o1.value_as_concept_id = m2.value_as_concept_id end and m2.source_concept_class='Discharge disposition'
-	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m3 on case when o3.value_as_concept_id is null AND m3.value_as_concept_id is null then true else 
-				o3.value_as_concept_id = m3.value_as_concept_id end and m3.source_concept_class='Discharge status'
 	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m4a on v.admitting_source_concept_id = m4a.source_concept_id
 			and m4a.source_concept_class='Admitting source'
 	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m3a on v.discharge_to_concept_id = m3a.source_concept_id
