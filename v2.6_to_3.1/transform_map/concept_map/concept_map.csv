@@ -72,6 +72,7 @@ NI,Discharge status,4137274,44814650,No information
 UN,Discharge status,4137274,44814653,Unknown
 OT,Discharge status,4137274,44814649,Other
 OT,Discharge status,4137274,0,Other
+OT,Encounter type, 2000000104,,Administrative visit
 IP,Encounter type,9201,NULL,Inpatient Hospital Stay 
 AV,Encounter type,9202,NULL,Ambulatory Visit
 ED,Encounter type,9203,NULL,Emergency Department 
