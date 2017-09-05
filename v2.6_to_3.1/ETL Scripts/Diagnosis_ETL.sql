@@ -16,10 +16,7 @@ select distinct
 		c3.concept_code
 		else case when co.condition_concept_id>0
 		 then c2.concept_code 
-		 else case when condition_source_Value  like '%|%' then 
-		 			case when co.site='stlouis' then trim(split_part(condition_source_value,'|',3))
-		 			else trim(split_part(condition_source_value,'|',2)) end
-				else  trim(condition_source_value)  end  end end 
+		 else trim(split_part(condition_source_value,'|',3)) end end 
 			           as dx,
 	case when c3.vocabulary_id = 'ICD9CM'  then '09' 
 		else 
@@ -28,7 +25,7 @@ select distinct
 		end 
 	end as dx_type,
 	coalesce(m1.target_concept,'OT') as dx_source,
-	case when enc_type in ('IP','IS') then coalesce(m2.target_concept,'OT') else case when enc_type in ('ED','AV','OA') then 'X' else NULL end end as pdx,
+	case when enc_type in ('IP','IS','OS') then coalesce(m2.target_concept,'OT') else case when enc_type in ('ED','AV','OA') then 'X' else NULL end end as pdx,
 	coalesce(m3.target_concept,'OT') as dx_origin, 
 	condition_source_value as raw_dx,
 	case when co.condition_source_concept_id = '44814649' then 'OT' else c3.vocabulary_id end as raw_dx_type,
@@ -40,9 +37,9 @@ from
 	dcc_pedsnet.condition_occurrence co
 	join vocabulary.concept c2 on co.condition_concept_id = c2.concept_id
 	join dcc_3dot1_pcornet.encounter enc on cast(co.visit_occurrence_id as text)=enc.encounterid
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m1 on m1.source_concept_class='dx_source' and cast(co.condition_type_concept_id as text) = m1.source_concept_id
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m2 on  cast(co.condition_type_concept_id as text) = m2.source_concept_id  and m2.source_concept_class='pdx'
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m3 on  cast(co.condition_type_concept_id as text) = m3.source_concept_id  and m3.source_concept_class='dx origin'
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m1 on m1.source_concept_class='dx_source' and cast(co.condition_type_concept_id as text) = m1.source_concept_id
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m2 on  cast(co.condition_type_concept_id as text) = m2.source_concept_id  and m2.source_concept_class='pdx'
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m3 on  cast(co.condition_type_concept_id as text) = m3.source_concept_id  and m3.source_concept_class='dx origin'
 	left join vocabulary.concept c3 on co.condition_source_concept_id = c3.concept_id
 	left join vocabulary.concept c4 on co.condition_type_concept_id = c4.concept_id 
 where 

@@ -1,4 +1,4 @@
-﻿delete from dcc_3dot1_pcornet.dispensing
+
 -- drug exposure --> Dispensing
 -- join with demographic to make sure there are no orphan records 
 -- more changes likely to be made based on Data Models #202

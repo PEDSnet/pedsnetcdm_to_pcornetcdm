@@ -5,7 +5,7 @@ insert into dcc_3dot1_pcornet.condition(
             condition_status, condition, condition_type, condition_source, 
             raw_condition_status, raw_condition, raw_condition_type, raw_condition_source,site)
 select distinct
-	cast(co.condition_occurrence_id as text),
+	cast(co.condition_occurrence_id as text) as conditionid,
 	cast(co.person_id as text) as patid,
 	cast(co.visit_occurrence_id as text) as encounterid,
 	co.condition_start_date as report_date,
@@ -18,11 +18,7 @@ select distinct
 		c2.concept_code
 		else case when co.condition_concept_id>0
 		 then c1.concept_code 
-		 else case when condition_source_Value  like '%|%' then 
-		 					case when co.site = 'stlouis' then trim(split_part(condition_source_value,'|',3))
-		 					else 
-		 					trim(split_part(condition_source_value,'|',2)) end 
-				else  trim(condition_source_value)  end  end end 
+		 else trim(split_part(condition_source_value,'|',3))  end  end
 	 as condition,
 	case when c2.vocabulary_id = 'ICD9CM'  then '09' 
 		else 

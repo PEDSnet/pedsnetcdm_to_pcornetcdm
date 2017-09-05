@@ -18,7 +18,7 @@ insert into dcc_3dot1_pcornet.lab_result_cm (
 )
 with lab_measurements as 
 (select measurement_id, person_id, visit_occurrence_id, measurement_concept_id, measurement_source_Concept_id, measurement_source_value,
-	measurement_order_date, measurement_time, measurement_date, measurement_Result_date, measurement_result_time, 
+	measurement_order_date, measurement_datetime, measurement_date, measurement_Result_date, measurement_result_datetime, 
 	value_as_number, range_low, range_high, unit_source_value, unit_concept_id, 
 	operator_concept_id,range_low_operator_concept_id, range_high_operator_concept_id, priority_concept_id, specimen_source_value
 	,site
@@ -46,9 +46,9 @@ select
 	null as lab_px_type, -- null as discussed in Data Models #204
 	m.measurement_order_date as lab_order_date,
 	m.measurement_date as specimen_date,  
-	date_part('hour',m.measurement_time)||':'||date_part('minute',m.measurement_time) as specimen_time, -- HH:MI format 
+	date_part('hour',m.measurement_datetime)||':'||date_part('minute',m.measurement_datetime) as specimen_time, -- HH:MI format 
 	coalesce(measurement_result_date, measurement_date) as result_date, -- temp fix: use measurement_date is result date is unavailable 
-	date_part('hour',m.measurement_result_time)||':'||date_part('minute',m.measurement_result_time) as result_time,
+	date_part('hour',m.measurement_result_datetime)||':'||date_part('minute',m.measurement_result_datetime) as result_time,
 	'NI' as result_qual, -- Assert NI for now --- until new conventions evolve
 	m.value_as_number as result_num,
 	m3.target_concept as result_modifier,
@@ -71,11 +71,11 @@ from
 	lab_measurements m
 	left join vocabulary.concept c1 on m.measurement_concept_id = c1.concept_id and c1.vocabulary_id = 'LOINC' 
 	left join vocabulary.concept c2 on m.operator_concept_id = c2.concept_id and c2.domain_id = 'Meas Value Operator'
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m1 on c1.concept_code = m1.source_concept_id and m1.source_concept_class = 'Lab name'
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m1 on c1.concept_code = m1.source_concept_id and m1.source_concept_class = 'Lab name'
 	--left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m2 on c1.concept_code = m2.source_concept_id and m2.source_concept_class = 'Specimen source'
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m3 on cast(m.operator_concept_id as text) = m3.source_concept_id and m3.source_concept_class = 'Result modifier'
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m4 on cast(m.unit_concept_id as text)= m4.source_concept_id and m4.source_concept_class = 'Unit'
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m5 on cast(m.range_low_operator_concept_id as text)= m5.source_concept_id and m5.source_concept_class = 'Result modifier'
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m6 on cast(m.range_high_operator_concept_id as text)= m6.source_concept_id and m6.source_concept_class = 'Result modifier'
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m7 on cast(m.priority_concept_id as text)= m7.source_concept_id and m7.source_concept_class = 'Lab priority'
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m3 on cast(m.operator_concept_id as text) = m3.source_concept_id and m3.source_concept_class = 'Result modifier'
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m4 on cast(m.unit_concept_id as text)= m4.source_concept_id and m4.source_concept_class = 'Unit'
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m5 on cast(m.range_low_operator_concept_id as text)= m5.source_concept_id and m5.source_concept_class = 'Result modifier'
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m6 on cast(m.range_high_operator_concept_id as text)= m6.source_concept_id and m6.source_concept_class = 'Result modifier'
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m7 on cast(m.priority_concept_id as text)= m7.source_concept_id and m7.source_concept_class = 'Lab priority'
 ;

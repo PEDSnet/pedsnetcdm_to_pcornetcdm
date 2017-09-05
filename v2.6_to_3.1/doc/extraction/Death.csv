@@ -1,0 +1,1 @@
+PCORnet_field,Source_CDM,Source_table,Source_table_alias,Source_field,join condition,extraction conditionpatid,PEDSnet,death,D,person_id,,death_date,PEDSnet,death,D,death_date,,death_date_impute,PEDSnet,death,D,death_impute_concept_id,,death_source,,,,default to 'L',,death_match_confidence,,,,,,
