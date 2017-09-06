@@ -27,7 +27,7 @@ select distinct
 	coalesce(m1.target_concept,'OT') as dx_source,
 	case when enc_type in ('IP','IS') then coalesce(m2.target_concept,'OT') else case when enc_type in ('ED','AV','OA') then 'X' else NULL end end as pdx,
 	coalesce(m3.target_concept,'OT') as dx_origin, 
-	concat(split_part(condition_source_value,'|',1), split_part(condition_source_value,'|',3)) as raw_dx,
+	concat(split_part(condition_source_value,'|',1), '|', split_part(condition_source_value,'|',3)) as raw_dx,
 	case when co.condition_source_concept_id = '44814649' then 'OT' else c3.vocabulary_id end as raw_dx_type,
         c4.concept_name as raw_dx_source,	
 	case when co.condition_type_concept_id IN (2000000092, 2000000093, 2000000094, 2000000098, 2000000099, 2000000100) -- if inpatient header
