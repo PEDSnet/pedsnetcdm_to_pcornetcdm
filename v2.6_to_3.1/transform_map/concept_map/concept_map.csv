@@ -24,17 +24,14 @@ NH,Admitting source,44814678,,Nursing Home (Includes ICF)
 RH,Admitting source,44814679,,Rehabilitation Facility
 RS,Admitting source,44814680,,Residential Facility
 SN,Admitting source,8863,,Skilled Nursing Facility
-NULL,Admitting source,4145666,,NULL
 NI,Admitting source,44814650,,No information 
 UN,Admitting source,44814653,,Unknown 
 OT,Admitting source,44814649,,Other
 A,Discharge disposition,44813951,4161979,Discharged alive 
 E,Discharge disposition,44813951,4216643,Expired 
 NI,Discharge disposition,44813951,44814650,No information
-NULL,Discharge disposition,44813951,NULL,NULL
 UN,Discharge disposition,44813951,44814653,Unknown 
 OT,Discharge disposition,44813951,44814649,Other
-OT,Discharge disposition via visit,0,NULL,Other
 AF,Discharge status,38004205,,Adult Foster Home 
 AL,Discharge status,38004301,,Assisted Living Facility 
 AM,Discharge status,4021968,,Against Medical Advice 
