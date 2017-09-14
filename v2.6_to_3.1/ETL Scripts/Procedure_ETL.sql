@@ -36,9 +36,9 @@ from
 	join dcc_3dot1_pcornet.encounter enc on cast(po.visit_occurrence_id as text)=enc.encounterid
 	join vocabulary.concept c on po.procedure_concept_id=c.concept_id
 	-- get the vocabulary from procedure concept id - to populate the PX_TYPE field (case 1)
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m1 on c.vocabulary_id = m1.source_concept_id AND m1.source_concept_class='Procedure Code Type'
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m1 on c.vocabulary_id = m1.source_concept_id AND m1.source_concept_class='Procedure Code Type'
 	-- get the vocabulary for the RAW_PX_TYPE field - for all cases. 
 	left join vocabulary.concept c2 on po.procedure_source_concept_id = c2.concept_id 
 	-- get the vocabulary from the procedure source value to populate the PX_TYPE field (case 2a)
-	left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map m3 on c2.vocabulary_id = m3.source_concept_id AND m3.source_concept_class='Procedure Code Type';
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m3 on c2.vocabulary_id = m3.source_concept_id AND m3.source_concept_class='Procedure Code Type';
 
