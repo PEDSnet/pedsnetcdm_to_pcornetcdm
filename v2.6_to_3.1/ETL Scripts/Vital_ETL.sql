@@ -1,51 +1,39 @@
-/*
----------- Vital query 
--- observation --> vital 
--- Changes from previous version:
----- Change source table from observation to measurement
----- Populate vital_source, raw vital source, raw diastolic and raw systolic
----- Use fact_relationship to tie diastolic BP and systolic PB
---- Not asked will be skipped and will be incorporated in the next ETL cycle since it is a meaningful use concept.(v2.1)
---- The query is agnostic to the concept id of the relationship.
--- We use a concatenated PK (based on ht, wt, dia, sys, bmi measurement ids
-*/
-
-ALTER TABLE dcc_3dot1_pcornet.vital ALTER original_bmi SET DATA TYPE NUMERIC(20,8);
+ALTER TABLE seattle_3dot1_pcornet.vital ALTER original_bmi SET DATA TYPE NUMERIC(20,8);
 
 drop sequence if exists sq_vitalid;
 create sequence sq_vitalid start 1;
 
-insert into dcc_3dot1_pcornet.vital(
+insert into seattle_3dot1_pcornet.vital(
             vitalid, patid, encounterid, measure_date, measure_time, vital_source, 
             ht, wt, diastolic, systolic, original_bmi, bp_position, 
 	    tobacco, tobacco_type, smoking
             ,raw_diastolic, raw_systolic, raw_bp_position,site)
  WITH
-ms as (select  person_id, min(site) as site,visit_occurrence_id,measurement_date, measurement_time  
-		from dcc_pedsnet.measurement where measurement_concept_id IN ('3023540','3013762','3034703','3019962','3013940','3012888','3018586','3035856','3009395','3004249','3038553')
+ms as (select  person_id, min(site) as site,visit_occurrence_id,measurement_date, measurement_datetime  
+		from seattle_pedsnet.measurement where measurement_concept_id IN ('3023540','3013762','3034703','3019962','3013940','3012888','3018586','3035856','3009395','3004249','3038553')
 		group by person_id, visit_occurrence_id,measurement_date, measurement_datetime  
 		),
-ms_ht as (select distinct measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, value_as_number  from dcc_pedsnet.measurement where measurement_concept_id = '3023540'),
-ms_wt as (select distinct measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number  from dcc_pedsnet.measurement where measurement_concept_id = '3013762'),
-ms_bmi as (select distinct measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number  from dcc_pedsnet.measurement where measurement_concept_id = '3038553'),
-ms_sys as (select distinct measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, value_as_concept_id, measurement_concept_id,measurement_source_value from dcc_pedsnet.measurement where measurement_concept_id in ('3018586','3035856','3009395','3004249')),
-ms_dia as (select distinct measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, measurement_type_concept_id, value_as_number, measurement_source_value from dcc_pedsnet.measurement where measurement_concept_id in ('3034703','3019962','3013940','3012888')),
-ms_vs as (select distinct measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, measurement_type_concept_id from dcc_pedsnet.measurement where measurement_type_concept_id IN ('44814721')),
-ob_tobacco as ( select distinct observation_id, visit_occurrence_id, observation_date, observation_time,coalesce(m1.target_concept,'OT') as tobacco 
-	from dcc_pedsnet.observation o1 left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m1 on cast(o1.value_as_concept_id as text) = m1.source_concept_id
+ms_ht as (select distinct measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, value_as_number  from seattle_pedsnet.measurement where measurement_concept_id = '3023540'),
+ms_wt as (select distinct measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number  from seattle_pedsnet.measurement where measurement_concept_id = '3013762'),
+ms_bmi as (select distinct measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number  from seattle_pedsnet.measurement where measurement_concept_id = '3038553'),
+ms_sys as (select distinct measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, value_as_concept_id, measurement_concept_id,measurement_source_value from seattle_pedsnet.measurement where measurement_concept_id in ('3018586','3035856','3009395','3004249')),
+ms_dia as (select distinct measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, measurement_type_concept_id, value_as_number, measurement_source_value from seattle_pedsnet.measurement where measurement_concept_id in ('3034703','3019962','3013940','3012888')),
+ms_vs as (select distinct measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, measurement_type_concept_id from seattle_pedsnet.measurement where measurement_type_concept_id IN ('44814721')),
+ob_tobacco as ( select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime,coalesce(m1.target_concept,'OT') as tobacco 
+	from seattle_pedsnet.observation o1 left join seattle_3dot1_pcornet.pedsnet_pcornet_valueset_map m1 on cast(o1.value_as_concept_id as text) = m1.source_concept_id
 	where observation_concept_id IN ('4005823')),
-ob_tobacco_type as (select distinct observation_id, visit_occurrence_id, observation_date, observation_time, coalesce(m2.target_concept,'OT') as tobacco_type 
-	from dcc_pedsnet.observation o1 
-	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m2 on cast(o1.value_as_concept_id as text) = m2.source_concept_id
+ob_tobacco_type as (select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime, coalesce(m2.target_concept,'OT') as tobacco_type 
+	from seattle_pedsnet.observation o1 
+	left join seattle_3dot1_pcornet.pedsnet_pcornet_valueset_map m2 on cast(o1.value_as_concept_id as text) = m2.source_concept_id
 	where observation_concept_id IN ('4219336')),
-ob_smoking as (select distinct observation_id, visit_occurrence_id, observation_date, observation_time, coalesce(m3.target_concept,'OT') as smoking 
-	from dcc_pedsnet.observation o1 left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m3 on cast(o1.value_as_concept_id as text)= m3.source_concept_id
+ob_smoking as (select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime, coalesce(m3.target_concept,'OT') as smoking 
+	from seattle_pedsnet.observation o1 left join seattle_3dot1_pcornet.pedsnet_pcornet_valueset_map m3 on cast(o1.value_as_concept_id as text)= m3.source_concept_id
 	where observation_concept_id IN ('4275495')),
-ob_tobacco_data as (select ob_tobacco.visit_occurrence_id, ob_tobacco.observation_date, ob_tobacco.observation_time, ob_tobacco.tobacco, ob_tobacco_type.tobacco_type, ob_smoking.smoking  
+ob_tobacco_data as (select ob_tobacco.visit_occurrence_id, ob_tobacco.observation_date, ob_tobacco.observation_datetime, ob_tobacco.tobacco, ob_tobacco_type.tobacco_type, ob_smoking.smoking  
 	from ob_tobacco 
-	left join dcc_pedsnet.fact_relationship fr2 on ob_tobacco.observation_id = fr2.fact_id_1 
+	left join seattle_pedsnet.fact_relationship fr2 on ob_tobacco.observation_id = fr2.fact_id_1 
 	join ob_tobacco_type on fr2.fact_id_2 = ob_tobacco_type.observation_id
-	left join dcc_pedsnet.fact_relationship fr3 on ob_tobacco.observation_id = fr3.fact_id_1 
+	left join seattle_pedsnet.fact_relationship fr3 on ob_tobacco.observation_id = fr3.fact_id_1 
 	join ob_smoking on fr3.fact_id_2 = ob_smoking.observation_id)
 SELECT distinct
 nextval('sq_vitalid') as vitalid,
@@ -72,19 +60,19 @@ ms.site as site
 FROM 
 ms
 left join ms_ht on ms.visit_occurrence_id = ms_ht.visit_occurrence_id 
-and ms.measurement_time = ms_ht.measurement_time 
+and ms.measurement_datetime = ms_ht.measurement_datetime 
 left join ms_wt on ms.visit_occurrence_id = ms_wt.visit_occurrence_id 
-and ms.measurement_time = ms_wt.measurement_time 
+and ms.measurement_datetime = ms_wt.measurement_datetime 
 left join ms_vs on ms. visit_occurrence_id = ms_vs.visit_occurrence_id 
-and ms.measurement_time = ms_vs.measurement_time
+and ms.measurement_datetime = ms_vs.measurement_datetime
 left join ms_sys on ms.visit_occurrence_id = ms_sys.visit_occurrence_id 
-and ms.measurement_time = ms_sys.measurement_time
-left join dcc_pedsnet.fact_relationship fr1 on fr1.fact_id_1 = ms_sys.measurement_id AND fr1.domain_concept_id_1=21 AND fr1.domain_concept_id_2=21
+and ms.measurement_datetime = ms_sys.measurement_datetime
+left join seattle_pedsnet.fact_relationship fr1 on fr1.fact_id_1 = ms_sys.measurement_id AND fr1.domain_concept_id_1=21 AND fr1.domain_concept_id_2=21
 left join ms_dia on ms.visit_occurrence_id = ms_dia.visit_occurrence_id 
 and ms_dia.measurement_id = fr1.fact_id_2
 left join ms_bmi on ms.visit_occurrence_id = ms_bmi.visit_occurrence_id 
-and ms.measurement_time = ms_bmi.measurement_time 
-left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m on cast(ms_sys.measurement_concept_id as text) = m.source_concept_id AND m.source_concept_class='BP Position'
+and ms.measurement_datetime = ms_bmi.measurement_datetime 
+left join seattle_3dot1_pcornet.pedsnet_pcornet_valueset_map m on cast(ms_sys.measurement_concept_id as text) = m.source_concept_id AND m.source_concept_class='BP Position'
 left join ob_tobacco_data on ms.visit_occurrence_id = ob_tobacco_data.visit_occurrence_id 
-and ms.measurement_time = ob_tobacco_data.observation_time
+and ms.measurement_datetime = ob_tobacco_data.observation_datetime
 where coalesce(ms_ht.value_as_number, ms_wt.value_as_number, ms_dia.value_as_number, ms_sys.value_as_number, ms_bmi.value_as_number) is not null
