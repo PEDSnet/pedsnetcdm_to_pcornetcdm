@@ -49,7 +49,7 @@ select
 	date_part('hour',m.measurement_datetime)||':'||date_part('minute',m.measurement_datetime) as specimen_time, -- HH:MI format 
 	coalesce(measurement_result_date, measurement_date) as result_date, -- temp fix: use measurement_date is result date is unavailable 
 	date_part('hour',m.measurement_result_datetime)||':'||date_part('minute',m.measurement_result_datetime) as result_time,
-	'NI' as result_qual, -- Assert NI for now --- until new conventions evolve
+	coalesce(m8.target_concept,'OT') as result_qual, 
 	m.value_as_number as result_num,
 	m3.target_concept as result_modifier,
 	m4.target_concept as result_unit,
@@ -78,4 +78,5 @@ from
 	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m5 on cast(m.range_low_operator_concept_id as text)= m5.source_concept_id and m5.source_concept_class = 'Result modifier'
 	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m6 on cast(m.range_high_operator_concept_id as text)= m6.source_concept_id and m6.source_concept_class = 'Result modifier'
 	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m7 on cast(m.priority_concept_id as text)= m7.source_concept_id and m7.source_concept_class = 'Lab priority'
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m8 on cast(m.value_as_concept_id as text)= m8.source_concept_id and m7.source_concept_class = 'Result qualifier'
 ;
