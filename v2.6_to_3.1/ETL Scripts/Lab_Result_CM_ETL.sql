@@ -19,7 +19,7 @@ insert into dcc_3dot1_pcornet.lab_result_cm (
 with lab_measurements as 
 (select measurement_id, person_id, visit_occurrence_id, measurement_concept_id, measurement_source_Concept_id, measurement_source_value,
 	measurement_order_date, measurement_datetime, measurement_date, measurement_Result_date, measurement_result_datetime, 
-	value_as_number, range_low, range_high, unit_source_value, unit_concept_id, 
+	value_as_number, range_low, range_high, unit_source_value, unit_concept_id, value_as_concept_id,
 	operator_concept_id,range_low_operator_concept_id, range_high_operator_concept_id, priority_concept_id, specimen_source_value
 	,site
 	from dcc_pedsnet.measurement 
