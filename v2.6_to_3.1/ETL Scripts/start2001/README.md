@@ -20,4 +20,4 @@
 
 	- [Add foreign keys](FK_statements.sql)
 	- [Add indices](index_statements.sql)
-
+4. Populate data in the Harvest Table
