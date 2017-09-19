@@ -25,7 +25,7 @@ select distinct
 		end 
 	end as dx_type,
 	coalesce(m1.target_concept,'OT') as dx_source,
-	case when enc_type in ('IP','IS','OS') then coalesce(m2.target_concept,'OT') else case when enc_type in ('ED','AV','OA') then 'X' else NULL end end as pdx,
+	coalesce(m2.target_concept, 'X') as pdx,
 	coalesce(m3.target_concept,'OT') as dx_origin, 
 	concat(split_part(condition_source_value,'|',1), '|', split_part(condition_source_value,'|',3)) as raw_dx,
 	case when co.condition_source_concept_id = '44814649' then 'OT' else c3.vocabulary_id end as raw_dx_type,
