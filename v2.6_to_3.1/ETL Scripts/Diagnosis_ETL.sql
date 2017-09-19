@@ -16,7 +16,9 @@ select distinct
 		c3.concept_code
 		else case when co.condition_concept_id>0
 		 then c2.concept_code 
-		 else trim(split_part(condition_source_value,'|',3)) end end 
+		 else trim(split_part(condition_source_value,'|',3))
+		 then trim(split_part(condition_source_value,'|',2))
+		 end end 
 			           as dx,
 	case when c3.vocabulary_id = 'ICD9CM'  then '09' 
 		else 
