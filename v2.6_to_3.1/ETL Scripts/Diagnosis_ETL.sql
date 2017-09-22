@@ -15,7 +15,7 @@ select distinct
 	     then c3.concept_code
 	     else case when co.condition_concept_id>0
 		       then c2.concept_code 
-	     else case when trim(split_part(condition_source_value,'|',3)) is not null
+	     else case when length(trim(split_part(condition_source_value,'|',3)))>0
          	       then trim(split_part(condition_source_value,'|',3)) 
          	       else trim(split_part(condition_source_value,'|',2))
          	end end end
