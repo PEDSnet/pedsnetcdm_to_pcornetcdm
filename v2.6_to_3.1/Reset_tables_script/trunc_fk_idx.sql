@@ -15,8 +15,7 @@ BEGIN
      			WHERE table_type = 'BASE TABLE' AND table_schema = _schema 
      		)t
 	LOOP
-		EXECUTE selectrow.qry;
-    	raise info '%','truncating '||selectrow.table_name;
+	    EXECUTE selectrow.qry;
 	END LOOP;
     -- -------------------------  drop all indexes  ----------------------------------------------
     FOR select_index in 
@@ -27,19 +26,18 @@ BEGIN
             	WHERE indexname LIKE 'idx_%' AND 
                       schemaname = _schema AND 
                       tablename in (
-                					  SELECT table_name 
-     								  FROM information_schema.tables
-     								  WHERE table_type = 'BASE TABLE' AND 
-                                            table_schema =  _schema
-                					)
+                		       SELECT table_name 
+     				       FROM information_schema.tables
+     				       WHERE table_type = 'BASE TABLE' AND 
+                                             table_schema =  _schema
+                		   )
         	 )i
      LOOP
      	EXECUTE select_index.query_idx;
-     	raise info '%','dropping '||select_index.indexname;
      END LOOP;
      -- -----------------------  drop all foreign key constraints   -------------------------------------
      FOR select_fk in
-     	 SELECT 'ALTER TABLE '|| quote_ident(_schema) ||'.' || quote_ident(tbl.table_name) ||' DROP CONSTRAINT ' || quote_indent(tbl.constraint_name) ||';' AS query_fk
+     	 SELECT 'ALTER TABLE '|| quote_ident(_schema) ||'.' || quote_ident(tbl.table_name) ||' DROP CONSTRAINT ' || tbl.constraint_name ||';' AS query_fk
          FROM (
          		SELECT constraint_name, table_name 
          	  	FROM information_schema.table_constraints 
@@ -47,8 +45,7 @@ BEGIN
                       constraint_name like '%_fk_%'
               )tbl
      LOOP
-     	EXECUTE select_fk.query_fk
-     	raise info '%','dropping '||select_fk.constraint_name;
+     	EXECUTE select_fk.query_fk;
      END LOOP;
 end;
 $BODY$
