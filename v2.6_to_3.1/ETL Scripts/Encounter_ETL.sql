@@ -48,8 +48,8 @@ from
 	join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m1 
 		on cast(v.visit_concept_id as text)= m1.source_concept_id and m1.source_concept_class='Encounter type'
 	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m2 on case when dis_disposition.value_as_concept_id is null AND m2.value_as_concept_id is null then true else 
-				dis_disposition.value_as_concept_id = m2.value_as_concept_id end and m2.source_concept_class='Discharge disposition'
-	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m4a on v.admitting_source_concept_id = m4a.source_concept_id::integer -- (case when m4a.source_concept_id~E'^\\d+$' then cast(m4a.source_concept_id as integer) else 0 end)
-			and m4a.source_concept_class='Admitting source'            -- added by shweta 9/13: source_concept_ip var char need to cast as admitting_source_concept_id type integer
-	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m3a on v.discharge_to_concept_id = m3a.source_concept_id::integer -- (case when m3a.source_concept_id~E'^\\d+$' then cast(m3a.source_concept_id as integer) else 0 end)
+				cast(dis_disposition.value_as_concept_id as text) = m2.value_as_concept_id end and m2.source_concept_class='Discharge disposition'
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m4a on v.admitting_source_concept_id = m4a.source_concept_id::integer 
+			and m4a.source_concept_class='Admitting source'            
+	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m3a on cast(v.discharge_to_concept_id as text) = m3a.source_concept_id 
 			and m3a.source_concept_class='Discharge status'
