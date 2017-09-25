@@ -190,8 +190,8 @@ UN,Unit,44814653,NULL,Unkown
 NI,Unit,44814650,NULL,No Information
 POSITIVE,Result qualifier,9191,,Positive
 NEGATIVE,Result qualifier,9189,,Negative
-OT,Result qualifier,0,,Others
-OT,Result qualifier,NULL,,Others
+OT,Result qualifier,NI,,Others
+OT,Result qualifier,NI,,Others
 NULL,Admitting source,4145666,NULL,NULL
 PN-0001,PRO Item,40764338,NULL,"In general, would you say your health is "
 PN-0002,PRO Item,40764339,NULL,"In general, would you say your quality of life is"
@@ -237,7 +237,7 @@ OT,tobacco,4005823,44814649,Other
 07,smoking,4275495,4044778,Heavy tobacco smoker
 05,smoking,4275495,4298794,"Smoker, current status unknown"
 01,smoking,4275495,42709996,Current everyday smoker
-02,smoking,4275495,4.28E+14,Current someday smoker
+02,smoking,4275495,428041000124106,Current someday smoker
 03,smoking,4275495,4310250,Former smoker
 04,smoking,4275495,4144272,Never smoker
 06,smoking,4275495,4141786,Unknown if ever smoked
@@ -278,6 +278,6 @@ B,Death date impute,2000000034,NULL,Both month and data imputed
 D,Death date impute,2000000035,NULL,Day imputed
 M,Death date impute,2000000036,NULL,Month imputed
 N,Death date impute,2000000037,NULL,Not imputed
-NI,Death date impute,44814650æ,NULL,No information
+NI,Death date impute,44814650,NULL,No information
 UN,Death date impute,44814653,NULL,Unknown
 OT,Death date impute,44814649,NULL,Other
