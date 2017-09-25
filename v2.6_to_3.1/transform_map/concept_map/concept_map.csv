@@ -166,6 +166,7 @@ NO,Result modifier,[TBD],NULL,No lower limit
 OT,Result modifier,44814649,NULL,Other
 UN,Result modifier,44814653,NULL,Unkown
 NI,Result modifier,44814650,NULL,No Information
+OT,result modifier,0,,Other
 BIL,Unit,44777660,NULL,Billion (source vocab = UCUM)
 CELL,Unit,45756929,NULL,Cells (source vocab = SNOMED)
 DG,Unit,9485,NULL,Decigram  (source vocab = UCUM)
@@ -190,8 +191,8 @@ UN,Unit,44814653,NULL,Unkown
 NI,Unit,44814650,NULL,No Information
 POSITIVE,Result qualifier,9191,,Positive
 NEGATIVE,Result qualifier,9189,,Negative
-OT,Result qualifier,NI,,Others
-OT,Result qualifier,NI,,Others
+NI,Result qualifier,0,,Others
+NI,Result qualifier,NULL,,Others
 NULL,Admitting source,4145666,NULL,NULL
 PN-0001,PRO Item,40764338,NULL,"In general, would you say your health is "
 PN-0002,PRO Item,40764339,NULL,"In general, would you say your quality of life is"
