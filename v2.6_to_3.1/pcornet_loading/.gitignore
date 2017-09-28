@@ -3,3 +3,6 @@
 /server.py
 /Loading.egg-info/
 /venv/
+/scripts/site_col.sql.bak
+/scripts/create_table.sql.bak
+/scripts/privileges.sql.bak
