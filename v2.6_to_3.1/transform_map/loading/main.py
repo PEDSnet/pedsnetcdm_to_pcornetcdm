@@ -12,7 +12,7 @@ configfile_name = "database.ini"
 @click.command()
 @click.option('--pwprompt', '-p', is_flag=True, default=False,
               help='Prompt for database password')
-@click.option('--searchpath', '-s', help='Schema search path in database.ex. stlouis_pcornet')
+@click.option('--searchpath', '-s', help='Schema search path in database.ex. dcc_pcornet')
 @click.option('--user', '-u', default=False, help='Database username')
 @click.option('--database', '-d', default=False,
               help='Database in wich the mapping file to be loaded ex. pedsnet_dcc_vxx')

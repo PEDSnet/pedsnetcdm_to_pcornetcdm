@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS stlouis_start2017_pcornet.pedsnet_pcornet_valueset_map (
+CREATE TABLE IF NOT EXISTS dcc_start2001_pcornet.pedsnet_pcornet_valueset_map (
                 target_concept character varying(200),
                 source_concept_class character varying(200),
                 source_concept_id character varying(200),
@@ -6,13 +6,9 @@ CREATE TABLE IF NOT EXISTS stlouis_start2017_pcornet.pedsnet_pcornet_valueset_ma
                 concept_description character varying(200)
                 );
 
-                ALTER TABLE stlouis_start2017_pcornet.pedsnet_pcornet_valueset_map
+                ALTER TABLE dcc_start2017_pcornet.pedsnet_pcornet_valueset_map
                 OWNER to pcor_et_user;
 
-                GRANT SELECT ON TABLE stlouis_start2017_pcornet.pedsnet_pcornet_valueset_map TO pcornet_sas;
-
-                GRANT SELECT ON TABLE stlouis_start2017_pcornet.pedsnet_pcornet_valueset_map TO peds_staff;
-
-                GRANT ALL ON TABLE stlouis_start2017_pcornet.pedsnet_pcornet_valueset_map TO pcor_et_user;
-
-                GRANT ALL ON TABLE stlouis_start2017_pcornet.pedsnet_pcornet_valueset_map TO dcc_owner; 
+                GRANT SELECT ON TABLE dcc_start2017_pcornet.pedsnet_pcornet_valueset_map TO pcornet_sas;
+                GRANT SELECT ON TABLE dcc_start2017_pcornet.pedsnet_pcornet_valueset_map TO peds_staff;
+                GRANT ALL ON TABLE dcc_start2017_pcornet.pedsnet_pcornet_valueset_map TO pcor_et_user;

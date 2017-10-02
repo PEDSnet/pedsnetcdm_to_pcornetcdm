@@ -5,6 +5,7 @@ VER?=none	# Set this on the command line via `make ... VER=theversion` or as an 
 LOGDIR=logs_create_pcornet
 
 .PHONY: all
+
 all: dcc 
 
 %:
