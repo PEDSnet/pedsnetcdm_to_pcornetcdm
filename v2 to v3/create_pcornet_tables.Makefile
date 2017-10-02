@@ -5,7 +5,8 @@ VER?=none	# Set this on the command line via `make ... VER=theversion` or as an 
 LOGDIR=logs_create_pcornet
 
 .PHONY: all
-all: dcc
+
+all: dcc 
 
 %:
 	@if [ "${DB}" == "none" ]; then echo "Invoke as: make -f create_pcornet_tables.Makefile DB=thedb VER=theversion"; false; fi
