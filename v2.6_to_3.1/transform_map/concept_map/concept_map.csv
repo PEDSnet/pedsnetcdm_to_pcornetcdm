@@ -282,3 +282,7 @@ N,Death date impute,2000000037,NULL,Not imputed
 NI,Death date impute,44814650,NULL,No information
 UN,Death date impute,44814653,NULL,Unknown
 OT,Death date impute,44814649,NULL,Other
+P,pdx,38000199,NULL,Principal
+P,pdx,38000230,NULL,Principal
+S,pdx,38000201,NULL,Secondary
+S,pdx,38000231,NULL,Secondary
