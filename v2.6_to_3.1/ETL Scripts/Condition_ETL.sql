@@ -40,4 +40,4 @@ from
 	join vocabulary.concept c2 on co.condition_source_concept_id = c2.concept_id
 	--left join dcc_3dot1_pcornet.cz_omop_pcornet_concept_map cz on cz.source_concept_id= c1.vocabulary_id and source_concept_class ='condition type'
 where
-	co.condition_type_concept_id in ( 2000000089, 2000000090, 2000000091)-- Problem list only
+	co.condition_type_concept_id in ( 2000000089, 2000000090, 2000000091,38000245)-- Problem list only
