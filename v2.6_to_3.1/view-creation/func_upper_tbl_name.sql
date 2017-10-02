@@ -42,4 +42,4 @@ create or replace function capitalview(datab text, schemanm text) returns void a
 	end;
 $$ LANGUAGE plpgsql;
 
-select count(*) from capitalview('pedsnet_dcc_v25', 'stlouis_pcornet')
+select count(*) from capitalview('pedsnet_dcc_v25', 'dcc_pcornet')
