@@ -10,8 +10,6 @@
 	```
 	create schema dcc_3dot1_pcornet AUTHORIZATION pcor_et_user;
 	create schema dcc_3dot1_start2001_pcornet AUTHORIZATION pcor_et_user;
-	create schema chop_3dot1_pcornet AUTHORIZATION pcor_et_user;
-	create schema chop_3dot1_start2001_pcornet AUTHORIZATION pcor_et_user;
 	```
 
 2. Use the [Makefile](create_pcornet_3.1_tables.Makefile) to create the PCORnet 3.1 tables
