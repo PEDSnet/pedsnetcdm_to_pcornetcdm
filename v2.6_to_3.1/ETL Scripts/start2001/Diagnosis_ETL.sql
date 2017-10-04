@@ -14,4 +14,6 @@ where
 	 and encounterid in 
 	 (select cast(visit_occurrence_id as text) from dcc_pedsnet.condition_occurrence where extract (year from condition_start_date)
 		>=2001)
-	length(dx) < 2
+		
+delete from dcc_3dot1_start2001_pcornet.diagnosis C
+   where length(dx) < 2
