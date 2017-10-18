@@ -17,7 +17,7 @@ insert into dcc_3dot1_pcornet.prescribing (prescribingid,
 select distinct
 	drug_exposure_id as prescribingid,
 	cast(de.person_id as text) as patid,
-	encounterid as encounterid,
+	cast(visit_occurrence_id as text) to encounterid,
 	de.provider_id as rx_providerid,
 	drug_exposure_start_date as rx_order_date, -- making this same as start date -- looks OK as per PEDSnet conventions doc 
 	date_part('hour',drug_exposure_start_datetime)||':'||date_part('minute',drug_exposure_start_datetime) as rx_order_time, -- same as above
