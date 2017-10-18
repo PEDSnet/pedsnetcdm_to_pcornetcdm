@@ -35,8 +35,6 @@ select distinct
 	de.site as site
 from
 	dcc_pedsnet.drug_exposure de
-	join dcc_3dot1_pcornet.demographic d on d.patid = cast(de.person_id as text)
-	join dcc_3dot1_pcornet.encounter e on cast(de.visit_occurrence_id as text) = e.encounterid
 	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m1 on case when de.drug_type_concept_id is null 
 		AND m1.source_concept_id is null then true else cast(de.drug_type_concept_id as text) = m1.source_concept_id end and m1.source_concept_class='prescribing'
 	left join vocabulary.concept c1 on de.drug_concept_id = c1.concept_id AND vocabulary_id = 'RxNorm'
