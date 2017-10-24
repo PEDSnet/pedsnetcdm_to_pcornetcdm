@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+/database.ini
+/server.py
+/Loading.egg-info/
+/venv/
+/scripts/site_col.sql.bak
+/scripts/privileges.sql.bak
+/scripts/create_table.sql.bak
