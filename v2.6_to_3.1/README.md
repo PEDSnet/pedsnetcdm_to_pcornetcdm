@@ -1,4 +1,4 @@
-# The ETL scripts for PEDSnet CDM v2.5 to PCORnet CDM v3.1 transformation
+# The ETL scripts for PEDSnet CDM v2.6 to PCORnet CDM v3.1 transformation
 
 ## Contents 
 
