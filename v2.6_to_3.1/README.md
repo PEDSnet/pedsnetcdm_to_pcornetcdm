@@ -1,62 +1,19 @@
-# The ETL scripts for PEDSnet CDM v2.5 to PCORnet CDM v3.1 transformation
+# The ETL scripts for PEDSnet CDM v2.6 to PCORnet CDM v3.1 transformation
 
 ## Contents 
 
 
 
-## Steps for creating the PCORnet v3.1 data model tables
-1. Create the schemas 
+## Steps for creating pcornet_data_model_set_up
 
-	```
-	create schema dcc_3dot1_pcornet AUTHORIZATION pcor_et_user;
-	create schema dcc_3dot1_start2001_pcornet AUTHORIZATION pcor_et_user;
-	```
-
-2. Use the [Makefile](create_pcornet_3.1_tables.Makefile) to create the PCORnet 3.1 tables
-`make -f create_pcornet_3.1_tables.Makefile DB=pedsnet_dcc_v26 VER=3.1.0`
-
-3. Add the `site` column to various fields using the following alter table commands: 
-
-```
-alter table dcc_3dot1_pcornet.demographic add column site character varying not NULL;
-alter table dcc_3dot1_pcornet.enrollment add column site character varying not null;
-alter table dcc_3dot1_pcornet.death add column site character varying not null;
-alter table dcc_3dot1_pcornet.death_cause add column site character varying not null;
-alter table dcc_3dot1_pcornet.encounter add column site character varying not null;
-alter table dcc_3dot1_pcornet.condition add column site character varying not null;
-alter table dcc_3dot1_pcornet.diagnosis add column site character varying not null;
-alter table dcc_3dot1_pcornet.procedures add column site character varying not null;
-alter table dcc_3dot1_pcornet.dispensing   add column site character varying not null;
-alter table dcc_3dot1_pcornet.prescribing   add column site character varying not null;
-alter table dcc_3dot1_pcornet.vital   add column site character varying not null;
-alter table dcc_3dot1_pcornet.lab_result_cm   add column site character varying not null;
-
-```
-
-```
-alter table dcc_3dot1_start2001_pcornet.demographic add column site character varying not NULL;
-alter table dcc_3dot1_start2001_pcornet.enrollment add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.death add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.death_cause add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.encounter add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.condition add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.diagnosis add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.procedures add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.dispensing   add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.prescribing   add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.vital   add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.lab_result_cm   add column site character varying not null;
-
-```
-## Steps for generating the transformation valuset map
-1. Navigate to transform_map folder, and install the CLI Tool
+1. Navigate to [pcornet_loading](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/master/v2.6_to_3.1/pcornet_loading) , and install the CLI Tool
 
 	 `pip install setup.py`
 2.  Load the tool and the valuest map 
 	
 	 `loading -u <username> -h <hostname> -d <dbname> -s <schemaname>`
 	 
-
+	* more information about the tool can be found [here](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/master/v2.6_to_3.1/pcornet_loading/README.md)
 
 ## Steps for Executing the ETL Scripts 
 
@@ -79,7 +36,7 @@ alter table dcc_3dot1_start2001_pcornet.lab_result_cm   add column site characte
 	- [Add indices](index_statements.sql)
 
 6. 	follow steps in [start 2001 readme](./ETL%20Scripts/start2001/README.md)
-7. Create views on start2001 schema tables (./view-creation/func_upper_tbl_name.sql)
+7. [Create views](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/master/v2.6_to_3.1/view-creation) on start2001 schema tables 
 
 ### Schema Conventions
 
