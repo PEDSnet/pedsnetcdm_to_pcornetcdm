@@ -1,0 +1,1 @@
+PCORnet_field,Source_CDM,Source_table,Source_table_alias,Source_field,join condition,extraction conditionpatid,PEDSnet,observation_period,O,person_id,,enr_start_date,PEDSnet,observation_period,O,observation_period_start_date,,enr_end_date,PEDSnet,observation_period,O,observation_period_end_date,,chart,,,,default to 'Y',,enr_basis,,,,default to 'E',,
