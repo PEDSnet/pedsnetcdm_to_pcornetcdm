@@ -36,23 +36,14 @@ After making changes in the scripts. To test the scripts re-run of ETL is requir
 	
 	 For DDL:
 	
-	 `loading -u <username> -h <hostname> -d <dbname> -s <schemaname> -o ddl`
+	 `loading -u <username> -h <hostname> -d <dbname> -s <schemaname> -o <option>`
 	 
-	 For Full Pipeline:
-	 
-	 `loading -u <username> -h <hostname> -d <dbname> -s <schemaname> -o pipeline`
-	 
-	 For ETL Only:
-	 
-	 `loading -u <username> -h <hostname> -d <dbname> -s <schemaname> -o etl`
-	 
-	 For Truncating table and removing FK's:
-	 
-	 `loading -u <username> -h <hostname> -d <dbname> -s <schemaname> -o truncate`
-	 
-	 For updating the valueset map:
-	 
-	 `loading -u <username> -h <hostname> -d <dbname> -s <schemaname> -o update_map`
+	 option :
+	  1. pipeline&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp; Run the full PCORnet pipeline
+	  2. ddl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp; Only the DDL or initial setup for the PEDSnet to PCORnet CDM
+	  3. etl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp; Runs only the ETL on the PEDSnet data.
+	  4. truncate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Re-run of the ETL use this option to truncate all tables and remove Foregin Key constraints
+	  5. update_map -&nbsp; Adding or updating new values in the concept map table.
 	 
 	 For [help](./pcornet_loading/README.md):
 	 
