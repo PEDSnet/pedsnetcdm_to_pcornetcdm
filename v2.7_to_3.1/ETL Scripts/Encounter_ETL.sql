@@ -8,10 +8,26 @@ dis_disposition as (select distinct person_id,visit_occurrence_id,min(value_as_c
 			
 			
 create temporary table 
-drg_value as (select distinct person_id,visit_occurrence_id, min(value_as_string) as value_as_string
+drg_value as (select distinct person_id,visit_occurrence_id, min(value_as_string) as value_as_string as drg, 
+		case when value_as_concept_id = 0 then 'OT' 
+			else case when observation_date>='2007-10-01' then '02' else '01' end 
+		end as drg_type
 		from dcc_pedsnet.observation
-		where observation_concept_id = 3040464 and observation_date >'2007-10-01'
-			and value_as_string in (select concept_code from vocabulary.concept where invalid_reason is null and concept_class_id = 'MS-DRG' and vocabulary_id='DRG' ) 
+		where observation_concept_id = 3040464 
+			and 
+			(	-- MS-DRG
+				(observation_date >='2007-10-01'
+				and value_as_string in 
+				(select concept_code from vocabulary.concept where invalid_reason is null and concept_class_id = 'MS-DRG' and vocabulary_id='DRG') 
+				)
+				OR 
+				--- OLD system 
+				(observation_date <'2007-10-01'
+				and value_as_string in 
+				(select concept_code from vocabulary.concept where invalid_reason is null and concept_class_id = 'DRG' and vocabulary_id='DRG'
+				 and invalid_date = '2007-09-30' and invalid_reason = 'D') 
+				)
+			)
 			group by person_id,visit_occurrence_id
 		); 
 		
@@ -23,7 +39,8 @@ as
 	visit_concept_id,  care_site_id, 
 	dis_disposition.value_as_concept_id_ddisp,
 	discharge_to_concept_id, admitting_source_concept_id,
-    drg_value.value_as_string as value_as_string_drg, 
+    drg_value.drg as drg, 
+    drg_value.drg_type as drg_type, 
 	visit_source_value, discharge_to_source_value, 
 	admitting_source_value, site
 from 
@@ -72,8 +89,8 @@ as
 	provider_id as providerid,
 	left(zip,3) as facility_location,	
     care_site_id as facilityid,
-    value_as_string_drg as drg, -- -records having multiple DRGs
-	case when visit_start_date<'2007-10-01' then '01' else '02' end as drg_type,
+    drg, 
+	coalesce(drg_type,'NI'),
 	visit_source_value as raw_enc_type,
 	discharge_to_source_value as raw_discharge_disposition, 
 	discharge_to_source_value as raw_discharge_status,
