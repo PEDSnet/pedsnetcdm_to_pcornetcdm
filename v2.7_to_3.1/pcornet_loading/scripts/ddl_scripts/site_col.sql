@@ -1,0 +1,12 @@
+alter table stlouis_3dot1_start2001_pcornet.demographic add column site character varying not NULL;
+alter table stlouis_3dot1_start2001_pcornet.enrollment add column site character varying not null;
+alter table stlouis_3dot1_start2001_pcornet.death add column site character varying not null;
+alter table stlouis_3dot1_start2001_pcornet.death_cause add column site character varying not null;
+alter table stlouis_3dot1_start2001_pcornet.encounter add column site character varying not null;
+alter table stlouis_3dot1_start2001_pcornet.condition add column site character varying not null;
+alter table stlouis_3dot1_start2001_pcornet.diagnosis add column site character varying not null;
+alter table stlouis_3dot1_start2001_pcornet.procedures add column site character varying not null;
+alter table stlouis_3dot1_start2001_pcornet.dispensing   add column site character varying not null;
+alter table stlouis_3dot1_start2001_pcornet.prescribing   add column site character varying not null;
+alter table stlouis_3dot1_start2001_pcornet.vital   add column site character varying not null;
+alter table stlouis_3dot1_start2001_pcornet.lab_result_cm   add column site character varying not null;
