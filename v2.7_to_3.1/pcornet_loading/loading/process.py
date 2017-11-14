@@ -7,10 +7,17 @@ import datetime
 import query
 import psycopg2
 import config
+import subprocess
+import glob
 
 # endregion
 
+# region file names
 configfile_name = "database.ini"
+etl_dir = "scripts/etl_scripts_temp"
+view = "scripts/view-creation/func_upper_tbl_name.sql"
+
+# endregion
 
 # region DDL only
 def ddl_only():
@@ -23,7 +30,6 @@ def ddl_only():
       4. Populate the harvest table
       5. Set the permission for pcor_et_user and pcornet_sas user.
     """
-
     conn = None
 
     try:
@@ -43,9 +49,9 @@ def ddl_only():
         # endregion
 
         # region Check if there is already a configuration file
-        if os.path.isfile(configfile_name):
+        #if os.path.isfile(configfile_name):
             # delete the file
-            os.remove(configfile_name)
+            #os.remove(configfile_name)
         # endregion
 
         for schemas in schema:
@@ -189,11 +195,13 @@ def ddl_only():
             conn.close()
             print('Database connection closed.')
 
+
 # endregion
 
 # region Full  Pipeline
 def pipeline_full():
-    print 'Full Pipeline under construction'
+    ddl_only()
+    etl_only()
 
 
 # endregion
@@ -216,7 +224,7 @@ def truncate_fk():
         query.truncate(schema)
         conn.commit()
         disconnect(cur)
-            # endregion
+        # endregion
     except (Exception, psycopg2.OperationalError) as error:
         print(error)
     except (Exception, psycopg2.DatabaseError) as error:
@@ -233,7 +241,52 @@ def truncate_fk():
 
 # region ETL only
 def etl_only():
-    print 'ETL only under construction'
+    schema_path = config.config('schema')
+    schema = re.sub('_pedsnet', '', schema_path['schema'])
+
+    query.get_etl_ready(schema)
+    # subprocess.call("ls -la", shell=True)  stdout=subprocess.PIPE,
+
+    filelist = glob.glob(os.path.join(etl_dir, '*.sql'))
+    for infile in sorted(filelist):
+        args = infile
+
+        print 'starting ETL \t:' + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') + "\n"
+        proc = subprocess.Popen(['bash_script/etl_bash.sh', args], stderr=subprocess.STDOUT)
+        output, error = proc.communicate()
+
+        if output:
+            with open("logs/log_file.log", "a") as logfile:
+                logfile.write("\n" + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') + "\n")
+                logfile.write(output)
+        if error:
+            with open("logs/log_file.log", "a") as logfile:
+                logfile.write("\n" + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S' + "\n"))
+                logfile.write(error)
+
+    # create the upper case views
+    conn = None
+    try:
+        var_data = connection()
+        conn = var_data[0]
+        cur = conn.cursor()
+        cur.execute(open(view, "r").read())
+        conn.commit()
+        cur.execute("""select count(*) from capitalview('""" + +"""', '""" + schema + """_3dot1_pcornet')""")
+        conn.commit()
+        cur.execute("""select count(*) from capitalview('""" + +"""', '""" + schema + """_3dot1_start2001_pcornet')""")
+        conn.commit()
+    except (Exception, psycopg2.OperationalError) as error:
+        print(error)
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    except (Exception, psycopg2.ProgrammingError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+            print('Database connection closed.')
+    print 'ETL is complete'
 
 
 # endregion
@@ -333,9 +386,9 @@ def connection():
         # endregion
 
         # region Check if there is already a configuration file
-        if os.path.isfile(configfile_name):
-            # delete the file
-            os.remove(configfile_name)
+        # if os.path.isfile(configfile_name):
+        # delete the file
+        # os.remove(configfile_name)
         # endregion
 
         return conn + ',' + schema
