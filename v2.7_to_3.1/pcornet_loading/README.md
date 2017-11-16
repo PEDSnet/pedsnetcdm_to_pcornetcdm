@@ -55,6 +55,10 @@ alter table dcc_3dot1_start2001_pcornet.lab_result_cm   add column site characte
 
 7. Populate the `harvest` table
 
+8. Run the ETL on the specified SITE.
+
+9. Create Upper Case views
+
 # Dependancies
 
 ## Python 
@@ -70,9 +74,16 @@ CLI tool. The set up tool make it easy to install.
 
 	 `pip install setup.py`
    
-3.  Load the tool and the valuest map 
+3.  Select form the following option:
 	
-	 `loading -u <username> -h <hostname> -d <dbname> -s <schemaname>`
+	 `loading -u <username> -h <hostname> -d <dbname> -s <schemaname> -o <option>`
+	 
+	 option :
+	  1. pipeline&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp; Run the full PCORnet pipeline
+	  2. ddl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp; Only the DDL or initial setup for the PEDSnet to PCORnet CDM
+	  3. etl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp; Runs only the ETL on the PEDSnet data.
+	  4. truncate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Re-run of the ETL use this option to truncate all tables and remove Foregin Key constraints
+	  5. update_map -&nbsp; Adding or updating new values in the concept map table.
    
    where the dbname is the name of the database which contains the PEDSnet schema that we want to Transform.
          schemaname is the name of the schema that is to be transformed
