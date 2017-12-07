@@ -1,18 +1,22 @@
 # region Imports
+import os
+import shutil
 import requests
 import re
+import glob
 import fileinput
 
 # endregion
 
 # region filenames
 csv_concept = "data/concept_map.csv"
-create_table_script = "scripts/create_table.sql"
-site_col_file = "scripts/site_col.sql"
-privileges = "scripts/privileges.sql"
-alt_owner_file = "scripts/alter_tbl_owner.sql"
-trunc = "scripts/trunc_fk_idx.sql"
-
+create_table_script = "scripts/ddl_scripts/create_table.sql"
+site_col_file = "scripts/ddl_scripts/site_col.sql"
+privileges = "scripts/ddl_scripts/privileges.sql"
+alt_owner_file = "scripts/ddl_scripts/alter_tbl_owner.sql"
+trunc = "scripts/ddl_scripts/trunc_fk_idx.sql"
+etl_temp_files = "scripts/etl_scripts_temp/"
+etl_files ="scripts/etl_scripts/"
 
 # endregion
 
@@ -98,4 +102,22 @@ def owner(schema):
 def truncate(schema):
     command = """SELECT truncate_schema('""" + schema + """');"""
     return command
+
+
+# endregion
+
+# region ETL Scripts Modify
+def get_etl_ready(schema):
+    # remove all the temp file from the directory etl_scripts
+    if os.path.exists(etl_temp_files):
+        shutil.rmtree(etl_temp_files)
+    shutil.copytree(etl_files, etl_temp_files)
+
+    for file in glob.glob(os.path.join(etl_temp_files, '*.sql')):
+        with open(file, 'r') as f:
+            content = f.read()
+            content = content.replace('SITE', schema)
+            f.close()
+        with open(file, 'w') as f:
+            f.write(content)
 # endregion
