@@ -56,4 +56,4 @@ $BODY$
 --  To call the function put the schema name that you want to remove constraints, index and truncate.
 --  ex. select truncate_schema('employee')
 
-select truncate_schema('stlouis_3dot1_start2001_pcornet');
+select truncate_schema('dcc_3dot1_start2001_pcornet');

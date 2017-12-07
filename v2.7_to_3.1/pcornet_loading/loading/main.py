@@ -74,7 +74,6 @@ def cli(searchpath, pwprompt, user, database, host, options):
         configini.set('postgresql', 'database', database)
         configini.set('postgresql', 'user', user)
         configini.set('postgresql', 'password', password)
-
         configini.add_section('schema')
         configini.set('schema', 'schema', searchpath)
 
@@ -83,7 +82,7 @@ def cli(searchpath, pwprompt, user, database, host, options):
     # endregion
 
 # region Process Option
-
+    global pipe
     option_map[options]()
 # endregion
 
