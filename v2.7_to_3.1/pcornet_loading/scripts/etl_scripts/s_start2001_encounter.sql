@@ -12,5 +12,5 @@ select
             raw_discharge_disposition, raw_discharge_status, raw_drg_type,
             raw_admitting_source,site from SITE_3dot1_pcornet.encounter
 where
-	encounterid IN (select cast(visit_id as text) from SITE_3dot1_start2001_pcornet.person_visit_start2001)
+	encounterid IN (select cast(visit_id as text) from SITE_3dot1_start2001_pcornet.person_visit_start2001);
 commit;

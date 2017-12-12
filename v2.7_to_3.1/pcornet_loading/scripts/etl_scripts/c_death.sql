@@ -12,7 +12,7 @@ Select
 	min(de.site) as site -- retrieve one record in case of multiple death causes
 From
 	SITE_pedsnet.death de
-	left join dcc_3dot1_pcornet.pedsnet_pcornet_valueset_map m1 on m1.source_concept_class='Death date impute' and
+	left join SITE_3dot1_pcornet.pedsnet_pcornet_valueset_map m1 on m1.source_concept_class='Death date impute' and
 	cast(de.death_impute_concept_id as text) = m1.source_concept_id
 Where
 	de.death_type_concept_id  = 38003569
