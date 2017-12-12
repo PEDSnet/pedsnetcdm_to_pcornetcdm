@@ -1,4 +1,4 @@
-begin
+begin;
 insert into SITE_3dot1_start2001_pcornet.enrollment (patid, enr_start_date, enr_end_date, chart, enr_basis, site)
 select
 	patid, enr_start_date, enr_end_date, chart, enr_basis, site

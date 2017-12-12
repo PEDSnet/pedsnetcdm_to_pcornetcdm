@@ -9,7 +9,7 @@ where
 	encounterid IN (select CAST(visit_id as TEXT) from SITE_3dot1_start2001_pcornet.person_visit_start2001)
 	 and encounterid in
 	 (select cast(visit_occurrence_id as text) from SITE_pedsnet.condition_occurrence where extract (year from condition_start_date)
-		>=2001)
+		>=2001);
 delete from SITE_3dot1_start2001_pcornet.diagnosis C
 where length(dx) < 2;
 commit;
