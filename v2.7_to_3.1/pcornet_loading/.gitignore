@@ -17,3 +17,4 @@ logs/
 requirements.txt
 server.pyc
 setup.py
+.idea/workspace.xml
