@@ -16,6 +16,7 @@ import glob
 configfile_name = "database.ini"
 etl_dir = "scripts/etl_scripts_temp"
 view = "scripts/view-creation/func_upper_tbl_name.sql"
+truncate = "scripts/reset_tables_scripts/trunc_fk_idx.sql"
 
 # endregion
 
@@ -210,9 +211,18 @@ def pipeline_full():
 def truncate_fk():
     conn = None
     try:
-        data = connection()
-        conn = data.split(',')[0]
-        schema = data.split(',')[1]
+        # region read connection parameters
+        params = config.config('db')
+        schema_path = config.config('schema')
+        # schema = schema_path['schema']+"""_3dot1_pcornet"""
+        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_pcornet"""),
+                  (re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_start2001_pcornet""")]
+        # endregion
+
+        # region connect to the PostgreSQL server
+        print('Connecting to the PostgreSQL database...')
+        conn = psycopg2.connect(**params)
+        # endregion
         # create a cursor
         cur = conn.cursor()
 
@@ -220,10 +230,11 @@ def truncate_fk():
         cur.execute("""SELECT EXISTS(SELECT * FROM pg_proc WHERE proname = 'truncate_schema')""")
         fun_exist = cur.fetchall()[0]
         if "True" not in fun_exist:
-            cur.execute(open('scripts/trunc_fk_idx.sql', 'r').read())
-        query.truncate(schema)
-        conn.commit()
-        disconnect(cur)
+            cur.execute(open(truncate, 'r').read())
+        for schemas in schema:
+            query.truncate(schema)
+            conn.commit()
+        cur.close()
         # endregion
     except (Exception, psycopg2.OperationalError) as error:
         print(error)
@@ -267,15 +278,25 @@ def etl_only():
     # create the upper case views
     conn = None
     try:
-        var_data = connection()
-        conn = var_data[0]
+        # region read connection parameters
+        params = config.config('db')
+        schema_path = config.config('schema')
+        # schema = schema_path['schema']+"""_3dot1_pcornet"""
+        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_pcornet"""),
+                  (re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_start2001_pcornet""")]
+        # endregion
+
+        # region connect to the PostgreSQL server
+        print('Connecting to the PostgreSQL database...')
+        conn = psycopg2.connect(**params)
+        # endregion
         cur = conn.cursor()
         cur.execute(open(view, "r").read())
         conn.commit()
-        cur.execute("""select count(*) from capitalview('""" + +"""', '""" + schema + """_3dot1_pcornet')""")
-        conn.commit()
-        cur.execute("""select count(*) from capitalview('""" + +"""', '""" + schema + """_3dot1_start2001_pcornet')""")
-        conn.commit()
+        for schemas in schema:
+            cur.execute("""select count(*) from capitalview(\'""" + schemas + """\')""")
+            conn.commit()
+        cur.close
     except (Exception, psycopg2.OperationalError) as error:
         print(error)
     except (Exception, psycopg2.DatabaseError) as error:
@@ -296,9 +317,19 @@ def update_valueset():
     conn = None
 
     try:
-        data = connection()
-        conn = data.split(',')[0]
-        schema = data.split(',')[1]
+        # region read connection parameters
+        params = config.config('db')
+        schema_path = config.config('schema')
+        # schema = schema_path['schema']+"""_3dot1_pcornet"""
+        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_pcornet"""),
+                  (re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_start2001_pcornet""")]
+        # endregion
+
+        # region connect to the PostgreSQL server
+        print('Connecting to the PostgreSQL database...')
+        conn = psycopg2.connect(**params)
+        # endregion
+
         # create a cursor
         cur = conn.cursor()
 
