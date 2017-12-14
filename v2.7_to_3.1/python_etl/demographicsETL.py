@@ -6,6 +6,8 @@ from demographics import Person, Demographic
 from valuesetmap import ValueSetMap
 from base import *
 from odo import odo
+from enrollmentETL import enrollment_etl
+import numpy
 from celery_create import celery
 
 
@@ -85,4 +87,7 @@ def demographic_etl(config):
                'raw_gender_identity: string, sexual_orientation: string, raw_sexual_orientation: string}'
         )
     # close session
+
+    enrollment_etl(config)
+
     pedsnet_session.close()
