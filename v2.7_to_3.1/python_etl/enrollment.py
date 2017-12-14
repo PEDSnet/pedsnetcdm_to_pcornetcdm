@@ -44,12 +44,12 @@ class ObservationPeriod(Pedsnet_base):
     # endregion
 
     def __repr__(self):
-        return "Person - '%s': " \
+        return "Observation period Id - '%s': " \
                "\n\tObservation period start date: '%s'" \
                "\n\tObservation period end date: '%s'" \
                "\n\tSite: '%s'" \
                % \
-               (self.person_id, self.observation_period_start_date, self.observation_period_end_date, self.site)
+               (self.observation_period_id, self.observation_period_start_date, self.observation_period_end_date, self.site)
 
 
 class Enrollment(Pcornet_base):
@@ -86,4 +86,4 @@ class Enrollment(Pcornet_base):
                "\n\tenr_basis: '%s'" \
                "\n\tSite: '%s'" \
                % \
-               (self.patid, self.enr_end_date, self.enr_start_date, self.site, self.chart,self.enr_basis)
+               (self.patid, self.enr_end_date, self.enr_start_date, self.chart, self.enr_basis, self.chart)

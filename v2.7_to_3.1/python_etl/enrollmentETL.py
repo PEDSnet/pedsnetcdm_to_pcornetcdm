@@ -24,28 +24,25 @@ def init_pcornet(connection):
     create_pcornet_engine(connection)
 
 
-# etl processing for demographics
-# @celery.task
+@celery.task
 def enrollment_etl(config):
     # set up
     connection = get_connection(config)
     pedsnet_session = init_pedsnet(connection)
     init_pcornet(connection)
 
-    # region extract the data from the person table
     observation_period = pedsnet_session.query(ObservationPeriod.person_id,
-                                   ObservationPeriod.observation_period_start_date,
-                                   ObservationPeriod.observation_period_end_date,
-                                   ObservationPeriod.site,
-                                   bindparam("chart", 'Y'),
-                                   bindparam("enr_basis", 'E')
-                                   ).all()
+                                               ObservationPeriod.observation_period_start_date,
+                                               ObservationPeriod.observation_period_end_date,
+                                               ObservationPeriod.site,
+                                               bindparam("chart", 'Y'),
+                                               bindparam("enr_basis", 'E')
+                                               ).all()
     # endregion
 
-    # transform data to pcornet names and types
-    # load to demographic table
     odo(observation_period, Enrollment.__table__,
-        dshape='var * {patid: string, enr_end_date: date, enr_start_date: date, site: string, chart: String, enr_basis: String}'
+        dshape='var * {patid: string, enr_start_date: date, enr_end_date: date, site: string, chart: String, '
+               'enr_basis: String} '
         )
     # close session
     pedsnet_session.close()
