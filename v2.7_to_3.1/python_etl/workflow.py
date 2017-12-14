@@ -49,4 +49,4 @@ if __name__ == "__main__":
     # perform etl for the tables
     # so far only demographics
     demographic_etl(config)
-    # enrollment_etl(config)
+    enrollment_etl(config)
