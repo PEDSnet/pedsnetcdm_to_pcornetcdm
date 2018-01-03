@@ -110,3 +110,6 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# IntelliJ (pycharm) project settings
+.idea/
+
