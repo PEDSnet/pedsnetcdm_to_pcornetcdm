@@ -68,11 +68,21 @@ CLI tool. The set up tool make it easy to install.
 
 # Building and Running the tool
 
-1. Navigate to [pcornet_loading](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/master/v2.7_to_3.1/pcornet_loading) folder, and download the tool.
+1. Navigate to [pcornet_loading](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/master/v2.7_to_3.1/sql_etl) folder, and download the tool.
 
 2. To install the CLI Tool
 
-	 `pip install setup.py`
+   activate the virtual environment using following command
+	
+	`virtualenv venv`
+	
+	`. venv\bin\activate`
+	
+   install the tool
+	
+	 `pip install -r requirements.txt`
+	 
+	 `pip install --editable .`
    
 3.  Select form the following option:
 	
