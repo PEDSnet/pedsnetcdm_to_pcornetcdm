@@ -8,7 +8,7 @@ select distinct
         ||(case when day_of_birth is null then '-01' else '-'||lpad(cast(day_of_birth as text),2,'0') end)
 	as date)
         as birth_date,
-	date_part('hour',birth_datetime,'0')||':'||date_part('minute',birth_datetime,'0') as birth_time,
+	date_part('hour',birth_datetime)||':'||LPAD(date_part('minute',birth_datetime)::text,2,'0') as birth_time,
 	coalesce (m1.target_concept,'OT') as Sex,
 	coalesce (m2.target_concept,'OT') as Hispanic,
 	coalesce (m3.target_concept,'OT') as Race,

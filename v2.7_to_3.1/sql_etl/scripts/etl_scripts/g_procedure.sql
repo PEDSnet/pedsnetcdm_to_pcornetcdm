@@ -40,6 +40,6 @@ from
 	left join vocabulary.concept c2 on po.procedure_source_concept_id = c2.concept_id
 	left join SITE_3dot1_pcornet.pedsnet_pcornet_valueset_map m3 on c2.vocabulary_id = m3.source_concept_id AND
 	                                                                m3.source_concept_class='Procedure Code Type'
-	left join SITE_3dot1_pcornet.pedsnet_pcornet_valueset_map m4 on po.procedure_type_concept_id = m4.source_concept_id AND
+	left join SITE_3dot1_pcornet.pedsnet_pcornet_valueset_map m4 on cast(po.procedure_type_concept_id as text) = m4.source_concept_id AND
 	                                                                m4.source_concept_class='px source';
 commit;

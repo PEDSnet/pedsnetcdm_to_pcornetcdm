@@ -99,7 +99,7 @@ def owner(schema):
 # endregion
 
 # region Truncate All tables in schema and remove FK's
-def truncate(schema):
+def truncateqry(schema):
     command = """SELECT truncate_schema('""" + schema + """');"""
     return command
 
