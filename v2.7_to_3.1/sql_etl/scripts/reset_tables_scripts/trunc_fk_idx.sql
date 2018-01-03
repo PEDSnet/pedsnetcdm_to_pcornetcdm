@@ -12,7 +12,7 @@ BEGIN
 		FROM (
      			SELECT table_name
      			FROM information_schema.tables
-     			WHERE table_type = 'BASE TABLE' AND table_schema = _schema
+     			WHERE table_type = 'BASE TABLE' AND table_schema = _schema AND table_name not in ('pedsnet_pcornet_valueset_map','harvest')
      		)t
 	LOOP
 	    EXECUTE selectrow.qry;
@@ -29,7 +29,8 @@ BEGIN
                 		       SELECT table_name
      				       FROM information_schema.tables
      				       WHERE table_type = 'BASE TABLE' AND
-                                             table_schema =  _schema
+                                             table_schema =  _schema AND
+                                             tablename not in ('pedsnet_pcornet_valueset_map','harvest')
                 		   )
         	 )i
      LOOP
@@ -42,7 +43,8 @@ BEGIN
          		SELECT constraint_name, table_name
          	  	FROM information_schema.table_constraints
                 WHERE table_schema = _schema AND
-                      constraint_name like '%_fk_%'
+                      constraint_name like '%_fk_%' and
+                      table_name not in ('pedsnet_pcornet_valueset_map','harvest')
               )tbl
      LOOP
      	EXECUTE select_fk.query_fk;

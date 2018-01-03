@@ -227,21 +227,20 @@ def truncate_fk():
         cur = conn.cursor()
 
         # region Check if Function exists
-
-        #cur.execute("""SELECT EXISTS(SELECT * FROM pg_proc WHERE proname = 'truncate_schema')""")
-        #fun_exist = cur.fetchall()[0]
-        #if "True" not in fun_exist:
-        #    cur.execute(open(truncate, 'r').read())
-
+        # cur.execute("""SELECT EXISTS(SELECT * FROM pg_proc WHERE proname = 'truncate_schema')""")
+        # fun_exist = cur.fetchall()[0]
+        # if "True" not in fun_exist:
+        #     cur.execute(open(truncate, 'r').read())
         with open(truncated, 'r') as truncate:
             commands = truncate.read()
         cur.execute(commands)
         conn.commit()
         for schemas in schema:
+            # query.truncate(schema)
             cur.execute("""SET search_path TO """ + schemas + """;""")
             query.truncateqry(schemas)
+            print('Truncated')
             conn.commit()
-        print('Truncated')
         cur.close()
         # endregion
     except (Exception, psycopg2.OperationalError) as error:
@@ -302,7 +301,7 @@ def etl_only():
         cur.execute(open(view, "r").read())
         conn.commit()
         for schemas in schema:
-            cur.execute("""select count(*) from capitalview('pedsnet_dcc_v27',\'""" + schemas + """\')""")
+            cur.execute("""select count(*) from capitalview(\'""" + params[1] + """\',\'""" + schemas + """\')""")
             conn.commit()
         cur.close
     except (Exception, psycopg2.OperationalError) as error:
