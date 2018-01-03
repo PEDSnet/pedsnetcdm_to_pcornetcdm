@@ -1,6 +1,6 @@
-# `pcornet_loading`
+# `sql_etl`
 
-pcornet_loading is a python based CLI too that is used to automate the process of creating the DDL for PCORnet ETL.
+sql_etl is a python based CLI too that is used to automate the process of creating the DDL for PCORnet ETL.
 
 # What problem it solves
 
@@ -63,12 +63,12 @@ alter table dcc_3dot1_start2001_pcornet.lab_result_cm   add column site characte
 
 ## Python 
 
-`pcornet_loading` is a python based tool. It is built under the virtual environment. This tool uses python click library for building
+`sql_etl` is a python based tool. It is built under the virtual environment. This tool uses python click library for building
 CLI tool. The set up tool make it easy to install. 
 
 # Building and Running the tool
 
-1. Navigate to [pcornet_loading](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/master/v2.7_to_3.1/sql_etl) folder, and download the tool.
+1. Navigate to [sql_etl](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/master/v2.7_to_3.1/sql_etl) folder, and download the tool.
 
 2. To install the CLI Tool
 
