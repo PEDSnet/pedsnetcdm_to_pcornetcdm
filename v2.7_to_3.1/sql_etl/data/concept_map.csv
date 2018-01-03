@@ -142,8 +142,11 @@ NI,dx origin,44814653,NULL,No information
 UN,dx origin,44814649,NULL,Unknown
 OT,dx origin,44814650,NULL,Other
 09,condition type,ICD9CM,NULL,ICD9CM
+09,consition type,ICD9Proc,null,ICD9Proc
 10,condition type,ICD10CM,NULL,ICD10CM
+10,condition type,ICD10PCS,null,ICD10PCS
 11,condition type,ICD11CM,NULL,ICD11CM
+11,condition type, ICD11PCS,null,ICD11PCS
 SM,condition type,SNOMED,NULL,SNOMED
 HP,condition type,Human Phenotype Ontology,NULL,Human Phenotype Ontology
 AG,condition type,Algorithmic,NULL,Algorithmic
@@ -285,3 +288,4 @@ N,Death date impute,2000000037,NULL,Not imputed
 NI,Death date impute,44814650,NULL,No information
 UN,Death date impute,44814653,NULL,Unknown
 OT,Death date impute,44814649,NULL,Other
+OD,px source,38000275,null,Order

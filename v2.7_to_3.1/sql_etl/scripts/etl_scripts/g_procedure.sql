@@ -24,7 +24,7 @@ select distinct
 	          end
 	     else coalesce(m1.target_concept,'OT')
 	end as px_type,
-	'OT' as px_source,
+	coalesce(m4.target_concept,'OT') as px_source,
 	split_part(procedure_source_value,'.',1) as raw_px,
 	case when c2.vocabulary_id IS Null
 	     then 'Other'
@@ -39,5 +39,7 @@ from
 	                                                                m1.source_concept_class='Procedure Code Type'
 	left join vocabulary.concept c2 on po.procedure_source_concept_id = c2.concept_id
 	left join SITE_3dot1_pcornet.pedsnet_pcornet_valueset_map m3 on c2.vocabulary_id = m3.source_concept_id AND
-	                                                                m3.source_concept_class='Procedure Code Type';
+	                                                                m3.source_concept_class='Procedure Code Type'
+	left join SITE_3dot1_pcornet.pedsnet_pcornet_valueset_map m4 on cast(po.procedure_type_concept_id as text) = m4.source_concept_id AND
+	                                                                m4.source_concept_class='px source';
 commit;

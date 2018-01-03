@@ -100,7 +100,7 @@ def owner(schema):
 
 # region Truncate All tables in schema and remove FK's
 def truncateqry(schema):
-    command = """SELECT * from truncate_schema('""" + schema + """');"""
+    command = """SELECT truncate_schema('""" + schema + """');"""
     return command
 
 
