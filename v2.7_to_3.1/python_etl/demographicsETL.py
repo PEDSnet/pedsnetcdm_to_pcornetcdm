@@ -85,4 +85,5 @@ def demographic_etl(config):
                'raw_gender_identity: string, sexual_orientation: string, raw_sexual_orientation: string}'
         )
     # close session
+
     pedsnet_session.close()
