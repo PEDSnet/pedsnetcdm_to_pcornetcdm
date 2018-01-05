@@ -1,7 +1,11 @@
+# region imports
 import yaml
 import logging
 from demographicsETL import demographic_etl
+from enrollmentETL import enrollment_etl
 
+
+# endregion
 
 def set_up_logger():
     """Sets up the logger format and location."""
@@ -44,6 +48,5 @@ if __name__ == "__main__":
 
     # perform etl for the tables
     # so far only demographics
-    demographic_etl.delay(config)
-
-
+    demographic_etl(config)
+    enrollment_etl(config)
