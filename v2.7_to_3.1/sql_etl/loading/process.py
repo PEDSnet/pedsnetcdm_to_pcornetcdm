@@ -9,6 +9,7 @@ import psycopg2
 import config
 import subprocess
 import glob
+import csv
 
 # endregion
 
@@ -17,6 +18,7 @@ configfile_name = "database.ini"
 etl_dir = "scripts/etl_scripts_temp"
 view = "scripts/view-creation/func_upper_tbl_name.sql"
 truncated = "scripts/reset_tables_scripts/trunc_fk_idx.sql"
+harvest_file="data/harvest_data.csv"
 
 # endregion
 
@@ -405,6 +407,15 @@ def update_valueset():
 
 # endregion
 
+# region Harvest date refresh
+def harvest_date_refresh(date):
+    pattern = re.compile(r'\d{4}-\d{2}-\d{2}')
+    for line in fileinput.input(harvest_file, inplace=1, backup='.bak'):
+        line = re.sub(pattern, date, line.rstrip())
+        print(line)
+
+# endregion
+
 # region connect
 def connection():
     conn = None
@@ -450,3 +461,4 @@ def disconnect(cur):
     cur.close()
 
 # endregion
+

@@ -19,7 +19,8 @@ configfile_name = "database.ini"
               help='Database in wich the mapping file to be loaded ex. pedsnet_dcc_vxx')
 @click.option('--host', '-h', default=False, help='The Server name ex. dev01')
 @click.option('--options', '-o', default=False, help='pipeline \ntruncate \netl \nddl \nupdate_valueset')
-def cli(searchpath, pwprompt, user, database, host, options):
+@click.option('--harvest', '-H', required=False)
+def cli(searchpath, pwprompt, user, database, host, options, harvest):
     """This tool is used to load the data"""
 
     # region Option map
@@ -60,6 +61,8 @@ def cli(searchpath, pwprompt, user, database, host, options):
             df = pd.DataFrame(column)
             df.to_csv('data/update_valueset.csv', index=False, header=False, quoting=None)
 
+    if harvest:
+        process.harvest_date_refresh(harvest)
 
     # region config file
     if os.path.isfile(configfile_name):

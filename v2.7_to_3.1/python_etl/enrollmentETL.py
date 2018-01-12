@@ -24,7 +24,11 @@ def init_pcornet(connection):
     create_pcornet_engine(connection)
 
 
+<<<<<<< Updated upstream
 #@celery.task
+=======
+@celery.task
+>>>>>>> Stashed changes
 def enrollment_etl(config):
     # set up
     connection = get_connection(config)

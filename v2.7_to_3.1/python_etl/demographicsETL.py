@@ -6,6 +6,7 @@ from demographics import Person, Demographic
 from valuesetmap import ValueSetMap
 from base import *
 from odo import odo
+import numpy
 from celery_create import celery
 
 
