@@ -121,3 +121,4 @@ def get_etl_ready(schema):
         with open(file, 'w') as f:
             f.write(content)
 # endregion
+

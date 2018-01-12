@@ -8,6 +8,6 @@ db:
  dbport : port
  pedsnet_schema : schema_name
  pedsnet_schema : schema_name
- vocab_schema : vocabulary schema
+ vocab_schema : vocabulary
 reporting:
  site_directory : ~/Documents
