@@ -18,14 +18,16 @@ create temporary table lab_result_cm_transform_valueset as
 select 
 	m.measurement_id as lab_result_cm_id,
 	coalesce( m1.target_concept,'OT') as lab_name,
-	case when lower(specimen_source_value) like '%blood%'
-		then 'BLOOD'  
-		else case when lower(specimen_source_value) like '%csf%' then 'CSF'
-		 else case when lower(specimen_source_value) like '%plasma%' then 'PLASMA'
-		 else case when lower(specimen_source_value) like '%serum%' then 'SERUM'
-		 else case when lower(specimen_source_value) like '%urine%' then 'URINE' 
-		 else case when specimen_source_value is not null then 'OT' else 'NI' 
-		end end end end end end
+	case 
+		 when lower(specimen_source_value) like '%unknown%' then 'UN'
+		 when lower(specimen_source_value) like '%blood%' then 'BLOOD'  
+		 when lower(specimen_source_value) like '%csf%' then 'CSF'
+		 when lower(specimen_source_value) like '%plasma%' then 'PLASMA'
+		 when lower(specimen_source_value) like '%serum%' then 'SERUM'
+		 when lower(specimen_source_value) like '%urine%' then 'URINE' 
+		 when lower(specimen_source_value) like '%catheter%' then 'URINE' 
+		 when specimen_source_value is not null then 'OT' else 'NI' 
+		end
 		as specimen_source, 
 	m7.target_concept as priority,  
 	case when measurement_source_value like 'POC%' then 'P' else 'L' end as result_loc, -- using logic to distinguish between POC and L for now - work in progress to explicitly include this in measurement table
