@@ -19,7 +19,7 @@ configfile_name = "database.ini"
               help='Database in wich the mapping file to be loaded ex. pedsnet_dcc_vxx')
 @click.option('--host', '-h', default=False, help='The Server name ex. dev01')
 @click.option('--options', '-o', default=False, help='pipeline \ntruncate \netl \nddl \nupdate_valueset')
-@click.option('--harvest', '-H', required=False)
+@click.option('--harvest', '-H', required=False, help='harvest refresh date in following formatt yyyy-mm-dd')
 def cli(searchpath, pwprompt, user, database, host, options, harvest):
     """This tool is used to load the data"""
 
@@ -29,7 +29,7 @@ def cli(searchpath, pwprompt, user, database, host, options, harvest):
         'etl': process.etl_only,
         'truncate': process.truncate_fk,
         'ddl': process.ddl_only,
-        'update_map': process.update_valueset,
+        'update_map': process.update_valueset
     }
     # endregion
 
