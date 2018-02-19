@@ -70,7 +70,7 @@ CLI tool. The set up tool make it easy to install.
 
 1. Navigate to [sql_etl](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/master/v2.7_to_3.1/sql_etl) folder, and download the tool.
 
-2. 2. To install the CLI Tool
+2. To install the CLI Tool
 
 	  activate the virtual environment using following command
 	
