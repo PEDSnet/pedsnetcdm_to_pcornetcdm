@@ -2,35 +2,47 @@
 
 ## Contents 
 
-### [Documentation - Extraction from PEDSnet to PCORnet CDM](./doc/extraction)
+### [Documentation - Extraction from PEDSnet to PCORnet CDM](./doc/extraction/)
 This directory contains all details source and destination of the values for the PEDSnet to PCORnet. The extraction documents is available for all the tables that are in the PCORnet CDM.
 
-### [ETL Scripts/tablename_ETL.sql](./ETL%20Scripts)
+### [ETL Scripts/tablename_ETL.sql](./sql_etl/scripts/etl_scripts/)
 This directory contains the ETL source code, i.e. table-wise SQL queries to extract the PCORnet instance from a given PEDSnet CDM instance and the source-to-concept mapping table.
 
-### [pcronet_loading](./pcornet_loading)
+### [sql_etl](./sql_etl)
 This directory contains the source code for python tool to create setup for the PCORnet ETL, i.e. Create the DDL,  populating concept Map and harvest tables.
 
-### [view-creation](./view-creation)
+### [view-creation](./sql_etl/scripts/view-creation/)
 This directory contains the sql script for creating the upper case views for the table names. These view are necessary for running the PCORnet Data Curation query.
 
-### [pedsnet_pcornet_valueset_map](./pcornet_loading/data)
+### [pedsnet_pcornet_valueset_map](./sql_etl/data/)
 The pedsnet_pcornet_valueset_map consist of all the values that are required for mapping the data from PEDSnet CDM to PCORnet CDM. This data can be found in the pcornet_loading derictory.
 
 ### Other SQL Scripts
 
-  ##### [Truncate all](./pcornet_loading/scripts/trunc_fk_idx.sql)
+  ##### [Truncate all](./sql_etl/scripts/reset_tables_scripts/)
 After making changes in the scripts. To test the scripts re-run of ETL is require. This script can be use to preseve the ddl for the re-run of the ETL. This script will truncate all the tables and remove all foregin constraints on the table.
 
- #### [Create valueset map](./pcornet_loading/scripts/create_table.sql)
+ #### [Create valueset map](./pcornet_loading/scripts/ddl_scripts/)
    If not using the pcornet_loading tool to create the DDL, this script can be use to create the pedsnet to pcornet valueset table. 
 
 
 ## Steps for creating the PCORnet v3.1 data model tables
 
-1. Navigate to [pcornet_loading](./pcornet_loading) folder, and install the CLI Tool
+1. Navigate to [sql_etl](./sql_etl) folder, and install the CLI Tool
 
-	 `pip install setup.py`
+	 To install the CLI Tool
+
+	  activate the virtual environment using following command
+	
+	`virtualenv venv`
+	
+	`. venv\bin\activate`
+	
+   install the tool
+	
+	 `pip install -r requirements.txt`
+	 
+	 `pip install --editable .`
 	 
 2.  Select form the following option:
 	
@@ -53,25 +65,25 @@ After making changes in the scripts. To test the scripts re-run of ETL is requir
 ## Steps for Executing the ETL Scripts 
 
 1. Execute the ETL scripts in the following order 
-    - [Demographic](./ETL%20Scripts/Demographic_ETL.sql)
-    - [Enrollment](./ETL%20Scripts/Enrollment_ETL.sql)
-    - [Death](./ETL%20Scripts/Death_ETL.sql)
-    - [Death Cause](./ETL%20Scripts/Death_Cause_ETL.sql)
-    - [Encounter](./ETL%20Scripts/Encounter_ETL.sql)
-    - [Condition](./ETL%20Scripts/Condition_ETL.sql)
-    - [Diagnosis](./ETL%20Scripts/Diagnosis_ETL.sql)
-    - [Procedure](./ETL%20Scripts/Procedure_ETL.sql)
-    - [Dispensing](./ETL%20Scripts/Dispensing_ETL.sql)
-    - [Prescribing](./ETL%20Scripts/Prescribing_ETL.sql)
-    - [Vital](./ETL%20Scripts/Vital_ETL.sql)
-    - [Lab\_Result\_CM](./ETL%20Scripts/Lab_Result_CM_ETL.sql)
+    - [Demographic](./sql_etl/scripts/etl_scripts/a_demographic_ETL.sql)
+    - [Enrollment](./sql_etl/scripts/etl_scripts/b_enrollment_ETL.sql)
+    - [Death](./sql_etl/scripts/etl_scripts/c_death_ETL.sql)
+    - [Death Cause](./sql_etl/scripts/etl_scripts/d_death_Cause_ETL.sql)
+    - [Encounter](./sql_etl/scripts/etl_scripts/e_encounter_ETL.sql)
+    - [Condition](./sql_etl/scripts/etl_scripts/f_condition_ETL.sql)
+    - [Diagnosis](./sql_etl/scripts/etl_scripts/g_diagnosis_ETL.sql)
+    - [Procedure](./sql_etl/scripts/etl_scripts/h_procedure_ETL.sql)
+    - [Dispensing](./sql_etl/scripts/etl_scripts/i_dispensing_ETL.sql)
+    - [Prescribing](./sql_etl/scripts/etl_scripts/j_prescribing_ETL.sql)
+    - [Vital](./sql_etl/scripts/etl_scripts/k_vital_ETL.sql)
+    - [Lab\_Result\_CM](./sql_etl/scripts/etl_scripts/l_lab_Result_CM_ETL.sql)
 5. Execute the following add constraints commands
 
-	- [Add foreign keys](FK_statements.sql)
-	- [Add indices](index_statements.sql)
+	- [Add foreign keys](./sql_etl/scripts/etl_scripts/m_fk.sql)
+	- [Add indices](./sql_etl/scripts/etl_scripts/n_index_statements.sql)
 
-6. 	follow steps in [start 2001 readme](./ETL%20Scripts/start2001/README.md)
-7. [Create views](./view-creation/func_upper_tbl_name.sql) on start2001 schema tables 
+6. 	follow steps in [start 2001 readme](./sql_etl/scripts/etl_scripts/)
+7. [Create views](./sql_etl/scripts/view-creation/) on start2001 schema tables 
 
 ### Schema Conventions
 
