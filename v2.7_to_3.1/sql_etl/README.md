@@ -1,6 +1,6 @@
-# `pcornet_loading`
+# `sql_etl`
 
-pcornet_loading is a python based CLI too that is used to automate the process of creating the DDL for PCORnet ETL.
+sql_etl is a python based CLI too that is used to automate the process of creating the DDL for PCORnet ETL.
 
 # What problem it solves
 
@@ -63,16 +63,27 @@ alter table dcc_3dot1_start2001_pcornet.lab_result_cm   add column site characte
 
 ## Python 
 
-`pcornet_loading` is a python based tool. It is built under the virtual environment. This tool uses python click library for building
+`sql_etl` is a python based tool. It is built under the virtual environment. This tool uses python click library for building
 CLI tool. The set up tool make it easy to install. 
 
 # Building and Running the tool
 
-1. Navigate to [pcornet_loading](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/master/v2.7_to_3.1/pcornet_loading) folder, and download the tool.
+1. Navigate to [sql_etl](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/master/v2.7_to_3.1/sql_etl) folder, and download the tool.
 
 2. To install the CLI Tool
 
-	 `pip install setup.py`
+	  activate the virtual environment using following command
+	
+	`virtualenv venv`
+	
+	`. venv\bin\activate`
+	
+   install the tool
+	
+	 `pip install -r requirements.txt`
+	 
+	 `pip install --editable .`
+
    
 3.  Select form the following option:
 	
@@ -87,10 +98,14 @@ CLI tool. The set up tool make it easy to install.
    
    where the dbname is the name of the database which contains the PEDSnet schema that we want to Transform.
          schemaname is the name of the schema that is to be transformed
+         
+   Example
+        
+        loading -u sam -h host.com -d database_v27 -s dcc_pedsnet -o ddl
         
    To know more information of the tool
         
-        `loading --help`
+        loading --help
         
 # Known issue
 This tool as of now only work for PostgreSQL database. We are planning to make it compatible and more generic.
