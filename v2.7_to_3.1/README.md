@@ -57,7 +57,7 @@ After making changes in the scripts. To test the scripts re-run of ETL is requir
 	  4. truncate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;Re-run of the ETL use this option to truncate all tables and remove Foregin Key constraints
 	  5. update_map -&nbsp; Adding or updating new values in the concept map table.
 	 
-	 For [help](./pcornet_loading/README.md):
+	 For [help](./sql_etl/README.md):
 	 
 	 `loading --help`
 
@@ -65,22 +65,24 @@ After making changes in the scripts. To test the scripts re-run of ETL is requir
 ## Steps for Executing the ETL Scripts 
 
 1. Execute the ETL scripts in the following order 
-    - [Demographic](./sql_etl/scripts/etl_scripts/a_demographic_ETL.sql)
-    - [Enrollment](./sql_etl/scripts/etl_scripts/b_enrollment_ETL.sql)
-    - [Death](./sql_etl/scripts/etl_scripts/c_death_ETL.sql)
-    - [Death Cause](./sql_etl/scripts/etl_scripts/d_death_Cause_ETL.sql)
-    - [Encounter](./sql_etl/scripts/etl_scripts/e_encounter_ETL.sql)
-    - [Condition](./sql_etl/scripts/etl_scripts/f_condition_ETL.sql)
-    - [Diagnosis](./sql_etl/scripts/etl_scripts/g_diagnosis_ETL.sql)
-    - [Procedure](./sql_etl/scripts/etl_scripts/h_procedure_ETL.sql)
-    - [Dispensing](./sql_etl/scripts/etl_scripts/i_dispensing_ETL.sql)
-    - [Prescribing](./sql_etl/scripts/etl_scripts/j_prescribing_ETL.sql)
-    - [Vital](./sql_etl/scripts/etl_scripts/k_vital_ETL.sql)
-    - [Lab\_Result\_CM](./sql_etl/scripts/etl_scripts/l_lab_Result_CM_ETL.sql)
+    - [Demographic](./sql_etl/scripts/etl_scripts/a_demographic.sql)
+    - [Enrollment](./sql_etl/scripts/etl_scripts/b_enrollment.sql)
+    - [Death](./sql_etl/scripts/etl_scripts/c_death.sql)
+    - [Death Cause](./sql_etl/scripts/etl_scripts/d_death_Cause.sql)
+    - [Encounter](./sql_etl/scripts/etl_scripts/e_encounter.sql)
+    - [Condition](./sql_etl/scripts/etl_scripts/f_condition.sql)
+    - [Diagnosis](./sql_etl/scripts/etl_scripts/f_diagnosis.sql)
+    - [Procedure](./sql_etl/scripts/etl_scripts/g_procedure.sql)
+    - [Dispensing](./sql_etl/scripts/etl_scripts/h_dispensing.sql)
+    - [Prescribing](./sql_etl/scripts/etl_scripts/i_prescribing.sql)
+    - [Vital](./sql_etl/scripts/etl_scripts/j_vital_ETL.sql)
+    - [Lab\_Result\_CM](./sql_etl/scripts/etl_scripts/k_lab_result_cm.sql)
+    
 5. Execute the following add constraints commands
 
-	- [Add foreign keys](./sql_etl/scripts/etl_scripts/m_fk.sql)
-	- [Add indices](./sql_etl/scripts/etl_scripts/n_index_statements.sql)
+	- [Add foreign keys](./sql_etl/scripts/etl_scripts/l_fk.sql)
+	
+	- [Add indices](./sql_etl/scripts/etl_scripts/m_index_statements.sql)
 
 6. 	follow steps in [start 2001 readme](./sql_etl/scripts/etl_scripts/)
 7. [Create views](./sql_etl/scripts/view-creation/) on start2001 schema tables 
