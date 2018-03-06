@@ -1,6 +1,6 @@
 begin;
 
-CREATE TABLE IF NOT EXISTS stlouis_pcornet.pedsnet_pcornet_valueset_map(
+CREATE TABLE IF NOT EXISTS SITE_pcornet.pedsnet_pcornet_valueset_map(
                 target_concept character varying(200),
                 source_concept_class character varying(200),
                 source_concept_id character varying(200),
@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS stlouis_pcornet.pedsnet_pcornet_valueset_map(
                 concept_description character varying(200)
                 );
 
-CREATE TABLE IF NOT EXISTS stlouis_pcornet.version_history(
+CREATE TABLE IF NOT EXISTS SITE_pcornet.version_history(
 	datetime TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	operation VARCHAR(100),
 	model VARCHAR(16),
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS stlouis_pcornet.version_history(
 	PRIMARY KEY (datetime)
 );
 
-CREATE TABLE IF NOT EXISTS stlouis_pcornet.harvest(
+CREATE TABLE IF NOT EXISTS SITE_pcornet.harvest(
 	admit_date_mgmt VARCHAR(2),
 	birth_date_mgmt VARCHAR(2),
 	cdm_version NUMERIC(15, 8),
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS stlouis_pcornet.harvest(
 	CONSTRAINT xpk_harvest PRIMARY KEY (networkid, datamartid)
 );
 
-CREATE TABLE IF NOT EXISTS stlouis_pcornet.pcornet_trial(
+CREATE TABLE IF NOT EXISTS SITE_pcornet.pcornet_trial(
 	participantid VARCHAR(256) NOT NULL,
 	patid VARCHAR(256) NOT NULL,
 	trial_end_date DATE,
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS stlouis_pcornet.pcornet_trial(
 	CONSTRAINT xpk_pcornet_trial PRIMARY KEY (patid, trialid, participantid)
 );
 
-CREATE TABLE IF NOT EXISTS stlouis_pcornet.pro_cm(
+CREATE TABLE IF NOT EXISTS SITE_pcornet.pro_cm(
 	encounterid VARCHAR(256),
 	patid VARCHAR(256) NOT NULL,
 	pro_cat VARCHAR(2),
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS stlouis_pcornet.pro_cm(
 	CONSTRAINT xpk_pro_cm PRIMARY KEY (pro_cm_id)
 );
 
-CREATE TABLE IF NOT EXISTS stlouis_pcornet.vital(
+CREATE TABLE IF NOT EXISTS SITE_pcornet.vital(
 	bp_position VARCHAR(2),
 	diastolic NUMERIC(15, 8),
 	encounterid VARCHAR(256),
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS stlouis_pcornet.vital(
 	CONSTRAINT xpk_vital PRIMARY KEY (vitalid)
 );
 
-CREATE TABLE IF NOT EXISTS stlouis_pcornet.encounter (
+CREATE TABLE IF NOT EXISTS SITE_pcornet.encounter (
 	admit_date DATE NOT NULL,
 	admit_time VARCHAR(5),
 	admitting_source VARCHAR(2),
