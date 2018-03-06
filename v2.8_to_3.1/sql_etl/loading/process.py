@@ -40,8 +40,7 @@ def ddl_only():
         params = config.config('db')
         schema_path = config.config('schema')
         # schema = schema_path['schema']+"""_3dot1_pcornet"""
-        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_pcornet"""),
-                  (re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_start2001_pcornet""")]
+        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_pcornet""")]
         # endregion
 
         # region connect to the PostgreSQL server
@@ -49,12 +48,6 @@ def ddl_only():
         conn = psycopg2.connect(**params)
         # create a cursor
         cur = conn.cursor()
-        # endregion
-
-        # region Check if there is already a configuration file
-        #if os.path.isfile(configfile_name):
-            # delete the file
-            #os.remove(configfile_name)
         # endregion
 
         for schemas in schema:
@@ -73,7 +66,7 @@ def ddl_only():
             time.sleep(0.1)
             # endregion
 
-            # region create mapping table
+            # region create tables
             try:
                 print '\ncreating and populating the mapping table ...'
                 cur.execute(query.create_table(schemas))
@@ -93,27 +86,14 @@ def ddl_only():
                 print(error)
             # endregion
 
-            # region run the DDL
             try:
-                print '\nRunning the DDL ...'
-                # set the search pat to the schema
                 cur.execute("""SET search_path TO """ + schemas + """;""")
                 time.sleep(0.1)
-                cur.execute(query.dll())
-                conn.commit()
-            except (Exception, psycopg2.OperationalError) as error:
-                print(error)
-            # endregion
-
-            # region Alter tables and add site column
-            try:
-                print '\nAltering table, adding {site} column ...'
-                cur.execute("""SET search_path TO """ + schemas + """;""")
-                cur.execute(query.site_col(schemas))
+                cur.execute("""INSERT INTO """+ schemas +""".version_history (operation, model, model_version, dms_version,
+                             dmsa_version) VALUES ('create constraints', 'pcornet', '3.1.0', '1.0.4-beta', '0.6.0');""")
                 conn.commit()
             except(Exception, psycopg2.OperationalError) as error:
                 print(error)
-            # endregion
 
             # region permissions
             try:
@@ -217,8 +197,7 @@ def truncate_fk():
         params = config.config('db')
         schema_path = config.config('schema')
         # schema = schema_path['schema']+"""_3dot1_pcornet"""
-        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_pcornet"""),
-                  (re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_start2001_pcornet""")]
+        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_pcornet""")]
         # endregion
 
         # region connect to the PostgreSQL server
@@ -291,8 +270,7 @@ def etl_only():
         params = config.config('db')
         schema_path = config.config('schema')
         # schema = schema_path['schema']+"""_3dot1_pcornet"""
-        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_pcornet"""),
-                  (re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_start2001_pcornet""")]
+        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_pcornet""")]
         # endregion
 
         # region connect to the PostgreSQL server
@@ -303,8 +281,18 @@ def etl_only():
         cur.execute(open(view, "r").read())
         conn.commit()
         for schemas in schema:
-            cur.execute("""select count(*) from capitalview(\'""" + params[1] + """\',\'""" + schemas + """\')""")
+            cur.execute("""SET search_path TO """ + schemas + """;""")
+            time.sleep(0.1)
+            cur.execute(query.permission(schemas))
             conn.commit()
+            cur.execute("""SET search_path TO """ + schemas + """;""")
+            time.sleep(0.1)
+            cur.execute(query.owner(schemas))
+            conn.commit()
+            cur.execute("""SET search_path TO """ + schemas + """;""")
+            cur.execute("""select capitalview(\'""" + params[1] + """\',\'""" + schemas + """\');""")
+            conn.commit()
+
         cur.close
     except (Exception, psycopg2.OperationalError) as error:
         print(error)
@@ -330,8 +318,7 @@ def update_valueset():
         params = config.config('db')
         schema_path = config.config('schema')
         # schema = schema_path['schema']+"""_3dot1_pcornet"""
-        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_pcornet"""),
-                  (re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_start2001_pcornet""")]
+        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_pcornet""")]
         # endregion
 
         # region connect to the PostgreSQL server
@@ -425,8 +412,7 @@ def connection():
         params = config.config('db')
         schema_path = config.config('schema')
         # schema = schema_path['schema']+"""_3dot1_pcornet"""
-        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_pcornet"""),
-                  (re.sub('_pedsnet', '', schema_path['schema']) + """_3dot1_start2001_pcornet""")]
+        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """pcornet""")]
         # endregion
 
         # region connect to the PostgreSQL server
