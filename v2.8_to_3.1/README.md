@@ -36,7 +36,7 @@ After making changes in the scripts. To test the scripts re-run of ETL is requir
 	
 	`virtualenv venv`
 	
-	`. venv\bin\activate`
+	`. venv/bin/activate`
 	
    install the tool
 	
