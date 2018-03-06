@@ -1,7 +1,21 @@
 begin;
-insert into SITE_3dot1_pcornet.dispensing(
-            dispensingid, patid, prescribingid,
-            dispense_date, ndc, dispense_sup, dispense_amt, raw_ndc,site)
+
+CREATE TABLE SITE_pcornet.dispensing
+(
+    dispense_amt numeric(15,8),
+    dispense_date date NOT NULL,
+    dispense_sup numeric(15,8),
+    dispensingid character varying(256) COLLATE pg_catalog."default" NOT NULL,
+    ndc character varying(11) COLLATE pg_catalog."default" NOT NULL,
+    patid character varying(256) COLLATE pg_catalog."default" NOT NULL,
+    prescribingid character varying(256) COLLATE pg_catalog."default",
+    raw_ndc character varying(256) COLLATE pg_catalog."default",
+    site character varying COLLATE pg_catalog."default" NOT NULL
+)
+TABLESPACE pg_default;
+
+insert into SITE_pcornet.dispensing( dispensingid, patid, prescribingid, dispense_date, 
+                                        ndc, dispense_sup, dispense_amt, raw_ndc,site)
 with
 rxnorm_ndc_crosswalk as
  (
@@ -20,8 +34,8 @@ rxnorm_ndc_crosswalk as
  )
 select distinct
 	de.drug_exposure_id,
-	cast(de.person_id as text) as patid,
-	null as prescribingid,
+	de.person_id::varchar(256) as patid,
+	null::varchar(256) as prescribingid,
 	de.drug_exposure_start_date as dispense_date,
 	COALESCE(ndc.concept_code, rxnorm_ndc_crosswalk.min_ndc_code,
 			split_part(drug_source_value,'|',1))
@@ -32,16 +46,18 @@ select distinct
 	de.site as site
 from
 	SITE_pedsnet.drug_exposure de
-	join SITE_3dot1_pcornet.demographic d on d.patid = cast(de.person_id as text)
+	join SITE_pcornet.demographic d on d.patid = cast(de.person_id as text)
 	left join rxnorm_ndc_crosswalk on drug_concept_id = rxnorm_concept_id
 	left join ndc_concepts ndc on concept_id = drug_source_concept_id
 where
-	de.drug_type_concept_id = '38000175'
-	and ( rxnorm_ndc_crosswalk.min_ndc_code is not null
+	de.drug_type_concept_id = '38000175' and
+    person_id in (select person_id from SITE_pcornet.person_visit_start2001) and
+	( rxnorm_ndc_crosswalk.min_ndc_code is not null
 		or  ndc.concept_id is not null
 		or  split_part(drug_source_value,'|',1) in (
 		                                             select concept_code
 		                                             from ndc_concepts
 		                                           )
-		);
+	);
+
 commit;
