@@ -1,0 +1,12 @@
+alter table seattle_pcornet.demographic add column site character varying not NULL;
+alter table seattle_pcornet.enrollment add column site character varying not null;
+alter table seattle_pcornet.death add column site character varying not null;
+alter table seattle_pcornet.death_cause add column site character varying not null;
+alter table seattle_pcornet.encounter add column site character varying not null;
+alter table seattle_pcornet.condition add column site character varying not null;
+alter table seattle_pcornet.diagnosis add column site character varying not null;
+alter table seattle_pcornet.procedures add column site character varying not null;
+alter table seattle_pcornet.dispensing   add column site character varying not null;
+alter table seattle_pcornet.prescribing   add column site character varying not null;
+alter table seattle_pcornet.vital   add column site character varying not null;
+alter table seattle_pcornet.lab_result_cm   add column site character varying not null;
