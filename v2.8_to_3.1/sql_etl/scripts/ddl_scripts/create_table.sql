@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS seattle_pcornet.pedsnet_pcornet_valueset_map (
+CREATE TABLE IF NOT EXISTS SITE_pcornet.pedsnet_pcornet_valueset_map (
                 target_concept character varying(200),
                 source_concept_class character varying(200),
                 source_concept_id character varying(200),
