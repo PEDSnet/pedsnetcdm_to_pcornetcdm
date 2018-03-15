@@ -1,56 +1,50 @@
 begin;
 
-ALTER TABLE SITE_pcornet.death_cause ADD CONSTRAINT xpk_death_cause PRIMARY KEY (patid, death_cause, death_cause_code, death_cause_type, death_cause_source);
 
-ALTER TABLE SITE_pcornet.demographic ADD CONSTRAINT xpk_demographic PRIMARY KEY (patid);
+INSERT INTO SITE_pcornet.version_history (operation, model, model_version, dms_version, dmsa_version) VALUES ('create constraints', 'pcornet', '3.1.0', '1.0.4-beta', '0.6.0');
 
-ALTER TABLE SITE_pcornet.diagnosis add CONSTRAINT xpk_diagnosis PRIMARY KEY (diagnosisid);
+ALTER TABLE SITE_pcornet.condition ADD CONSTRAINT fk_condition_encounterid FOREIGN KEY(encounterid) REFERENCES SITE_pcornet.encounter (encounterid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.dispensing add CONSTRAINT xpk_dispensing PRIMARY KEY (dispensingid);
+ALTER TABLE SITE_pcornet.condition ADD CONSTRAINT fk_condition_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
--- ALTER TABLE SITE_pcornet.encounter add CONSTRAINT xpk_encounter PRIMARY KEY (encounterid);
+ALTER TABLE SITE_pcornet.death ADD CONSTRAINT fk_death_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.enrollment add CONSTRAINT xpk_enrollment PRIMARY KEY (patid, enr_start_date, enr_basis);
+ALTER TABLE SITE_pcornet.death_cause ADD CONSTRAINT fk_death_cause_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.lab_result_cm add CONSTRAINT xpk_lab_result_cm PRIMARY KEY (lab_result_cm_id);
+ALTER TABLE SITE_pcornet.diagnosis ADD CONSTRAINT fk_diagnosis_encounterid FOREIGN KEY(encounterid) REFERENCES SITE_pcornet.encounter (encounterid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.prescribing add CONSTRAINT xpk_prescribing PRIMARY KEY (prescribingid);
+ALTER TABLE SITE_pcornet.diagnosis ADD CONSTRAINT fk_diagnosis_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.procedures add CONSTRAINT xpk_procedures PRIMARY KEY (proceduresid);
+ALTER TABLE SITE_pcornet.dispensing ADD CONSTRAINT fk_dispensing_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.death add CONSTRAINT xpk_death PRIMARY KEY (patid, death_source);
+ALTER TABLE SITE_pcornet.dispensing ADD CONSTRAINT fk_dispensing_prescribingid FOREIGN KEY(prescribingid) REFERENCES SITE_pcornet.prescribing (prescribingid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.condition add CONSTRAINT xpk_condition PRIMARY KEY (conditionid);
+ALTER TABLE SITE_pcornet.encounter ADD CONSTRAINT fk_encounter_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.encounter ADD CONSTRAINT enc_fk FOREIGN KEY ( patid ) REFERENCES SITE_pcornet.demographic (patid);
+ALTER TABLE SITE_pcornet.enrollment ADD CONSTRAINT fk_enrollment_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.condition ADD CONSTRAINT cond_fk_1 FOREIGN KEY ( patid ) REFERENCES SITE_pcornet.demographic (patid);
+ALTER TABLE SITE_pcornet.lab_result_cm ADD CONSTRAINT fk_lab_result_cm_encounterid FOREIGN KEY(encounterid) REFERENCES SITE_pcornet.encounter (encounterid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.condition ADD CONSTRAINT cond_fk_2 FOREIGN KEY ( encounterid ) REFERENCES SITE_pcornet.encounter (encounterid);
+ALTER TABLE SITE_pcornet.lab_result_cm ADD CONSTRAINT fk_lab_result_cm_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.diagnosis ADD CONSTRAINT diag_fk_1 FOREIGN KEY ( patid ) REFERENCES SITE_pcornet.demographic (patid);
+ALTER TABLE SITE_pcornet.pcornet_trial ADD CONSTRAINT fk_pcornet_trial_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.diagnosis ADD CONSTRAINT diag_fk_2 FOREIGN KEY ( encounterid ) REFERENCES SITE_pcornet.encounter (encounterid);
+ALTER TABLE SITE_pcornet.prescribing ADD CONSTRAINT fk_prescribing_encounterid FOREIGN KEY(encounterid) REFERENCES SITE_pcornet.encounter (encounterid) DEFERRABLE INITIALLY DEFERRED;
 
+ALTER TABLE SITE_pcornet.prescribing ADD CONSTRAINT fk_prescribing_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.procedures ADD CONSTRAINT proc_fk_1 FOREIGN KEY ( patid ) REFERENCES SITE_pcornet.demographic (patid);
+ALTER TABLE SITE_pcornet.pro_cm ADD CONSTRAINT fk_pro_cm_encounterid FOREIGN KEY(encounterid) REFERENCES SITE_pcornet.encounter (encounterid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.procedures ADD CONSTRAINT proc_fk_2 FOREIGN KEY ( encounterid ) REFERENCES SITE_pcornet.encounter (encounterid);
+ALTER TABLE SITE_pcornet.pro_cm ADD CONSTRAINT fk_pro_cm_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.dispensing ADD CONSTRAINT disp_fk FOREIGN KEY ( patid ) REFERENCES SITE_pcornet.demographic (patid);
+ALTER TABLE SITE_pcornet.procedures ADD CONSTRAINT fk_procedures_encounterid FOREIGN KEY(encounterid) REFERENCES SITE_pcornet.encounter (encounterid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.prescribing ADD CONSTRAINT pres_fk_1 FOREIGN KEY ( patid ) REFERENCES SITE_pcornet.demographic (patid);
+ALTER TABLE SITE_pcornet.procedures ADD CONSTRAINT fk_procedures_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
+ALTER TABLE SITE_pcornet.vital ADD CONSTRAINT fk_vital_encounterid FOREIGN KEY(encounterid) REFERENCES SITE_pcornet.encounter (encounterid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.prescribing ADD CONSTRAINT pres_fk_2 FOREIGN KEY ( encounterid ) REFERENCES SITE_pcornet.encounter (encounterid);
+ALTER TABLE SITE_pcornet.vital ADD CONSTRAINT fk_vital_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.vital ADD CONSTRAINT vital_fk_1 FOREIGN KEY ( patid ) REFERENCES SITE_pcornet.demographic (patid);
-
-ALTER TABLE SITE_pcornet.vital ADD CONSTRAINT vital_fk_2 FOREIGN KEY ( encounterid ) REFERENCES SITE_pcornet.encounter (encounterid);
-
-
-ALTER TABLE SITE_pcornet.lab_result_cm ADD CONSTRAINT lab_fk_1 FOREIGN KEY ( patid ) REFERENCES SITE_pcornet.demographic (patid);
-
-ALTER TABLE SITE_pcornet.lab_result_cm ADD CONSTRAINT lab_fk_2 FOREIGN KEY ( encounterid ) REFERENCES SITE_pcornet.encounter (encounterid);
 
 commit;
+

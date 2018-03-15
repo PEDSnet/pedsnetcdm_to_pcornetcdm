@@ -1,5 +1,7 @@
 begin;
 
+INSERT INTO SITE_pcornet.version_history (operation, model, model_version, dms_version, dmsa_version) VALUES ('create indexes', 'pcornet', '3.1.0', '1.0.4-beta', '0.6.0');
+
 CREATE INDEX idx_enrol_patid ON SITE_pcornet.enrollment (patid);
 
 CREATE INDEX idx_death_patid ON SITE_pcornet.death (patid);
@@ -9,6 +11,8 @@ CREATE INDEX idx_death_cause_patid ON SITE_pcornet.death_cause (patid);
 CREATE INDEX idx_encounter_patid ON SITE_pcornet.encounter (patid);
 
 CREATE INDEX idx_encounter_enctype ON SITE_pcornet.encounter (enc_type);
+
+﻿CREATE INDEX idx_cond_encid ON SITE_pcornet.condition (encounterid);
 
 CREATE INDEX idx_cond_patid ON SITE_pcornet.condition (patid);
 
@@ -20,6 +24,7 @@ CREATE INDEX idx_diag_encid ON SITE_pcornet.diagnosis (encounterid);
 
 CREATE INDEX idx_diag_code ON SITE_pcornet.diagnosis (dx);
 
+﻿CREATE INDEX idx_proc_encid ON SITE_pcornet.procedures (encounterid);
 
 CREATE INDEX idx_proc_patid ON SITE_pcornet.procedures (patid);
 
@@ -28,6 +33,8 @@ CREATE INDEX idx_proc_px ON SITE_pcornet.procedures (px);
 CREATE INDEX idx_disp_patid ON SITE_pcornet.dispensing (patid);
 
 CREATE INDEX idx_disp_ndc ON SITE_pcornet.dispensing (ndc);
+
+﻿CREATE INDEX idx_pres_encid ON SITE_pcornet.prescribing (encounterid);
 
 CREATE INDEX idx_pres_patid ON SITE_pcornet.prescribing (patid);
 
