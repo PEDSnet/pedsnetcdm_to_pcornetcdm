@@ -1,7 +1,5 @@
 begin;
 
-alter table SITE_pcornet.vital   add column site character varying not null;
-
 ALTER TABLE SITE_pcornet.vital ALTER original_bmi SET DATA TYPE NUMERIC(20,8);
 
 drop sequence if exists sq_vitalid;
@@ -117,18 +115,9 @@ left join SITE_pcornet.pedsnet_pcornet_valueset_map m on cast(ms_sys.measurement
                                                                m.source_concept_class='BP Position'
 left join ob_tobacco_data on ms.visit_occurrence_id = ob_tobacco_data.visit_occurrence_id and
                              ms.measurement_datetime = ob_tobacco_data.observation_datetime
-where coalesce(ms_ht.value_as_number, ms_wt.value_as_number, ms_dia.value_as_number, ms_sys.value_as_number, ms_bmi.value_as_number) is not null;
+where coalesce(ms_ht.value_as_number, ms_wt.value_as_number, ms_dia.value_as_number, ms_sys.value_as_number, ms_bmi.value_as_number) is not null
+      and EXTRACT(YEAR FROM ms.measurement_date) >= 2001 and
+      ms.person_id in (select person_id from SITE_pcornet.person_visit_start2001) and
+      ms.visit_occurrence_id in (select visit_id from SITE_pcornet.person_visit_start2001);
 
-commit;
-
-begin;
-
-delete from stlouis_pcornet.vital
-where patid not in (select person_id::varchar(256) from stlouis_pcornet.person_visit_start2001) and
-      encounterid not in (select visit_id::varchar(256) from stlouis_pcornet.person_visit_start2001);
-
-commit;
-
-begin;
-drop table if exists SITE_pcornet.observation;
 commit;
