@@ -1,19 +1,5 @@
 begin;
 
-CREATE TABLE SITE_pcornet.dispensing
-(
-    dispense_amt numeric(15,8),
-    dispense_date date NOT NULL,
-    dispense_sup numeric(15,8),
-    dispensingid character varying(256) COLLATE pg_catalog."default" NOT NULL,
-    ndc character varying(11) COLLATE pg_catalog."default" NOT NULL,
-    patid character varying(256) COLLATE pg_catalog."default" NOT NULL,
-    prescribingid character varying(256) COLLATE pg_catalog."default",
-    raw_ndc character varying(256) COLLATE pg_catalog."default",
-    site character varying COLLATE pg_catalog."default" NOT NULL
-)
-TABLESPACE pg_default;
-
 insert into SITE_pcornet.dispensing( dispensingid, patid, prescribingid, dispense_date, 
                                         ndc, dispense_sup, dispense_amt, raw_ndc,site)
 with
