@@ -86,14 +86,27 @@ def ddl_only():
                 print(error)
             # endregion
 
+            # region run the DDL
             try:
-                cur.execute("""SET search_path TO """ + schemas + """;""")
-                time.sleep(0.1)
-                cur.execute("""INSERT INTO """+ schemas +""".version_history (operation, model, model_version, dms_version,
-                             dmsa_version) VALUES ('create constraints', 'pcornet', '3.1.0', '1.0.4-beta', '0.6.0');""")
-                conn.commit()
+                    print '\nRunning the DDL ...'
+                    # set the search pat to the schema
+                    cur.execute("""SET search_path TO """ + schemas + """;""")
+                    time.sleep(0.1)
+                    cur.execute(query.dll())
+                    conn.commit()
+            except (Exception, psycopg2.OperationalError) as error:
+                    print(error)
+            # endregion
+
+            # region Alter tables and add site column
+            try:
+                    print '\nAltering table, adding {site} column ...'
+                    cur.execute("""SET search_path TO """ + schemas + """;""")
+                    cur.execute(query.site_col(schemas))
+                    conn.commit()
             except(Exception, psycopg2.OperationalError) as error:
-                print(error)
+                    print(error)
+            # endregion
 
             # region permissions
             try:
@@ -280,6 +293,9 @@ def etl_only():
         cur = conn.cursor()
         cur.execute(open(view, "r").read())
         conn.commit()
+        cur.execute("""SET search_path TO """ + schema[1] + """;""")
+        cur.execute("""select capitalview(\'""" + params[1] + """\',\'""" + schema[1] + """\');""")
+        conn.commit()
         for schemas in schema:
             cur.execute("""SET search_path TO """ + schemas + """;""")
             time.sleep(0.1)
@@ -289,10 +305,6 @@ def etl_only():
             time.sleep(0.1)
             cur.execute(query.owner(schemas))
             conn.commit()
-            cur.execute("""SET search_path TO """ + schemas + """;""")
-            cur.execute("""select capitalview(\'""" + params[1] + """\',\'""" + schemas + """\');""")
-            conn.commit()
-
         cur.close
     except (Exception, psycopg2.OperationalError) as error:
         print(error)
