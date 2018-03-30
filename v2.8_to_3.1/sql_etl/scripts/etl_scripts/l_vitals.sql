@@ -73,8 +73,10 @@ left join ms_bmi on ms.visit_occurrence_id = ms_bmi.visit_occurrence_id
 and ms.measurement_datetime = ms_bmi.measurement_datetime 
 left join ob_tobacco_data on ms.visit_occurrence_id = ob_tobacco_data.visit_occurrence_id 
 and ms.measurement_datetime = ob_tobacco_data.observation_datetime
-where coalesce(ms_ht.value_as_number, ms_wt.value_as_number, ms_dia.value_as_number, ms_sys.value_as_number, ms_bmi.value_as_number) is not null;
-
+where coalesce(ms_ht.value_as_number, ms_wt.value_as_number, ms_dia.value_as_number, ms_sys.value_as_number, ms_bmi.value_as_number) is not null
+	  and EXTRACT(YEAR FROM ms.measurement_date) >= 2001 and
+      ms.person_id in (select person_id from SITE_pcornet.person_visit_start2001) and
+      ms.visit_occurrence_id in (select visit_id from SITE_pcornet.person_visit_start2001);
 
 --- transform 
 create temporary table vital_transform as 
