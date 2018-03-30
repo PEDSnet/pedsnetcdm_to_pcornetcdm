@@ -1,0 +1,13 @@
+db:
+ driver : postgresql
+ pedsnet_dbname :  database_name
+ pcornet_dbname :  database_name
+ dbuser : user_name
+ dbpass : password
+ dbhost : server or ip
+ dbport : port
+ pedsnet_schema : schema_name
+ pedsnet_schema : schema_name
+ vocab_schema : vocabulary
+reporting:
+ site_directory : ~/Documents

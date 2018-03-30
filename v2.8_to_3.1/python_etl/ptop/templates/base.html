@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>{% load staticfiles compress %}
+<html lang="en">
+ <head>
+ <link rel="SHORTCUT ICON" href="{% static 'images/favicon.ico' %}">
+  <title>PEDSnet to PCORnet ETL</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="description" content="PEDSnet to PCORnet ETL running in Docker." />
+  <meta name="HandheldFriendly" content="true">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {% compress css %}
+  <link rel="stylesheet" href="{% static 'scss/master.scss' %}" type="text/x-scss" />
+  {% endcompress %}
+ </head>
+ <body>
+
+   <header>
+    <h1>PEDSnet to PCORnet</h1>
+   </header>
+
+   {% if messages %}
+   <ul class="messages">
+       {% for message in messages %}
+       <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
+       {% endfor %}
+   </ul>
+   {% endif %}
+
+   <div id="content">
+       {% block content %}
+       {% endblock content %}
+   </div>
+
+   <footer>
+      PEDSnet v2.8 to PCORnet 3.1
+  </footer>
+
+ </body>
+
+ <script src="{% static 'js/app.js' %}"></script>
+ {% block js_footer %}{% endblock %}
+</html>
