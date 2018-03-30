@@ -31,7 +31,10 @@ from
 	left join SITE_pedsnet.care_site c on v.care_site_id = c.care_site_id
 	left join SITE_pedsnet.location l on c.location_id = l.location_id
 	left join dis_disposition on v.visit_occurrence_id = dis_disposition.visit_occurrence_id 
-	left join drg_value on v.visit_occurrence_id = drg_value.visit_occurrence_id ; 
+	left join drg_value on v.visit_occurrence_id = drg_value.visit_occurrence_id 
+	WHERE 
+	v.person_id in (select person_id from SITE_pcornet.person_visit_start2001) and
+    v.visit_occurrence_id in (select visit_id from SITE_pcornet.person_visit_start2001);
 	
 
 
