@@ -1,25 +1,74 @@
-This is a complete working demo of docker compose working with a django project.
+# PEDSnet to PCORnet ETL 
 
-Features:
- - split into nginx/postgres/app containers
- - configuration is set by environment variables
- - changes to the django app will auto-reload the uwsgi process
+## Configuration
 
-# DOCKER COMPOSE
+### Create Condition Configuration File
+Create a configuration file named `p_to_p.yml` using the template specified in p_to\_p\_sample.yml
 
-    Build and start the app:
+#### Example
 
-        docker-compose up
-        # Or to rebuild
-        docker-compose up --build
+```
+db:
+ driver             : (postgresql, oracle, mysql, sqlite, or mssql+pyodbc)
+ pedsnet_dbname	    : TestDb (Name of Database)
+ pcornet_dbname     : TestDb (Name of Database)
+ dbuser	            : TestUser
+ dbpass	            : TestUserPassword123
+ dbhost             : http://testdbhost.com
+ dbport	            : 5432
+ pedsnet_schema     : pedsnet_domain_schema (Name of schema that holds PEDSnet domain tables)
+ pcornet_schema     : pcornet_domain_schema (Name of schema that holds PCORnet domain tables)
+reporting:
+  site_directory     : ~/Documents/test_directory (Temporary location for output of progress)
+```
 
-        # migrate and collectstatic
-        docker-compose run app init
+## PEDSnet to Pcornet ETL Details
 
-        # create admin user
-        docker-compose run app manage createsuperuser
+There is a class for every PCORnet table and one for the pedsnet_pcornet_valueset_map table. There is an ETL file for each PCORnet table named \<table>ETL.py.
 
-    Other helpful commands
+### ETL Process
+
+1. It is expected that the schemas and tables exist.
+1. The configuration file `p_to_p.yml` read and the database connection established.
+1. SQLAlchemy engines for PEDSnet and PCORnet set up.
+1. SQLAlchemy is used to load the data from the PCORnet table.
+1. Blaze Odo is used to transform the column names and data types.
+1. SQLAlchemy is used to load the data to the PCORnet table.
+
+### Using PEDSnet to Pcornet ETL
+
+#### Installation
+	Expects that Docker is installed
+	After cloning the repo:
+
+    	Build and start the app:
+
+       docker-compose up
+       # Or to rebuild
+       docker-compose up --build
+
+       # migrate and collectstatic
+       docker-compose run app init
+
+       # create admin user
+       docker-compose run app manage createsuperuser
+        	
+       migrate and collectstatic and create admin user only need to be done once unless the rebuild option is used
+        	
+#### Run the PEDSnet to Pcornet ETL steps
+	Use the web interface at http:/ipaddress
+	view the results at http:/ipaddress/admin
+	(login using super user created during install)
+	
+    OR 
+    
+    Run PEDSnet to Pcornet at command line
+    docker-compose run app manage <command to run>
+    
+    available commands are demographicsETL and  enrollmentETL
+
+
+#### Other helpful commands
 
         # enter db
         docker-compose run app manage dbshell
@@ -36,11 +85,4 @@ Features:
         # stop everything, destroy containers, and volumes
         docker-compose down
 
-    Override the default docker compose variables
-
-        # vim docker-compose.override.yml
-        version: '3'
-        services:
-            web:
-              ports:
-                - 8000:80
+   
