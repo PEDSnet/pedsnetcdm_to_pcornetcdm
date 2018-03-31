@@ -58,8 +58,8 @@ There is a class for every PCORnet table and one for the pedsnet_pcornet_valuese
        migrate and collectstatic and create admin user only need to be done once unless the rebuild option is used
         	
 #### Run the PEDSnet to Pcornet ETL steps
-	Use the web interface at http:/ipaddress
-	view the results at http:/ipaddress/admin
+	Use the web interface at http:/ip_address/ptop
+	view the results at http:/ip_address/admin
 	(login using super user created during install)
 	
     OR 
@@ -67,7 +67,7 @@ There is a class for every PCORnet table and one for the pedsnet_pcornet_valuese
     Run PEDSnet to Pcornet at command line
     docker-compose run app manage <command to run>
     
-    available commands are demographicsETL and  enrollmentETL
+    available commands are demographicsETL and enrollmentETL, more coming soon
 
 
 #### Other helpful commands
