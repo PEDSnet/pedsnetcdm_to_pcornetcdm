@@ -1,1 +1,3 @@
-v2.8_to_3.1/python_etl/ptop/apps/runit/management/commands/p_to_p.yml
+*.pyc
+*.swp
+*~
