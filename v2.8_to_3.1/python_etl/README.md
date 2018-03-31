@@ -41,7 +41,9 @@ There is a class for every PCORnet table and one for the pedsnet_pcornet_valuese
 	Expects that Docker is installed
 	After cloning the repo:
 
-    	Build and start the app:
+    Create /python_etl/ptop/apps/runit/management/commands/p_to_p.yml using p_to_p_sample.yml as a guide
+    
+    Build and start the app:
 
        docker-compose up
        # Or to rebuild
@@ -70,19 +72,26 @@ There is a class for every PCORnet table and one for the pedsnet_pcornet_valuese
 
 #### Other helpful commands
 
-        # enter db
-        docker-compose run app manage dbshell
+    # enter db where results are stored
+    docker-compose run app manage dbshell
 
-        # run any management command
-        docker-compose run app manage <command and options>
+    # run any management command
+    docker-compose run app manage <command and options>
 
-        # enter bash shell
-        docker-compose run app /bin/bash
+    # enter bash shell
+    docker-compose run app /bin/bash
 
-        # stop everything
-        docker-compose stop
+    # stop everything
+    docker-compose stop
 
-        # stop everything, destroy containers, and volumes
-        docker-compose down
+    # stop everything, destroy containers, and volumes
+    docker-compose down
 
-   
+#### Development
+
+	Files are located in /python_etl/ptop/apps/runit/management/commands/
+	
+	To add background task modify /python_etl/ptop/apps/runit/tasks.py
+	
+	To add new ETL step to webpage modify /python_etl/ptop/apps/runit/views.py
+	
