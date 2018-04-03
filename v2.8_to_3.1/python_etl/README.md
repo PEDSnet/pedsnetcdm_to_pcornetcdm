@@ -43,7 +43,7 @@ There is a class for every PCORnet table and one for the pedsnet_pcornet_valuese
 
     Create /python_etl/ptop/apps/runit/management/commands/p_to_p.yml using p_to_p_sample.yml as a guide
     
-    Build and start the app:
+    Build and start the app from the python_etl directory:
 
        docker-compose up
        # Or to rebuild
@@ -71,6 +71,7 @@ There is a class for every PCORnet table and one for the pedsnet_pcornet_valuese
 
 
 #### Other helpful commands
+	**Run these commands from the python_etl directory**
 
     # enter db where results are stored
     docker-compose run app manage dbshell
