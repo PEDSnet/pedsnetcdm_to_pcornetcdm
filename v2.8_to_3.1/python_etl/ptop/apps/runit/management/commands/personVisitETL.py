@@ -1,16 +1,14 @@
-# region import
 from __future__ import print_function
 from odo import odo
-from sqlalchemy.sql.expression import bindparam, exists
+from sqlalchemy import extract
 from base import *
-from enrollment import ObservationPeriod, Enrollment
 from personvisitstart2001 import PersonVisit
+from visitoccurrence import VisitOccurrence
 from django.core.management.base import BaseCommand, CommandError
+import pandas as pd
 import os
 import yaml
 
-
-# endregion
 
 def get_config():
     try:
@@ -26,7 +24,7 @@ def get_config():
 def init_pedsnet(connection):
     pedsnet_schema = connection.pedsnet_schema
     # override the placeholder schemas on the tables
-    ObservationPeriod.__table__.schema = pedsnet_schema
+    VisitOccurrence.__table__.schema = pedsnet_schema
     pedsnet_engine = create_pedsnet_engine(connection)
     pedsnet_session = create_pedsnet_session(pedsnet_engine)
     return pedsnet_session
@@ -35,13 +33,12 @@ def init_pedsnet(connection):
 def init_pcornet(connection):
     pcornet_schema = connection.pcornet_schema
     # override the placeholder schemas on the tables
-    Enrollment.__table__.schema = pcornet_schema
     PersonVisit.__table__.schema = pcornet_schema
     create_pcornet_engine(connection)
 
 
 class Command(BaseCommand):
-    help = "Run ETL for Enrollment"
+    help = "Run ETL for PersonVisit"
 
     def handle(self, *args, **options):
         # set up
@@ -53,22 +50,18 @@ class Command(BaseCommand):
         pedsnet_session = init_pedsnet(connection)
         init_pcornet(connection)
 
-        observation_period = pedsnet_session.query(ObservationPeriod.person_id,
-                                                   ObservationPeriod.observation_period_start_date,
-                                                   ObservationPeriod.observation_period_end_date,
-                                                   ObservationPeriod.site,
-                                                   bindparam("chart", 'Y'),
-                                                   bindparam("enr_basis", 'E')
-                                                   ).filter(
-            exists().where(ObservationPeriod.person_id == PersonVisit.person_id)).all()
+        df = pd.read_sql(pedsnet_session.query(VisitOccurrence.person_id,
+                                               VisitOccurrence.visit_occurrence_id.label('visit_id')) \
+                         .filter(extract('year', VisitOccurrence.visit_start_date) >= 2001).statement,
+                         pedsnet_session.bind)
 
-        odo(observation_period, Enrollment.__table__,
-            dshape='var * {patid: string, enr_start_date: date, enr_end_date: date, site: string, chart: String, '
-                   'enr_basis: String} '
+        odo(df, PersonVisit.__table__,
+            dshape='var * {person_id: int, visit_id: int}'
             )
+
         # close session
         pedsnet_session.close()
 
         # ouutput result
         self.stdout.ending = ''
-        print('Enrollment completed successfully', end='', file=self.stdout)
+        print('Person Visit completed successfully', end='', file=self.stdout)

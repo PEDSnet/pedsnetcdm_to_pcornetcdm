@@ -30,6 +30,7 @@ class ObservationPeriod(Pedsnet_base):
                  observation_period_start_date, observation_period_start_time,
                  period_type_concept_id, period_type_concept_name, site, site_id,
                  observation_period_id, person_id):
+
         self.observation_period_end_date = observation_period_end_date
         self.observation_period_end_time = observation_period_end_time
         self.observation_period_start_date = observation_period_start_date

@@ -5,9 +5,10 @@ from django.contrib import messages
 from ptop.celery import app
 
 class RunItFormDummy(forms.Form):
-    ETLSTEPS = (  
-        ('1', 'Demographics'),
-        ('2', 'Enrollment'),
+    ETLSTEPS = (
+        ('1', 'PersonVisit'),
+        ('2', 'Demographics'),
+        ('3', 'Enrollment'),
     ) 
     etl_step = forms.ChoiceField(choices=ETLSTEPS, required=True, label='ETL Step' )
 
