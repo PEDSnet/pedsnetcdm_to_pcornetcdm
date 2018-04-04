@@ -21,7 +21,7 @@ def etl(step):
     elif step == '4':
         call_command('deathETL', stdout=out)
         return out.getvalue() + ' in ' + str(time.time()-start_time) + 's'
-    elif step == '4':
+    elif step == '5':
         call_command('deathCauseETL', stdout=out)
         return out.getvalue() + ' in ' + str(time.time()-start_time) + 's'
     else:
