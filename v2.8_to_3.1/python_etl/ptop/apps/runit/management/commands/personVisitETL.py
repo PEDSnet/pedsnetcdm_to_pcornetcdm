@@ -64,4 +64,4 @@ class Command(BaseCommand):
 
         # ouutput result
         self.stdout.ending = ''
-        print('Person Visit completed successfully', end='', file=self.stdout)
+        print('Person Visit ETL completed successfully', end='', file=self.stdout)

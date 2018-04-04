@@ -71,4 +71,4 @@ class Command(BaseCommand):
 
         # ouutput result
         self.stdout.ending = ''
-        print('Enrollment completed successfully', end='', file=self.stdout)
+        print('Enrollment ETL completed successfully', end='', file=self.stdout)
