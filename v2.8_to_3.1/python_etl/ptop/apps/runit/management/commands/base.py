@@ -52,7 +52,7 @@ def get_vocab_schema(connection):
 
 def create_pedsnet_engine(connection):
     # create the database engines
-    pedsnet_engine = create_engine(connection.pedsnet_connect_string)
+    pedsnet_engine = create_engine(connection.pedsnet_connect_string, execution_options=dict(stream_results=True))
 
     # replace deferred base
     Pedsnet_base.prepare(pedsnet_engine)

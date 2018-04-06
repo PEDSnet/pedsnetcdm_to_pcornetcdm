@@ -53,7 +53,7 @@ class Command(BaseCommand):
         for df in pd.read_sql(pedsnet_session.query(VisitOccurrence.person_id,
                                                     VisitOccurrence.visit_occurrence_id.label('visit_id')) \
                                       .filter(extract('year', VisitOccurrence.visit_start_date) >= 2001).statement,
-                              pedsnet_session.bind, chunksize=5000):
+                              pedsnet_session.bind, chunksize=50000):
 
             odo(df, PersonVisit.__table__,
                 dshape='var * {person_id: int, visit_id: int}'
