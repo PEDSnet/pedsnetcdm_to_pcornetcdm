@@ -1,23 +1,27 @@
 begin;
+create table SITE_pcornet.rxnorm_ndc_crosswalk 
+as
+select min(ndc_codes.concept_code) as min_ndc_code, rxnorm_codes.concept_id as rxnorm_concept_id
+from vocabulary.concept ndc_codes
+join vocabulary.concept_relationship cr on concept_id_1 = ndc_codes.concept_id and relationship_id='Maps to'
+join vocabulary.concept rxnorm_codes on concept_id_2 = rxnorm_codes.concept_id
+where ndc_codes.vocabulary_id='NDC' and rxnorm_codes.vocabulary_id='RxNorm' and  ndc_codes.concept_class_id='11-digit NDC'
+group by rxnorm_codes.concept_id
+
+commit;
+
+begin;
+create table SITE_pcornet.ndc_concepts 
+as
+select concept_code, concept_id
+from  vocabulary.concept
+where vocabulary_id='NDC'
+commit;
+
+begin;
 
 insert into SITE_pcornet.dispensing( dispensingid, patid, prescribingid, dispense_date, 
                                         ndc, dispense_sup, dispense_amt, raw_ndc,site)
-with
-rxnorm_ndc_crosswalk as
- (
-    select min(ndc_codes.concept_code) as min_ndc_code, rxnorm_codes.concept_id as rxnorm_concept_id
-    from vocabulary.concept ndc_codes
-	join vocabulary.concept_relationship cr on concept_id_1 = ndc_codes.concept_id and relationship_id='Maps to'
-	join vocabulary.concept rxnorm_codes on concept_id_2 = rxnorm_codes.concept_id
-    where ndc_codes.vocabulary_id='NDC' and rxnorm_codes.vocabulary_id='RxNorm' and  ndc_codes.concept_class_id='11-digit NDC'
-    group by rxnorm_codes.concept_id
- ),
- ndc_concepts as
- (
-    select concept_code, concept_id
-    from  vocabulary.concept
-    where vocabulary_id='NDC'
- )
 select distinct
 	de.drug_exposure_id,
 	de.person_id::varchar(256) as patid,
@@ -33,8 +37,8 @@ select distinct
 from
 	SITE_pedsnet.drug_exposure de
 	join SITE_pcornet.demographic d on d.patid = cast(de.person_id as text)
-	left join rxnorm_ndc_crosswalk on drug_concept_id = rxnorm_concept_id
-	left join ndc_concepts ndc on concept_id = drug_source_concept_id
+	left join SITE_pcornet.rxnorm_ndc_crosswalk on drug_concept_id = rxnorm_concept_id
+	left join SITE_pcornet.ndc_concepts ndc on concept_id = drug_source_concept_id
 where
 	de.drug_type_concept_id = '38000175' and
     person_id in (select person_id from SITE_pcornet.person_visit_start2001) and

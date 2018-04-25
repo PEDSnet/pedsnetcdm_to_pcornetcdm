@@ -13,11 +13,11 @@ file=$1
 
 export PGPASSWORD=$data1
 
-tmux new -s pcornet_etl
+#tmux new -s pcornet_etl
 
 # for file in  $FILENAME; do
     echo $file
     psql -v ON_ERROR_STOP=1 -h $HOSTNAME -U $USERNAME $DATABASE -f $file
 # done
 
-tmux detach
+#tmux detach

@@ -5,8 +5,9 @@ alter table SITE_pcornet.prescribing alter rxnorm_cui SET DATA TYPE character va
 ALTER TABLE SITE_pcornet.prescribing ALTER rx_quantity SET DATA TYPE NUMERIC(20,2);
 ALTER TABLE SITE_pcornet.prescribing ALTER rx_refills SET DATA TYPE NUMERIC(20,2);
 ALTER TABLE SITE_pcornet.prescribing ALTER rx_days_supply SET DATA TYPE NUMERIC(20,2);
+commit;
 
-
+begin;
 insert into SITE_pcornet.prescribing (prescribingid,
             patid, encounterid,
             rx_providerid, rx_order_date, rx_order_time,
@@ -53,4 +54,9 @@ where
 	and de.visit_occurrence_id not in (select visit_occurrence_id from SITE_pedsnet.visit_occurrence V where
 					extract(year from visit_start_date)<2001);
 
+commit;
+
+begin;
+drop table SITE_pcornet.ndc;
+drop table SITE_pcornet.rxnorm_ndc_crosswalk;
 commit;
