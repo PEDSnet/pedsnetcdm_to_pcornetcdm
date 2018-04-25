@@ -6,9 +6,11 @@ from ptop.celery import app
 
 class RunItFormDummy(forms.Form):
     ETLSTEPS = (
-        ('1', 'PersonVisit'),
+        ('1', 'Person Visit'),
         ('2', 'Demographics'),
         ('3', 'Enrollment'),
+        ('4', 'Death'),
+        ('5', 'Death Cause'),
     ) 
     etl_step = forms.ChoiceField(choices=ETLSTEPS, required=True, label='ETL Step' )
 

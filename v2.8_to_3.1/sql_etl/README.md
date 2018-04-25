@@ -8,8 +8,7 @@ sql_etl is a python based CLI too that is used to automate the process of creati
 1. Create the schemas 
 
 	```
-	create schema dcc_3dot1_pcornet AUTHORIZATION pcor_et_user;
-	create schema dcc_3dot1_start2001_pcornet AUTHORIZATION pcor_et_user;
+	create schema dcc_pcornet AUTHORIZATION pcor_et_user;
 	```
 
 2. Creates the PCORnet 3.1 tables
@@ -17,36 +16,21 @@ sql_etl is a python based CLI too that is used to automate the process of creati
 3. Add the `site` column to various fields using the following alter table commands: 
 
 ```
-alter table dcc_3dot1_pcornet.demographic add column site character varying not NULL;
-alter table dcc_3dot1_pcornet.enrollment add column site character varying not null;
-alter table dcc_3dot1_pcornet.death add column site character varying not null;
-alter table dcc_3dot1_pcornet.death_cause add column site character varying not null;
-alter table dcc_3dot1_pcornet.encounter add column site character varying not null;
-alter table dcc_3dot1_pcornet.condition add column site character varying not null;
-alter table dcc_3dot1_pcornet.diagnosis add column site character varying not null;
-alter table dcc_3dot1_pcornet.procedures add column site character varying not null;
-alter table dcc_3dot1_pcornet.dispensing   add column site character varying not null;
-alter table dcc_3dot1_pcornet.prescribing   add column site character varying not null;
-alter table dcc_3dot1_pcornet.vital   add column site character varying not null;
-alter table dcc_3dot1_pcornet.lab_result_cm   add column site character varying not null;
+alter table dcc_pcornet.demographic add column site character varying not NULL;
+alter table dcc_pcornet.enrollment add column site character varying not null;
+alter table dcc_pcornet.death add column site character varying not null;
+alter table dcc_pcornet.death_cause add column site character varying not null;
+alter table dcc_pcornet.encounter add column site character varying not null;
+alter table dcc_pcornet.condition add column site character varying not null;
+alter table dcc_pcornet.diagnosis add column site character varying not null;
+alter table dcc_pcornet.procedures add column site character varying not null;
+alter table dcc_pcornet.dispensing   add column site character varying not null;
+alter table dcc_pcornet.prescribing   add column site character varying not null;
+alter table dcc_pcornet.vital   add column site character varying not null;
+alter table dcc_pcornet.lab_result_cm   add column site character varying not null;
 
 ```
 
-```
-alter table dcc_3dot1_start2001_pcornet.demographic add column site character varying not NULL;
-alter table dcc_3dot1_start2001_pcornet.enrollment add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.death add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.death_cause add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.encounter add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.condition add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.diagnosis add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.procedures add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.dispensing   add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.prescribing   add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.vital   add column site character varying not null;
-alter table dcc_3dot1_start2001_pcornet.lab_result_cm   add column site character varying not null;
-
-```
 4. Alter and/ grant permission to ETL user and the SaS users
 
 5. Create the valuset table require to map the PEDSnet values to PCORnet
@@ -68,7 +52,24 @@ CLI tool. The set up tool make it easy to install.
 
 # Building and Running the tool
 
-1. Navigate to [sql_etl](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/master/v2.7_to_3.1/sql_etl) folder, and download the tool.
+1. Navigate to [sql_etl](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/master/v2.8_to_3.1/sql_etl) folder, and download the tool.
+
+3. Check if postgres is installed on the system using
+   
+   `which psql`
+   
+   if not install postgres onto the system using command below depending upon operating system
+   
+   
+     `brew install postgres`
+     
+     or 
+     
+     `apt-get install postgresql libpq-dev postgresql-client postgresql-client-common`
+     
+     or
+     
+     `yum install postgres`
 
 2. To install the CLI Tool
 

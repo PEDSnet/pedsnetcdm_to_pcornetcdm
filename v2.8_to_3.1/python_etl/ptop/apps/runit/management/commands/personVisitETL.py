@@ -50,18 +50,18 @@ class Command(BaseCommand):
         pedsnet_session = init_pedsnet(connection)
         init_pcornet(connection)
 
-        df = pd.read_sql(pedsnet_session.query(VisitOccurrence.person_id,
-                                               VisitOccurrence.visit_occurrence_id.label('visit_id')) \
-                         .filter(extract('year', VisitOccurrence.visit_start_date) >= 2001).statement,
-                         pedsnet_session.bind)
+        for df in pd.read_sql(pedsnet_session.query(VisitOccurrence.person_id,
+                                                    VisitOccurrence.visit_occurrence_id.label('visit_id')) \
+                                      .filter(extract('year', VisitOccurrence.visit_start_date) >= 2001).statement,
+                              pedsnet_session.bind, chunksize=50000):
 
-        odo(df, PersonVisit.__table__,
-            dshape='var * {person_id: int, visit_id: int}'
-            )
+            odo(df, PersonVisit.__table__,
+                dshape='var * {person_id: int, visit_id: int}'
+                )
 
         # close session
         pedsnet_session.close()
 
         # ouutput result
         self.stdout.ending = ''
-        print('Person Visit completed successfully', end='', file=self.stdout)
+        print('Person Visit ETL completed successfully', end='', file=self.stdout)

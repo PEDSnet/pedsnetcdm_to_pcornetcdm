@@ -30,6 +30,10 @@ After making changes in the scripts. To test the scripts re-run of ETL is requir
 
 1. Navigate to [sql_etl](./sql_etl) folder, and install the CLI Tool
 
+     Note: Before installation of the tool make sure that the postgres 
+     psql tool is installed. If not please install the postgres tool. 
+     
+
 	 To install the CLI Tool
 
 	  activate the virtual environment using following command
@@ -62,30 +66,6 @@ After making changes in the scripts. To test the scripts re-run of ETL is requir
 	 `loading --help`
 
 
-## Steps for Executing the ETL Scripts 
-
-1. Execute the ETL scripts in the following order 
-    - [Demographic](./sql_etl/scripts/etl_scripts/a_demographic.sql)
-    - [Enrollment](./sql_etl/scripts/etl_scripts/b_enrollment.sql)
-    - [Death](./sql_etl/scripts/etl_scripts/c_death.sql)
-    - [Death Cause](./sql_etl/scripts/etl_scripts/d_death_Cause.sql)
-    - [Encounter](./sql_etl/scripts/etl_scripts/e_encounter.sql)
-    - [Condition](./sql_etl/scripts/etl_scripts/f_condition.sql)
-    - [Diagnosis](./sql_etl/scripts/etl_scripts/f_diagnosis.sql)
-    - [Procedure](./sql_etl/scripts/etl_scripts/g_procedure.sql)
-    - [Dispensing](./sql_etl/scripts/etl_scripts/h_dispensing.sql)
-    - [Prescribing](./sql_etl/scripts/etl_scripts/i_prescribing.sql)
-    - [Vital](./sql_etl/scripts/etl_scripts/j_vital.sql)
-    - [Lab\_Result\_CM](./sql_etl/scripts/etl_scripts/k_lab_result_cm.sql)
-    
-5. Execute the following add constraints commands
-
-	- [Add foreign keys](./sql_etl/scripts/etl_scripts/l_fk.sql)
-	
-	- [Add indices](./sql_etl/scripts/etl_scripts/m_index_statement.sql)
-
-6. 	follow steps in [start 2001 readme](./sql_etl/scripts/etl_scripts/)
-7. [Create views](./sql_etl/scripts/view-creation/) on start2001 schema tables 
 ### Schema Conventions
 
 - The PEDSnet CDM tables are stored in the `dcc_pedsnet` schema

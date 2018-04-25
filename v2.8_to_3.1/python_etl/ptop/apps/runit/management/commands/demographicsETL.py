@@ -111,4 +111,4 @@ class Command(BaseCommand):
 
         # output result
         self.stdout.ending = ''
-        print('Demographics completed successfully', end='', file=self.stdout)
+        print('Demographics ETL completed successfully', end='', file=self.stdout)
