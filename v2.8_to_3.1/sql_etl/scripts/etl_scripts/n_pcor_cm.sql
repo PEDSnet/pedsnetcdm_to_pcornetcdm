@@ -30,3 +30,7 @@ from
 	join vocabulary.concept c1 on o.observation_concept_id = c1.concept_id;
 
 commit;
+
+begin;
+drop table lab_measurements;
+commit;

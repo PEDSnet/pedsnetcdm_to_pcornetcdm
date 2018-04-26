@@ -1,22 +1,25 @@
 begin;
 
-create temporary table 
-dis_disposition as (select distinct person_id,visit_occurrence_id,min(value_as_concept_id) as value_as_concept_id 
-		from SITE_pedsnet.observation 
-			where observation_concept_id = 44813951
-			group by person_id,visit_occurrence_id); 
-			
-			
-create temporary table 
-drg_value as (select distinct person_id,visit_occurrence_id, min(value_as_string) as value_as_string
-		from SITE_pedsnet.observation
-		where observation_concept_id = 3040464 and observation_date >'2007-10-01'
-			and value_as_string in (select concept_code from vocabulary.concept where invalid_reason is null and concept_class_id = 'MS-DRG' and vocabulary_id='DRG' ) 
-			group by person_id,visit_occurrence_id
-		); 
-		
-								
-create temporary table encounter_extract 
+create table SITE_pcornet.dis_disposition 
+as 
+select distinct person_id,visit_occurrence_id,min(value_as_concept_id) as value_as_concept_id
+from SITE_pedsnet.observation 
+where observation_concept_id = 44813951
+group by person_id,visit_occurrence_id); 
+commit;
+
+begin;
+
+create table SITE_pcornet.drg_value as 
+select distinct person_id,visit_occurrence_id, min(value_as_string) as value_as_string
+from SITE_pedsnet.observation
+where observation_concept_id = 3040464 and observation_date >'2007-10-01'
+and value_as_string in (select concept_code from vocabulary.concept where invalid_reason is null and concept_class_id = 'MS-DRG' and vocabulary_id='DRG' ) 
+group by person_id,visit_occurrence_id; 
+commit;
+
+begin;
+create table SITE_pcornet.encounter_extract
 as 
 	select v.person_id, v.visit_occurrence_id, visit_start_date, visit_start_datetime
 	, visit_end_date, visit_end_datetime, provider_id, zip,
@@ -30,17 +33,17 @@ from
 	SITE_pedsnet.visit_occurrence v
 	left join SITE_pedsnet.care_site c on v.care_site_id = c.care_site_id
 	left join SITE_pedsnet.location l on c.location_id = l.location_id
-	left join dis_disposition on v.visit_occurrence_id = dis_disposition.visit_occurrence_id 
-	left join drg_value on v.visit_occurrence_id = drg_value.visit_occurrence_id 
+	left join SITE_pcornet.dis_disposition on v.visit_occurrence_id = dis_disposition.visit_occurrence_id
+	left join SITE_pcornet.drg_value on v.visit_occurrence_id = drg_value.visit_occurrence_id
 	WHERE 
 	v.person_id in (select person_id from SITE_pcornet.person_visit_start2001) and
     v.visit_occurrence_id in (select visit_id from SITE_pcornet.person_visit_start2001);
-	
+commit;
 
 
-
+begin;
 --- transform datashape
-create  temporary table encounter_transform
+create table SITE_pcornet.encounter_transform
 as 
  select 
 	cast(person_id as text) as patid,
@@ -67,7 +70,7 @@ as
 	coalesce(m4a.target_concept,'NI') as admitting_source,
 	site as site
 from 
-	encounter_extract
+	SITE_pcornet.encounter_extract
 	left join SITE_pcornet.pedsnet_pcornet_valueset_map m1 
 		on cast(visit_concept_id as text)= m1.source_concept_id and m1.source_concept_class='Encounter type'
 	left join SITE_pcornet.pedsnet_pcornet_valueset_map m2 on case when value_as_concept_id_ddisp is null AND m2.value_as_concept_id is null then true else 
@@ -78,8 +81,9 @@ from
 			and m3a.source_concept_class='Discharge status'; 
 ; 
 	
+commit;
 
-
+begin;
 --- loading 
 insert into SITE_pcornet.encounter (
             patid, encounterid, admit_date, admit_time, discharge_date, discharge_time, 
@@ -101,6 +105,6 @@ insert into SITE_pcornet.encounter (
 	raw_admitting_source,
 	site
 from 
-	encounter_transform; 
+	SITE_pcornet.encounter_transform;
 	 
 commit;

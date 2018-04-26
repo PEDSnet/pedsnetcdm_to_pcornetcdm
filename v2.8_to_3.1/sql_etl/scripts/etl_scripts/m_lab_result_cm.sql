@@ -2,6 +2,22 @@ begin;
 
 alter table SITE_pcornet.lab_result_cm  alter result_num SET DATA TYPE NUMERIC(25,8);
 
+commit;
+
+begin;
+create table SITE_pcornet.lab_measurements 
+as
+select measurement_id, person_id, visit_occurrence_id, measurement_concept_id,
+    measurement_source_Concept_id, measurement_source_value, measurement_order_date,
+    measurement_datetime, measurement_date, measurement_Result_date, measurement_result_datetime,
+	value_as_number, range_low, range_high, unit_source_value, unit_concept_id, value_as_concept_id,
+	operator_concept_id,range_low_operator_concept_id, range_high_operator_concept_id,
+	priority_concept_id, specimen_source_value,site
+from SITE_pedsnet.measurement
+where measurement_type_Concept_id = 44818702                   
+commit;                     
+
+begin;
 insert into SITE_pcornet.lab_result_cm (
 	lab_result_cm_id,
 	patid, encounterid,
@@ -15,44 +31,24 @@ insert into SITE_pcornet.lab_result_cm (
 	norm_range_high, norm_modifier_high,
 	abn_ind,
 	raw_lab_name, raw_lab_code, raw_panel, raw_result, raw_unit, raw_order_dept, raw_facility_code, site
-)
-with
-lab_measurements as
-                   (
-                      select measurement_id, person_id, visit_occurrence_id, measurement_concept_id,
-                             measurement_source_Concept_id, measurement_source_value, measurement_order_date,
-                             measurement_datetime, measurement_date, measurement_Result_date, measurement_result_datetime,
-	                         value_as_number, range_low, range_high, unit_source_value, unit_concept_id, value_as_concept_id,
-	                         operator_concept_id,range_low_operator_concept_id, range_high_operator_concept_id,
-	                         priority_concept_id, specimen_source_value,site
-	                  from SITE_pedsnet.measurement
-	                  where measurement_type_Concept_id = 44818702
-	               )
+)            
 select
 	m.measurement_id as lab_result_cm_id,
 	cast(m.person_id as text) as patid,
 	cast(m.visit_occurrence_id as text) as encounterid,
 	coalesce( m1.target_concept,'OT') as lab_name,
 	--m2.target_concept as specimen_source,
-	case when lower(specimen_source_value) like '%blood%'
-		then 'BLOOD'
-		else case when lower(specimen_source_value) like '%csf%'
-		          then 'CSF'
-		          else case when lower(specimen_source_value) like '%plasma%'
-		                    then 'PLASMA'
-		                    else case when lower(specimen_source_value) like '%serum%'
-		                              then 'SERUM'
-		                              else case when lower(specimen_source_value) like '%urine%'
-		                                        then 'URINE'
-		                                        else case when specimen_source_value is not null
-		                                                  then 'OT'
-		                                                  else 'NI'
-		                                        end
-		                              end
-		                    end
-		          end
-		end
-    end as specimen_source,
+	case
+ 		 when lower(specimen_source_value) like '%unknown%' then 'UN'
+ 		 when lower(specimen_source_value) like '%blood%' then 'BLOOD'
+ 		 when lower(specimen_source_value) like '%csf%' then 'CSF'
+ 		 when lower(specimen_source_value) like '%plasma%' then 'PLASMA'
+ 		 when lower(specimen_source_value) like '%serum%' then 'SERUM'
+ 		 when lower(specimen_source_value) like '%urine%' then 'URINE'
+ 		 when lower(specimen_source_value) like '%catheter%' then 'URINE'
+ 		 when specimen_source_value is not null then 'OT' else 'NI'
+ 		end
+  	as specimen_source,
 	c1.concept_code as lab_loinc,
 	m7.target_concept as priority,
 	case when measurement_source_value like 'POC%'
@@ -91,7 +87,7 @@ select
 	m.site as site
 
 from
-	lab_measurements m
+	SITE_pcornet.lab_measurements m
 	left join vocabulary.concept c1 on m.measurement_concept_id = c1.concept_id and
 	                                   c1.vocabulary_id = 'LOINC'
 	left join vocabulary.concept c2 on m.operator_concept_id = c2.concept_id and
