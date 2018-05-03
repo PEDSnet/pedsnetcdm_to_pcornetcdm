@@ -1,7 +1,7 @@
 ALTER TABLE SITE_4dot0_pcornet.vital ALTER original_bmi SET DATA TYPE NUMERIC(20,8);
 
-drop sequence if exists sq_vitalid;
-create sequence sq_vitalid start 1;
+drop sequence if exists SITE_4dot0_pcornet.sq_vitalid;
+create sequence SITE_4dot0_pcornet.sq_vitalid start 1;
 
 -- extract all fields 
 
