@@ -1,0 +1,294 @@
+class,pcornet_code,pcornet_name,pedsnet_code,pedsnet_name,value_as_concept_id
+Hispanic,N,,38003564,No,NULL
+Hispanic,Y,,38003563,Yes,NULL
+Hispanic,OT,,44814649,Other,NULL
+Hispanic,UN,,44814653,Unknown,NULL
+Hispanic,NI,,44814650,No information,NULL
+Hispanic,OT,,0,Other,NULL
+Gender,F,,8532,Female,NULL
+Gender,M,,8507,Male,NULL
+Gender,A,,44814664,Ambiguous,NULL
+Gender,UN,,44814653,Unknown,NULL
+Gender,NI,,44814650,No information,NULL
+Gender,OT,,44814649,Other,NULL
+Gender,OT,,0,Other,NULL
+Admitting source,AF,,44814670,Adult Foster Home,NULL
+Admitting source,AL,,44814671,Assisted Living Facility,NULL
+Admitting source,AV,,44814672,Ambulatory Visit,NULL
+Admitting source,ED,,8870,Emergency Department,NULL
+Admitting source,HH,,44814674,Home Health,NULL
+Admitting source,HO,,44814675,Home / Self Care,NULL
+Admitting source,HS,,8546,Hospice,NULL
+Admitting source,IP,,38004279,Other Acute Inpatient Hospital,NULL
+Admitting source,NH,,44814678,Nursing Home (Includes ICF),NULL
+Admitting source,RH,,44814679,Rehabilitation Facility,NULL
+Admitting source,RS,,44814680,Residential Facility,NULL
+Admitting source,SN,,8863,Skilled Nursing Facility,NULL
+Admitting source,NI,,44814650,No information,NULL
+Admitting source,UN,,44814653,Unknown,NULL
+Admitting source,OT,,44814649,Other,NULL
+Discharge disposition,A,,44813951,Discharged alive,4161979
+Discharge disposition,E,,44813951,Expired,4216643
+Discharge disposition,NI,,44813951,No information,44814650
+Discharge disposition,UN,,44813951,Unknown,44814653
+Discharge disposition,OT,,44813951,Other,44814649
+Discharge status,AF,,38004205,Adult Foster Home,NULL
+Discharge status,AL,,38004301,Assisted Living Facility,NULL
+Discharge status,AM,,4021968,Against Medical Advice,NULL
+Discharge status,AW,,44814693,Absent without leave,NULL
+Discharge status,EX,,4216643,Expired,NULL
+Discharge status,HH,,38004195,Home Health,NULL
+Discharge status,HO,,8536,Home / Self Care,NULL
+Discharge status,HS,,8546,Hospice,NULL
+Discharge status,IP,,38004279,Other Acute Inpatient Hospital,NULL
+Discharge status,NH,,8676,Nursing Home (Includes ICF),NULL
+Discharge status,RH,,8920,Rehabilitation Facility,NULL
+Discharge status,RS,,44814701,Residential Facility,NULL
+Discharge status,SH,,8717,Still In Hospital,NULL
+Discharge status,SN,,8863,Skilled Nursing Facility,NULL
+Discharge status,NULL,,NULL,NULL,NULL
+Discharge status,NI,,44814650,No information,NULL
+Discharge status,UN,,44814653,Unknown,NULL
+Discharge status,OT,,44814649,Other,NULL
+Discharge status,OT,,0,Other,NULL
+Encounter type,OT,,2000000104,Administrative visit,NULL
+Encounter type,IP,,9201,Inpatient Hospital Stay,NULL
+Encounter type,AV,,9202,Ambulatory Visit,NULL
+Encounter type,ED,,9203,Emergency Department,NULL
+Encounter type,EI,,2000000048,Emergency Department Admit to Inpatient Hospital Stay,NULL
+Encounter type,OS,,2000000088,Observational Stay,NULL
+Encounter type,IS,,42898160,Long Term Care Visit,NULL
+Encounter type,IS,,44814710,Non-Acute Institutional Stay,NULL
+Encounter type,OA,,44814711,Other ambulatory visit,NULL
+Encounter type,UN,,44814653,Unknown,NULL
+Encounter type,NI,,44814650,No information,NULL
+Encounter type,OT,,44814649,Other,NULL
+BP Position,1,,3018586,Sitting (Systolic),NULL
+BP Position,2,,3035856,Standing (Systolic),NULL
+BP Position,3,,3009395,Supine (Systolic),NULL
+BP Position,1,,3034703,Sitting (Diastolic),NULL
+BP Position,2,,3019962,Standing (Diastolic),NULL
+BP Position,3,,3013940,Supine (Diastolic),NULL
+BP Position,NI,,44814650,No information,NULL
+BP Position,UN,,44814653,Unknown,NULL
+BP Position,OT,,44814649,Other,NULL
+Vital source,PR,,4481472,Patient reported,NULL
+Vital source,HC,,38000280,Healthcare delivery setting,NULL
+Vital source,NI,,44814650,No information,NULL
+Vital source,UN,,44814653,Unknown,NULL
+Vital source,OT,,44814649,Other,NULL
+Vital source,NULL,,NULL,NULL,NULL
+Procedure Code Type,9,,ICD9Proc,ICD-9-PCS,NULL
+Procedure Code Type,10,,ICD10PCS,ICD-10-PCS,NULL
+Procedure Code Type,11,,-1,ICD-11-PCS,NULL
+Procedure Code Type,CH,,CPT4,CPT,NULL
+Procedure Code Type,CH,,HCPCS,HCPCS,NULL
+Procedure Code Type,LC,,LOINC,LOINC,NULL
+Procedure Code Type,ND,,NDC,NDC,NULL
+Procedure Code Type,RE,,Revenue Code,Revenue,NULL
+Race,1,,8657,American Indian or Alaska Native,NULL
+Race,2,,8515,Asian,NULL
+Race,3,,8516,Black or African American,NULL
+Race,4,,8557,Native Hawaiian or Other Pacific Islander,NULL
+Race,5,,8527,White,NULL
+Race,6,,44814659,Multiple race,NULL
+Race,7,,44814660,Refuse to answer,NULL
+Race,UN,,44814653,Unknown,NULL
+Race,OT,,44814649,Other,NULL
+Race,NI,,44814650,No information,NULL
+dx_source,AD,,-1,Admitting,NULL
+dx_source,DI,,38000199,Discharge,NULL
+dx_source,DI,,38000201,Discharge,NULL
+dx_source,FI,,38000230,Final,NULL
+dx_source,FI,,38000231,Final,NULL
+dx_source,IN,,-1,Interim,NULL
+dx_source,NI,,44814650,No information,NULL
+dx_source,UN,,44814653,Unknown,NULL
+dx_source,OT,,44814649,Other,NULL
+pdx,P,,2000000095,Principal,NULL
+pdx,P,,2000000096,Principal,NULL
+pdx,P,,2000000097,Principal,NULL
+pdx,P,,2000000092,Principal,NULL
+pdx,P,,2000000093,Principal,NULL
+pdx,P,,2000000094,Principal,NULL
+pdx,P,,38000199,Principal,NULL
+pdx,P,,38000230,Principal,NULL
+pdx,S,,2000000098,Secondary,NULL
+pdx,S,,2000000099,Secondary,NULL
+pdx,S,,2000000100,Secondary,NULL
+pdx,S,,2000000101,Secondary,NULL
+pdx,S,,2000000102,Secondary,NULL
+pdx,S,,2000000103,Secondary,NULL
+pdx,S,,38000201,Secondary,NULL
+pdx,S,,38000231,Secondary,NULL
+pdx,NI,,44814650,No information,NULL
+pdx,UN,,44814653,Unknown,NULL
+pdx,OT,,44814649,Other,NULL
+dx origin,OD,,2000000098,Order,NULL
+dx origin,OD,,2000000101,Order,NULL
+dx origin,OD,,2000000089,Order,NULL
+dx origin,OD,,2000000095,Order,NULL
+dx origin,OD,,2000000092,Order,NULL
+dx origin,BI,,2000000096,Billing,NULL
+dx origin,BI,,2000000093,Billing,NULL
+dx origin,BI,,2000000099,Billing,NULL
+dx origin,BI,,2000000102,Billing,NULL
+dx origin,BI,,2000000090,Billing,NULL
+dx origin,CL,,2000000097,Claim,NULL
+dx origin,CL,,2000000094,Claim,NULL
+dx origin,CL,,2000000100,Claim,NULL
+dx origin,CL,,2000000103,Claim,NULL
+dx origin,CL,,2000000091,Claim,NULL
+dx origin,NI,,44814653,No information,NULL
+dx origin,UN,,44814649,Unknown,NULL
+dx origin,OT,,44814650,Other,NULL
+condition type,9,,ICD9CM,ICD9CM,NULL
+consition type,9,,ICD9Proc,ICD9Proc,null
+condition type,10,,ICD10CM,ICD10CM,NULL
+condition type,10,,ICD10PCS,ICD10PCS,null
+condition type,11,,ICD11CM,ICD11CM,NULL
+condition type,11,, ICD11PCS,ICD11PCS,null
+condition type,SM,,SNOMED,SNOMED,NULL
+condition type,HP,,Human Phenotype Ontology,Human Phenotype Ontology,NULL
+condition type,AG,,Algorithmic,Algorithmic,NULL
+condition type,NI,,NULL,NULL,NULL
+condition type,UN,,Unknown,Unknown,NULL
+prescribing,1,,38000177,Dispensing,NULL
+prescribing,2,,38000180,Administration,NULL
+prescribing,NULL,,NULL,NULL,NULL
+prescribing,OT,,44814650,Other,NULL
+prescribing,NI,,44814653,No information,NULL
+prescribing,UN,,44814649,Unknown,NULL
+death cause code,9,,ICD9CM,ICD9CM,NULL
+death cause code,10,,ICD10,ICD10,NULL
+death cause code,10,,ICD10CM,ICD10CM,NULL
+death cause code,NI,,NULL,No information,NULL
+death cause code,UN,,Unknown,Unknown,NULL
+Result modifier,EQ,,4172703,EQUAL,NULL
+Result modifier,GE,,4171755,Greater than or equal to,NULL
+Result modifier,GT,,4172704,Greater than,NULL
+Result modifier,LT,,4171756,Less than,NULL
+Result modifier,LE,,4171754,Less than or equal to,NULL
+Result modifier,NO,,[TBD],No lower limit,NULL
+Result modifier,OT,,44814649,Other,NULL
+Result modifier,UN,,44814653,Unkown,NULL
+Result modifier,NI,,44814650,No Information,NULL
+result modifier,OT,,0,Other,
+Unit,BIL,,44777660,Billion (source vocab = UCUM),NULL
+Unit,CELL,,45756929,Cells (source vocab = SNOMED),NULL
+Unit,DG,,9485,Decigram  (source vocab = UCUM),NULL
+Unit,DL,,9486,Deciliter (source vocab = UCUM),NULL
+Unit,G,,8504,Gram (source vocab = SNOMED),NULL
+Unit,IU,,8718,International Units  (source vocab = UCUM),NULL
+Unit,K,,8566,Thousand (source vocab = UCUM),NULL
+Unit,L,,8519,Liter (source vocab = UCUM),NULL
+Unit,MG,,8576,Miligram  (source vocab = UCUM),NULL
+Unit,MIU,,44777577,Mili-International units (source vocab = UCUM),NULL
+Unit,ML,,8587,Milliliter (source vocab = UCUM),NULL
+Unit,NG,,9600,Nanogram (source vocab = UCUM),NULL
+Unit,NL,,9606,Nanoliter (source vocab = UCUM),NULL
+Unit,PERCENT,,8554,Percent (source vocab = UCUM),NULL
+Unit,RATIO,,8523,Ratio (source vocab = UCUM),NULL
+Unit,U,,8510,Units (source vocab = UCUM),NULL
+Unit,UG,,9655,Microgram (source vocab = UCUM),NULL
+Unit,UL,,8686,Cubic Millimeter (source vocab = UCUM),NULL
+Unit,UL,,9665,Micro liter (source vocab = UCUM),NULL
+Unit,OT,,44814649,Other,NULL
+Unit,UN,,44814653,Unkown,NULL
+Unit,NI,,44814650,No Information,NULL
+Result qualifier,POSITIVE,,9191,Positive,
+Result qualifier,NEGATIVE,,9189,Negative,
+Result qualifier,NI,,0,Others,
+Result qualifier,NI,,NULL,Others,
+Admitting source,NULL,,4145666,NULL,NULL
+PRO Item,PN-0001,,40764338,In general would you say your health is ,NULL
+PRO Item,PN-0002,,40764339,In general would you say your quality of life is,NULL
+PRO Item,PN-0003,,NULL,NULL,NULL
+PRO Item,PN-0004,,NULL,NULL,NULL
+PRO Item,PN-0005,,NULL,NULL,NULL
+PRO Item,PN-0006,,NULL,NULL,NULL
+PRO Item,PN-0007,,NULL,NULL,NULL
+PRO Item,PN-0008,,NULL,NULL,NULL
+PRO Item,PN-0009,,NULL,NULL,NULL
+PRO Item,PN-0010,,NULL,NULL,NULL
+PRO Item,PN-0011,,NULL,NULL,NULL
+PRO Item,PN-0011,,NULL,NULL,NULL
+PRO Item,PN-0012,,40764856,NULL,NULL
+PRO Item,PN-0013,,2000000000,How often do you feel really sad?,NULL
+PRO Item,PN-0014,,2000000001,How often do you have fun with friends?,NULL
+PRO Item,PN-0015,,2000000002,How often do you feel that your parents listen to your ideas?,NULL
+PRO Item,PN-0016,,40764340,In general how would you rate your physical health,NULL
+PRO Item,PN-0017,,40764341,In general how would you rate your mental health including your mood and your ability to think?,NULL
+PRO Item,PN-0018,,NULL,NULL,NULL
+PRO Item,PN-0019,,NULL,NULL,NULL
+PRO Item,PN-0020,,NULL,NULL,NULL
+PRO Item,PN-0021,,NULL,NULL,NULL
+PRO Response,5,,45881924,Excellent,NULL
+PRO Response,4,,45884457,Very Good,NULL
+PRO Response,3,,45876386,Good,NULL
+PRO Response,2,,45876387,Fair,NULL
+PRO Response,1,,45876751,Poor,NULL
+PRO Response,1,,45876662,Never,NULL
+PRO Response,2,,45876672,Rarely,NULL
+PRO Response,3,,45882528,Sometimes,NULL
+PRO Response,4,,45884455,Often,NULL
+PRO Response,5,,45882536,Always,NULL
+tobacco,1,,4005823,Current user,4005823
+tobacco,2,,4005823,Never,45765920
+tobacco,3,,4005823,Quit/Former smoker,45765917
+tobacco,4,,4005823,Passive or environmental exposure,4030580
+tobacco,NI,,4005823,No information,44814650
+tobacco,UN,,4005823,Unknown,44814653
+tobacco,OT,,4005823,Other,44814649
+smoking,8,,4275495,Light tobacco smoker,4209585
+smoking,7,,4275495,Heavy tobacco smoker,4209006
+smoking,7,,4275495,Heavy tobacco smoker,4044778
+smoking,5,,4275495,Smoker current status unknown,4298794
+smoking,1,,4275495,Current everyday smoker,42709996
+smoking,2,,4275495,Current someday smoker,4.28E+14
+smoking,3,,4275495,Former smoker,4310250
+smoking,4,,4275495,Never smoker,4144272
+smoking,6,,4275495,Unknown if ever smoked,4141786
+smoking,NI,,4275495,No information,44814650
+smoking,UN,,4275495,Unknown,44814653
+smoking,OT,,4275495,Other,44814649
+tobacco type,1,,4219336,Smoked tobacco only,4298794
+tobacco type,1,,4219336,Pipe smoking tobacco,4224317
+tobacco type,1,,4219336,Cigarette smoking tobacco,4282779
+tobacco type,1,,4219336,Cigar smoking tobacco,4132133
+tobacco type,4,,4219336,None,4218917
+tobacco type,4,,4219336,None,4052465
+tobacco type,3,,4219336,Chewing tobacco,4219234
+tobacco type,3,,4219336,Snuff tobacco,4218197
+tobacco type,OT,,4219336,Other,44814649
+tobacco type,NI,,4219336,No information,44814650
+tobacco type,UN,,4219336,Unknown,44814653
+Lab name,A1C,,4548-4,Hemoglobin A1c/Hemoglobin total in blood,NULL
+Lab name,CK,,2157-6,Creatine kinase total,NULL
+Lab name,CK_MB,,32673-6,Creatine kinase MB,NULL
+Lab name,CK_MBI,,20569-0,Creatine kinase MB/creatine kinase total,NULL
+Lab name,CREATININE,,2160-0,Creatinine,NULL
+Lab name,CREATININE,,5912-1,Creatinine,NULL
+Lab name,HGB,,718-7,Hemoglobin,NULL
+Lab name,LDL,,18262-6,Low-density lipoprotein,NULL
+Lab name,LDL,,2089-1,Low-density lipoprotein,NULL
+Lab name,INR,,6301-6,International normalized ratio,NULL
+Lab name,TROP_I,,10839-9,Troponin I cardiac,NULL
+Lab name,TROP_T_QL,,48426-1,Troponin T cardiac (qualitative),NULL
+Lab name,TROP_T_QN,,48425-3,Troponin T cardiac (quantitative),NULL
+Lab priority,E,,2000000059,Expedite,NULL
+Lab priority,R,,2000000061,Routine,NULL
+Lab priority,S,,2000000060,Stat,NULL
+Lab priority,NI,,44814650,No Information,NULL
+Lab priority,UN,,44814653,Unknown,NULL
+Lab priority,OT,,44814649,Other,NULL
+Death date impute,B,,2000000034,Both month and data imputed,NULL
+Death date impute,D,,2000000035,Day imputed,NULL
+Death date impute,M,,2000000036,Month imputed,NULL
+Death date impute,N,,2000000037,Not imputed,NULL
+Death date impute,NI,,44814650,No information,NULL
+Death date impute,UN,,44814653,Unknown,NULL
+Death date impute,OT,,44814649,Other,NULL
+px source,OD,,38000275,Order,null
+px source,BI,,44786630,Billing,null
+px source,BI,,44786631,Billing,null

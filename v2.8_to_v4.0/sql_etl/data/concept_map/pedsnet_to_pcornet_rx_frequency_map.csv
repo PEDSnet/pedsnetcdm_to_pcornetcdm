@@ -1,0 +1,100 @@
+class,pcornet_code,pcornet_name,pesdnet_code,pedsnet_name,value_as_concept_id
+Rx Frequency,2,Two times a day (BID),2 times a day,,null
+Rx Frequency,2,Two times a day (BID),2 times daily,,null
+Rx Frequency,2,Two times a day (BID),2 times daily before meals,,null
+Rx Frequency,2,Two times a day (BID),2 times daily prn,,null
+Rx Frequency,2,Two times a day (BID),2 times daily with meals,,null
+Rx Frequency,,,2xweek,,null
+Rx Frequency,3,Three times a day (TID),3 times a day,,null
+Rx Frequency,3,Three times a day (TID),3 times daily,,null
+Rx Frequency,3,Three times a day (TID),3 times daily prn,,null
+Rx Frequency,3,Three times a day (TID),3 times daily with meals,,null
+Rx Frequency,4,Four times a day (QID),4 times a day,,null
+Rx Frequency,4,Four times a day (QID),4 times daily,,null
+Rx Frequency,,,4 times daily prn,,null
+Rx Frequency,,,as needed,,null
+Rx Frequency,,,at bedtime,,null
+Rx Frequency,,,at bedtime prn,,null
+Rx Frequency,,,bedtime,,null
+Rx Frequency,,,bid,,null
+Rx Frequency,,,bid prn,,null
+Rx Frequency,,,bidwfd,,null
+Rx Frequency,,,breakfast,,null
+Rx Frequency,,,continuous,,null
+Rx Frequency,,,daily,,null
+Rx Frequency,,,daily prn,,null
+Rx Frequency,,,dinner,,null
+Rx Frequency,,,every 12 hours,,null
+Rx Frequency,,,every 12 hours prn,,null
+Rx Frequency,,,every 14 days,,null
+Rx Frequency,,,every 2 hours prn,,null
+Rx Frequency,,,every 24 hours,,null
+Rx Frequency,,,every 24 hours prn,,null
+Rx Frequency,,,every 28 days,,null
+Rx Frequency,,,every 3 hours prn,,null
+Rx Frequency,,,every 4 hours,,null
+Rx Frequency,,,every 4 hours prn,,null
+Rx Frequency,,,every 6 hours,,null
+Rx Frequency,,,every 6 hours prn,,null
+Rx Frequency,,,every 7 days,,null
+Rx Frequency,,,every 72 hours,,null
+Rx Frequency,,,every 8 hours,,null
+Rx Frequency,,,every 8 hours prn,,null
+Rx Frequency,,,every day,,null
+Rx Frequency,,,every day prn,,null
+Rx Frequency,,,every diaper change,,null
+Rx Frequency,10,Every evening,every evening,,null
+Rx Frequency,,,"every mon wed fri",,null
+Rx Frequency,5,Every morning,every morning,,null
+Rx Frequency,5,Every morning,every morning before breakfast,,null
+Rx Frequency,5,Every morning,every morning with breakfast,,null
+Rx Frequency,,,every other day,,null
+Rx Frequency,,,every twelve hours,,null
+Rx Frequency,,,every week,,null
+Rx Frequency,,,four times a day,,null
+Rx Frequency,,,nightly at bedtime,,null
+Rx Frequency,,,nightly at bedtime prn,,null
+Rx Frequency,11,Once,once,,null
+Rx Frequency,1,Everyday,once a day,,null
+Rx Frequency,10,Every evening,once a day (at bedtime),,null
+Rx Frequency,,,once now,,null
+Rx Frequency,,,once prn,,null
+Rx Frequency,,,once-in clinic,,null
+Rx Frequency,,,one time (unscheduled),,null
+Rx Frequency,11,Once,one time only,,null
+Rx Frequency,,,prn,,null
+Rx Frequency,,,q 12 hrs,,null
+Rx Frequency,,,q 4 hrs,,null
+Rx Frequency,,,q 4-6 hrs,,null
+Rx Frequency,,,q 6 hrs,,null
+Rx Frequency,,,q 8 hrs,,null
+Rx Frequency,,,q am,,null
+Rx Frequency,,,q pm,,null
+Rx Frequency,,,q12h,,null
+Rx Frequency,,,q2h prn,,null
+Rx Frequency,,,q4h,,null
+Rx Frequency,,,q4h prn,,null
+Rx Frequency,,,q6h,,null
+Rx Frequency,,,q6h prn,,null
+Rx Frequency,,,q7days,,null
+Rx Frequency,,,q8h,,null
+Rx Frequency,,,q8h prn,,null
+Rx Frequency,,,qam,,null
+Rx Frequency,,,qday,,null
+Rx Frequency,,,qday mwf,,null
+Rx Frequency,,,qday prn,,null
+Rx Frequency,,,qday w food,,null
+Rx Frequency,,,qhs,,null
+Rx Frequency,,,qhs prn,,null
+Rx Frequency,,,qid,,null
+Rx Frequency,,,qid prn,,null
+Rx Frequency,,,qnoon,,null
+Rx Frequency,,,qpm,,null
+Rx Frequency,3,Three times a day (TID),three times a day,,null
+Rx Frequency,3,Three times a day (TID),three times a day prn,,null
+Rx Frequency,,,tid,,null
+Rx Frequency,,,tid prn,,null
+Rx Frequency,2,Two times a day (BID),twice a day,,null
+Rx Frequency,2,Two times a day (BID),twice a day prn,,null
+Rx Frequency,2,Two times a day (BID),twice daily,,null
+Rx Frequency,,,weekly,,null
