@@ -1,0 +1,25 @@
+begin;
+
+Insert into SITE_4dot0_pcornet.death_cause(
+	patid,
+	death_cause, death_cause_code, death_cause_type,
+	death_cause_source, death_cause_confidence, site
+)
+select
+	person_id as patid,
+	left(cause_source_value,8) as death_cause,
+	coalesce(m1.target_concept,'OT') as death_cause_code,
+	'NI' as death_cause_type,
+	'L' as death_cause_source,
+	null as death_cause_confidence, -- not dicretely captured in the EHRs
+	min(de.site) as site
+From
+	SITE_pedsnet.death de
+	join vocabulary.concept on cause_source_concept_id = concept_id
+	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m1 on cast(vocabulary_id as text) = source_concept_id
+	AND m1.source_concept_class='death cause code'
+where cause_source_value is not null and
+      cause_source_concept_id<>44814650
+group by person_id, left(cause_source_value,8), coalesce(m1.target_concept,'OT')  ;
+
+commit;
