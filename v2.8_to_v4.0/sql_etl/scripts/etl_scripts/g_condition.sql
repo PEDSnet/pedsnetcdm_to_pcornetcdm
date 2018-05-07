@@ -47,10 +47,22 @@ from
 	join vocabulary.concept c2 on co.condition_source_concept_id = c2.concept_id
 where
 	co.condition_type_concept_id in ( 2000000089, 2000000090, 2000000091,38000245)
-	and person_id in (select person_id from SITE_4dot0_pcornet.person_visit_start2001 )
 	and EXTRACT(YEAR FROM condition_start_date)>=2001
-	and visit_occurrence_id is not null
-	and visit_occurrence_id not in (select visit_occurrence_id from SITE_pedsnet.visit_occurrence V where
-					extract(year from visit_start_date)<2001);
+	and person_id in (select person_id from SITE_4dot0_pcornet.person_visit_start2001)
+	; 
+	
+
+CREATE INDEX idx_cond_encid ON SITE_4dot0_pcornet.condition (encounterid);
+	
+	
+	
+delete from SITE_4dot0_pcornet.condition where 
+	 encounterid is not null 
+	and 
+	encounterid in
+        (select cast(visit_occurrence_id as text) 	from SITE_pedsnet.visit_occurrence
+        where 
+        EXTRACT(YEAR FROM visit_start_date) < 2001);
+        
 
 commit;
