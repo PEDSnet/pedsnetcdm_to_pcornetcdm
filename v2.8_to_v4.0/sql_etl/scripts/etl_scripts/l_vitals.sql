@@ -1,7 +1,7 @@
-ALTER TABLE SITE_4dot0_pcornet.vital ALTER original_bmi SET DATA TYPE NUMERIC(20,8);
+﻿ALTER TABLE SITE_4dot0_pcornet.vital ALTER original_bmi SET DATA TYPE NUMERIC(20,8);
 
-drop sequence if exists SITE_4dot0_pcornet.sq_vitalid;
-create sequence SITE_4dot0_pcornet.sq_vitalid start 1;
+drop sequence if exists sq_vitalid;
+create sequence sq_vitalid start 1;
 
 -- extract all fields 
 
@@ -54,14 +54,17 @@ create table SITE_4dot0_pcornet.ob_smoking as (select distinct observation_id, v
 create table SITE_4dot0_pcornet.ob_tobacco_data as (select ob_tobacco.visit_occurrence_id, ob_tobacco.observation_date, ob_tobacco.observation_datetime, ob_tobacco.tobacco, ob_tobacco_type.tobacco_type, ob_smoking.smoking  
 	from SITE_4dot0_pcornet.ob_tobacco 
 	left join SITE_pedsnet.fact_relationship fr2 on ob_tobacco.observation_id = fr2.fact_id_1 
-	left join stlouis_4dot0_pcornet.ob_tobacco_type on fr2.fact_id_2 = ob_tobacco_type.observation_id
+	left join SITE_4dot0_pcornet.ob_tobacco_type on fr2.fact_id_2 = ob_tobacco_type.observation_id
 	left join SITE_pedsnet.fact_relationship fr3 on ob_tobacco.observation_id = fr3.fact_id_1 
-	left join stlouis_4dot0_pcornet.ob_smoking on fr3.fact_id_2 = ob_smoking.observation_id);
+	left join SITE_4dot0_pcornet.ob_smoking on fr3.fact_id_2 = ob_smoking.observation_id);
 
+
+ drop table SITE_4dot0_pcornet.vital_extract; 
  
 create table SITE_4dot0_pcornet.vital_extract as	
-select nextval('SITE_4dot0_pcornet.sq_vitalid') as vitalid,
-ms.person_id, ms.visit_occurrence_id,  ms.measurement_date, ms.measurement_datetime,  ms_ht.value_as_number as value_as_number_ht,  ms_wt.value_as_number as  value_as_number_wt,
+select distinct
+ms.person_id, ms.visit_occurrence_id,  ms.measurement_date, ms.measurement_datetime,  
+ms_ht.value_as_number as value_as_number_ht,  ms_wt.value_as_number as  value_as_number_wt,
 ms_dia.value_as_number as value_as_number_diastolic,
 ms_sys.value_as_number as value_as_number_systolic,
 ms_bmi.value_as_number as value_as_number_original_bmi,
@@ -94,7 +97,7 @@ where coalesce(ms_ht.value_as_number, ms_wt.value_as_number, ms_dia.value_as_num
 
 --- transform 
 create table SITE_4dot0_pcornet.vital_transform as 
-SELECT vitalid,
+SELECT distinct
 cast(person_id as text) as patid,
 cast(visit_occurrence_id as text) as encounterid,
 cast(cast(date_part('year', measurement_date) as text)||'-'||lpad(cast(date_part('month', measurement_date) as text),2,'0')||'-'||lpad(cast(date_part('day', measurement_date) as text),2,'0') as date) 
@@ -126,7 +129,7 @@ insert into SITE_4dot0_pcornet.vital(
             ht, wt, diastolic, systolic, original_bmi, bp_position, 
 	    tobacco, tobacco_type, smoking
             ,raw_diastolic, raw_systolic, raw_bp_position,site)
-select vitalid, patid, encounterid, measure_date, measure_time, vital_source, 
+select nextval('SITE_4dot0_pcornet.sq_vitalid') as vitalid, patid, encounterid, measure_date, measure_time, vital_source, 
             ht, wt, diastolic, systolic, original_bmi, bp_position, 
 	    tobacco, tobacco_type, smoking
             ,raw_diastolic, raw_systolic, raw_bp_position,site
