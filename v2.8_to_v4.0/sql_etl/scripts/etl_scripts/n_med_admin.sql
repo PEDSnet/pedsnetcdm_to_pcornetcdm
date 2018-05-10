@@ -67,7 +67,7 @@ where
 	; 
 
 
-create index med_admin_enc on SITE_4dot0_pcornet.med_admin (encounterid);
+-- create index med_admin_enc on SITE_4dot0_pcornet.med_admin (encounterid);
 
 delete from SITE_4dot0_pcornet.med_admin 
 	where
