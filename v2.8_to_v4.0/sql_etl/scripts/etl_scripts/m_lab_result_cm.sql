@@ -3,7 +3,6 @@ begin;
 alter table SITE_4dot0_pcornet.lab_result_cm  alter result_num SET DATA TYPE NUMERIC(25,8);
 alter table SITE_4dot0_pcornet.lab_result_cm  alter result_unit SET DATA TYPE character varying(15);
 
-
 create table 
 SITE_4dot0_pcornet.lab_measurements as
                    (
@@ -16,7 +15,9 @@ SITE_4dot0_pcornet.lab_measurements as
 	                  from SITE_pedsnet.measurement
 	                  where measurement_type_Concept_id = 44818702
 	               ); 
-	               
+commit;
+
+begin;
 insert into SITE_4dot0_pcornet.lab_result_cm (
 	lab_result_cm_id,
 	patid, encounterid,
