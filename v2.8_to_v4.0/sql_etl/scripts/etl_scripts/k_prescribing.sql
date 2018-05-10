@@ -14,7 +14,7 @@ as
   select distinct de.drug_concept_id, c.concept_id as rx_dose_form_concept_id, c.concept_name as rx_dose_form_concept_name
   from SITE_pedsnet.drug_exposure de, vocabulary.concept_relationship cr, 
   vocabulary.concept c  
-  where de.drug_type_concept_id IN ('38000177')
+  where de.drug_type_concept_id IN (38000177, 38000180)
   and drug_concept_id > 0 
   and relationship_id = 'RxNorm has dose form'
   and de.drug_concept_id = concept_id_1
