@@ -1,10 +1,12 @@
-﻿ALTER TABLE SITE_4dot0_pcornet.vital ALTER original_bmi SET DATA TYPE NUMERIC(20,8);
+begin;
+ALTER TABLE SITE_4dot0_pcornet.vital ALTER original_bmi SET DATA TYPE NUMERIC(20,8);
 
-drop sequence if exists sq_vitalid;
-create sequence sq_vitalid start 1;
+drop sequence if exists SITE_4dot0_pcornet.sq_vitalid;
+create sequence SITE_4dot0_pcornet.sq_vitalid start 1;
+commit;
 
 -- extract all fields 
-
+begin;
 create table SITE_4dot0_pcornet.ms_ht as 
 (select  distinct person_id, site, measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number
 	,  measurement_concept_id,measurement_source_value  
@@ -25,7 +27,9 @@ create table SITE_4dot0_pcornet.ms_dia as (select distinct person_id, site, meas
 		visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, 
 			 measurement_concept_id,measurement_source_value  from 
 	SITE_pedsnet.measurement where measurement_concept_id in ('3034703','3019962','3013940','3012888'));
+commit;
 
+begin;
 create table SITE_4dot0_pcornet.ms as 
 	select * from SITE_4dot0_pcornet.ms_ht 
 	UNION 
@@ -36,8 +40,9 @@ create table SITE_4dot0_pcornet.ms as
 	select * from SITE_4dot0_pcornet.ms_sys
 	UNION 
 	select * from SITE_4dot0_pcornet.ms_dia; 
-		
-		
+commit;		
+
+begin;
 create table SITE_4dot0_pcornet.ob_tobacco as ( select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime,coalesce(m1.target_concept,'OT') as tobacco 
 	from SITE_pedsnet.observation o1 left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m1 on cast(o1.value_as_concept_id as text) = m1.source_concept_id
 	where observation_concept_id IN ('4005823'));
@@ -57,10 +62,11 @@ create table SITE_4dot0_pcornet.ob_tobacco_data as (select ob_tobacco.visit_occu
 	left join SITE_4dot0_pcornet.ob_tobacco_type on fr2.fact_id_2 = ob_tobacco_type.observation_id
 	left join SITE_pedsnet.fact_relationship fr3 on ob_tobacco.observation_id = fr3.fact_id_1 
 	left join SITE_4dot0_pcornet.ob_smoking on fr3.fact_id_2 = ob_smoking.observation_id);
+commit; 
 
+--  drop table SITE_4dot0_pcornet.vital_extract; 
 
- drop table SITE_4dot0_pcornet.vital_extract; 
- 
+begin;
 create table SITE_4dot0_pcornet.vital_extract as	
 select distinct
 ms.person_id, ms.visit_occurrence_id,  ms.measurement_date, ms.measurement_datetime,  
@@ -94,7 +100,9 @@ where coalesce(ms_ht.value_as_number, ms_wt.value_as_number, ms_dia.value_as_num
 	  and EXTRACT(YEAR FROM ms.measurement_date) >= 2001 and
       ms.person_id in (select person_id from SITE_4dot0_pcornet.person_visit_start2001) and
       ms.visit_occurrence_id in (select visit_id from SITE_4dot0_pcornet.person_visit_start2001);
+commit;
 
+begin;
 --- transform 
 create table SITE_4dot0_pcornet.vital_transform as 
 SELECT distinct
@@ -122,8 +130,11 @@ FROM
 SITE_4dot0_pcornet.vital_extract
 left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m on cast(measurement_concept_id_sys as text) = m.source_concept_id 
 	AND m.source_concept_class='BP Position'; 
+commit;
 
---- loading 
+
+--- loading
+begin;
 insert into SITE_4dot0_pcornet.vital(
             vitalid, patid, encounterid, measure_date, measure_time, vital_source, 
             ht, wt, diastolic, systolic, original_bmi, bp_position, 
@@ -134,3 +145,4 @@ select nextval('SITE_4dot0_pcornet.sq_vitalid') as vitalid, patid, encounterid, 
 	    tobacco, tobacco_type, smoking
             ,raw_diastolic, raw_systolic, raw_bp_position,site
 from SITE_4dot0_pcornet.vital_transform; 
+commit;

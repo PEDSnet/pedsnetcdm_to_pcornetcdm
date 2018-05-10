@@ -1,16 +1,1 @@
-class,pcornet_code,pcornet_name,pedsnet_code,pedsnet_name, value_as_concept_id
-Result qualifier,POSITIVE,Positive,9191,Positive,null
-Result qualifier,NEGATIVE,Negative,9189,Negative,null
-Result qualifier,BORDERLINE,Borderline,4162852,Borderline normal,null
-Result qualifier,ELEVATED,Elevated,,,null
-Result qualifier,HIGH,High,4328749,High,null
-Result qualifier,LOW,Low,4267416,Low,null
-Result qualifier,NORMAL,Normal,4124457,Normal range,null
-Result qualifier,NORMAL,Normal,4128647,Normal limits,null
-Result qualifier,ABNORMAL,Abnormal,4183448,Abnormal presence of,null
-Result qualifier,ABNORMAL,Abnormal,4155142,Abnormally high,null
-Result qualifier,ABNORMAL,Abnormal,4155143,Abnormally low,null
-Result qualifier,UNDETERMINED,Undetermined,4160775,Undetermined,null
-Result qualifier,NI,No Information,44814650,No information,null
-Result qualifier,UN,Unknown,44814653,Unknown,null
-Result qualifier,OT,Other,44814649,Other,null
+class,pcornet_code,pcornet_name,pedsnet_code,pedsnet_name, value_as_concept_idResult qualifier,POSITIVE,Positive,9191,Positive,nullResult qualifier,NEGATIVE,Negative,9189,Negative,nullResult qualifier,BORDERLINE,Borderline,4162852,Borderline normal,nullResult qualifier,HIGH,High,4328749,High,nullResult qualifier,LOW,Low,4267416,Low,nullResult qualifier,NORMAL,Normal,4124457,Normal range,nullResult qualifier,NORMAL,Normal,4128647,Normal limits,nullResult qualifier,ABNORMAL,Abnormal,4183448,Abnormal presence of,nullResult qualifier,ABNORMAL,Abnormal,4155142,Abnormally high,nullResult qualifier,ABNORMAL,Abnormal,4155143,Abnormally low,nullResult qualifier,UNDETERMINED,Undetermined,4160775,Undetermined,nullResult qualifier,NI,No Information,44814650,No information,nullResult qualifier,UN,Unknown,44814653,Unknown,nullResult qualifier,OT,Other,44814649,Other,nullResult qualifier,OT,Other,0,Other,null
