@@ -73,13 +73,13 @@ from
 	                                      vocabulary_id = 'RxNorm'
 	left join vocabulary.concept c2 on de.drug_source_concept_id = c2.concept_id
 	left join SITE_4dot0_pcornet.rx_dose_form_data rdf on de.drug_concept_id =  rdf.drug_concept_id
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m1 on cast(dose_unit_concept_id as text) = m1.source_concept_id 
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on cast(dose_unit_concept_id as text) = m1.source_concept_id 
 			and m1.source_concept_class='Dose unit'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m2 on cast(rdf.rx_dose_form_concept_id as text) = m2.source_concept_id 
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on cast(rdf.rx_dose_form_concept_id as text) = m2.source_concept_id 
 			and m2.source_concept_class='Rx Dose Form'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m3 on cast(trim(lower(de.frequency)) as text) = m3.source_concept_id 
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on cast(trim(lower(de.frequency)) as text) = m3.source_concept_id 
 			and m3.source_concept_class='Rx Frequency'		
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m4 on cast(de.route_concept_id as text) = m4.source_concept_id 
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m4 on cast(de.route_concept_id as text) = m4.source_concept_id 
 			and m4.source_concept_class='Route'
 where
 	de.drug_type_concept_id IN ('38000177')

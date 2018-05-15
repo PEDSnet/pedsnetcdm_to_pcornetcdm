@@ -28,6 +28,7 @@ SITE_4dot0_pcornet.primary_visit_payer as
 	from SITE_pedsnet.visit_payer vp, min_payer_data mvp
 	where vp.visit_payer_id = mvp.visit_payer_id
 	; 
+
 								
 create  table 
 SITE_4dot0_pcornet.encounter_extract 
@@ -35,6 +36,7 @@ as
 	select v.person_id, v.visit_occurrence_id, visit_start_date, visit_start_datetime
 	, visit_end_date, visit_end_datetime, provider_id, zip,
 	visit_concept_id,  v.care_site_id, 
+	place_of_service_concept_id, specialty_concept_id, 
 	dis_disposition.value_as_concept_id value_as_concept_id_ddisp,
 	discharge_to_concept_id, admitting_source_concept_id,
     drg_value.value_as_string as value_as_string_drg, 
@@ -50,19 +52,19 @@ from
 	left join SITE_4dot0_pcornet.drg_value on v.visit_occurrence_id = drg_value.visit_occurrence_id 
 	left join SITE_4dot0_pcornet.primary_visit_payer vp on v.visit_occurrence_id = vp.visit_occurrence_id
 	WHERE 
-	v.person_id in (select person_id from SITE_4dot0_pcornet.person_visit_start2001) and
     v.visit_occurrence_id in (select visit_id from SITE_4dot0_pcornet.person_visit_start2001);
 	
 
 
 
 --- transform datashape
+
 create  table 
 SITE_4dot0_pcornet.encounter_transform
 as 
  select 
 	cast(person_id as text) as patid,
-	cast(visit_occurrence_id as text) as encounterid ,
+	cast(encounter_extract.visit_occurrence_id as text) as encounterid ,
 	cast(cast(date_part('year', visit_start_date) as text)||'-'||lpad(cast(date_part('month', visit_start_date) as text),2,'0')||'-'||lpad(cast(date_part('day', visit_start_date) as text),2,'0') 
 	as date) as admit_date,
     date_part('hour',visit_start_datetime)||':'||date_part('minute',visit_start_datetime) as admit_time,
@@ -87,19 +89,31 @@ as
 	coalesce(m3a.target_concept,'NI') as discharge_status,
 	coalesce(m4a.target_concept,'NI') as admitting_source,
 	coalesce(m5.target_concept,'NI') as primary_payer_type, 
+	 coalesce(  m6.target_concept,  m7.target_concept, 
+           m8.target_concept, 'NI')
+      as facility_type, 
+      coalesce(  m6.source_concept_id,  m7.source_concept_id, 
+           m8.source_concept_id, NULL) as raw_facility_type,
 	site as site
 from 
 	SITE_4dot0_pcornet.encounter_extract
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m1 
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 
 		on cast(visit_concept_id as text)= m1.source_concept_id and m1.source_concept_class='Encounter type'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m2 on case when value_as_concept_id_ddisp is null AND m2.value_as_concept_id is null then true else 
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on case when value_as_concept_id_ddisp is null AND m2.value_as_concept_id is null then true else 
 				cast(value_as_concept_id_ddisp as text) = m2.value_as_concept_id end and m2.source_concept_class='Discharge disposition'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m4a on admitting_source_concept_id = m4a.source_concept_id::integer 
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m4a on admitting_source_concept_id = m4a.source_concept_id::integer 
 			and m4a.source_concept_class='Admitting source'            
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m3a on cast(discharge_to_concept_id as text) = m3a.source_concept_id 
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m3a on cast(discharge_to_concept_id as text) = m3a.source_concept_id 
 			and m3a.source_concept_class='Discharge status'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m5 on cast(plan_class||'-'||plan_type as text) = m5.source_concept_id 
-			and m5.source_concept_class='Payer'; 
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m5 on cast(plan_class||'-'||plan_type as text) = m5.source_concept_id 
+			and m5.source_concept_class='Payer'
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m6 on place_of_service_concept_id = m6.source_concept_id::integer
+               and m6.source_concept_class='Facility type'  
+     left join pcornet_maps.pedsnet_pcornet_valueset_map m7 on visit_concept_id = m7.source_concept_id::integer
+               and specialty_concept_id = m7.value_as_concept_id::integer
+               and m7.source_concept_class='Facility type'        
+     left join pcornet_maps.pedsnet_pcornet_valueset_map m8 on visit_concept_id = m8.source_concept_id::integer 
+               and m8.source_concept_class='Facility type'  and m8.value_as_concept_id is null ; 
 
 	
 
@@ -114,7 +128,7 @@ insert into SITE_4dot0_pcornet.encounter (
             --raw_drg_type, 
             raw_admitting_source,raw_payer_type_primary, 
 	raw_payer_name_primary, 
-	raw_payer_id_primary, site)
+	raw_payer_id_primary, facility_type, raw_facility_type, site)
  select 
 	patid, 	encounterid , admit_date,
    	admit_time, discharge_date, discharge_time,
@@ -129,6 +143,8 @@ insert into SITE_4dot0_pcornet.encounter (
 	raw_payer_type_primary, 
 	raw_payer_name_primary, 
 	raw_payer_id_primary,
+	facility_type, 
+	raw_facility_type,
 	site
 from 
 	SITE_4dot0_pcornet.encounter_transform; 
