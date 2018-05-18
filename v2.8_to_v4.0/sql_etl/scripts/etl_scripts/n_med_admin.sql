@@ -57,9 +57,9 @@ from
 	left join SITE_4dot0_pcornet.ndc_concepts ndc_via_source_value on ndc_via_source_value.concept_code = split_part(drug_source_value,'|',1) 
 	left join vocabulary.concept rxnorm_via_concept on rxnorm_via_concept.concept_id = drug_concept_id and vocabulary_id = 'RxNorm'
 	left join SITE_4dot0_pcornet.rx_dose_form_data rdf on de.drug_concept_id =  rdf.drug_concept_id
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m1 on cast(dose_unit_concept_id as text) = m1.source_concept_id 
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on cast(dose_unit_concept_id as text) = m1.source_concept_id 
 			and m1.source_concept_class='Dose unit'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m2 on cast(de.route_concept_id as text) = m2.source_concept_id 
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on cast(de.route_concept_id as text) = m2.source_concept_id 
 			and m2.source_concept_class='Route'
 where
 	de.drug_type_concept_id IN ('38000180')
@@ -67,7 +67,7 @@ where
 	; 
 
 
--- create index med_admin_enc on SITE_4dot0_pcornet.med_admin (encounterid);
+ create index med_admin_enc on SITE_4dot0_pcornet.med_admin (encounterid);
 
 delete from SITE_4dot0_pcornet.med_admin 
 	where

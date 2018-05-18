@@ -44,10 +44,10 @@ from
 	SITE_pedsnet.drug_exposure de
 	left join SITE_4dot0_pcornet.rxnorm_ndc_crosswalk on drug_concept_id = rxnorm_concept_id
 	left join SITE_4dot0_pcornet.ndc_concepts ndc on concept_id = drug_source_concept_id
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m1 on cast(dose_unit_concept_id as text) = m1.source_concept_id 
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on cast(dose_unit_concept_id as text) = m1.source_concept_id 
 			and m1.source_concept_class='Dose unit'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m2 on cast(route_concept_id as text) = m2.source_concept_id 
-			and m1.source_concept_class='Route'
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on cast(route_concept_id as text) = m2.source_concept_id 
+			and m2.source_concept_class='Route'
 where
 	de.drug_type_concept_id = '38000175' and
     person_id in (select person_id from SITE_4dot0_pcornet.person_visit_start2001) and

@@ -38,7 +38,7 @@ select
 	m.measurement_id as lab_result_cm_id,
 	cast(m.person_id as text) as patid,
 	cast(m.visit_occurrence_id as text) as encounterid,
-	spec_map.target_concept as specimen_source,
+	coalesce(spec_map.target_concept,'OT') as specimen_source,
 	c1.concept_code as lab_loinc,
 	m7.target_concept as priority,
 	case when measurement_source_value like 'POC%'
@@ -83,19 +83,19 @@ from
 	                                   c1.vocabulary_id = 'LOINC'
 	left join vocabulary.concept c2 on m.operator_concept_id = c2.concept_id and
 	                                   c2.domain_id = 'Meas Value Operator'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m3 on cast(m.operator_concept_id as text) = m3.source_concept_id and
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on cast(m.operator_concept_id as text) = m3.source_concept_id and
 	                                                               m3.source_concept_class = 'Result modifier'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m4 on cast(m.unit_concept_id as text)= m4.source_concept_id and
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m4 on cast(m.unit_concept_id as text)= m4.source_concept_id and
 	                                                                m4.source_concept_class = 'Result unit'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m5 on cast(m.range_low_operator_concept_id as text)= m5.source_concept_id and
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m5 on cast(m.range_low_operator_concept_id as text)= m5.source_concept_id and
 	                                                                m5.source_concept_class = 'Result modifier'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m6 on cast(m.range_high_operator_concept_id as text)= m6.source_concept_id and
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m6 on cast(m.range_high_operator_concept_id as text)= m6.source_concept_id and
 	                                                                m6.source_concept_class = 'Result modifier'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m7 on cast(m.priority_concept_id as text)= m7.source_concept_id and
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m7 on cast(m.priority_concept_id as text)= m7.source_concept_id and
 	                                                                m7.source_concept_class = 'Lab priority'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m8 on cast(m.value_as_concept_id as text)= m8.source_concept_id and
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m8 on cast(m.value_as_concept_id as text)= m8.source_concept_id and
 	                                                                m8.source_concept_class = 'Result qualifier'
-    left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map spec_map on cast(m.specimen_source_value as text)= spec_map.source_concept_id and
+    left join pcornet_maps.pedsnet_pcornet_valueset_map spec_map on lower(m.specimen_source_value)= spec_map.source_concept_id and
 	                                                                spec_map.source_concept_class = 'Specimen source'
 	where visit_occurrence_id IN (select visit_id from SITE_4dot0_pcornet.person_visit_start2001)
 	and EXTRACT(YEAR FROM measurement_date)>=2001;
