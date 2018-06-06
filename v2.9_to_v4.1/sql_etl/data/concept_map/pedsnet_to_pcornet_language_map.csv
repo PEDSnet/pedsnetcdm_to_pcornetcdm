@@ -1,0 +1,374 @@
+concept_class,pcornet_code,pcornet_desc,pedsnet_code,pedsnet_name,value_as_concept_id
+Language,AAR,Afar,,,null
+Language,ABK,Abkhazian,,,null
+Language,ACE,Achinese,,,null
+Language,ACH,Acoli,,,null
+Language,ADA,Adangme,,,null
+Language,ADY,Adyghe; Adygei,,,null
+Language,AFR,Afrikaans,,,null
+Language,AIN,Ainu,,,null
+Language,AKA,Akan,,,null
+Language,ALE,Aleut,,,null
+Language,ALT,Southern Altai,,,null
+Language,AMH,Amharic,4182354,Amharic language,null
+Language,ANP,Angika,,,null
+Language,ARA,Arabic,4181374,Arabic language,null
+Language,ARG,Aragonese,,,null
+Language,ARN,Mapudungun; Mapuche,,,null
+Language,ARP,Arapaho,,,null
+Language,ARW,Arawak,,,null
+Language,ASM,Assamese,,,null
+Language,AST,Asturian; Bable; Leonese; Asturleonese,,,null
+Language,AVA,Avaric,,,null
+Language,AWA,Awadhi,,,null
+Language,AYM,Aymara,,,null
+Language,AZE,Azerbaijani,,,null
+Language,BAK,Bashkir,,,null
+Language,BAL,Baluchi,,,null
+Language,BAM,Bambara,,,null
+Language,BAN,Balinese,,,null
+Language,BAS,Basa,,,null
+Language,BEJ,Beja; Bedawiyet,,,null
+Language,BEL,Belarusian,,,null
+Language,BEM,Bemba,,,null
+Language,BEN,Bengali,4052786,Bengali language,null
+Language,BHO,Bhojpuri,,,null
+Language,BIK,Bikol,,,null
+Language,BIN,Bini; Edo,,,null
+Language,BIS,Bislama,,,null
+Language,BLA,Siksika,,,null
+Language,BOD,Tibetan,,,null
+Language,BOS,Bosnian,40481563,Bosnian language,null
+Language,BRA,Braj,,,null
+Language,BRE,Breton,,,null
+Language,BUA,Buriat,,,null
+Language,BUG,Buginese,,,null
+Language,BUL,Bulgarian,,,null
+Language,BYN,Bilin; Blin,,,null
+Language,CAD,Caddo,,,null
+Language,CAR,Galibi Carib,,,null
+Language,CAT,Catalan; Valencian,,,null
+Language,CEB,Cebuano,,,null
+Language,CES,Czech,,,null
+Language,CHA,Chamorro,,,null
+Language,CHE,Chechen,,,null
+Language,CHK,Chuukese,,,null
+Language,CHM,Mari,,,null
+Language,CHN,Chinook jargon,,,null
+Language,CHO,Choctaw,,,null
+Language,CHP,Chipewyan; Dene Suline,,,null
+Language,CHR,Cherokee,,,null
+Language,CHV,Chuvash,,,null
+Language,CHY,Cheyenne,,,null
+Language,COR,Cornish,,,null
+Language,COS,Corsican,,,null
+Language,CRE,Cree,,,null
+Language,CRH,Crimean Tatar; Crimean Turkish,,,null
+Language,CSB,Kashubian,,,null
+Language,CYM,Welsh,,,null
+Language,DAK,Dakota,,,null
+Language,DAN,Danish,,,null
+Language,DAR,Dargwa,,,null
+Language,DEL,Delaware,,,null
+Language,DEN,Slave (Athapascan),,,null
+Language,DEU,German,,,null
+Language,DGR,Dogrib,,,null
+Language,DIN,Dinka,,,null
+Language,DIV,Dhivehi; Dhivehi; Maldivian,,,null
+Language,DOI,Dogri,,,null
+Language,DSB,Lower Sorbian,,,null
+Language,DUA,Duala,,,null
+Language,DYU,Dyula,,,null
+Language,DZO,Dzongkha,,,null
+Language,EFI,Efik,,,null
+Language,EKA,Ekajuk,,,null
+Language,ELL,Modern Greek (1453–),,,null
+Language,ENG,English,4180186,English Language,null
+Language,EST,Estonian,,,null
+Language,EUS,Basque,,,null
+Language,EWE,Ewe,,,null
+Language,EWO,Ewondo,,,null
+Language,FAN,Fang,,,null
+Language,FAO,Faroese,,,null
+Language,FAS,Persian,,,null
+Language,FAT,Fanti,,,null
+Language,FIJ,Fijian,,,null
+Language,FIL,Filipino; Pilipino,,,null
+Language,FIN,Finnish,,,null
+Language,FON,Fon,,,null
+Language,FRA,French,4180190,French Language,null
+Language,FRR,Northern Frisian,,,null
+Language,FRS,Eastern Frisian,,,null
+Language,FRY,Western Frisian,,,null
+Language,FUL,Fulah,,,null
+Language,FUR,Friulian,,,null
+Language,GAA,Ga,,,null
+Language,GAY,Gayo,,,null
+Language,GBA,Gbaya,,,null
+Language,GIL,Gilbertese,,,null
+Language,GLA,Gaelic; Scottish Gaelic,,,null
+Language,GLE,Irish,,,null
+Language,GLG,Galician,,,null
+Language,GLV,Manx,,,null
+Language,GON,Gondi,,,null
+Language,GOR,Gorontalo,,,null
+Language,GRB,Grebo,,,null
+Language,GRN,Guarani,,,null
+Language,GSW,Swiss German; Alemannic; Alsatian,,,null
+Language,GUJ,Gujarati,,,null
+Language,GWI,Gwichʼin,,,null
+Language,HAI,Haida,,,null
+Language,HAT,Haitian; Haitian Creole,44802876,Haitian Creole Language,null
+Language,HAU,Hausa,,,null
+Language,HAW,Hawaiian,,,null
+Language,HEB,Hebrew,,,null
+Language,HER,Herero,,,null
+Language,HIL,Hiligaynon,,,null
+Language,HIN,Hindi,,,null
+Language,HMN,Hmong; Mong,,,null
+Language,HMO,Hiri Motu,,,null
+Language,HRV,Croatian,,,null
+Language,HSB,Upper Sorbian,,,null
+Language,HUN,Hungarian,,,null
+Language,HUP,Hupa,,,null
+Language,HYE,Armenian,,,null
+Language,IBA,Iban,,,null
+Language,IBO,Igbo,,,null
+Language,III,Sichuan Yi; Nuosu,,,null
+Language,IKU,Inuktitut,,,null
+Language,ILO,Iloko,,,null
+Language,IND,Indonesian,,,null
+Language,INH,Ingush,,,null
+Language,IPK,Inupiaq,,,null
+Language,ISL,Icelandic,,,null
+Language,ITA,Italian,,,null
+Language,JAV,Javanese,,,null
+Language,JPN,Japanese,4181524,Japanese Language,null
+Language,JPR,Judeo-Persian,,,null
+Language,JRB,Judeo-Arabic,,,null
+Language,KAA,Kara-Kalpak,,,null
+Language,KAB,Kabyle,,,null
+Language,KAC,Kachin; Jingpho,,,null
+Language,KAL,Kalaallisut; Greenlandic,,,null
+Language,KAM,Kamba,,,null
+Language,KAN,Kannada,,,null
+Language,KAS,Kashmiri,,,null
+Language,KAT,Georgian,,,null
+Language,KAU,Kanuri,,,null
+Language,KAZ,Kazakh,,,null
+Language,KBD,Kabardian,,,null
+Language,KHA,Khasi,,,null
+Language,KHM,Central Khmer,,,null
+Language,KIK,Kikuyu; Gikuyu,,,null
+Language,KIN,Kinyarwanda,,,null
+Language,KIR,Kirghiz; Kyrgyz,,,null
+Language,KMB,Kimbundu,,,null
+Language,KOK,Konkani,,,null
+Language,KOM,Komi,,,null
+Language,KON,Kongo,,,null
+Language,KOR,Korean,4175771,Korean Language,null
+Language,KOS,Kosraean,,,null
+Language,KPE,Kpelle,,,null
+Language,KRC,Karachay-Balkar,,,null
+Language,KRL,Karelian,,,null
+Language,KRU,Kurukh,,,null
+Language,KUA,Kuanyama; Kwanyama,,,null
+Language,KUM,Kumyk,,,null
+Language,KUR,Kurdish,,,null
+Language,KUT,Kutenai,,,null
+Language,LAD,Ladino,,,null
+Language,LAH,Lahnda,,,null
+Language,LAM,Lamba,,,null
+Language,LAO,Lao,,,null
+Language,LAV,Latvian,,,null
+Language,LEZ,Lezghian,,,null
+Language,LIM,Limburgan; Limburger; Limburgish,,,null
+Language,LIN,Lingala,,,null
+Language,LIT,Lithuanian,,,null
+Language,LOL,Mongo,,,null
+Language,LOZ,Lozi,,,null
+Language,LTZ,Luxembourgish; Letzeburgesch,,,null
+Language,LUA,Luba-Lulua,,,null
+Language,LUB,Luba-Katanga,,,null
+Language,LUG,Ganda,,,null
+Language,LUI,Luiseno,,,null
+Language,LUN,Lunda,,,null
+Language,LUO,Luo (Kenya and Tanzania),,,null
+Language,LUS,Lushai,,,null
+Language,MAD,Madurese,,,null
+Language,MAG,Magahi,,,null
+Language,MAH,Marshallese,,,null
+Language,MAI,Maithili,,,null
+Language,MAK,Makasar,,,null
+Language,MAL,Malayalam,,,null
+Language,MAN,Mandingo,,,null
+Language,MAR,Marathi,,,null
+Language,MAS,Masai,,,null
+Language,MDF,Moksha,,,null
+Language,MDR,Mandar,,,null
+Language,MEN,Mende,,,null
+Language,MIC,Mi'kmaq; Micmac,,,null
+Language,MIN,Minangkabau,,,null
+Language,MKD,Macedonian,,,null
+Language,MLG,Malagasy,,,null
+Language,MLT,Maltese,,,null
+Language,MNC,Manchu,,,null
+Language,MNI,Manipuri,,,null
+Language,MOH,Mohawk,,,null
+Language,MON,Mongolian,,,null
+Language,MOS,Mossi,,,null
+Language,MRI,Maori,,,null
+Language,MSA,Malay,,,null
+Language,MUS,Creek,,,null
+Language,MWL,Mirandese,,,null
+Language,MWR,Marwari,,,null
+Language,MYA,Burmese,4181727,Burmese language,null
+Language,MYV,Erzya,,,null
+Language,NAP,Neapolitan,,,null
+Language,NAU,Nauru,,,null
+Language,NAV,Navajo; Navaho,,,null
+Language,NBL,South Ndebele,,,null
+Language,NDE,North Ndebele,,,null
+Language,NDO,Ndonga,,,null
+Language,NDS,Low German; Low Saxon,,,null
+Language,NEP,Nepali,4175908,Nepali language,null
+Language,NEW,Nepal Bhasa; Newari,,,null
+Language,NIA,Nias,,,null
+Language,NIU,Niuean,,,null
+Language,NLD,Dutch; Flemish,,,null
+Language,NNO,Norwegian Nynorsk,,,null
+Language,NOB,Norwegian Bokmål,,,null
+Language,NOG,Nogai,,,null
+Language,NOR,Norwegian,,,null
+Language,NQO,N'Ko,,,null
+Language,NSO,Pedi; Sepedi; Northern Sotho,,,null
+Language,NYA,Chichewa; Chewa; Nyanja,,,null
+Language,NYM,Nyamwezi,,,null
+Language,NYN,Nyankole,,,null
+Language,NYO,Nyoro,,,null
+Language,NZI,Nzima,,,null
+Language,OCI,Occitan (post 1500),,,null
+Language,OJI,Ojibwa,,,null
+Language,ORI,Oriya,,,null
+Language,ORM,Oromo,,,null
+Language,OSA,Osage,,,null
+Language,OSS,Ossetian; Ossetic,,,null
+Language,PAG,Pangasinan,,,null
+Language,PAM,Pampanga; Kapampangan,,,null
+Language,PAN,Panjabi; Punjabi,,,null
+Language,PAP,Papiamento,,,null
+Language,PAU,Palauan,,,null
+Language,POL,Polish,,,null
+Language,PON,Pohnpeian,,,null
+Language,POR,Portuguese,4181536,Portuguese language,null
+Language,PUS,Pushto; Pashto,,,null
+Language,QUE,Quechua,,,null
+Language,RAJ,Rajasthani,,,null
+Language,RAP,Rapanui,,,null
+Language,RAR,Rarotongan; Cook Islands Maori,,,null
+Language,ROH,Romansh,,,null
+Language,ROM,Romany,,,null
+Language,RON,Romanian; Moldavian; Moldovan,,,null
+Language,RUN,Rundi,,,null
+Language,RUP,Aromanian; Arumanian; Macedo-Romanian,,,null
+Language,RUS,Russian,4181539,Russian language,null
+Language,SAD,Sandawe,,,null
+Language,SAG,Sango,,,null
+Language,SAH,Yakut,,,null
+Language,SAS,Sasak,,,null
+Language,SAT,Santali,,,null
+Language,SCN,Sicilian,,,null
+Language,SCO,Scots,,,null
+Language,SEL,Selkup,,,null
+Language,SHN,Shan,,,null
+Language,SID,Sidamo,,,null
+Language,SIN,Sinhala; Sinhalese,,,null
+Language,SLK,Slovak,,,null
+Language,SLV,Slovenian,,,null
+Language,SMA,Southern Sami,,,null
+Language,SME,Northern Sami,,,null
+Language,SMJ,Lule Sami,,,null
+Language,SMN,Inari Sami,,,null
+Language,SMO,Samoan,,,null
+Language,SMS,Skolt Sami,,,null
+Language,SNA,Shona,,,null
+Language,SND,Sindhi,,,null
+Language,SNK,Soninke,,,null
+Language,SOM,Somali,4182350,Somali language,null
+Language,SOT,Southern Sotho,,,null
+Language,SPA,Spanish; Castilian,4182511,Spanish language,null
+Language,SQI,Albanian,,,null
+Language,SRD,Sardinian,,,null
+Language,SRN,Sranan Tongo,,,null
+Language,SRP,Serbian,,,null
+Language,SRR,Serer,,,null
+Language,SSW,Swati,,,null
+Language,SUK,Sukuma,,,null
+Language,SUN,Sundanese,,,null
+Language,SUS,Susu,,,null
+Language,SWA,Swahili,,,null
+Language,SWE,Swedish,,,null
+Language,SYR,Syriac,,,null
+Language,TAH,Tahitian,,,null
+Language,TAM,Tamil,,,null
+Language,TAT,Tatar,,,null
+Language,TEL,Telugu,,,null
+Language,TEM,Timne,,,null
+Language,TER,Tereno,,,null
+Language,TET,Tetum,,,null
+Language,TGK,Tajik,,,null
+Language,TGL,Tagalog,,,null
+Language,THA,Thai,,,null
+Language,TIG,Tigre,,,null
+Language,TIR,Tigrinya,,,null
+Language,TIV,Tiv,,,null
+Language,TKL,Tokelau,,,null
+Language,TLI,Tlingit,,,null
+Language,TMH,Tamashek,,,null
+Language,TOG,Tonga (Nyasa),,,null
+Language,TON,Tonga (Tonga Islands),,,null
+Language,TPI,Tok Pisin,,,null
+Language,TSI,Tsimshian,,,null
+Language,TSN,Tswana,,,null
+Language,TSO,Tsonga,,,null
+Language,TUK,Turkmen,,,null
+Language,TUM,Tumbuka,,,null
+Language,TUR,Turkish,,,null
+Language,TVL,Tuvalua,,,null
+Language,TWI,Twi,,,null
+Language,TYV,Tuvinian,,,null
+Language,UDM,Udmurt,,,null
+Language,UIG,Uighur; Uyghur,,,null
+Language,UKR,Ukrainian,,,null
+Language,UMB,Umbundu,,,null
+Language,URD,Urdu,,,null
+Language,UZB,Uzbek,,,null
+Language,VAI,Vai,,,null
+Language,VEN,Venda,,,null
+Language,VIE,Vietnamese,4181526,Vietnamese language,null
+Language,VOT,Votic,,,null
+Language,WAL,Wolaitta; Wolaytta,,,null
+Language,WAR,Waray,,,null
+Language,WAS,Washo,,,null
+Language,WLN,Walloon,,,null
+Language,WOL,Wolof,,,null
+Language,XAL,Kalmyk; Oirat,,,null
+Language,XHO,Xhosa,,,null
+Language,YAO,Yao,,,null
+Language,YAP,Yapese,,,null
+Language,YID,Yiddish,,,null
+Language,YOR,Yoruba,,,null
+Language,ZAP,Zapotec,,,null
+Language,ZEN,Zenaga,,,null
+Language,ZGH,Standard Moroccan Tamazight,,,null
+Language,ZHA,Zhuang; Chuang,,,null
+Language,ZHO,Chinese,4182948,Chinese Language,null
+Language,ZHO,Chinese,4177463,Cantonese Chinese dialect,null
+Language,ZHO,Chinese,4181724,Mandarin dialect,null
+Language,ZUL,Zulu,,,null
+Language,ZUN,Zuni,,,null
+Language,ZZA,Zaza; Dimili; Dimli; Kirdki; Kirmanjki; Zazaki,,,null
+Language,NI,No information,44814650,No information,null
+Language,UN,Unknown,44814653,Unknown,null
+Language,OT,Other,44814649,Other,null
+Language,OT,Other,40483152,Sign language,null
