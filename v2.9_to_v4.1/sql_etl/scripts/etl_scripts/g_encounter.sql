@@ -25,8 +25,8 @@ group by person_id,visit_occurrence_id;
 -- Link the visit payer infromation
 create table SITE_pcornet.visit_payer as
 select distinct on (visit_occurrence_id) visit_occurrence_id, visit_payer_id, 
-	    case when visit_payer_type_concept_id = 31968 then 'TRUE'
-			  when visit_payer_type_concept_id = 31969 then 'FALSE'
+	    case when visit_payer_type_concept_id = 31968 then TRUE
+			  when visit_payer_type_concept_id = 31969 then FALSE
 			  else null
 			  end as primary_payer_flag,
 	        plan_name, plan_type, plan_class, m5.target_concept as payer
@@ -58,21 +58,21 @@ as
 	visit_source_value, 
 	discharge_to_source_value, 
 	admitting_source_value,
-	case when primary_payer_flag == 'TRUE' then plan_class||'-'||plan_type
+	case when primary_payer_flag is true then plan_class||'-'||plan_type
 	     else 'NI' end as raw_payer_type_primary, 
-	case when primary_payer_flag == 'FALSE' then plan_class||'-'||plan_type
+	case when primary_payer_flag is false then plan_class||'-'||plan_type
 	     else 'NI' end as raw_payer_type_secondary, 
-	case when primary_payer_flag == 'TRUE' then plan_name
+	case when primary_payer_flag is true then plan_name
 	     else 'NI' end as raw_payer_name_primary, 
-	case when primary_payer_flag == 'FALSE' then plan_name
+	case when primary_payer_flag is false then plan_name
 	     else 'NI' end as raw_payer_name_secondary,
-	case when primary_payer_flag == 'TRUE' then visit_payer_id
+	case when primary_payer_flag is true then visit_payer_id
 	     else 'NI' end as raw_payer_id_primary,
-	case when primary_payer_flag == 'FALSE' then visit_payer_id
+	case when primary_payer_flag is false then visit_payer_id
 	     else 'NI' end as raw_payer_id_secondary,
-	case when primary_payer_flag == 'TRUE' then payer
+	case when primary_payer_flag is true then payer
 	     else 'NI' end as payer_type_primary,
-	case when primary_payer_flag == 'FALSE' then payer
+	case when primary_payer_flag is false then payer
 	     else 'NI' end as payer_type_secondary,
 	v.site
 from SITE_pedsnet.visit_occurrence v
