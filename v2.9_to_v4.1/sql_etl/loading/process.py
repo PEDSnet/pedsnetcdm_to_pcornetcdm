@@ -9,7 +9,7 @@ import psycopg2
 import config
 import subprocess
 import glob
-import csv
+import io
 
 # endregion
 
@@ -40,12 +40,13 @@ def ddl_only():
       5. Set the permission for pcor_et_user and pcornet_sas user.
     """
     conn = None
+    maps = False
 
     try:
         # region read connection parameters
         params = config.config('db')
         schema_path = config.config('schema')
-        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_4dot0_pcornet""")]
+        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_pcornet""")]
         # endregion
 
         # region connect to the PostgreSQL server
@@ -69,28 +70,6 @@ def ddl_only():
             # set the search pat to the schema
             cur.execute("""SET search_path TO """ + schemas + """;""")
             time.sleep(0.1)
-            # endregion
-
-            # region create tables
-            try:
-                print '\ncreating and populating the mapping table ...'
-                cur.execute(query.create_table(schemas))
-                conn.commit()
-
-                # region import the file to the database
-                if os.path.isfile('data/concept_map.csv'):
-                    f = open('data/concept_map.csv', 'r')
-                    cur.copy_from(f, schemas + ".pedsnet_pcornet_valueset_map", columns=(
-                        "source_concept_class",
-                        "target_concept",
-                        "pcornet_name",
-                        "source_concept_id",
-                        "concept_description",
-                        "value_as_concept_id"),
-                                  sep=",")
-                    conn.commit()
-            except (Exception, psycopg2.OperationalError) as error:
-                print(error)
             # endregion
 
             # region run the DDL
@@ -184,8 +163,17 @@ def ddl_only():
                     conn.commit()
             except (Exception, psycopg2.OperationalError) as error:
                 print(error)
-            # endregion
+                # endregion
 
+        # region check if maps loaded
+        cur.execute("""select exists (select * from information_schema.tables
+                                       where table_schema = 'pcornet_maps' and table_name = 'pedsnet_pcornet_valueset_map'
+                                       )
+                    """)
+        table_exists = cur.fetchall()[0]
+        if "True" not in table_exists:
+            load_maps()
+            # endregion
         print '\nPcornet data model set up complete ... \nClosing database connection...'
         cur.close()
     except (Exception, psycopg2.OperationalError) as error:
@@ -350,7 +338,7 @@ def harvest_date_refresh(date):
 
 # region Test the etl script
 def test_script():
-    args =  test_script_file
+    args = test_script_file
 
     print 'starting ETL \t:' + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') + "\n"
     proc = subprocess.Popen([test_etl_bash, args], stderr=subprocess.STDOUT)
@@ -360,5 +348,95 @@ def test_script():
         print output
     if error:
         print error
+
+
+# endregion
+
+# region Loading maps
+def load_maps():
+    conn = None
+    try:
+        # region read connection parameters
+        params = config.config('db')
+        schema = """pcornet_maps"""
+        # endregion
+
+        # region connect to the PostgreSQL server
+        print('Connecting to the PostgreSQL database...')
+        conn = psycopg2.connect(**params)
+        # create a cursor
+        cur = conn.cursor()
+        # endregion
+
+        # region check if the schema exisit
+        cur.execute(
+            """select exists(select 1 from information_schema.schemata where schema_name = \'""" + schema + """\');""")
+        schema_exist = cur.fetchall()[0]
+
+        if "True" not in schema_exist:
+            print '% schema does not exist..... \n Creating schema ....' % schema
+            cur.execute(query.create_schema(schema))
+            print '% schema created' % schema
+            conn.commit()
+            # set the search pat to the schema
+            cur.execute("""SET search_path TO """ + schema + """;""")
+            time.sleep(0.1)
+        # endregion
+
+        # region create tables
+        try:
+            print '\ncreating and populating the mapping table ...'
+            cur.execute(query.create_table(schema))
+            conn.commit()
+
+            # region import the file to the database
+            if os.path.isfile('data/concept_map.csv'):
+                f = io.open('data/concept_map.csv', 'r', encoding="utf8")
+                cur.copy_from(f, schema + ".pedsnet_pcornet_valueset_map", columns=(
+                  "source_concept_class",
+                  "target_concept",
+                   "pcornet_name",
+                   "source_concept_id",
+                   "concept_description",
+                   "value_as_concept_id"),
+                            sep=",")
+                conn.commit()
+        except (Exception, psycopg2.OperationalError) as error:
+            print(error)
+        # endregion
+
+        # region permissions
+        try:
+            print '\nSetting permissions'
+            cur.execute("""SET search_path TO """ + schema + """;""")
+            time.sleep(0.1)
+            cur.execute(query.permission(schema))
+            conn.commit()
+        except(Exception, psycopg2.OperationalError) as error:
+            print(error)
+        # endregion
+
+        # region Alter owner of tables
+        try:
+            cur.execute("""SET search_path TO """ + schema + """;""")
+            time.sleep(0.1)
+            cur.execute(query.owner(schema))
+            conn.commit()
+        except(Exception, psycopg2.OperationalError) as error:
+            print(error)
+        # endregion
+
+        print '\nPcornet valueset map loaded ... \nClosing database connection...'
+        cur.close()
+    except (Exception, psycopg2.OperationalError) as error:
+        print(error)
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    except (Exception, psycopg2.ProgrammingError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+            print('Database connection closed.')
 
 # endregion
