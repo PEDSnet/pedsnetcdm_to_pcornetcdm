@@ -10,17 +10,21 @@ group by person_id,visit_occurrence_id;
 			
 create  table SITE_pcornet.drg_value 
 as 
-select distinct person_id,visit_occurrence_id, min(value_as_string) as value_as_string
-from SITE_pedsnet.observation
-where observation_concept_id = 3040464 and observation_date >'2007-10-01'
-	   and value_as_string in (
-		   							select concept_code 
-		                            from vocabulary.concept 
-		                            where invalid_reason is null 
-		                                   and concept_class_id = 'MS-DRG' 
-		                                   and vocabulary_id='DRG' 
-	                            ) 
-group by person_id,visit_occurrence_id; 
+select distinct on (o.person_id)o.person_id, visit_occurrence_id,
+       case when count(value_as_string)>1 and qualifier_concept_id = '4269228' then value_as_string
+            else value_as_string
+			end as value_as_string
+from SITE_pedsnet.observation o
+where observation_concept_id = 3040464 and
+       observation_date >= '2007-10-01'::date and
+	   value_as_string in ( select concept_code
+						    from vocabulary.concept v
+						    where invalid_reason is null and
+	                               concept_class_id = 'MS-DRG' and
+	                               vocabulary_id='DRG'
+						   )
+group by o.person_id, visit_occurrence_id, qualifier_concept_id, value_as_string
+order by person_id asc;
 
 -- Link the visit payer infromation
 create table SITE_pcornet.visit_payer as
