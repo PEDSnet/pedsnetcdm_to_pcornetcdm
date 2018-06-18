@@ -59,21 +59,21 @@ as
 	discharge_to_source_value, 
 	admitting_source_value,
 	case when primary_payer_flag is true then plan_class||'-'||plan_type
-	     else null end as raw_payer_type_primary, 
+	     else 'NI' end as raw_payer_type_primary,
 	case when primary_payer_flag is false then plan_class||'-'||plan_type
-	     else null end as raw_payer_type_secondary,
+	     else 'NI' end as raw_payer_type_secondary,
 	case when primary_payer_flag is true then plan_name
-	     else null end as raw_payer_name_primary,
+	     else 'NI' end as raw_payer_name_primary,
 	case when primary_payer_flag is false then plan_name
-	     else null end as raw_payer_name_secondary,
+	     else 'NI' end as raw_payer_name_secondary,
 	case when primary_payer_flag is true then visit_payer_id
 	     else null end as raw_payer_id_primary,
 	case when primary_payer_flag is false then visit_payer_id
 	     else null end as raw_payer_id_secondary,
 	case when primary_payer_flag is true then payer
-	     else null end as payer_type_primary,
+	     else 'NI' end as payer_type_primary,
 	case when primary_payer_flag is false then payer
-	     else null end as payer_type_secondary,
+	     else 'NI' end as payer_type_secondary,
 	v.site
 from SITE_pedsnet.visit_occurrence v
 left join SITE_pedsnet.care_site c on v.care_site_id = c.care_site_id
