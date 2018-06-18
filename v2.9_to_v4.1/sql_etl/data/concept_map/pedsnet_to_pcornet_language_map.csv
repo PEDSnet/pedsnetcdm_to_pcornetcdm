@@ -1,4 +1,4 @@
-concept_class,pcornet_code,pcornet_desc,pedsnet_code,pedsnet_name,value_as_concept_id
+class,pcornet_code,pcornet_desc,pedsnet_code,pedsnet_name,value_as_concept_id
 Language,AAR,Afar,,,null
 Language,ABK,Abkhazian,,,null
 Language,ACE,Achinese,,,null

@@ -21,7 +21,7 @@ temp="scripts/temp/"
 @click.option('--database', '-d', default=False,
               help='Database in wich the mapping file to be loaded ex. pedsnet_dcc_vxx')
 @click.option('--host', '-h', default=False, help='The Server name ex. dev01')
-@click.option('--options', '-o', default=False, help='pipeline \ntruncate \netl \nddl \nupdate_valueset')
+@click.option('--options', '-o', default=False, help='pipeline \ntruncate \netl \nddl \nupdate_valueset \n load_maps')
 @click.option('--harvest', '-H', required=False, help='harvest refresh date in following formatt yyyy-mm-dd')
 @click.option('--testscript', '-ts', required=False, type=click.File('rb'), help='Run single table at a time')
 def cli(searchpath, pwprompt, user, database, host, options, harvest, testscript):
@@ -34,7 +34,8 @@ def cli(searchpath, pwprompt, user, database, host, options, harvest, testscript
         'truncate': process.truncate_fk,
         'ddl': process.ddl_only,
         'update_map': process.update_valueset,
-        'test_script': process.test_script
+        'test_script': process.test_script,
+        'load_maps': process.load_maps
     }
     # endregion
 
@@ -57,7 +58,7 @@ def cli(searchpath, pwprompt, user, database, host, options, harvest, testscript
         searchpath = click.prompt('schema name', hide_input=False)
 
     if not options:
-        options = click.prompt('Process Options: \tpipeline \n\t\tetl \n\t\ttruncate \n\t\tddl \n\t\tupdate_map \n')
+        options = click.prompt('Process Options: \tpipeline \n\t\tetl \n\t\ttruncate \n\t\tddl \n\t\tupdate_map \n\t\tload_maps \n')
 
     if harvest:
         process.harvest_date_refresh(harvest)
