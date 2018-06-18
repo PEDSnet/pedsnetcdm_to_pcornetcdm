@@ -1,6 +1,6 @@
 begin;
 
-insert into SITE_4dot0_pcornet.diagnosis(
+insert into SITE_pcornet.diagnosis(
             diagnosisid,patid, encounterid, enc_type, admit_date, providerid, dx, dx_type,
             dx_source, pdx, dx_origin, raw_dx, raw_dx_type, raw_dx_source, raw_pdx,site, dx_poa)
 select distinct
@@ -50,12 +50,12 @@ select distinct
 from
 	SITE_pedsnet.condition_occurrence co
 	join vocabulary.concept c2 on co.condition_concept_id = c2.concept_id
-	join SITE_4dot0_pcornet.encounter enc on cast(co.visit_occurrence_id as text)=enc.encounterid
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m1 on m1.source_concept_class='dx_source' and
+	join SITE_pcornet.encounter enc on cast(co.visit_occurrence_id as text)=enc.encounterid
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on m1.source_concept_class='dx_source' and
 	                                                                cast(co.condition_type_concept_id as text) = m1.source_concept_id
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m2 on  cast(co.condition_type_concept_id as text) = m2.source_concept_id  and
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on  cast(co.condition_type_concept_id as text) = m2.source_concept_id  and
 	                                                                 m2.source_concept_class='pdx'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m3 on  cast(co.condition_type_concept_id as text) = m3.source_concept_id  and
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on  cast(co.condition_type_concept_id as text) = m3.source_concept_id  and
 	                                                                 m3.source_concept_class='dx origin'
 	left join vocabulary.concept c3 on co.condition_source_concept_id = c3.concept_id
 	left join vocabulary.concept c4 on co.condition_type_concept_id = c4.concept_id
@@ -70,7 +70,7 @@ commit;
 
 begin;
 
-delete from SITE_4dot0_pcornet.diagnosis
+delete from SITE_pcornet.diagnosis
 where length(dx) < 2;
 
 commit;
