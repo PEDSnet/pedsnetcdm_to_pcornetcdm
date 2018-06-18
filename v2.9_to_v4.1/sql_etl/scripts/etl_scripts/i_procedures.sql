@@ -1,6 +1,6 @@
 begin;
 
-insert into SITE_4dot0_pcornet.procedures(
+insert into SITE_pcornet.procedures(
             proceduresid,patid, encounterid, enc_type, admit_date, providerid, px_date,px, px_type, px_source,
             ppx, raw_ppx,
             raw_px, raw_px_type,site)
@@ -37,18 +37,18 @@ select distinct
 	po.site as site
 from
 	SITE_pedsnet.procedure_occurrence po
-	join SITE_4dot0_pcornet.encounter enc on cast(po.visit_occurrence_id as text)=enc.encounterid
+	join SITE_pcornet.encounter enc on cast(po.visit_occurrence_id as text)=enc.encounterid
 	join vocabulary.concept c on po.procedure_concept_id=c.concept_id
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m1 on c.vocabulary_id = m1.source_concept_id AND
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on c.vocabulary_id = m1.source_concept_id AND
 	                                                                m1.source_concept_class='Procedure Code Type'
 	left join vocabulary.concept c2 on po.procedure_source_concept_id = c2.concept_id
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m3 on c2.vocabulary_id = m3.source_concept_id AND
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on c2.vocabulary_id = m3.source_concept_id AND
 	                                                                m3.source_concept_class='Procedure Code Type'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m4 on cast(po.procedure_type_concept_id as text) = m4.source_concept_id AND
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m4 on cast(po.procedure_type_concept_id as text) = m4.source_concept_id AND
 	                                                                m4.source_concept_class='px source'
-	left join SITE_4dot0_pcornet.pedsnet_pcornet_valueset_map m5 on cast(po.procedure_type_concept_id as text) = m5.source_concept_id AND
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m5 on cast(po.procedure_type_concept_id as text) = m5.source_concept_id AND
 	                                                                m5.source_concept_class='ppx'                                                                
-	where  person_id IN (select person_id from SITE_4dot0_pcornet.person_visit_start2001)
+	where  person_id IN (select person_id from SITE_pcornet.person_visit_start2001)
 	       and EXTRACT(YEAR FROM procedure_date) >= 2001
 	       and visit_occurrence_id is not null
 	       and visit_occurrence_id not in (select visit_occurrence_id from SITE_pedsnet.visit_occurrence where

@@ -1,10 +1,10 @@
 begin;
 
-alter table SITE_4dot0_pcornet.lab_result_cm  alter result_num SET DATA TYPE NUMERIC(25,8);
-alter table SITE_4dot0_pcornet.lab_result_cm  alter result_unit SET DATA TYPE character varying(15);
+alter table SITE_pcornet.lab_result_cm  alter result_num SET DATA TYPE NUMERIC(25,8);
+alter table SITE_pcornet.lab_result_cm  alter result_unit SET DATA TYPE character varying(15);
 
 create table 
-SITE_4dot0_pcornet.lab_measurements as
+SITE_pcornet.lab_measurements as
                    (
                       select measurement_id, person_id, visit_occurrence_id, measurement_concept_id,
                              measurement_source_Concept_id, measurement_source_value, measurement_order_date,
@@ -18,7 +18,7 @@ SITE_4dot0_pcornet.lab_measurements as
 commit;
 
 begin;
-insert into SITE_4dot0_pcornet.lab_result_cm (
+insert into SITE_pcornet.lab_result_cm (
 	lab_result_cm_id,
 	patid, encounterid,
 	 specimen_source,
@@ -78,7 +78,7 @@ select
 	m.site as site
 
 from
-	SITE_4dot0_pcornet.lab_measurements m
+	SITE_pcornet.lab_measurements m
 	left join vocabulary.concept c1 on m.measurement_concept_id = c1.concept_id and
 	                                   c1.vocabulary_id = 'LOINC'
 	left join vocabulary.concept c2 on m.operator_concept_id = c2.concept_id and
@@ -97,7 +97,7 @@ from
 	                                                                m8.source_concept_class = 'Result qualifier'
     left join pcornet_maps.pedsnet_pcornet_valueset_map spec_map on lower(m.specimen_source_value)= spec_map.source_concept_id and
 	                                                                spec_map.source_concept_class = 'Specimen source'
-	where visit_occurrence_id IN (select visit_id from SITE_4dot0_pcornet.person_visit_start2001)
+	where visit_occurrence_id IN (select visit_id from SITE_pcornet.person_visit_start2001)
 	and EXTRACT(YEAR FROM measurement_date)>=2001;
 
 commit;

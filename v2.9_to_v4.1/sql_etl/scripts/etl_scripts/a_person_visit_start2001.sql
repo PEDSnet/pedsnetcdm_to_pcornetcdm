@@ -1,6 +1,6 @@
 begin;
 
-CREATE TABLE SITE_4dot0_pcornet.person_visit_start2001
+CREATE TABLE SITE_pcornet.person_visit_start2001
 AS
 SELECT person_id, visit_occurrence_id AS visit_id
 FROM SITE_pedsnet.visit_occurrence
