@@ -127,22 +127,23 @@ as
 from SITE_pcornet.encounter_extract
 left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on cast(visit_concept_id as text)= m1.source_concept_id 
                                                            and m1.source_concept_class='Encounter type'
-left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on case when value_as_concept_id_ddisp is null AND m2.value_as_concept_id is null then true 
-                                                                 else cast(value_as_concept_id_ddisp as text) = m2.value_as_concept_id end 
-																 and m2.source_concept_class='Discharge disposition'
-left join pcornet_maps.pedsnet_pcornet_valueset_map m4a on admitting_source_concept_id = m4a.source_concept_id::integer 
+left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on case when value_as_concept_id_ddisp is null
+                                                                    AND m2.value_as_concept_id is null then true
+                                                               else cast(value_as_concept_id_ddisp as text) = m2.value_as_concept_id
+                                                               end
+															   and m2.source_concept_class='Discharge disposition'
+left join pcornet_maps.pedsnet_pcornet_valueset_map m4a on cast(admitting_source_concept_id as text) = m4a.source_concept_id
 			                                             and m4a.source_concept_class='Admitting source'            
 left join pcornet_maps.pedsnet_pcornet_valueset_map m3a on cast(discharge_to_concept_id as text) = m3a.source_concept_id 
 			                                             and m3a.source_concept_class='Discharge status'
-left join pcornet_maps.pedsnet_pcornet_valueset_map m6 on place_of_service_concept_id = m6.source_concept_id::integer
+left join pcornet_maps.pedsnet_pcornet_valueset_map m6 on cast(place_of_service_concept_id as text) = m6.source_concept_id
                                                         and m6.source_concept_class='Facility type'  
-left join pcornet_maps.pedsnet_pcornet_valueset_map m7 on visit_concept_id = m7.source_concept_id::integer
-                                                        and specialty_concept_id = m7.value_as_concept_id::integer
+left join pcornet_maps.pedsnet_pcornet_valueset_map m7 on cast(visit_concept_id as text) = m7.source_concept_id
+                                                        and cast(specialty_concept_id as text) = m7.value_as_concept_id
                                                         and m7.source_concept_class='Facility type'        
-left join pcornet_maps.pedsnet_pcornet_valueset_map m8 on visit_concept_id = m8.source_concept_id::integer 
+left join pcornet_maps.pedsnet_pcornet_valueset_map m8 on cast(visit_concept_id as text) = m8.source_concept_id
                                                         and m8.source_concept_class='Facility type'  
-			                                            and m8.value_as_concept_id is null ; 
-
+			                                            and m8.value_as_concept_id is null ;
 
 
 --- loading 
