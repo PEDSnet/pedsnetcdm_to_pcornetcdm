@@ -73,7 +73,7 @@ select
 from
 	SITE_pedsnet.drug_exposure de
 	left join vocabulary.concept c1 on de.drug_concept_id = c1.concept_id AND
-	                                   `vocabulary_id = 'RxNorm'
+	                                   vocabulary_id = 'RxNorm'
 	left join vocabulary.concept c2 on de.drug_source_concept_id = c2.concept_id
 	left join SITE_pcornet.rx_dose_form_data rdf on de.drug_concept_id =  rdf.drug_concept_id
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on cast(dose_unit_concept_id as text) = m1.source_concept_id 
