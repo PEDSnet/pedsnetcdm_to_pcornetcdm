@@ -3017,3 +3017,8 @@ Death date impute,OT,,44814649,Other,NULL
 px source,OD,,38000275,Order,null
 px source,BI,,44786630,Billing,null
 px source,BI,,44786631,Billing,null
+dispense written,Y,Yes,4188539,Yes,null
+dispense written,N,No,4188540,No,null
+dispense written,NI,No information,44814650,No Information,null
+dispense written,UN,Unknown,44814653,Unknown,null
+dispense written,OT,Other,44814649,Other,null

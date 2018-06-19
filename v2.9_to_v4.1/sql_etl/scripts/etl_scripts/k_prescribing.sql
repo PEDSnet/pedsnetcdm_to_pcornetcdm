@@ -1,14 +1,15 @@
 begin;
 
-ALTER TABLE SITE_4dot0_pcornet.prescribing ALTER raw_rxnorm_cui SET DATA TYPE character varying(20);
-alter table SITE_4dot0_pcornet.prescribing alter rxnorm_cui SET DATA TYPE character varying(8);
-ALTER TABLE SITE_4dot0_pcornet.prescribing ALTER rx_quantity SET DATA TYPE NUMERIC(20,2);
-ALTER TABLE SITE_4dot0_pcornet.prescribing ALTER rx_refills SET DATA TYPE NUMERIC(20,2);
-ALTER TABLE SITE_4dot0_pcornet.prescribing ALTER rx_days_supply SET DATA TYPE NUMERIC(20,2);
+ALTER TABLE SITE_pcornet.prescribing ALTER raw_rxnorm_cui SET DATA TYPE character varying(20);
+alter table SITE_pcornet.prescribing alter rxnorm_cui SET DATA TYPE character varying(8);
+ALTER TABLE SITE_pcornet.prescribing ALTER rx_quantity SET DATA TYPE NUMERIC(20,2);
+ALTER TABLE SITE_pcornet.prescribing ALTER rx_refills SET DATA TYPE NUMERIC(20,2);
+ALTER TABLE SITE_pcornet.prescribing ALTER rx_days_supply SET DATA TYPE NUMERIC(20,2);
+ALTER TABLE SITE_pcornet.prescribing ALTER rx_dose_ordered SET DATA TYPE NUMERIC(20,2);
 
---drop table SITE_4dot0_pcornet.rx_dose_form_data ; 
+--drop table SITE_pcornet.rx_dose_form_data ;
 
-create  table SITE_4dot0_pcornet.rx_dose_form_data 
+create  table SITE_pcornet.rx_dose_form_data
 as
 (
   select distinct de.drug_concept_id, c.concept_id as rx_dose_form_concept_id, c.concept_name as rx_dose_form_concept_name
@@ -21,9 +22,9 @@ as
   and concept_id_2 = c.concept_id
 ); 
 
-CREATE INDEX idx_drug_concept_id ON SITE_4dot0_pcornet.rx_dose_form_data (drug_concept_id);
+CREATE INDEX idx_drug_concept_id ON SITE_pcornet.rx_dose_form_data (drug_concept_id);
  
-insert into SITE_4dot0_pcornet.prescribing (prescribingid,
+insert into SITE_pcornet.prescribing (prescribingid,
             patid, encounterid,
             rx_providerid, rx_order_date, rx_order_time,
             rx_start_date, rx_end_date, rx_dose_ordered, rx_dose_ordered_unit, 
@@ -58,8 +59,10 @@ select
 	'01' as rx_basis,
 	CAST(nullif(c1.concept_code, '') AS integer) as rxnorm_cui,
 	'OD' as rx_source, 
-	'NI' as rx_dispense_as_written, -- to be modified post 2.9 switch
-	c1.concept_name as raw_rx_med_name,
+	coalesce(m5.target_concept,'OT') as rx_dispense_as_written, -- extracting from pedsnet dispense_as_written_concept_id column data in pcornet valueset
+	case when (c1.concept_name is null) then split_part(drug_source_value,'|',1)) --- extract from drug source value
+		 else c1.concept_name
+		 end as raw_rx_med_name,
 	de.frequency as raw_rx_frequency,
 	c2.concept_code as raw_rxnorm_cui,
 	eff_drug_dose_source_value as raw_rx_dose_ordered,
@@ -70,27 +73,29 @@ select
 from
 	SITE_pedsnet.drug_exposure de
 	left join vocabulary.concept c1 on de.drug_concept_id = c1.concept_id AND
-	                                      vocabulary_id = 'RxNorm'
+	                                   vocabulary_id = 'RxNorm'
 	left join vocabulary.concept c2 on de.drug_source_concept_id = c2.concept_id
-	left join SITE_4dot0_pcornet.rx_dose_form_data rdf on de.drug_concept_id =  rdf.drug_concept_id
+	left join SITE_pcornet.rx_dose_form_data rdf on de.drug_concept_id =  rdf.drug_concept_id
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on cast(dose_unit_concept_id as text) = m1.source_concept_id 
-			and m1.source_concept_class='Dose unit'
+			                                               and m1.source_concept_class='Dose unit'
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on cast(rdf.rx_dose_form_concept_id as text) = m2.source_concept_id 
-			and m2.source_concept_class='Rx Dose Form'
+			                                               and m2.source_concept_class='Rx Dose Form'
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on cast(trim(lower(de.frequency)) as text) = m3.source_concept_id 
-			and m3.source_concept_class='Rx Frequency'		
+			                                               and m3.source_concept_class='Rx Frequency'
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m4 on cast(de.route_concept_id as text) = m4.source_concept_id 
-			and m4.source_concept_class='Route'
+			                                               and m4.source_concept_class='Route'
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m5 on  cast(de.dispense_as_written_concept_id as text) = m5.source_concept_id  and
+	                                                                 m5.source_concept_class='dispense written'
 where
 	de.drug_type_concept_id IN ('38000177')
-	and de.person_id IN (select person_id from SITE_4dot0_pcornet.person_visit_start2001) 
+	and de.person_id IN (select person_id from SITE_pcornet.person_visit_start2001)
 	and EXTRACT(YEAR FROM drug_exposure_start_date) >= 2001; 
 
 
-CREATE INDEX idx_pres_encid ON SITE_4dot0_pcornet.prescribing (encounterid);
+CREATE INDEX idx_pres_encid ON SITE_pcornet.prescribing (encounterid);
 
 
-delete from SITE_4dot0_pcornet.prescribing 
+delete from SITE_pcornet.prescribing
 where encounterid IS not NULL
 	and encounterid  in (select cast(visit_occurrence_id as text) from SITE_pedsnet.visit_occurrence V where
 					extract(year from visit_start_date)<2001); 
