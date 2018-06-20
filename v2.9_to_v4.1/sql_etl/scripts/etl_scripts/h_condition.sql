@@ -1,6 +1,6 @@
 begin;
 
-insert into SITE_4dot0_pcornet.condition(
+insert into SITE_pcornet.condition(
             conditionid, patid, encounterid, report_date, resolve_date, onset_date,
             condition_status, condition, condition_type, condition_source,
             raw_condition_status, raw_condition, raw_condition_type, raw_condition_source,site)
@@ -48,15 +48,15 @@ from
 where
 	co.condition_type_concept_id in ( 2000000089, 2000000090, 2000000091,38000245)
 	and EXTRACT(YEAR FROM condition_start_date)>=2001
-	and person_id in (select person_id from SITE_4dot0_pcornet.person_visit_start2001)
+	and person_id in (select person_id from SITE_pcornet.person_visit_start2001)
 	; 
 	
 
-CREATE INDEX idx_cond_encid ON SITE_4dot0_pcornet.condition (encounterid);
+CREATE INDEX idx_cond_encid ON SITE_pcornet.condition (encounterid);
 	
 	
 	
-delete from SITE_4dot0_pcornet.condition where 
+delete from SITE_pcornet.condition where
 	 encounterid is not null 
 	and 
 	encounterid in

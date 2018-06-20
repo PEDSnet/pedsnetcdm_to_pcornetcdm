@@ -63,7 +63,7 @@ from
 	                                                                 m4.source_concept_class='dx_poa'
 where
 	co.condition_type_concept_id not in ( 2000000089, 2000000090, 2000000091, 38000245)
-	and visit_occurrence_id IN (select visit_id from SITE_4dot0_pcornet.person_visit_start2001)
+	and visit_occurrence_id IN (select visit_id from SITE_pcornet.person_visit_start2001)
 	and extract (year from condition_start_date) >=2001 ;
 
 commit;
