@@ -3,7 +3,6 @@ begin;
 alter table SITE_pcornet.lab_result_cm  alter result_num SET DATA TYPE NUMERIC(25,8);
 alter table SITE_pcornet.lab_result_cm  alter result_unit SET DATA TYPE character varying(15);
 
-
 create table 
 SITE_pcornet.lab_measurements as
                    (
@@ -22,7 +21,6 @@ create table SITE_pcornet.specimen_values as
 select
 	m.measurement_id,
 	coalesce(spec_map1.target_concept,spec_map2.target_concept,spec_map3.target_concept,  'OT') as specimen_source
-
 from
 	SITE_pcornet.lab_measurements m
     left join pcornet_maps.pedsnet_pcornet_valueset_map spec_map1 on cast(specimen_concept_id as text)= spec_map1.source_concept_id and
@@ -98,6 +96,7 @@ select
 from
 	SITE_pcornet.lab_measurements m
 	inner join vocabulary.concept c1 on m.measurement_concept_id = c1.concept_id and
+
 	                                   c1.vocabulary_id = 'LOINC'
 	left join vocabulary.concept c2 on m.operator_concept_id = c2.concept_id and
 	                                   c2.domain_id = 'Meas Value Operator'

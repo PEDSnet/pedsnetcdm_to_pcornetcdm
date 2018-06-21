@@ -1,6 +1,6 @@
 begin; 
 
-insert into SITE_4dot0_pcornet.med_admin (medadminid,
+insert into SITE_pcornet.med_admin (medadminid,
             patid, encounterid,
             medadmin_start_date, medadmin_start_time, medadmin_stop_date, 
             medadmin_stop_time,
@@ -53,23 +53,23 @@ select
 	de.site as site
 from
 	SITE_pedsnet.drug_exposure de
-	left join SITE_4dot0_pcornet.ndc_concepts ndc_via_source_concept on ndc_via_source_concept.concept_id = drug_source_concept_id
-	left join SITE_4dot0_pcornet.ndc_concepts ndc_via_source_value on ndc_via_source_value.concept_code = split_part(drug_source_value,'|',1) 
+	left join SITE_pcornet.ndc_concepts ndc_via_source_concept on ndc_via_source_concept.concept_id = drug_source_concept_id
+	left join SITE_pcornet.ndc_concepts ndc_via_source_value on ndc_via_source_value.concept_code = split_part(drug_source_value,'|',1)
 	left join vocabulary.concept rxnorm_via_concept on rxnorm_via_concept.concept_id = drug_concept_id and vocabulary_id = 'RxNorm'
-	left join SITE_4dot0_pcornet.rx_dose_form_data rdf on de.drug_concept_id =  rdf.drug_concept_id
+	left join SITE_pcornet.rx_dose_form_data rdf on de.drug_concept_id =  rdf.drug_concept_id
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on cast(dose_unit_concept_id as text) = m1.source_concept_id 
 			and m1.source_concept_class='Dose unit'
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on cast(de.route_concept_id as text) = m2.source_concept_id 
 			and m2.source_concept_class='Route'
 where
 	de.drug_type_concept_id IN ('38000180')
-	and de.person_id IN (select person_id from SITE_4dot0_pcornet.person_visit_start2001) and EXTRACT(YEAR FROM drug_exposure_start_date) >= 2001
+	and de.person_id IN (select person_id from SITE_pcornet.person_visit_start2001) and EXTRACT(YEAR FROM drug_exposure_start_date) >= 2001
 	; 
 
 
- create index med_admin_enc on SITE_4dot0_pcornet.med_admin (encounterid);
+ create index med_admin_enc on SITE_pcornet.med_admin (encounterid);
 
-delete from SITE_4dot0_pcornet.med_admin 
+delete from SITE_pcornet.med_admin
 	where
 	encounterid IS not NULL
 	and encounterid in (select cast(visit_occurrence_id as text) from SITE_pedsnet.visit_occurrence V where
