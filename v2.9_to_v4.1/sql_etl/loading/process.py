@@ -45,8 +45,9 @@ def ddl_only():
     try:
         # region read connection parameters
         params = config.config('db')
+        pcornet_version = config.config('pcornet_version')
         schema_path = config.config('schema')
-        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_pcornet""")]
+        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_pcornet_"""+re.sub('\.', '', pcornet_version['version']))]
         # endregion
 
         # region connect to the PostgreSQL server
@@ -56,13 +57,25 @@ def ddl_only():
         cur = conn.cursor()
         # endregion
 
+        # region check if maps loaded
+        cur.execute("""select exists (select 1 from information_schema.tables
+                                               where table_schema = 'pcornet_maps' and table_name = 'pedsnet_pcornet_valueset_map'
+                                               )
+                            """)
+        table_exists = cur.fetchone()[0]
+        if not table_exists:
+           # load_maps()
+           print 'load maps'
+
+        # endregion
+
         for schemas in schema:
             # region check if the schema exisit
             cur.execute(
                 """select exists(select 1 from information_schema.schemata where schema_name = \'""" + schemas + """\');""")
-            schema_exist = cur.fetchall()[0]
+            schema_exist = cur.fetchone()[0]
 
-            if "True" not in schema_exist:
+            if not schema_exist:
                 print '% schema does not exist..... \n Creating schema ....' % schemas
                 cur.execute(query.create_schema(schemas))
                 print '% schema created' % schemas
@@ -78,7 +91,7 @@ def ddl_only():
                 # set the search pat to the schema
                 cur.execute("""SET search_path TO """ + schemas + """;""")
                 time.sleep(0.1)
-                cur.execute(query.dll())
+                cur.execute(query.dll(pcornet_version))
                 conn.commit()
             except (Exception, psycopg2.OperationalError) as error:
                 print(error)
@@ -118,7 +131,7 @@ def ddl_only():
             # region Populate Harvest
             try:
                 print '\nPopulating harvest table... '
-                if os.path.isfile('data/harvest_data.csv'):
+                if os.path.isfile(harvest_file):
                     f = open('data/harvest_data.csv', 'r')
                     cur.copy_from(f, schemas + ".harvest", columns=("admit_date_mgmt",
                                                                     "birth_date_mgmt",
@@ -128,13 +141,18 @@ def ddl_only():
                                                                     "datamart_name",
                                                                     "datamart_platform",
                                                                     "datamartid",
+                                                                    "death_date_mgmt",
                                                                     "discharge_date_mgmt",
                                                                     "dispense_date_mgmt",
                                                                     "enr_end_date_mgmt",
                                                                     "enr_start_date_mgmt",
                                                                     "lab_order_date_mgmt",
                                                                     "measure_date_mgmt",
+                                                                    "medadmin_start_date_mgmt",
+                                                                    "medadmin_stop_date_mgmt",
                                                                     "network_name", "networkid",
+                                                                    "obsclin_date_mgmt",
+                                                                    "obsgen_date_mgmt",
                                                                     "onset_date_mgmt",
                                                                     "pro_date_mgmt",
                                                                     "px_date_mgmt",
@@ -147,10 +165,14 @@ def ddl_only():
                                                                     "refresh_encounter_date",
                                                                     "refresh_enrollment_date",
                                                                     "refresh_lab_result_cm_date",
+                                                                    "refresh_med_admin_date",
+                                                                    "refresh_obs_clin_date",
+                                                                    "refresh_obs_gen_date",
                                                                     "refresh_pcornet_trial_date",
                                                                     "refresh_prescribing_date",
                                                                     "refresh_pro_cm_date",
                                                                     "refresh_procedures_date",
+                                                                    "refresh_provider_date",
                                                                     "refresh_vital_date",
                                                                     "report_date_mgmt",
                                                                     "resolve_date_mgmt",
@@ -158,21 +180,10 @@ def ddl_only():
                                                                     "rx_end_date_mgmt",
                                                                     "rx_order_date_mgmt",
                                                                     "rx_start_date_mgmt",
-                                                                    "specimen_date_mgmt"),
-                                  sep=",")
+                                                                    "specimen_date_mgmt"), sep=",")
                     conn.commit()
-            except (Exception, psycopg2.OperationalError) as error:
+            except (Exception, psycopg2.DatabaseError) as error:
                 print(error)
-                # endregion
-
-        # region check if maps loaded
-        cur.execute("""select exists (select * from information_schema.tables
-                                       where table_schema = 'pcornet_maps' and table_name = 'pedsnet_pcornet_valueset_map'
-                                       )
-                    """)
-        table_exists = cur.fetchall()[0]
-        if "True" not in table_exists:
-            load_maps()
             # endregion
         print '\nPcornet data model set up complete ... \nClosing database connection...'
         cur.close()
@@ -371,9 +382,9 @@ def load_maps():
         # region check if the schema exisit
         cur.execute(
             """select exists(select 1 from information_schema.schemata where schema_name = \'""" + schema + """\');""")
-        schema_exist = cur.fetchall()[0]
+        schema_exist = cur.fetchone()[0]
 
-        if "True" not in schema_exist:
+        if not schema_exist:
             print '% schema does not exist..... \n Creating schema ....' % schema
             cur.execute(query.create_schema(schema))
             print '% schema created' % schema
