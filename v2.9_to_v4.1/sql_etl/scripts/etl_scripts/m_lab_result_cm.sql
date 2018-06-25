@@ -6,15 +6,31 @@ alter table SITE_pcornet.lab_result_cm  alter result_unit SET DATA TYPE characte
 create table 
 SITE_pcornet.lab_measurements as
                    (
-                      select measurement_id, person_id, visit_occurrence_id, measurement_concept_id,
+                      select measurement_id, person_id, visit_occurrence_id, measurement_concept_id, specimen_concept_id
                              measurement_source_Concept_id, measurement_source_value, measurement_order_date,
                              measurement_datetime, measurement_date, measurement_Result_date, measurement_result_datetime,
 	                         value_as_number, range_low, range_high, unit_source_value, unit_concept_id, value_as_concept_id,
 	                         operator_concept_id,range_low_operator_concept_id, range_high_operator_concept_id,
 	                         priority_concept_id, specimen_source_value,site
 	                  from SITE_pedsnet.measurement
-	                  where measurement_type_Concept_id = 44818702
-	               ); 
+	                  where measurement_type_Concept_id = 44818702 and 
+					         measurement_concept_id>0 
+	               );
+
+create table SITE_pcornet.specimen_values as
+select
+	m.measurement_id,
+	coalesce(spec_map1.target_concept,spec_map2.target_concept,spec_map3.target_concept,  'OT') as specimen_source
+from
+	SITE_pcornet.lab_measurements m
+    left join pcornet_maps.pedsnet_pcornet_valueset_map spec_map1 on cast(specimen_concept_id as text)= spec_map1.source_concept_id and
+	                                                                spec_map1.source_concept_class = 'Specimen source'
+    left join pcornet_maps.pedsnet_pcornet_valueset_map spec_map2 on lower(split_part(m.specimen_source_value,'|',1))= spec_map2.source_concept_id and
+	                                                                spec_map2.source_concept_class = 'Specimen source'
+	left join pcornet_maps.pedsnet_pcornet_valueset_map spec_map3 on lower(split_part(m.specimen_source_value,'|',2))= spec_map3.source_concept_id and
+	                                                                spec_map3.source_concept_class = 'Specimen source'
+where	 length(specimen_source_value) >3;
+
 commit;
 
 begin;
@@ -38,7 +54,7 @@ select
 	m.measurement_id as lab_result_cm_id,
 	cast(m.person_id as text) as patid,
 	cast(m.visit_occurrence_id as text) as encounterid,
-	coalesce(spec_map.target_concept,'OT') as specimen_source,
+	specimen_source,
 	c1.concept_code as lab_loinc,
 	m7.target_concept as priority,
 	case when measurement_source_value like 'POC%'
@@ -79,7 +95,8 @@ select
 
 from
 	SITE_pcornet.lab_measurements m
-	left join vocabulary.concept c1 on m.measurement_concept_id = c1.concept_id and
+	inner join vocabulary.concept c1 on m.measurement_concept_id = c1.concept_id and
+
 	                                   c1.vocabulary_id = 'LOINC'
 	left join vocabulary.concept c2 on m.operator_concept_id = c2.concept_id and
 	                                   c2.domain_id = 'Meas Value Operator'
@@ -95,8 +112,7 @@ from
 	                                                                m7.source_concept_class = 'Lab priority'
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m8 on cast(m.value_as_concept_id as text)= m8.source_concept_id and
 	                                                                m8.source_concept_class = 'Result qualifier'
-    left join pcornet_maps.pedsnet_pcornet_valueset_map spec_map on lower(m.specimen_source_value)= spec_map.source_concept_id and
-	                                                                spec_map.source_concept_class = 'Specimen source'
+    left join stlouis_pcornet.specimen_values specimen on m.measurement_id = specimen.measurement_id
 	where visit_occurrence_id IN (select visit_id from SITE_pcornet.person_visit_start2001)
 	and EXTRACT(YEAR FROM measurement_date)>=2001;
 
