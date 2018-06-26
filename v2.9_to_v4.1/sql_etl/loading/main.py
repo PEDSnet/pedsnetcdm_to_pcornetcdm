@@ -24,7 +24,8 @@ temp="scripts/temp/"
 @click.option('--options', '-o', default=False, help='pipeline \ntruncate \netl \nddl \nupdate_valueset \n load_maps')
 @click.option('--harvest', '-H', required=False, help='harvest refresh date in following formatt yyyy-mm-dd')
 @click.option('--testscript', '-ts', required=False, type=click.File('rb'), help='Run single table at a time')
-def cli(searchpath, pwprompt, user, database, host, options, harvest, testscript):
+@click.option('--pcornet_version', '-pv', default='v4.1', help='Pcornet ETL version v3.0 \n v4.0 \n v4.1')
+def cli(searchpath, pwprompt, user, database, host, options, harvest, testscript, pcornet_version):
     """This tool is used to load the data"""
 
     # region Option map
@@ -60,6 +61,10 @@ def cli(searchpath, pwprompt, user, database, host, options, harvest, testscript
     if not options:
         options = click.prompt('Process Options: \tpipeline \n\t\tetl \n\t\ttruncate \n\t\tddl \n\t\tupdate_map \n\t\tload_maps \n')
 
+    if not pcornet_version:
+        print 'Default PCORnet CDM V4.1 selected'
+        database = click.prompt('Database name', hide_input=False)
+
     if harvest:
         process.harvest_date_refresh(harvest)
 
@@ -85,6 +90,8 @@ def cli(searchpath, pwprompt, user, database, host, options, harvest, testscript
         configini.set('postgresql', 'password', password)
         configini.add_section('schema')
         configini.set('schema', 'schema', searchpath)
+        configini.add_section('pcornet_version')
+        configini.set('pcornet_version', 'version', pcornet_version)
 
         configini.write(cfgfile)
         cfgfile.close()

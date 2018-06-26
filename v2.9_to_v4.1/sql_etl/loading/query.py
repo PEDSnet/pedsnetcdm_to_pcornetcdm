@@ -50,10 +50,10 @@ def create_schema(schema):
 # endregion
 
 # region create DDL
-def dll():
+def dll(pcornet_version):
     """Creates dll for pcornet"""
     try:
-        dll_url = 'http://data-models-sqlalchemy.research.chop.edu/pcornet/3.1.0/ddl/postgresql/tables'
+        dll_url = 'http://data-models-sqlalchemy.research.chop.edu/pcornet/'+re.sub('v','',(pcornet_version['version']+'.0'))+'/ddl/postgresql/tables'
         dll_script = requests.get(dll_url).text
         return dll_script
     except (Exception, requests.ConnectionError) as e:

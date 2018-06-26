@@ -26,3 +26,12 @@ def config(info):
         else:
             raise Expection('Section {0} not found in the {1} file'.format(section, filename))
         return schema
+    if info == 'pcornet_version':
+        pcornet_version = {}
+        if parser.has_section('pcornet_version'):
+            params = parser.items('pcornet_version')
+            for param in params:
+                pcornet_version[param[0]] = param[1]
+        else:
+            raise Expection('Section {0} not found in the {1} file'.format(section, filename))
+        return pcornet_version
