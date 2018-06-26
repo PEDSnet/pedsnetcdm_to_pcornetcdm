@@ -17,6 +17,11 @@ SITE_pcornet.lab_measurements as
 					         measurement_concept_id>0 
 	               );
 
+CREATE INDEX idx_labms_visitid
+    ON SITE_pcornet.lab_measurements USING btree
+    (visit_occurrence_id)
+    TABLESPACE pg_default;
+
 create table SITE_pcornet.specimen_values as
 select
 	m.measurement_id,
