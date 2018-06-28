@@ -38,7 +38,7 @@ from SITE_pedsnet.visit_payer
 left join pcornet_maps.pedsnet_pcornet_valueset_map m5 on cast(plan_class||'-'||plan_type as text) = m5.source_concept_id 
 			and m5.source_concept_class='Payer'
 where visit_occurrence_id IN (select visit_id from SITE_pcornet.person_visit_start2001)
-order by visit_occurrence_id, target_concept asc  -- extracting the visits that have valid minimum payer which mapped to target_concept
+order by visit_occurrence_id, target_concept asc ; -- extracting the visits that have valid minimum payer which mapped to target_concept
 
 -- Extract Data
 create  table SITE_pcornet.encounter_extract

@@ -60,7 +60,7 @@ select
 	CAST(nullif(c1.concept_code, '') AS integer) as rxnorm_cui,
 	'OD' as rx_source, 
 	coalesce(m5.target_concept,'OT') as rx_dispense_as_written, -- extracting from pedsnet dispense_as_written_concept_id column data in pcornet valueset
-	case when (c1.concept_name is null) then split_part(drug_source_value,'|',1)) --- extract from drug source value
+	case when (c1.concept_name is null) then split_part(drug_source_value,'|',1) --- extract from drug source value
 		 else c1.concept_name
 		 end as raw_rx_med_name,
 	de.frequency as raw_rx_frequency,
@@ -98,7 +98,6 @@ CREATE INDEX idx_pres_encid ON SITE_pcornet.prescribing (encounterid);
 delete from SITE_pcornet.prescribing
 where encounterid IS not NULL
 	and encounterid  in (select cast(visit_occurrence_id as text) from SITE_pedsnet.visit_occurrence V where
-					extract(year from visit_start_date)<2001); 
-			;
+					extract(year from visit_start_date)<2001);
 
 commit;
