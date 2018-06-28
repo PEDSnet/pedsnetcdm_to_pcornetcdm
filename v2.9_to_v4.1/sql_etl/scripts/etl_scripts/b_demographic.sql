@@ -3,7 +3,7 @@ begin;
 insert into SITE_pcornet.demographic (patid, birth_date, birth_time, sex, hispanic, race, pat_pref_language_spoken,
 		biobank_flag, raw_sex, raw_hispanic, raw_race, 
 		raw_pat_pref_language_spoken, site)
-select
+select distinct
 	cast(p.person_id as text) as patid,
 	cast(
 	cast(year_of_birth as text)
