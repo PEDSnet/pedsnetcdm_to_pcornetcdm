@@ -1,6 +1,6 @@
 begin;
 
-ALTER TABLE SITE_pcornet.provider ALTER provider_npi SET DATA TYPE NUMERIC(20,2);
+ALTER TABLE SITE_pcornet.provider ALTER provider_npi SET DATA TYPE NUMERIC(20,0);
 
 Insert into SITE_pcornet.provider
 	(providerid, provider_sex, 
