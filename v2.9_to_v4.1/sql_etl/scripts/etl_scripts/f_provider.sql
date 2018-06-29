@@ -1,5 +1,7 @@
 begin;
 
+ALTER TABLE SITE_pcornet.provider ALTER provider_npi SET DATA TYPE NUMERIC(20,2);
+
 Insert into SITE_pcornet.provider
 	(providerid, provider_sex, 
 	provider_specialty_primary, provider_npi,
@@ -10,7 +12,9 @@ Select
 	p.provider_id as providerid,
 	coalesce(m1.target_concept,'OT') as provider_sex,
 	coalesce(m2.target_concept,'OT') as provider_specialty_primary, 
-	p.npi as provider_npi,
+	case when p.npi ~ '[^0-9]' then null
+         else p.npi::numeric
+    end as provider_npi,
 	case when p.npi is not null then 'Y' else 'N'  end as provider_npi_flag, 
 	p.specialty_source_value as raw_provider_specialty_primary,
 	p.site as site 
