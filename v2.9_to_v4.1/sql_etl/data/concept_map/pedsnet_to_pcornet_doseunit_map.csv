@@ -32,7 +32,7 @@ Dose unit,[tbs_us],tablespoon (US),9412,tablespoon,null
 Dose unit,[tsp_us],teaspoon (US),9416,teaspoon,null
 Dose unit,ug,microgram,9655,microgram,null
 Dose unit,ug/d,microgram per day,8906,microgram per 24 hours,null
-Dose unit,ug/hr,microgram per hour,44777645,microgram per hour,null
+Dose unit,ug/h,microgram per hour,44777645,microgram per hour,null
 Dose unit,ug/kg,microgram per kilogram,9662,microgram per kilogram,null
 Dose unit,ug/kg/h,microgram per kilogram per hour,9690,microgram per kilogram per hour,null
 Dose unit,ug/kg/min,microgram per kilogram per minute,,,null
