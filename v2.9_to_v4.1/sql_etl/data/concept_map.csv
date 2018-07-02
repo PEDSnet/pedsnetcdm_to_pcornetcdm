@@ -102,13 +102,11 @@ Facility type,HOSPITAL_OUTPATIENT_HEMATOLOGY_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-A
 Facility type,HOSPITAL_OUTPATIENT_INFECTIOUS_DISEASE_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,9202,Ambulatory Visit,38004484
 Facility type,HOSPITAL_OUTPATIENT_MENTAL_HEALTH_CENTER,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,9202,Ambulatory Visit,38004230
 Facility type,HOSPITAL_OUTPATIENT_NEUROLOGY_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,9202,Ambulatory Visit,38004458
-Facility type,HOSPITAL_OUTPATIENT_OBSTETRICAL_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,9202,Ambulatory Visit,
 Facility type,HOSPITAL_OUTPATIENT_ONCOLOGY_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,9202,Ambulatory Visit,38004507
 Facility type,HOSPITAL_OUTPATIENT_ONCOLOGY_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,9202,Ambulatory Visit,38004508
 Facility type,HOSPITAL_OUTPATIENT_ONCOLOGY_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,9202,Ambulatory Visit,38004509
 Facility type,HOSPITAL_OUTPATIENT_OPHTHALMOLOGY_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,9202,Ambulatory Visit,38004463
 Facility type,HOSPITAL_OUTPATIENT_ORTHOPEDICS_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,9202,Ambulatory Visit,45756794
-Facility type,HOSPITAL_OUTPATIENT_OTORHINOLARYNGOLOGY_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,9202,Ambulatory Visit,
 Facility type,HOSPITAL_OUTPATIENT_PAIN_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,9202,Ambulatory Visit,38004494
 Facility type,HOSPITAL_OUTPATIENT_PEDIATRIC_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,9202,Ambulatory Visit,38004477
 Facility type,HOSPITAL_OUTPATIENT_PERIPHERAL_VASCULAR_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,9202,Ambulatory Visit,38004495
@@ -911,7 +909,7 @@ Provider Specialty,207P00000X,Emergency Medicine ,38004510,Emergency Medicine,nu
 Provider Specialty,207PE0004X,Emergency Medicine Emergency Medical Services,45756770,Emergency Medical Services,null
 Provider Specialty,207PH0002X,Emergency Medicine Hospice and Palliative Medicine,,,null
 Provider Specialty,207PT0002X,Emergency Medicine Medical Toxicology,,,null
-Provider Specialty,207PP0204X,Emergency Medicine Pediatric Emergency Medicine,38003850,"Allopathic & Osteopathic Physicians Emergency Medicine Medical Toxicology",null
+Provider Specialty,207PP0204X,Emergency Medicine Pediatric Emergency Medicine,38003850,Allopathic & Osteopathic Physicians Emergency Medicine Medical Toxicology,null
 Provider Specialty,207PS0010X,Emergency Medicine Sports Medicine,45756808,Pediatric Emergency Medicine,null
 Provider Specialty,207PE0005X,Emergency Medicine Undersea and Hyperbaric Medicine,,,null
 Provider Specialty,333300000X,Emergency Response System Companies ,,,null
@@ -1496,14 +1494,14 @@ Provider Specialty,390200000X,Student in an Organized Health Care Education/Trai
 Provider Specialty,324500000X,Substance Abuse Rehabilitation Facility ,,,null
 Provider Specialty,3245S0500X,Substance Abuse Rehabilitation Facility Substance Abuse Treatment Children,,,null
 Provider Specialty,251X00000X,Supports Brokerage ,,,null
-Provider Specialty,208600000X,Surgery ,38004010,"Allopathic & Osteopathic Physicians Surgery",null
+Provider Specialty,208600000X,Surgery ,38004010,Allopathic & Osteopathic Physicians Surgery,null
 Provider Specialty,2086H0002X,Surgery Hospice and Palliative Medicine,,,null
 Provider Specialty,2086S0120X,Surgery Pediatric Surgery,45756819,Pediatric Surgery,null
 Provider Specialty,2086S0122X,Surgery Plastic and Reconstructive Surgery,38004467,Plastic And Reconstructive Surgery,null
 Provider Specialty,2086S0105X,Surgery Surgery of the Hand,38004480,	Hand Surgery,null
 Provider Specialty,2086S0102X,Surgery Surgical Critical Care,45756829,Surgical Critical Care,null
 Provider Specialty,2086X0206X,Surgery Surgical Oncology,38004508,Surgical Oncology,null
-Provider Specialty,2086S0127X,Surgery Trauma Surgery,38004016,"Allopathic & Osteopathic Physicians Surgery Trauma Surgery",null
+Provider Specialty,2086S0127X,Surgery Trauma Surgery,38004016,Allopathic & Osteopathic Physicians Surgery Trauma Surgery,null
 Provider Specialty,2086S0129X,Surgery Vascular Surgery,38004496,Vascular Surgery,null
 Provider Specialty,344600000X,Taxi ,,,null
 Provider Specialty,374700000X,Technician ,,,null
@@ -1533,8 +1531,8 @@ Provider Specialty,156FX1201X,Technician/Technologist Optometric Assistant,,,nul
 Provider Specialty,156FX1202X,Technician/Technologist Optometric Technician,,,null
 Provider Specialty,156FX1900X,Technician/Technologist Orthoptist,,,null
 Provider Specialty,208G00000X,Thoracic Surgery (Cardiothoracic Vascular Surgery) ,45756830,Thoracic and Cardiac Surgery,null
-Provider Specialty,347D00000X,Train ,38004367,"Transportation Services Train",null
-Provider Specialty,204F00000X,Transplant Surgery ,38003827,"Allopathic & Osteopathic Physicians Transplant Surgery,null
+Provider Specialty,347D00000X,Train ,38004367,Transportation Services Train,null
+Provider Specialty,204F00000X,Transplant Surgery ,38003827,Allopathic & Osteopathic Physicians Transplant Surgery,null
 Provider Specialty,347E00000X,Transportation Broker ,,,null
 Provider Specialty,UN,Unknown,44814653,Unknown,null
 Provider Specialty,208800000X,Urology ,43125861,Urology,null
