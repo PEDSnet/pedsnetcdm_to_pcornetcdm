@@ -30,7 +30,9 @@ select distinct
 	COALESCE(ndc.concept_code, rxnorm_ndc_crosswalk.min_ndc_code,
 			split_part(drug_source_value,'|',1))
 		 as ndc,
-	de.days_supply as dispense_sup,
+	case when de.days_supply = 0 then null   --
+	     else de.days_supply
+	end as dispense_sup,
 	de.quantity as dispense_amt,
 	de.effective_drug_dose as dispense_dose_disp, 
 	coalesce(m1.target_concept,'OT') as dispense_dose_disp_unit,
