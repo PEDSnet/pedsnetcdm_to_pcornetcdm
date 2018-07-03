@@ -1534,7 +1534,7 @@ Provider Specialty,156FX1202X,Technician/Technologist Optometric Technician,,,nu
 Provider Specialty,156FX1900X,Technician/Technologist Orthoptist,,,null
 Provider Specialty,208G00000X,Thoracic Surgery (Cardiothoracic Vascular Surgery) ,45756830,Thoracic and Cardiac Surgery,null
 Provider Specialty,347D00000X,Train ,38004367,"Transportation Services Train",null
-Provider Specialty,204F00000X,Transplant Surgery ,38003827,"Allopathic & Osteopathic Physicians Transplant Surgery,null
+Provider Specialty,204F00000X,Transplant Surgery ,38003827,Allopathic & Osteopathic Physicians Transplant Surgery,null
 Provider Specialty,347E00000X,Transportation Broker ,,,null
 Provider Specialty,UN,Unknown,44814653,Unknown,null
 Provider Specialty,208800000X,Urology ,43125861,Urology,null
@@ -2155,7 +2155,6 @@ Specimen source,OT,,labcorp buccal swab kit,,
 Specimen source,URINE,,bagged urine,,
 Specimen source,OT,,back,,
 Specimen source,URINE,,urine cystoscopy,,
-Specimen source,URINE,,urine catheter,,
 Specimen source,URINE,,indwelling catheter,,
 Specimen source,OT,,breast milk,,
 Specimen source,OT,,bone.,,
@@ -2276,7 +2275,6 @@ Specimen source,URINE,,urine catheter,,
 Specimen source,OT,,no specimen,,
 Specimen source,OT,,non-bronchoscopic bal,,
 Specimen source,OT,,skin swab left ear.,,
-Specimen source,URINE,,urine clean catch,,
 Specimen source,OT,,endotracheal aspirate cystic fibrosis,,
 Specimen source,CSF,,shunt fluid.,,
 Specimen source,OT,,cellulitis (aspirate),,
