@@ -12,10 +12,8 @@ Select
 	p.provider_id as providerid,
 	coalesce(m1.target_concept,'OT') as provider_sex,
 	coalesce(m2.target_concept,'OT') as provider_specialty_primary, 
-	case when p.npi ~ '[^0-9]' then null
-         else p.npi::numeric
-    end as provider_npi,
-	case when p.npi is not null then 'Y' else 'N'  end as provider_npi_flag, 
+	null as provider_npi,
+	'N' as provider_npi_flag,
 	p.specialty_source_value as raw_provider_specialty_primary,
 	p.site as site 
 From
