@@ -11,7 +11,7 @@ SITE_pcornet.lab_measurements as
                              measurement_datetime, measurement_date, measurement_Result_date, measurement_result_datetime,
 	                         value_as_number, range_low, range_high, unit_source_value, unit_concept_id, value_as_concept_id,
 	                         operator_concept_id,range_low_operator_concept_id, range_high_operator_concept_id,
-	                         priority_concept_id, specimen_source_value,site
+	                         priority_concept_id, specimen_source_value, specimen_concept_id,site
 	                  from SITE_pedsnet.measurement
 	                  where measurement_type_Concept_id = 44818702 and 
 					         measurement_concept_id>0 
@@ -20,6 +20,22 @@ SITE_pcornet.lab_measurements as
 CREATE INDEX idx_labms_visitid
     ON SITE_pcornet.lab_measurements USING btree
     (visit_occurrence_id)
+    TABLESPACE pg_default;
+CREATE INDEX idx_labms_obsconid
+    ON SITE_pcornet.lab_measurements USING btree
+    (operator_concept_id)
+    TABLESPACE pg_default;
+CREATE INDEX idx_labms_raglwid
+    ON SITE_pcornet.lab_measurements USING btree
+    (range_low_operator_concept_id)
+    TABLESPACE pg_default;
+CREATE INDEX idx_labms_raghiid
+    ON SITE_pcornet.lab_measurements USING btree
+    (range_high_operator_concept_id)
+    TABLESPACE pg_default;
+CREATE INDEX idx_labms_valconid
+    ON SITE_pcornet.lab_measurements USING btree
+    (value_as_concept_id)
     TABLESPACE pg_default;
 
 create table SITE_pcornet.specimen_values as
@@ -117,7 +133,7 @@ from
 	                                                                m7.source_concept_class = 'Lab priority'
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m8 on cast(m.value_as_concept_id as text)= m8.source_concept_id and
 	                                                                m8.source_concept_class = 'Result qualifier'
-    left join stlouis_pcornet.specimen_values specimen on m.measurement_id = specimen.measurement_id
+    left join SITE_pcornet.specimen_values specimen on m.measurement_id = specimen.measurement_id
 	where visit_occurrence_id IN (select visit_id from SITE_pcornet.person_visit_start2001)
 	and EXTRACT(YEAR FROM measurement_date)>=2001;
 
