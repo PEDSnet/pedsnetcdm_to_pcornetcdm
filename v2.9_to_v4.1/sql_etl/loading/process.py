@@ -47,7 +47,7 @@ def ddl_only():
         params = config.config('db')
         pcornet_version = config.config('pcornet_version')
         schema_path = config.config('schema')
-        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_pcornet_"""+re.sub('\.', '', pcornet_version['version']))]
+        schema = [(re.sub('_pedsnet', '', schema_path['schema']) + """_pcornet""")]
         # endregion
 
         # region connect to the PostgreSQL server
