@@ -68,4 +68,5 @@ ALTER TABLE SITE_pcornet.lab_result_cm ADD CONSTRAINT fk_lab_result_cm_patid FOR
 ALTER TABLE SITE_pcornet.vital ADD CONSTRAINT fk_vital_encounterid FOREIGN KEY(encounterid) REFERENCES SITE_pcornet.encounter (encounterid) DEFERRABLE INITIALLY DEFERRED;
 
 ALTER TABLE SITE_pcornet.encounter ADD CONSTRAINT fk_encounter_providerid FOREIGN KEY(providerid) REFERENCES SITE_pcornet.provider (providerid) DEFERRABLE INITIALLY DEFERRED;
+
 commit;

@@ -26,6 +26,7 @@ begin;
 
 -- DROP INDEX SITE_pcornet.idx_pervis_visitid;
 
+
 CREATE INDEX idx_pervis_visitid
     ON SITE_pcornet.person_visit_start2001 USING btree
     (visit_id)
