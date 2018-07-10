@@ -5,7 +5,12 @@ as
 select distinct person_id, visit_occurrence_id,min(value_as_concept_id) as value_as_concept_id 
 from SITE_pedsnet.observation 
 where observation_concept_id = 44813951
-group by person_id,visit_occurrence_id; 
+group by person_id,visit_occurrence_id;
+
+CREATE INDEX idx_disp_visid
+    ON SITE_pcornet.dis_disposition USING btree
+    (visit_occurrence_id)
+    TABLESPACE pg_default;
 			
 			
 create  table SITE_pcornet.drg_value 
@@ -26,6 +31,12 @@ where observation_concept_id = 3040464 and
 group by o.person_id, visit_occurrence_id, qualifier_concept_id, value_as_string
 order by person_id asc;
 
+CREATE INDEX idx_drg_visid
+    ON SITE_pcornet.drg_value USING btree
+    (visit_occurrence_id)
+    TABLESPACE pg_default;
+
+
 -- Link the visit payer infromation
 create table SITE_pcornet.visit_payer as
 select distinct on (visit_occurrence_id) visit_occurrence_id, visit_payer_id, 
@@ -39,6 +50,11 @@ left join pcornet_maps.pedsnet_pcornet_valueset_map m5 on cast(plan_class||'-'||
 			and m5.source_concept_class='Payer'
 where visit_occurrence_id IN (select visit_id from SITE_pcornet.person_visit_start2001)
 order by visit_occurrence_id, target_concept asc ; -- extracting the visits that have valid minimum payer which mapped to target_concept
+
+CREATE INDEX idx_vispay_visid
+    ON SITE_pcornet.visit_payer USING btree
+    (visit_occurrence_id)
+    TABLESPACE pg_default;
 
 -- Extract Data
 create  table SITE_pcornet.encounter_extract

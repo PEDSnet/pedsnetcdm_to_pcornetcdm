@@ -8,25 +8,98 @@ commit;
 -- extract all fields 
 begin;
 create table SITE_pcornet.ms_ht as
-(select  distinct person_id, site, measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number
+(
+    select  distinct person_id, site, measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number
 	,  measurement_concept_id,measurement_source_value  
-	from SITE_pedsnet.measurement where measurement_concept_id = '3023540');
+	from SITE_pedsnet.measurement
+	where measurement_concept_id = '3023540';
+);
 
-create table SITE_pcornet.ms_wt as (select distinct person_id, site, measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number
-	,  measurement_concept_id,measurement_source_value  from SITE_pedsnet.measurement where measurement_concept_id = '3013762');
+CREATE INDEX idx_msht_mdtm
+    ON SITE_pcornet.ms_ht USING btree
+    (measurement_datetime)
+    TABLESPACE pg_default;
 
-create table SITE_pcornet.ms_bmi as (select distinct person_id, site, measurement_id,visit_occurrence_id,
+CREATE INDEX idx_msht_visid
+   ON SITE_pcornet.ms_ht USING btree
+   (visit_occurrence_id)
+   TABLESPACE pg_default;
+
+create table SITE_pcornet.ms_wt as
+(
+   select distinct person_id, site, measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number
+	,  measurement_concept_id,measurement_source_value
+	from SITE_pedsnet.measurement
+	where measurement_concept_id = '3013762'
+);
+
+CREATE INDEX idx_mswt_mdtm
+    ON SITE_pcornet.ms_wt USING btree
+    (measurement_datetime)
+    TABLESPACE pg_default;
+
+CREATE INDEX idx_mswt_visid
+    ON SITE_pcornet.ms_wt USING btree
+    (visit_occurrence_id)
+    TABLESPACE pg_default;
+
+commit;
+begin;
+create table SITE_pcornet.ms_bmi as
+(
+    select distinct person_id, site, measurement_id,visit_occurrence_id,
 	measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value
-		 from SITE_pedsnet.measurement where measurement_concept_id = '3038553');
+    from SITE_pedsnet.measurement
+    where measurement_concept_id = '3038553'
+);
 
-create table SITE_pcornet.ms_sys as (select distinct person_id, site, measurement_id, visit_occurrence_id,
-		measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value from 
-	SITE_pedsnet.measurement where measurement_concept_id in ('3018586','3035856','3009395','3004249'));
+    CREATE INDEX idx_msbm_msdtm
+        ON SITE_pcornet.ms_bmi USING btree
+        (measurement_datetime)
+        TABLESPACE pg_default;
 
-create table SITE_pcornet.ms_dia as (select distinct person_id, site, measurement_id,
+    CREATE INDEX idx_msbm_visid
+        ON SITE_pcornet.ms_bmi USING btree
+        (visit_occurrence_id)
+        TABLESPACE pg_default;
+commit;
+begin;
+create table SITE_pcornet.ms_sys as
+(
+   select distinct person_id, site, measurement_id, visit_occurrence_id,
+		measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value
+   from SITE_pedsnet.measurement
+   where measurement_concept_id in ('3018586','3035856','3009395','3004249')
+);
+
+CREATE INDEX idx_mssy_mdtm
+    ON SITE_pcornet.ms_sys USING btree
+    (measurement_datetime)
+    TABLESPACE pg_default;
+
+CREATE INDEX idx_mssy_visid
+    ON SITE_pcornet.ms_sys USING btree
+    (visit_occurrence_id)
+    TABLESPACE pg_default;
+
+create table SITE_pcornet.ms_dia as
+(
+    select distinct person_id, site, measurement_id,
 		visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, 
-			 measurement_concept_id,measurement_source_value  from 
-	SITE_pedsnet.measurement where measurement_concept_id in ('3034703','3019962','3013940','3012888'));
+			 measurement_concept_id,measurement_source_value
+	from SITE_pedsnet.measurement
+	where measurement_concept_id in ('3034703','3019962','3013940','3012888')
+);
+
+    CREATE INDEX idx_msdi_msdtm
+        ON SITE_pcornet.ms_dia USING btree
+        (measurement_datetime)
+        TABLESPACE pg_default;
+
+    CREATE INDEX idx_msdi_visid
+        ON SITE_pcornet.ms_dia USING btree
+        (visit_occurrence_id)
+        TABLESPACE pg_default;
 commit;
 
 begin;
@@ -40,28 +113,68 @@ create table SITE_pcornet.ms as
 	select * from SITE_pcornet.ms_sys
 	UNION 
 	select * from SITE_pcornet.ms_dia;
+
+    CREATE INDEX idx_ms_dtm
+        ON SITE_pcornet.ms USING btree
+        (measurement_datetime)
+        TABLESPACE pg_default;
+
+    CREATE INDEX ms_vis
+        ON SITE_pcornet.ms USING btree
+        (visit_occurrence_id)
+        TABLESPACE pg_default;
+
 commit;		
 
 begin;
-create table SITE_pcornet.ob_tobacco as ( select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime,coalesce(m1.target_concept,'OT') as tobacco
-	from SITE_pedsnet.observation o1 left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on cast(o1.value_as_concept_id as text) = m1.source_concept_id
-	where observation_concept_id IN ('4005823'));
-	
-create table SITE_pcornet.ob_tobacco_type as (select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime, coalesce(m2.target_concept,'OT') as tobacco_type
+create table SITE_pcornet.ob_tobacco as
+(
+    select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime,
+           coalesce(m1.target_concept,'OT') as tobacco, f.fact_id_2
+	from SITE_pedsnet.observation o1
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on cast(o1.value_as_concept_id as text) = m1.source_concept_id
+	left join SITE_pedsnet.fact_relationship f on o1.observation_id = f.fact_id_1
+	where observation_concept_id IN ('4005823')
+);
+CREATE INDEX idx_tbc_factid
+    ON SITE_pcornet.ob_tobacco USING btree
+    (fact_id_2)
+    TABLESPACE pg_default;
+commit;
+begin;
+create table SITE_pcornet.ob_tobacco_type as
+(
+    select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime, coalesce(m2.target_concept,'OT') as tobacco_type
 	from SITE_pedsnet.observation o1 
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on cast(o1.value_as_concept_id as text) = m2.source_concept_id
-	where observation_concept_id IN ('4219336'));
-	
-create table SITE_pcornet.ob_smoking as (select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime, coalesce(m3.target_concept,'OT') as smoking
+	where observation_concept_id IN ('4219336')
+);
+CREATE INDEX idx_toty_obsid
+    ON SITE_pcornet.ob_tobacco_type USING btree
+    (observation_id COLLATE pg_catalog."default")
+    TABLESPACE pg_default;
+commit;
+begin;
+create table SITE_pcornet.ob_smoking as
+(
+    select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime, coalesce(m3.target_concept,'OT') as smoking
 	from SITE_pedsnet.observation o1 left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on cast(o1.value_as_concept_id as text)= m3.source_concept_id
-	where observation_concept_id IN ('4275495'));
-	
-create table SITE_pcornet.ob_tobacco_data as (select ob_tobacco.visit_occurrence_id, ob_tobacco.observation_date, ob_tobacco.observation_datetime, ob_tobacco.tobacco, ob_tobacco_type.tobacco_type, ob_smoking.smoking
+	where observation_concept_id IN ('4275495')
+);
+CREATE INDEX idx_tosmk_obsid
+    ON SITE_pcornet.ob_smoking USING btree
+    (observation_id)
+    TABLESPACE pg_default;
+
+commit;
+begin;
+create table SITE_pcornet.ob_tobacco_data as
+(
+    select ob_tobacco.visit_occurrence_id, ob_tobacco.observation_date, ob_tobacco.observation_datetime, ob_tobacco.tobacco, ob_tobacco_type.tobacco_type, ob_smoking.smoking
 	from SITE_pcornet.ob_tobacco
-	left join SITE_pedsnet.fact_relationship fr2 on ob_tobacco.observation_id = fr2.fact_id_1 
-	left join SITE_pcornet.ob_tobacco_type on fr2.fact_id_2 = ob_tobacco_type.observation_id
-	left join SITE_pedsnet.fact_relationship fr3 on ob_tobacco.observation_id = fr3.fact_id_1 
-	left join SITE_pcornet.ob_smoking on fr3.fact_id_2 = ob_smoking.observation_id);
+	left join SITE_pcornet.ob_tobacco_type on  ob_tobacco.fact_id_2 = ob_tobacco_type.observation_id
+    left join SITE_pcornet.ob_smoking on ob_tobacco.fact_id_2 = ob_smoking.observation_id
+);
 commit; 
 
 --  drop table SITE_pcornet.vital_extract;
