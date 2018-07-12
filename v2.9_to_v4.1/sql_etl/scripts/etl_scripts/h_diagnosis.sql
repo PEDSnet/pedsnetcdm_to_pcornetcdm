@@ -16,7 +16,9 @@ select distinct
 	     else case when co.condition_concept_id>0
 		           then c2.concept_code
 	     else case when length(trim(split_part(condition_source_value,'|',3)))>0
-         	       then trim(split_part(condition_source_value,'|',3))
+         	       then case when trim(split_part(condition_source_value,'|',3)) like '%,%' then trim(split_part(trim(leading ',' from split_part(condition_source_value,'|',3)),',',1))
+                             else trim(split_part(condition_source_value,'|',3))
+					    end
          	       else trim(split_part(condition_source_value,'|',2))
          	  end
          end
