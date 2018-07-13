@@ -20,7 +20,9 @@ select distinct
 		c2.concept_code
 		else case when co.condition_concept_id>0
 		          then c1.concept_code
-		          else trim(split_part(condition_source_value,'|',3))
+		          else case when trim(split_part(condition_source_value,'|',3)) like '%,%' then trim(split_part(trim(leading ',' from split_part(condition_source_value,'|',3)),',',1))
+                             else trim(split_part(condition_source_value,'|',3))
+					    end
 		          end
 	end
 	 as condition,
