@@ -1,0 +1,23 @@
+﻿PCORnet_field,Source_CDM,Source_table,Source_table_alias,Source_field,join condition,extraction condition
+encounterid,PEDSnet,drug_exposure,D,visit_occurrence_id,,
+medadmin_code,PEDSnet,drug_exposure,D,drug_source_value,vocabulary.concept on concept_code where vocabulary_id='NDC',
+medadmin_dose_admin,PEDSnet,drug_exposure,D,effective_drug_dose,,
+medadmin_doseadmin_unit,PEDSnet,drug_exposure,D,dose_unit_concept_id,pedsnet_pcornet_valueset_map on source_concept_id  Where source_concept_class='Dose unit',
+medadmin_providerid,PEDSnet,drug_exposure,D,provider_id,,
+medadmin_route,PEDSnet,drug_exposure,D,route_concept_id,pedsnet_pcornet_valueset_map on source_concept_id  Where source_concept_class='Route',
+medadmin_source,PEDSnet,,,,,OD'
+medadmin_start_date,PEDSnet,drug_exposure,D,drug_exposure_start_date,,
+medadmin_start_time,PEDSnet,drug_exposure,D,drug_exposure_start_datetime,,hh:mm
+medadmin_stop_date,PEDSnet,drug_exposure,D,drug_exposure_end_date,,
+medadmin_stop_time,PEDSnet,drug_exposure,D,drug_exposure_end_datetime,,hh:mm
+medadmin_type,PEDSnet,drug_exposure,D,drug_source_concept_id,vocabulary.concept on concept_id where vocabulary_id='NDC',
+medadminid,PEDSnet,drug_exposure,D,drug_exposure_id,,
+patid,PEDSnet,drug_exposure,D,person_id,,
+prescribingid,PEDSnet,,,,,null
+raw_medadmin_code,PEDSnet,drug_exposure,D,drug_concept_id,,
+raw_medadmin_dose_admin,PEDSnet,drug_exposure,D,eff_drug_dose_source_value,,
+raw_medadmin_dose_admin_unit,PEDSnet,drug_exposure,D,dose_unit_source_value,,
+raw_medadmin_med_name,PEDSnet,drug_exposure,D,"drug_concept_id, drug_type_concept_id","vocabulary.concept, vocabulary.concept_relationship on concept_code where drug_type_concept_id IN (38000177, 38000180), relationship_id = 'RxNorm has dose form'  and drug_concept_id = concept_id_1
+  and concept_id_2 = concept_id",
+raw_medadmin_route,PEDSnet,drug_exposure,D,route_source_value,,
+site,PEDSnet,drug_exposure,D,site,,

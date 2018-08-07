@@ -1,0 +1,8 @@
+﻿PCORnet_field,Source_CDM,Source_table,Source_table_alias,Source_field,join condition,extraction condition
+providerid,PEDSnet,provider,P,provider_id,,
+provider_sex,PEDSnet,provider,P,gender_concept_id,pedsnet_pcornet_valueset_map on source_concept_id,
+provider_specialty_primary,PEDSnet,provider,P,specialty_concept_id,pedsnet_pcornet_valueset_map on source_concept_id,
+provider_npi,PEDSnet,provider,P,,,null
+provider_npi_flag,PEDSnet,provider,P,,,N'
+raw_provider_specialty_primary,PEDSnet,provider,P,,,site
+site,,,,,,
