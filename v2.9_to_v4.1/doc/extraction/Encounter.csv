@@ -1,28 +1,28 @@
 PCORnet_field,Source_CDM,Source_table,Source_table_alias,Source_field,join condition,extraction condition
 admit_date,PEDSnet,visit_occurrence,V,visit_start_date,,
-admit_time,PEDSnet,visit_occurrence,V,visit_start_time,,
+admit_time,PEDSnet,visit_occurrence,V,visit_start_datetime,,
 admitting_source,PEDSnet,visit_occurrence,V,admitting_source_concept_id,,
 discharge_date,PEDSnet,visit_occurrence,V,visit_end_date,,
 discharge_disposition,PEDSnet,visit_occurrence,V,discharge_to_concept_id,,
-discharge_status,PEDSnet,observation,O,value_as_concept_id,,where observation_concept_id = 44813951
-discharge_time,PEDSnet,visit_occurrence,V,visit_end_time,,
+discharge_status,PEDSnet,observation,O,value_as_concept_id,vocabulary on concept_id,where observation_concept_id = 44813951
+discharge_time,PEDSnet,visit_occurrence,V,visit_end_datetime,,
 drg,PEDSnet,observation,O,value_as_concept_id,value_as_string inselect concept_code from vocabulary.concept where invalid_reason is null and concept_class_id = 'MS-DRG' and vocabulary_id='DRG' ,where observation_concept_id = 3040464
 drg_type,PEDSnet,observation,O,value_as_concept_id,case when visit_start_date<'2007-10-01' then '01' else '02' end as drg_type,
 enc_type,PEDSnet,visit_occurrence,V,visit_concept_id,,
 encounterid,PEDSnet,visit_occurrence,V,visit_occurrence_id,,
 facility_location,PEDSnet,location,L,zip,left join dcc_pedsnet.location l on c.location_id = l.location_id,"(l.zip, 3)"
-facility_type,PEDSnet,care_site,C,"place_of_service_concept_id, specialty_concept_id, visit_concept_id",pedsnet_pcornet_valueset_map on source_concept_id where source_concept_class='Facility type',
+facility_type,PEDSnet,care_site,C,"place_of_service_concept_id, specialty_concept_id, visit_concept_id",facility_type join C.care_site_id = V.care_site_id,
 facilityid,PEDSnet,visit_occurrence,V,care_site_id,,
 patid,PEDSnet,visit_occurrence,V,person_id,,
-payer_type_primary,PEDSnet,visit_payer,P,"plan_class, plan_type",pedsnet_pcornet_valueset_map on source_concept_id where source_concept_class='Payer',
-payer_type_secondary,PEDSnet,visit_payer,P,"plan_class, plan_type",pedsnet_pcornet_valueset_map on source_concept_id where source_concept_class='Payer',
+payer_type_primary,PEDSnet,visit_payer,P,"plan_class, plan_type",payer join v.visit_occurrence_id = P.visit_occurrence_id,
+payer_type_secondary,PEDSnet,visit_payer,P,"plan_class, plan_type",payer join v.visit_occurrence_id = P.visit_occurrence_id,
 providerid,PEDSnet,visit_occurrence,V,provider_id,,
 raw_admitting_source,PEDSnet,visit_occurrence,V,visit_source_value,,
 raw_discharge_disposition,PEDSnet,visit_occurrence,V,discharge_to_source_value,,
-raw_discharge_status,PEDSnet,observation,O,observation_source_value,,
+raw_discharge_status,PEDSnet,observation,O,observation_source_value,vocabulary on concept_id,
 raw_drg_type,,,,,,null
 raw_enc_type,PEDSnet,visit_occurrence,V,visit_source_value,,
-raw_facility_type,PEDSnet,care_site,C,"place_of_service_concept_id, specialty_concept_id, visit_concept_id",pedsnet_pcornet_valueset_map on source_concept_id where source_concept_class='Facility type',
+raw_facility_type,PEDSnet,care_site,C,"place_of_service_concept_id, specialty_concept_id, visit_concept_id",facility_type join C.care_site_id = V.care_site_id,
 raw_payer_id_primary,PEDSnet,visit_payer,P,visit_payer_id,,
 raw_payer_id_secondary,PEDSnet,visit_payer,P,visit_payer_id,,
 raw_payer_name_primary,PEDSnet,visit_payer,P,plan_name,,
