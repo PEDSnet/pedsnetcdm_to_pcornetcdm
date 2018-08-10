@@ -134,7 +134,7 @@ create table SITE_pcornet.ob_tobacco as
 	from SITE_pedsnet.observation o1
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on cast(o1.value_as_concept_id as text) = m1.source_concept_id
 	left join SITE_pedsnet.fact_relationship f on o1.observation_id = f.fact_id_1
-	where observation_concept_id IN ('4005823')
+	where observation_concept_id IN ('4005823') and m1.source_concept_class = 'tobacco'
 );
 CREATE INDEX idx_tbc_factid
     ON SITE_pcornet.ob_tobacco USING btree
@@ -147,7 +147,7 @@ create table SITE_pcornet.ob_tobacco_type as
     select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime, coalesce(m2.target_concept,'OT') as tobacco_type
 	from SITE_pedsnet.observation o1 
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on cast(o1.value_as_concept_id as text) = m2.source_concept_id
-	where observation_concept_id IN ('4219336')
+	where observation_concept_id IN ('4219336') and m2.source_concept_class = 'tobacco type'
 );
 CREATE INDEX idx_toty_obsid
     ON SITE_pcornet.ob_tobacco_type USING btree
@@ -159,7 +159,7 @@ create table SITE_pcornet.ob_smoking as
 (
     select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime, coalesce(m3.target_concept,'OT') as smoking
 	from SITE_pedsnet.observation o1 left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on cast(o1.value_as_concept_id as text)= m3.source_concept_id
-	where observation_concept_id IN ('4275495')
+	where observation_concept_id IN ('4275495') and m3.source_concept_class = 'smoking'
 );
 CREATE INDEX idx_tosmk_obsid
     ON SITE_pcornet.ob_smoking USING btree
