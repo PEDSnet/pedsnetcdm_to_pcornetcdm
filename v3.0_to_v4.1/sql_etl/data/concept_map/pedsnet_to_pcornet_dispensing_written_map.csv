@@ -1,0 +1,6 @@
+class,pcornet_code,pcornet_name,pedsnet_code,pedsnet_name,value_as_concept_id
+dispense written,Y,Yes,4188539,Yes,null
+dispense written,N,No,4188540,No,null
+dispense written,NI,No information,44814650,No Information,null
+dispense written,UN,Unknown,44814653,Unknown,null
+dispense written,OT,Other,44814649,Other,null
