@@ -1,9 +1,9 @@
 begin; -- 163 sec
-alter table nationwide_pcornet.lab_result_cm  alter result_num SET DATA TYPE NUMERIC(25,8);
-alter table nationwide_pcornet.lab_result_cm  alter result_unit SET DATA TYPE character varying(15);
+alter table SITE_pcornet.lab_result_cm  alter result_num SET DATA TYPE NUMERIC(25,8);
+alter table SITE_pcornet.lab_result_cm  alter result_unit SET DATA TYPE character varying(15);
 commit;
 begin;
-create table nationwide_pcornet.lab_measurements as -- 2min 39sec
+create table SITE_pcornet.lab_measurements as -- 2min 39sec
 (
    select measurement_id, person_id, visit_occurrence_id, measurement_concept_id, measurement_source_Concept_id, measurement_source_value,
 		measurement_order_date, measurement_order_datetime,  measurement_datetime, measurement_date, measurement_Result_date, measurement_result_datetime,
@@ -13,43 +13,43 @@ create table nationwide_pcornet.lab_measurements as -- 2min 39sec
 		measurement_type_concept_name,priority_concept_name, range_high_operator_concept_name, range_low_operator_concept_name, specimen_concept_name,
     	unit_concept_name, value_as_concept_name, site, site_id, provider_id, operator_concept_name, priority_concept_id, specimen_source_value,
 		specimen_concept_id, c1.concept_code as lab_loinc_vocab, c1.concept_name as loinc_desc
-    from nationwide_pedsnet.measurement m
+    from SITE_pedsnet.measurement m
 	inner join vocabulary.concept c1 on m.measurement_concept_id = c1.concept_id and c1.vocabulary_id = 'LOINC'
 	where measurement_type_Concept_id = 44818702 and measurement_concept_id>0
 );
 commit;
 begin;
 CREATE INDEX idx_labms_visitid
-    ON nationwide_pcornet.lab_measurements USING btree
+    ON SITE_pcornet.lab_measurements USING btree
     (visit_occurrence_id)
     TABLESPACE pg_default;
 commit;
 begin;
 CREATE INDEX idx_labms_obsconid
-    ON nationwide_pcornet.lab_measurements USING btree
+    ON SITE_pcornet.lab_measurements USING btree
     (operator_concept_id)
     TABLESPACE pg_default;
 commit;
 begin;
 CREATE INDEX idx_labms_raglwid
-    ON nationwide_pcornet.lab_measurements USING btree
+    ON SITE_pcornet.lab_measurements USING btree
     (range_low_operator_concept_id)
     TABLESPACE pg_default;
 commit;
 begin;
 CREATE INDEX idx_labms_raghiid
-    ON nationwide_pcornet.lab_measurements USING btree
+    ON SITE_pcornet.lab_measurements USING btree
     (range_high_operator_concept_id)
     TABLESPACE pg_default;
 commit;
 begin;
 CREATE INDEX idx_labms_valconid
-    ON nationwide_pcornet.lab_measurements USING btree
+    ON SITE_pcornet.lab_measurements USING btree
     (value_as_concept_id)
     TABLESPACE pg_default;
 commit;
 begin;
-create table nationwide_pcornet.specimen_values as  -- 3min 52 sec
+create table SITE_pcornet.specimen_values as  -- 3min 52 sec
 select measurement_concept_id, measurement_date, measurement_datetime, measurement_order_date, measurement_order_datetime,
             measurement_result_date, measurement_result_datetime, measurement_source_concept_id, measurement_source_value,
             measurement_type_concept_id, operator_concept_id, priority_concept_id, priority_source_value, range_high, range_high_operator_concept_id,
@@ -59,7 +59,7 @@ select measurement_concept_id, measurement_date, measurement_datetime, measureme
 				operator_concept_name, priority_concept_name, range_high_operator_concept_name, range_low_operator_concept_name, specimen_concept_name,
                 unit_concept_name, value_as_concept_name, site, measurement_id, site_id, visit_occurrence_id, person_id, provider_id,
 				loinc_desc as raw_lab_name,lab_loinc_vocab as lab_loinc, coalesce(sc.target_concept, p.target_concept,s.target_concept,'OT') as specimen_source
-from nationwide_pcornet.lab_measurements m
+from SITE_pcornet.lab_measurements m
 -- left join vocabulary.concept c on c.concept_id = m.specimen_concept_id and c.domain_id = 'Specimen'
 left join pcornet_maps.specimen_concept sc on sc.source_concept_id = m.specimen_concept_id
 left join pcornet_maps.pedsnet_pcornet_valueset_map p on trim(lower(split_part(m.specimen_source_value,'|',1))) = p.source_concept_id
@@ -67,7 +67,7 @@ left join pcornet_maps.pedsnet_pcornet_valueset_map p on trim(lower(split_part(m
 left join pcornet_maps.lab_specimens s on s.source_concept_id = m.lab_loinc_vocab;
 commit;
 begin;
-insert into nationwide_pcornet.lab_result_cm (   -- 10 min 7sec
+insert into SITE_pcornet.lab_result_cm (   -- 10 min 7sec
         lab_result_cm_id,
         patid, encounterid,
          specimen_source,
@@ -124,7 +124,7 @@ select distinct
         null as raw_order_dept,
         null as raw_facility_code,
         m.site as site
-from nationwide_pcornet.specimen_values m
+from SITE_pcornet.specimen_values m
 left join vocabulary.concept c2 on m.operator_concept_id = c2.concept_id and  c2.domain_id = 'Meas Value Operator'
 left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on cast(m.operator_concept_id as text) = m3.source_concept_id and
                                                                        m3.source_concept_class = 'Result modifier'
@@ -137,7 +137,7 @@ left join pcornet_maps.pedsnet_pcornet_valueset_map m7 on cast(m.priority_concep
                                                                         m7.source_concept_class = 'Lab priority'
 left join pcornet_maps.pedsnet_pcornet_valueset_map m8 on cast(m.value_as_concept_id as text)= m8.source_concept_id and
                                                                         m8.source_concept_class = 'Result qualifier'
-where m.visit_occurrence_id IN (select visit_id from nationwide_pcornet.person_visit_start2001)
+where m.visit_occurrence_id IN (select visit_id from SITE_pcornet.person_visit_start2001)
         and EXTRACT(YEAR FROM m.measurement_date)>=2001
 order by m.measurement_id, specimen_source asc;
 commit;
