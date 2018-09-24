@@ -5,7 +5,6 @@ contextlib2==0.5.5
 cycler==0.10.0
 decorator==4.1.2
 Django==1.5.12
-Flask==0.12.2
 Flask-Cors==3.0.3
 functools32==3.2.3.post2
 logutils==0.3.3
