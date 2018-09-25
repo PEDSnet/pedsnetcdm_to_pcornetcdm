@@ -50,7 +50,7 @@ CREATE INDEX idx_labms_valconid
 commit;
 begin;
 create table SITE_pcornet.specimen_values as  -- 3min 52 sec
-select measurement_concept_id, measurement_date, measurement_datetime, measurement_order_date, measurement_order_datetime,
+select distinct on (measurement_concept_id) measurement_concept_id, measurement_date, measurement_datetime, measurement_order_date, measurement_order_datetime,
             measurement_result_date, measurement_result_datetime, measurement_source_concept_id, measurement_source_value,
             measurement_type_concept_id, operator_concept_id, priority_concept_id, priority_source_value, range_high, range_high_operator_concept_id,
             range_high_source_value, range_low, range_low_operator_concept_id, range_low_source_value, specimen_concept_id, specimen_source_value,
@@ -60,7 +60,6 @@ select measurement_concept_id, measurement_date, measurement_datetime, measureme
                 unit_concept_name, value_as_concept_name, site, measurement_id, site_id, visit_occurrence_id, person_id, provider_id,
 				loinc_desc as raw_lab_name,lab_loinc_vocab as lab_loinc, coalesce(sc.target_concept, p.target_concept,s.target_concept,'OT') as specimen_source
 from SITE_pcornet.lab_measurements m
--- left join vocabulary.concept c on c.concept_id = m.specimen_concept_id and c.domain_id = 'Specimen'
 left join pcornet_maps.specimen_concept sc on sc.source_concept_id = m.specimen_concept_id
 left join pcornet_maps.pedsnet_pcornet_valueset_map p on trim(lower(split_part(m.specimen_source_value,'|',1))) = p.source_concept_id
 													and p.source_concept_class = 'Specimen source'
