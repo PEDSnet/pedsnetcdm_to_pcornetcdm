@@ -81,8 +81,7 @@ insert into SITE_pcornet.lab_result_cm (   -- 10 min 7sec
         abn_ind,
         raw_lab_name, raw_lab_code, raw_panel, raw_result, raw_unit, raw_order_dept, raw_facility_code, site
 )
-select distinct
-        m.measurement_id as lab_result_cm_id,
+select distinct on (measurement_id) m.measurement_id as lab_result_cm_id,
         cast(m.person_id as text) as patid,
 		cast(m.visit_occurrence_id as text) as encounterid,
         specimen_source,
