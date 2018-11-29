@@ -21,7 +21,7 @@ python-dateutil==2.6.1
 pytz==2017.3
 PyYAML==3.12
 regex==2017.2.8
-requests==2.12.4
+requests==2.20.0
 scipy==0.19.1
 six==1.11.0
 SQLAlchemy==1.1.15
