@@ -1,4 +1,5 @@
-class,pcornet_code,pcornet_name,pedsnet_code,pedsnet_name,value_as_concept_id
+source_concept_class,target_concept,pcornet_name,source_concept_id,concept_description,value_as_concept_id
+Result unit,min,minute,8550,minute,null
 Result unit,%,percent,8554,percent,null
 Result unit,[APL'U]/mL,IgA anticardiolipin unit per milliliter**,9684,IgA Phospholipid Units Per MilliLiter [Arbitrary Concentration Units],null
 Result unit,[arb'U],arbitrary unit,9260,arbitrary unit,null
@@ -52,7 +53,6 @@ Result unit,mg/dL,milligram per deciliter,8840,milligram per deciliter,null
 Result unit,mg/g,milligram per gram,8723,milligram per gram,null
 Result unit,mg/g{creat},milligram per gram of creatinine,9017,milligram per gram of creatinine,null
 Result unit,mg/L,milligram per liter,8751,milligram per liter,null
-Result unit,min,minute,8550,minute,null
 Result unit,mL,milliliter,8587,milliliter,null
 Result unit,mL/min,milliliter per minute,8795,milliliter per minute,null
 Result unit,mm/h,millimeter per hour,8752,millimeter per hour,null
@@ -92,3 +92,41 @@ Result unit,NI,No information,44814650,No information,null
 Result unit,UN,Unknown,44814653,Unknown,null
 Result unit,OT,Other,0,No matching concept,null
 Result unit,OT,Other,44814649,Other,null
+Result unit,[U],,8510,unit,
+Result unit,%{tot},,8632,percent total,
+Result unit,[U]/L,,8645,unit per liter,
+Result unit,[U]/mL,,8763,unit per milliliter,
+Result unit,ug/min,,8774,microgram per minute,
+Result unit,{cells}/uL,,8784,cells per microliter,
+Result unit,/mm3,,8785,per cubic millimeter,
+Result unit,10*3.[U]/L,,8810,kilounit per liter,
+Result unit,pg/mL,,8845,picogram per milliliter,
+Result unit,10*6/mm3,,8931,million per cubic millimeter,
+Result unit,10*3/mm3,,8961,thousand per cubic millimeter,
+Result unit,ug/g{creat},,9014,microgram per gram of creatinine,
+Result unit,/100.{WBC},,9032,per 100 white blood cells,
+Result unit,ug/mg{creat},,9072,microgram per milligram of creatinine,
+Result unit,{cells},,45744812,cells,
+Result unit,meq/L,,meq/L,milliequivalent per liter,
+Result unit,K/mm3,,8903,Kelvin per cubic millimeter,
+Result unit,m/mm3,,8891,Meter per cubic millimeter,
+Result unit,mm,,8588,millimeter,
+Result unit,mosm,,8605,milliosmole,
+Result unit,F,,8517,Farad,
+Result unit,nm,,8577,nanometer,
+Result unit,ug/g,,8720,microgram per gram,
+Result unit,pmol/L,,8729,picomole per liter,
+Result unit,/[LPF],,8765,per low powered field,
+Result unit,10*-6.[U]/mL,,8860,microunit per milliliter,
+Result unit,mg/mL,,8861,milligram per milliliter,
+Result unit,{cells}/[HPF],,8889,cells per high power field,
+Result unit,ug{FEU}/mL,,8989,microgram of fibrinogen equivalent unit per milliliter,
+Result unit,umol/g{creat},,9015,micromole per gram of creatinine,
+Result unit,mmol/mol{creat},,9019,millimole per mole of creatinine,
+Result unit,mg/mg{creat},,9074,milligram per milligram of creatinine,
+Result unit,t,,9647,tonne,
+Result unit,uL,,9665,microliter,
+Result unit,umol/mol{creat},,9675,micromole per mole of creatinine,
+Result unit,[GPL'U],,9100,IgG phospholipid unit,
+Result unit,[MPL'U],,9101,IgM phospholipid unit,
+Result unit,[beth'U],,9161,Bethesda unit,
