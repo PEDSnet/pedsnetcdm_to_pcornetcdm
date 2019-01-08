@@ -71,7 +71,7 @@ as
 	v.care_site_id, 
 	place_of_service_concept_id, 
 	specialty_concept_id, 
-	dis_disposition.value_as_concept_id value_as_concept_id_ddisp,
+	dis_disposition.value_as_concept_id as value_as_concept_id_ddisp,
 	discharge_to_concept_id, 
 	admitting_source_concept_id,
     drg_value.value_as_string as value_as_string_drg, 
