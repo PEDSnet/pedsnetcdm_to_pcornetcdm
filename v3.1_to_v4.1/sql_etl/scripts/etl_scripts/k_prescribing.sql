@@ -56,7 +56,7 @@ select
 		then 'Y' else 'N'
 	end	as rx_prn_flag, 
 	coalesce(m4.target_concept,'OT') as rx_route, 
-	'01' as rx_basis,
+	case when drug_type_concept_id = '38000177' then '01' when drug_type_concept_id = '581373' then '02' else 'NI' end as rx_basis,
 	CAST(nullif(c1.concept_code, '') AS integer) as rxnorm_cui,
 	'OD' as rx_source, 
 	coalesce(m5.target_concept,'OT') as rx_dispense_as_written, -- extracting from pedsnet dispense_as_written_concept_id column data in pcornet valueset
@@ -87,7 +87,7 @@ from
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m5 on  cast(de.dispense_as_written_concept_id as text) = m5.source_concept_id  and
 	                                                                 m5.source_concept_class='dispense written'
 where
-	de.drug_type_concept_id IN ('38000177')
+	de.drug_type_concept_id IN ('38000177', '581373')
 	and de.person_id IN (select person_id from SITE_pcornet.person_visit_start2001)
 	and EXTRACT(YEAR FROM drug_exposure_start_date) >= 2001; 
 
