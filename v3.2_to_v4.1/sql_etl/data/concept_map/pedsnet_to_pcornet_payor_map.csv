@@ -1,0 +1,166 @@
+class,pcornet_code,pcornet_name,pedsnet_code,pedsnet_name,value_as_concept_id
+Payer,1,MEDICARE,,,null
+Payer,11,Medicare (Managed Care),,,null
+Payer,111,Medicare HMO,Medicare-HMO,,null
+Payer,112,Medicare PPO,Medicare-PPO,,null
+Payer,113,Medicare POS,Medicare-POS,,null
+Payer,119,Medicare Managed Care Other,,,null
+Payer,12,Medicare (Non-managed Care),,,null
+Payer,121,Medicare FFS,Medicare-Fee for service,,null
+Payer,122,Medicare Drug Benefit,,,null
+Payer,123,Medicare Medical Savings Account (MSA),,,null
+Payer,129,Medicare Non-managed Care Other,,,null
+Payer,13,Medicare Hospice,,,null
+Payer,14,Dual Eligibility Medicare/Medicaid Organization,,,null
+Payer,19,Medicare Other,Medicare-Other/Unknown,,null
+Payer,191,Medicare Pharmacy Benefit Manager,,,null
+Payer,2,MEDICAID,,,null
+Payer,21,Medicaid (Managed Care),,,null
+Payer,211,Medicaid HMO,,,null
+Payer,212,Medicaid PPO,,,null
+Payer,213,Medicaid PCCM (Primary Care Case Management),,,null
+Payer,219,Medicaid Managed Care Other,,,null
+Payer,22,Medicaid (Non-managed Care Plan),,,null
+Payer,23,Medicaid/SCHIP,Medicaid/sCHIP-HMO,,null
+Payer,23,Medicaid/SCHIP,Medicaid/sCHIP-PPO,,null
+Payer,23,Medicaid/SCHIP,Medicaid/sCHIP-POS,,null
+Payer,23,Medicaid/SCHIP,Medicaid/sCHIP-Other/Unknown,,null
+Payer,24,Medicaid Applicant,,,null
+Payer,25,Medicaid - Out of State,,,null
+Payer,26,Medicaid  Long Term Care,,,null
+Payer,29,Medicaid Other,,,null
+Payer,291,Medicaid Pharmacy Benefit Manager,,,null
+Payer,299,Medicaid - Dental,,,null
+Payer,3,OTHER GOVERNMENT (Federal/State/Local) (excluding Department of Corrections),,,null
+Payer,31,Department of Defense,,,null
+Payer,311,TRICARE (CHAMPUS),,,null
+Payer,3111,TRICARE PrimeHMO,,,null
+Payer,3112,TRICARE ExtraPPO,,,null
+Payer,3113,TRICARE Standard - Fee For Service,,,null
+Payer,3114,TRICARE For Life--Medicare Supplement,,,null
+Payer,3115,TRICARE Reserve Select,,,null
+Payer,3116,Uniformed Services Family Health Plan (USFHP) -- HMO,,,null
+Payer,3119,Department of Defense - (other),,,null
+Payer,312,Military Treatment Facility,,,null
+Payer,3121,Enrolled PrimeHMO,,,null
+Payer,3122,Non-enrolled Space Available,,,null
+Payer,3123,TRICARE For Life (TFL),,,null
+Payer,313,Dental --Stand Alone,,,null
+Payer,32,Department of Veterans Affairs,,,null
+Payer,321,Veteran care--Care provided to Veterans,,,null
+Payer,3211,Direct Care--Care provided in VA facilities,,,null
+Payer,3212,Indirect Care--Care provided outside VA facilities,,,null
+Payer,32121,Fee Basis,,,null
+Payer,32122,Foreign Fee/Foreign Medical Program (FMP),,,null
+Payer,32123,Contract Nursing Home/Community Nursing Home,,,null
+Payer,32124,State Veterans Home,,,null
+Payer,32125,Sharing Agreements,,,null
+Payer,32126,Other Federal Agency,,,null
+Payer,32127,Dental Care,,,null
+Payer,32128,Vision Care,,,null
+Payer,322,Non-veteran care,,,null
+Payer,3221,Civilian Health and Medical Program for the VA (CHAMPVA),,,null
+Payer,3222,Spina Bifida Health Care Program (SB),,,null
+Payer,3223,Children of Women Vietnam Veterans (CWVV),,,null
+Payer,3229,Other non-veteran care,,,null
+Payer,33,Indian Health Service or Tribe,,,null
+Payer,331,Indian Health Service  Regular,,,null
+Payer,332,Indian Health Service  Contract,,,null
+Payer,333,Indian Health Service - Managed Care,,,null
+Payer,334,Indian Tribe - Sponsored Coverage,,,null
+Payer,34,HRSA Program,,,null
+Payer,341,Title V (MCH Block Grant),,,null
+Payer,342,Migrant Health Program,,,null
+Payer,343,Ryan White Act,,,null
+Payer,349,Other,,,null
+Payer,35,Black Lung,,,null
+Payer,36,State Government,,,null
+Payer,361,State SCHIP program (codes for individual states),,,null
+Payer,362,Specific state programs (list/ local code),,,null
+Payer,369,"State not otherwise specified (other state)",,,null
+Payer,37,Local Government,,,null
+Payer,371,Local - Managed care,,,null
+Payer,3711,HMO,,,null
+Payer,3712,PPO,,,null
+Payer,3713,POS,,,null
+Payer,372,FFS/Indemnity,,,null
+Payer,379,"Local not otherwise specified (other local county)",,,null
+Payer,38,"Other Government (Federal State Local not specified)",,,null
+Payer,381,"Federal State Local not specified managed care",,,null
+Payer,3811,"Federal State Local not specified - HMO",,,null
+Payer,3812,"Federal State Local not specified - PPO",,,null
+Payer,3813,"Federal State Local not specified - POS",,,null
+Payer,3819,"Federal State Local not specified - not specified managed care",,,null
+Payer,382,"Federal State Local not specified - FFS",,,null
+Payer,389,"Federal State Local not specified - Other",,,null
+Payer,39,Other Federal,,,null
+Payer,391,Federal Employee Health Plan  Use when known.,,,null
+Payer,4,DEPARTMENTS OF CORRECTIONS,,,null
+Payer,41,Corrections Federal,,,null
+Payer,42,Corrections State,,,null
+Payer,43,Corrections Local,,,null
+Payer,44,Corrections Unknown Level,,,null
+Payer,5,PRIVATE HEALTH INSURANCE,,,null
+Payer,51,Managed Care (Private),,,null
+Payer,511,Commercial Managed Care - HMO,Private/Commercial-HMO,,null
+Payer,512,Commercial Managed Care - PPO,Private/Commercial-PPO,,null
+Payer,513,Commercial Managed Care - POS,Private/Commercial-POS,,null
+Payer,514,Exclusive Provider Organization,,,null
+Payer,515,Gatekeeper PPO (GPPO),,,null
+Payer,516,Commercial Managed Care - Pharmacy Benefit Manager,,,null
+Payer,517,Commercial Managed Care - Dental,,,null
+Payer,519,"Managed Care Other (non HMO)",,,null
+Payer,52,Private Health Insurance - Indemnity,,,null
+Payer,521,Commercial Indemnity,,,null
+Payer,522,Self-insured (ERISA) Administrative Services Only (ASO) plan,,,null
+Payer,523,Medicare supplemental policy (as second payer),,,null
+Payer,524,Indemnity Insurance - Dental,,,null
+Payer,529,Private health insuranceother commercial Indemnity,,,null
+Payer,53,"Managed Care (private) or private health insurance (indemnity) not otherwise specified",,,null
+Payer,54,Organized Delivery System,,,null
+Payer,55,Small Employer Purchasing Group,,,null
+Payer,56,Specialized Stand Alone Plan,,,null
+Payer,561,Dental,,,null
+Payer,562,Vision Other Private Insurance,,,null
+Payer,6,BLUE CROSS/BLUE SHIELD,,,null
+Payer,61,BC Managed Care,,,null
+Payer,611,BC Managed Care  HMO,,,null
+Payer,612,BC Managed Care  PPO,,,null
+Payer,613,BC Managed Care  POS,,,null
+Payer,614,BC Managed Care - Dental,,,null
+Payer,619,BC Managed Care  Other,,,null
+Payer,62,BC Insurance Indemnity,,,null
+Payer,621,BC Indemnity,,,null
+Payer,622,BC Self-insured (ERISA) Administrative Services Only (ASO)Plan,,,null
+Payer,623,BC Medicare Supplemental Plan,,,null
+Payer,629,BC Indemnity - Dental,,,null
+Payer,7,"MANAGED CARE UNSPECIFIED (to be used only if one can't distinguish public from private)",,,null
+Payer,71,HMO,Other/Unknown-HMO,,null
+Payer,72,PPO,Other/Unknown-PPO,,null
+Payer,73,POS,Other/Unknown-POS,,null
+Payer,79,Other Managed Care,,,null
+Payer,8,NO PAYMENT from an Organization/Agency/Program/Private Payer Listed,,,null
+Payer,81,Self-pay,Self-pay-Other/Unknown,,null
+Payer,82,No Charge,,,null
+Payer,821,Charity,,,null
+Payer,822,Professional Courtesy,,,null
+Payer,823,Research/Clinical Trial,,,null
+Payer,83,Refusal to Pay/Bad Debt,,,null
+Payer,84,Hill Burton Free Care,,,null
+Payer,85,Research/Donor,,,null
+Payer,89,"No Payment Other",,,null
+Payer,9,MISCELLANEOUS/OTHER,,,null
+Payer,91,Foreign National,,,null
+Payer,92,Other (Non-government),,,null
+Payer,93,Disability Insurance,,,null
+Payer,94,Long-term Care Insurance,,,null
+Payer,95,Worker's Compensation,,,null
+Payer,951,Worker's Comp HMO,,,null
+Payer,953,Worker's Comp Fee-for-Service,Other/Unknown-Fee for service,,null
+Payer,954,Workers Comp Other Managed Care,,,null
+Payer,959,"Worker's Comp Other unspecified",,,null
+Payer,96,Auto Insurance (includes no fault),,,null
+Payer,97,Legal Liability / Liability Insurance,,,null
+Payer,98,Other specified but not otherwise classifiable (includes Hospice - Unspecified plan),,,null
+Payer,99,No Typology Code available for payment source,,,null
+Payer,9999,Unavailable / No Payer Specified / Blank,Other/Unknown-Other/Unknown,,null
