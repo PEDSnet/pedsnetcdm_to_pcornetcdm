@@ -723,6 +723,7 @@ Provider Specialty,347B00000X,Bus ,,,null
 Provider Specialty,251B00000X,Case Management ,,,null
 Provider Specialty,171M00000X,Case Manager/Care Coordinator ,,,null
 Provider Specialty,111N00000X,Chiropractor ,38003660,Chiropractic Providers Chiropractor,null
+Provider Specialty,111N00000X,Chiropractor ,38004475,Chiropractic Providers Chiropractor,null
 Provider Specialty,111NI0013X,Chiropractor Independent Medical Examiner,38003661,Chiropractic Providers Chiropractor Independent Medical Examiner,null
 Provider Specialty,111NI0900X,Chiropractor Internist,38003662,Chiropractic Providers Chiropractor Internist,null
 Provider Specialty,111NN0400X,Chiropractor Neurology,38003663,Chiropractic Providers Chiropractor Neurology,null
@@ -780,7 +781,8 @@ Provider Specialty,261QX0100X,Clinic/Center Occupational Medicine,,,null
 Provider Specialty,261QX0200X,Clinic/Center Oncology,,,null
 Provider Specialty,261QX0203X,Clinic/Center Oncology Radiation,,,null
 Provider Specialty,261QS0132X,Clinic/Center Ophthalmologic Surgery,,,null
-Provider Specialty,261QS0112X,Clinic/Center Oral and Maxillofacial Surgery,,,null
+Provider Specialty,261QS0112X,Clinic/Center Oral and Maxillofacial Surgery,38004504,,null
+Provider Specialty,261QS0112X,Clinic/Center Oral and Maxillofacial Surgery,38004261,,null
 Provider Specialty,261QP3300X,Clinic/Center Pain,,,null
 Provider Specialty,261QP2000X,Clinic/Center Physical Therapy,,,null
 Provider Specialty,261QP1100X,Clinic/Center Podiatric,,,null
@@ -891,6 +893,7 @@ Provider Specialty,136A00000X,Dietetic Technician Registered ,38003694,Dietary &
 Provider Specialty,133V00000X,Dietitian Registered ,38003690,Dietary & Nutritional Service Providers Dietitian Registered,null
 Provider Specialty,133VN1006X,Dietitian Registered Nutrition Metabolic,38003693,Dietary & Nutritional Service Providers Dietitian Registered Nutrition Metabolic,null
 Provider Specialty,133VN1004X,Dietitian Registered Nutrition Pediatric,38003691,Dietary & Nutritional Service Providers Dietitian Registered Nutrition Pediatric,null
+Provider Specialty,133VN1004X,Dietitian Registered Nutrition Pediatric,38004694,Dietary & Nutritional Service Providers Dietitian Registered Nutrition Pediatric,null
 Provider Specialty,133VN1005X,Dietitian Registered Nutrition Renal,38003692,Dietary & Nutritional Service Providers Dietitian Registered Nutrition Renal,null
 Provider Specialty,374J00000X,Doula ,38004433,Nursing Service Related Providers Doula,null
 Provider Specialty,172A00000X,Driver ,,,null
@@ -954,18 +957,18 @@ Provider Specialty,332800000X,Indian Health Service/Tribal/Urban Indian Health (
 Provider Specialty,310500000X,Intermediate Care Facility Mental Illness ,,,null
 Provider Specialty,315P00000X,Intermediate Care Facility Mentally Retarded ,,,null
 Provider Specialty,207R00000X,Internal Medicine ,38004456,Internal Medicine,null
-Provider Specialty,207RA0401X,Internal Medicine Addiction Medicine,,,null
+Provider Specialty,207RA0401X,Internal Medicine Addiction Medicine,38004498,,null
 Provider Specialty,207RA0000X,Internal Medicine Adolescent Medicine,,,null
 Provider Specialty,207RA0001X,Internal Medicine Advanced Heart Failure and Transplant Cardiology,,,null
 Provider Specialty,207RA0201X,Internal Medicine Allergy & Immunology,,,null
-Provider Specialty,207RC0000X,Internal Medicine Cardiovascular Disease,,,null
+Provider Specialty,207RC0000X,Internal Medicine Cardiovascular Disease,45756754,,null
 Provider Specialty,207RI0001X,Internal Medicine Clinical & Laboratory Immunology,,,null
-Provider Specialty,207RC0001X,Internal Medicine Clinical Cardiac Electrophysiology,,,null
+Provider Specialty,207RC0001X,Internal Medicine Clinical Cardiac Electrophysiology,45756758,,null
 Provider Specialty,207RC0200X,Internal Medicine Critical Care Medicine,45756778,Internal Medicine - Critical Care Medicine,null
-Provider Specialty,207RE0101X,Internal Medicine Endocrinology Diabetes & Metabolism,,,null
-Provider Specialty,207RG0100X,Internal Medicine Gastroenterology,,,null
-Provider Specialty,207RG0300X,Internal Medicine Geriatric Medicine,,,null
-Provider Specialty,207RH0000X,Internal Medicine Hematology,,,null
+Provider Specialty,207RE0101X,Internal Medicine Endocrinology Diabetes & Metabolism,45756771,,null
+Provider Specialty,207RG0100X,Internal Medicine Gastroenterology,38004455,,null
+Provider Specialty,207RG0300X,Internal Medicine Geriatric Medicine,38004478,,null
+Provider Specialty,207RH0000X,Internal Medicine Hematology,38004501,,null
 Provider Specialty,207RH0003X,Internal Medicine Hematology & Oncology,,,null
 Provider Specialty,207RI0008X,Internal Medicine Hepatology,,,null
 Provider Specialty,207RH0002X,Internal Medicine Hospice and Palliative Medicine,,,null
@@ -973,11 +976,11 @@ Provider Specialty,207RH0005X,Internal Medicine Hypertension Specialist,,,null
 Provider Specialty,207RI0200X,Internal Medicine Infectious Disease,,,null
 Provider Specialty,207RI0011X,Internal Medicine Interventional Cardiology,,,null
 Provider Specialty,207RM1200X,Internal Medicine Magnetic Resonance Imaging (MRI),,,null
-Provider Specialty,207RX0202X,Internal Medicine Medical Oncology,,,null
-Provider Specialty,207RN0300X,Internal Medicine Nephrology,,,null
+Provider Specialty,207RX0202X,Internal Medicine Medical Oncology,38004507,,null
+Provider Specialty,207RN0300X,Internal Medicine Nephrology,38004479,,null
 Provider Specialty,207RB0002X,Internal Medicine Obesity Medicine,,,null
-Provider Specialty,207RP1001X,Internal Medicine Pulmonary Disease,,,null
-Provider Specialty,207RR0500X,Internal Medicine Rheumatology,,,null
+Provider Specialty,207RP1001X,Internal Medicine Pulmonary Disease,38004472,,null
+Provider Specialty,207RR0500X,Internal Medicine Rheumatology,38004491,,null
 Provider Specialty,207RS0012X,Internal Medicine Sleep Medicine,,,null
 Provider Specialty,207RS0010X,Internal Medicine Sports Medicine,,,null
 Provider Specialty,207RT0003X,Internal Medicine Transplant Hepatology,,,null
@@ -998,10 +1001,11 @@ Provider Specialty,224900000X,Mastectomy Fitter ,,,null
 Provider Specialty,174200000X,Meals ,,,null
 Provider Specialty,172M00000X,Mechanotherapist ,,,null
 Provider Specialty,335G00000X,Medical Foods Supplier ,,,null
-Provider Specialty,207SG0202X,Medical Genetics Clinical Biochemical Genetics,,,null
+Provider Specialty,207SG0202X,Medical Genetics Clinical Biochemical Genetics,45756757,,null
+Provider Specialty,207SG0202X,Medical Genetics Clinical Biochemical Genetics,45756781,,null
 Provider Specialty,207SC0300X,Medical Genetics Clinical Cytogenetic,,,null
-Provider Specialty,207SG0201X,Medical Genetics Clinical Genetics (M.D.),,,null
-Provider Specialty,207SG0203X,Medical Genetics Clinical Molecular Genetics,,,null
+Provider Specialty,207SG0201X,Medical Genetics Clinical Genetics (M.D.),45756782,,null
+Provider Specialty,207SG0203X,Medical Genetics Clinical Molecular Genetics,45756762,,null
 Provider Specialty,207SM0001X,Medical Genetics Molecular Genetic Pathology,,,null
 Provider Specialty,207SG0205X,Medical Genetics Ph.D. Medical Genetics,,,null
 Provider Specialty,170100000X,Medical Genetics Ph.D. Medical Genetics ,,,null
@@ -1067,14 +1071,14 @@ Provider Specialty,207V00000X,Obstetrics & Gynecology ,38004461,Obstetrics/Gynec
 Provider Specialty,207VC0200X,Obstetrics & Gynecology Critical Care Medicine,,,null
 Provider Specialty,207VF0040X,Obstetrics & Gynecology Female Pelvic Medicine and Reconstructive Surgery,,,null
 Provider Specialty,207VX0201X,Obstetrics & Gynecology Gynecologic Oncology,,,null
-Provider Specialty,207VG0400X,Obstetrics & Gynecology Gynecology,,,null
+Provider Specialty,207VG0400X,Obstetrics & Gynecology Gynecology,38004513,,null
 Provider Specialty,207VH0002X,Obstetrics & Gynecology Hospice and Palliative Medicine,,,null
-Provider Specialty,207VM0101X,Obstetrics & Gynecology Maternal & Fetal Medicine,,,null
+Provider Specialty,207VM0101X,Obstetrics & Gynecology Maternal & Fetal Medicine,45756780,,null
 Provider Specialty,207VB0002X,Obstetrics & Gynecology Obesity Medicine,,,null
 Provider Specialty,207VX0000X,Obstetrics & Gynecology Obstetrics,,,null
 pdx,S,,2000000103,Secondary,NULL
 Provider Specialty,207VE0102X,Obstetrics & Gynecology Reproductive Endocrinology,,,null
-Provider Specialty,225X00000X,Occupational Therapist,,Occupational Therapy,null
+Provider Specialty,225X00000X,Occupational Therapist,38004492,Occupational Therapy,null
 Provider Specialty,225XR0403X,Occupational Therapist Driving and Community Mobility,,,null
 Provider Specialty,225XE0001X,Occupational Therapist Environmental Modification,,,null
 Provider Specialty,225XE1200X,Occupational Therapist Ergonomics,,,null
@@ -1102,7 +1106,7 @@ Provider Specialty,152W00000X,Optometrist ,38004481,Optometry,null
 Provider Specialty,152WC0802X,Optometrist Corneal and Contact Management,,,null
 Provider Specialty,152WL0500X,Optometrist Low Vision Rehabilitation,,,null
 Provider Specialty,152WX0102X,Optometrist Occupational Vision,,,null
-Provider Specialty,152WP0200X,Optometrist Pediatrics,,,null
+Provider Specialty,152WP0200X,Optometrist Pediatrics,38003699,,null
 Provider Specialty,152WS0006X,Optometrist Sports Vision,,,null
 Provider Specialty,152WV0400X,Optometrist Vision Therapy,,,null
 Provider Specialty,204E00000X,Oral & Maxillofacial Surgery ,38004464,Oral Surgery,null
@@ -1123,7 +1127,7 @@ Provider Specialty,207Y00000X,Otolaryngology ,38004449,Otolaryngology,null
 Provider Specialty,207YS0123X,Otolaryngology Facial Plastic Surgery,,,null
 Provider Specialty,207YX0602X,Otolaryngology Otolaryngic Allergy,,,null
 Provider Specialty,207YX0905X,Otolaryngology Otolaryngology/Facial Plastic Surgery,,,null
-Provider Specialty,207YX0901X,Otolaryngology Otology & Neurotology,,,null
+Provider Specialty,207YX0901X,Otolaryngology Otology & Neurotology,45756792,,null
 Provider Specialty,207YP0228X,Otolaryngology Pediatric Otolaryngology,45756814,Pediatric Otolaryngology,null
 Provider Specialty,207YX0007X,Otolaryngology Plastic Surgery within the Head & Neck,,,null
 Provider Specialty,207YS0012X,Otolaryngology Sleep Medicine,,,null
@@ -1135,7 +1139,7 @@ Provider Specialty,207ZP0102X,Pathology Anatomic Pathology & Clinical Pathology,
 Provider Specialty,207ZB0001X,Pathology Blood Banking & Transfusion Medicine,,,null
 Provider Specialty,207ZP0104X,Pathology Chemical Pathology,45756796,Pathology - Chemical,null
 Provider Specialty,207ZC0008X,Pathology Clinical Informatics,,,null
-Provider Specialty,247ZC0005X,Pathology Clinical Laboratory Director Non-physician,,,null
+Provider Specialty,247ZC0005X,Pathology Clinical Laboratory Director Non-physician,38004692,,null
 Provider Specialty,207ZC0006X,Pathology Clinical Pathology,45756797,Pathology - Clinical,null
 Provider Specialty,207ZP0105X,Pathology Clinical Pathology/Laboratory Medicine,,,null
 Provider Specialty,207ZC0500X,Pathology Cytopathology,,,null
@@ -1145,15 +1149,16 @@ Provider Specialty,207ZH0000X,Pathology Hematology,45756811,,null
 Provider Specialty,207ZI0100X,Pathology Immunopathology,,,null
 Provider Specialty,207ZM0300X,Pathology Medical Microbiology,,,null
 Provider Specialty,207ZP0007X,Pathology Molecular Genetic Pathology,,,null
-Provider Specialty,207ZN0500X,Pathology Neuropathology,,,null
+Provider Specialty,207ZN0500X,Pathology Neuropathology,45756790,,null
 Provider Specialty,207ZP0213X,Pathology Pediatric Pathology,45756802,Pathology - Pediatric,null
 Provider Specialty,208000000X,Pediatrics ,38004477,Pediatric Medicine,null
+Provider Specialty,208000000X,Pediatrics ,2000000063,Pediatric Medicine,null
 Provider Specialty,2080A0000X,Pediatrics Adolescent Medicine,45756747,Adolescent Medicine	,null
 Provider Specialty,2080C0008X,Pediatrics Child Abuse Pediatrics,45756755,Child Abuse Pediatrics,null
 Provider Specialty,2080I0007X,Pediatrics Clinical & Laboratory Immunology,,,null
-Provider Specialty,2080P0006X,Pediatrics Developmental ������ Behavioral Pediatrics,,,null
-Provider Specialty,2080H0002X,Pediatrics Hospice and Palliative Medicine,,,null
-Provider Specialty,2080T0002X,Pediatrics Medical Toxicology,,,null
+Provider Specialty,2080P0006X,Pediatrics Developmental Behavioral Pediatrics,45756768,,null
+Provider Specialty,2080H0002X,Pediatrics Hospice and Palliative Medicine,45756777,,null
+Provider Specialty,2080T0002X,Pediatrics Medical Toxicology,45756784,,null
 Provider Specialty,2080N0001X,Pediatrics Neonatal-Perinatal Medicine,45756786,Neonatal-Perinatal Medicine,null
 Provider Specialty,2080P0008X,Pediatrics Neurodevelopmental Disabilities,45756787,Neurodevelopmental Disabilities,null
 Provider Specialty,2080B0002X,Pediatrics Obesity Medicine,,,null
@@ -1165,12 +1170,13 @@ Provider Specialty,2080P0205X,Pediatrics Pediatric Endocrinology,45756809,Pediat
 Provider Specialty,2080P0206X,Pediatrics Pediatric Gastroenterology,45756810,Pediatric Gastroenterology,null
 Provider Specialty,2080P0207X,Pediatrics Pediatric Hematology-Oncology,45756811,Pediatric Hematology-Oncology,null
 Provider Specialty,2080P0208X,Pediatrics Pediatric Infectious Diseases,45756812,Pediatric Infectious Diseases,null
+Provider Specialty,2080P0208X,Pediatrics Pediatric Infectious Diseases,38004484,Pediatric Infectious Diseases,null
 Provider Specialty,2080P0210X,Pediatrics Pediatric Nephrology,45756813,Pediatric Nephrology,null
 Provider Specialty,2080P0214X,Pediatrics Pediatric Pulmonology,45756815,Pediatric Pulmonology,null
 Provider Specialty,2080P0216X,Pediatrics Pediatric Rheumatology,45756818,Pediatric Rheumatology,null
 Provider Specialty,2080T0004X,Pediatrics Pediatric Transplant Hepatology,45756820,Pediatric Transplant Hepatology,null
 Provider Specialty,2080S0012X,Pediatrics Sleep Medicine,,,null
-Provider Specialty,2080S0010X,Pediatrics Sports Medicine,,,null
+Provider Specialty,2080S0010X,Pediatrics Sports Medicine,45756828,,null
 Provider Specialty,224L00000X,Pedorthist ,38004524,Pedorthic Personnel,null
 Provider Specialty,175T00000X,Peer Specialist ,,,null
 Provider Specialty,242T00000X,Perfusionist ,,,null
@@ -1205,7 +1211,7 @@ Provider Specialty,2081P0301X,Physical Medicine & Rehabilitation Brain Injury Me
 Provider Specialty,2081H0002X,Physical Medicine & Rehabilitation Hospice and Palliative Medicine,,,null
 Provider Specialty,2081N0008X,Physical Medicine & Rehabilitation Neuromuscular Medicine,,,null
 Provider Specialty,2081P2900X,Physical Medicine & Rehabilitation Pain Medicine,,,null
-Provider Specialty,2081P0010X,Physical Medicine & Rehabilitation Pediatric Rehabilitation Medicine,,,null
+Provider Specialty,2081P0010X,Physical Medicine & Rehabilitation Pediatric Rehabilitation Medicine,45756817,,null
 Provider Specialty,2081P0004X,Physical Medicine & Rehabilitation Spinal Cord Injury Medicine,,,null
 Provider Specialty,2081S0010X,Physical Medicine & Rehabilitation Sports Medicine,,,null
 Provider Specialty,225100000X,Physical Therapist ,38004490,Physical Therapy,null
@@ -1247,6 +1253,7 @@ Provider Specialty,2083B0002X,Preventive Medicine Obesity Medicine,,,null
 Provider Specialty,2083X0100X,Preventive Medicine Occupational Medicine,,,null
 Provider Specialty,2083P0500X,Preventive Medicine Preventive Medicine/Occupational Environmental Medicine,,,null
 Provider Specialty,2083P0901X,Preventive Medicine Public Health & General Preventive Medicine,38004503,Preventive Medicine,null
+Provider Specialty,2083P0901X,Preventive Medicine Public Health & General Preventive Medicine,45756824,Preventive Medicine,null
 Provider Specialty,2083S0010X,Preventive Medicine Sports Medicine,,,null
 Provider Specialty,2083P0011X,Preventive Medicine Undersea and Hyperbaric Medicine,,,null
 Provider Specialty,347C00000X,Private Vehicle ,,,null
@@ -1258,17 +1265,18 @@ Provider Specialty,273R00000X,Psychiatric Unit ,,,null
 Provider Specialty,2084A0401X,Psychiatry & Neurology Addiction Medicine,,,null
 Provider Specialty,2084P0802X,Psychiatry & Neurology Addiction Psychiatry,,,null
 Provider Specialty,2084B0040X,Psychiatry & Neurology Behavioral Neurology & Neuropsychiatry,43125860,Psychiatry & Neurology,null
+Provider Specialty,2084B0040X,Psychiatry & Neurology Behavioral Neurology & Neuropsychiatry,38004505,Psychiatry & Neurology,null
 Provider Specialty,2084P0301X,Psychiatry & Neurology Brain Injury Medicine,,,null
 Provider Specialty,2084P0804X,Psychiatry & Neurology Child & Adolescent Psychiatry,45756756,Child and Adolescent Psychiatry,null
-Provider Specialty,2084N0600X,Psychiatry & Neurology Clinical Neurophysiology,,,null
+Provider Specialty,2084N0600X,Psychiatry & Neurology Clinical Neurophysiology,45756763,,null
 Provider Specialty,2084D0003X,Psychiatry & Neurology Diagnostic Neuroimaging,,,null
-Provider Specialty,2084F0202X,Psychiatry & Neurology Forensic Psychiatry,,,null
-Provider Specialty,2084P0805X,Psychiatry & Neurology Geriatric Psychiatry,,,null
+Provider Specialty,2084F0202X,Psychiatry & Neurology Forensic Psychiatry,45756775,,null
+Provider Specialty,2084P0805X,Psychiatry & Neurology Geriatric Psychiatry,45756776,,null
 Provider Specialty,2084H0002X,Psychiatry & Neurology Hospice and Palliative Medicine,,,null
 Provider Specialty,2084A2900X,Psychiatry & Neurology Neurocritical Care,,,null
 Provider Specialty,2084P0005X,Psychiatry & Neurology Neurodevelopmental Disabilities,,,null
 Provider Specialty,2084N0400X,Psychiatry & Neurology Neurology,38004458,Neurology,null
-Provider Specialty,2084N0402X,Psychiatry & Neurology Neurology with Special Qualifications in Child Neurology,,,null
+Provider Specialty,2084N0402X,Psychiatry & Neurology Neurology with Special Qualifications in Child Neurology,45756788,,null
 Provider Specialty,2084N0008X,Psychiatry & Neurology Neuromuscular Medicine,,,null
 Provider Specialty,2084B0002X,Psychiatry & Neurology Obesity Medicine,,,null
 Provider Specialty,2084P2900X,Psychiatry & Neurology Pain Medicine,,,null
@@ -1314,20 +1322,20 @@ Provider Specialty,2471R0002X,Radiologic Technologist Radiation Therapy,,,null
 Provider Specialty,2471C3402X,Radiologic Technologist Radiography,38004696,Radiation Therapy Center,null
 Provider Specialty,2471S1302X,Radiologic Technologist Sonography,,,null
 Provider Specialty,2471V0105X,Radiologic Technologist Vascular Sonography,,,null
-Provider Specialty,2471V0106X,Radiologic Technologist Vascular-Interventional Technology,,,null
+Provider Specialty,2471V0106X,Radiologic Technologist Vascular-Interventional Technology,45756833,,null
 Provider Specialty,2085B0100X,Radiology Body Imaging,,,null
 Provider Specialty,2085D0003X,Radiology Diagnostic Neuroimaging,,,null
-Provider Specialty,2085R0202X,Radiology Diagnostic Radiology,,,null
+Provider Specialty,2085R0202X,Radiology Diagnostic Radiology,45756769,,null
 Provider Specialty,2085U0001X,Radiology Diagnostic Ultrasound,,,null
 Provider Specialty,2085H0002X,Radiology Hospice and Palliative Medicine,,,null
-Provider Specialty,2085N0700X,Radiology Neuroradiology,,,null
+Provider Specialty,2085N0700X,Radiology Neuroradiology,45756791,,null
 Provider Specialty,2085N0904X,Radiology Nuclear Radiology,45756825,Radiology,null
-Provider Specialty,2085P0229X,Radiology Pediatric Radiology,,,null
+Provider Specialty,2085P0229X,Radiology Pediatric Radiology,45756816,Pediatric Radiology,null
 Provider Specialty,243U00000X,Radiology Practitioner Assistant ,,,null
 Provider Specialty,2085R0001X,Radiology Radiation Oncology,38004509,Radiation Oncology,null
 Provider Specialty,2085R0205X,Radiology Radiological Physics,,,null
 Provider Specialty,2085R0203X,Radiology Therapeutic Radiology,,,null
-Provider Specialty,2085R0204X,Radiology Vascular & Interventional Radiology,,,null
+Provider Specialty,2085R0204X,Radiology Vascular & Interventional Radiology,38004511,,null
 Provider Specialty,225800000X,Recreation Therapist ,,,null
 Provider Specialty,226000000X,Recreational Therapist Assistant ,,,null
 Provider Specialty,173C00000X,Reflexologist ,,,null
@@ -1443,7 +1451,7 @@ Provider Specialty,314000000X,Skilled Nursing Facility ,38004516,Skilled Nursing
 Provider Specialty,3140N1450X,Skilled Nursing Facility Nursing Care Pediatric,,,null
 Provider Specialty,173F00000X,Sleep Specialist PhD ,45756827,Sleep Medicine,null
 Provider Specialty,104100000X,Social Worker ,,,null
-Provider Specialty,1041C0700X,Social Worker Clinical,,,null
+Provider Specialty,1041C0700X,Social Worker Clinical,38004499,,null
 Provider Specialty,1041S0200X,Social Worker School,,,null
 Provider Specialty,246X00000X,Spec/Tech Cardiovascular ,,,null
 Provider Specialty,246XC2901X,Spec/Tech Cardiovascular Cardiovascular Invasive Specialist,,,null
@@ -1452,7 +1460,7 @@ Provider Specialty,246XC2903X,Spec/Tech Cardiovascular Vascular Specialist,,,nul
 Provider Specialty,246Y00000X,Spec/Tech Health Info ,,,null
 Provider Specialty,246YC3302X,Spec/Tech Health Info Coding Specialist Physician Office Based,,,null
 Provider Specialty,246YR1600X,Spec/Tech Health Info Registered Record Administrator,,,null
-Provider Specialty,246Q00000X,Spec/Tech Pathology ,,,null
+Provider Specialty,246Q00000X,Spec/Tech Pathology ,38004466,,null
 Provider Specialty,246QB0000X,Spec/Tech Pathology Blood Banking,,,null
 Provider Specialty,246QC1000X,Spec/Tech Pathology Chemistry,,,null
 Provider Specialty,246QC2700X,Spec/Tech Pathology Cytotechnology,,,null
@@ -1503,6 +1511,7 @@ Provider Specialty,2086S0122X,Surgery Plastic and Reconstructive Surgery,3800446
 Provider Specialty,2086S0105X,Surgery Surgery of the Hand,38004480,	Hand Surgery,null
 Provider Specialty,2086S0102X,Surgery Surgical Critical Care,45756829,Surgical Critical Care,null
 Provider Specialty,2086X0206X,Surgery Surgical Oncology,38004508,Surgical Oncology,null
+Provider Specialty,2086X0206X,Surgery Surgical Oncology,45756764,Surgical Oncology,null
 Provider Specialty,2086S0127X,Surgery Trauma Surgery,38004016,Allopathic & Osteopathic Physicians Surgery Trauma Surgery,null
 Provider Specialty,2086S0129X,Surgery Vascular Surgery,38004496,Vascular Surgery,null
 Provider Specialty,344600000X,Taxi ,,,null
@@ -1532,7 +1541,8 @@ Provider Specialty,156FX1800X,Technician/Technologist Optician,,,null
 Provider Specialty,156FX1201X,Technician/Technologist Optometric Assistant,,,null
 Provider Specialty,156FX1202X,Technician/Technologist Optometric Technician,,,null
 Provider Specialty,156FX1900X,Technician/Technologist Orthoptist,,,null
-Provider Specialty,208G00000X,Thoracic Surgery (Cardiothoracic Vascular Surgery) ,45756830,Thoracic and Cardiac Surgery,null
+Provider Specialty,208G00000X,Thoracic Surgery (Cardiothoracic Vascular Surgery),45756830,Thoracic and Cardiac Surgery,null
+Provider Specialty,208G00000X,Thoracic Surgery (Cardiothoracic Vascular Surgery),38004473,Thoracic and Cardiac Surgery,null
 Provider Specialty,347D00000X,Train ,38004367,Transportation Services Train,null
 Provider Specialty,204F00000X,Transplant Surgery ,38003827,Allopathic & Osteopathic Physicians Transplant Surgery,null
 Provider Specialty,347E00000X,Transportation Broker ,,,null
@@ -2328,6 +2338,7 @@ Encounter type,OS,,2000000088,Observational Stay,NULL
 Encounter type,IS,,42898160,Long Term Care Visit,NULL
 Encounter type,IS,,44814710,Non-Acute Institutional Stay,NULL
 Encounter type,OA,,44814711,Other ambulatory visit,NULL
+Encounter type,OA,,2000000469,Outpatient Visit - Non Physician,NULL
 Encounter type,UN,,44814653,Unknown,NULL
 Encounter type,NI,,44814650,No information,NULL
 Encounter type,OT,,44814649,Other,NULL

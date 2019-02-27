@@ -1,9 +1,5 @@
 django>=1.10.8
 Pillow==4.1.1
-django-extensions==1.7.9
-django-htmlmin==0.10.0
-django-compressor==2.1.1
-django-celery-results
 dj-database-url==0.4.2
 amqp==2.2.2
 Babel==2.5.1
