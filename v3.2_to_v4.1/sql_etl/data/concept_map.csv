@@ -1077,6 +1077,9 @@ Provider Specialty,207VM0101X,Obstetrics & Gynecology Maternal & Fetal Medicine,
 Provider Specialty,207VB0002X,Obstetrics & Gynecology Obesity Medicine,,,null
 Provider Specialty,207VX0000X,Obstetrics & Gynecology Obstetrics,,,null
 pdx,S,,2000000103,Secondary,NULL
+pdx,S,,2000001283,Secondary,NULL
+pdx,S,,2000001284,Secondary,null
+pdx,S,,2000001285,Secondary,null
 Provider Specialty,207VE0102X,Obstetrics & Gynecology Reproductive Endocrinology,,,null
 Provider Specialty,225X00000X,Occupational Therapist,38004492,Occupational Therapy,null
 Provider Specialty,225XR0403X,Occupational Therapist Driving and Community Mobility,,,null
@@ -2391,6 +2394,9 @@ pdx,P,,2000000097,Principal,NULL
 pdx,P,,2000000092,Principal,NULL
 pdx,P,,2000000093,Principal,NULL
 pdx,P,,2000000094,Principal,NULL
+pdx,P,,2000001280,Principal,NULL
+pdx,P,,2000001281,Principal,null
+pdx,P,,2000001282,Principal,null
 pdx,P,,38000199,Principal,NULL
 pdx,P,,38000230,Principal,NULL
 pdx,S,,2000000098,Secondary,NULL
