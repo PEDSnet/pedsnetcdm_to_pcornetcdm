@@ -1572,6 +1572,36 @@ Result qualifier,NI,No Information,44814650,No information,null
 Result qualifier,UN,Unknown,44814653,Unknown,null
 Result qualifier,OT,Other,44814649,Other,null
 Result qualifier,OT,Other,0,Other,null
+Result unit,N,newton,9599,newton,null
+Result unit,mL/dL,milliliter per deciliter,9570,milliliter per deciliter,null
+Result unit,um,micrometer,9666,micrometer,null
+Result unit,mg/mmol,milligram per millimole,44777612,milligram per millimole,null
+Result unit,mL/s,milliliter per second,44777614,milliliter per second,null
+Result unit,pmol/mL,picomole per milliliter,9632,picomole per milliliter,null
+Result unit,mmol/mol,millimole per mole,9579,millimole per mole,null
+Result unit,nmol/mol,nanomole per mole,9612,nanomole per mole,null
+Result unit,eV,electron volt,9495,electron volt,null
+Result unit,F,Farad,8655,Farad per liter,null
+Result unit,ug,microgram,9655,microgram,null
+Result unit,mg/mg,milligram per milligram,9565,milligram per milligram,null
+Result unit,deg,degree,9484,degree,null
+Result unit,{ISR},immume status ratio,8488,immune status ration,null
+Result unit,10*6,million,8549,million,null
+Result unit,10*3,thousand,8566,thousand,null
+Result unit,/100{WBCs},per 100 white blood cells,9032,,null
+Result unit,[LPF],low power field,8656,low power field,null
+Result unit,[HPF],high power field,8673,high power field,null
+Result unit,mg/d,milligram per day,8700,milligram per day,null
+Result unit,ng/g,nanogram per gram,8701,nanogram per gram,null
+Result unit,fmol/L,femtomole per liter,8745,,null
+Result unit,/100,per hundread,9243,,null
+Result unit,/dL,per deciliter,9245,,null
+Result unit,/kg,per kilogram,9252,,null
+Result unit,[IU]/dL,international unit per deciliter,9332,,null
+Result unit,10*3/L,thousand per liter,9435,,null
+Result unit,10*3/mL,thousand per milliliter,9436,,null
+Result unit,10*9/L,billion per liter,9444,,null
+Result unit,cal,calorie,9472,,null
 Result unit,%,percent,8554,percent,null
 Result unit,[APL'U]/mL,IgA anticardiolipin unit per milliliter**,9684,IgA Phospholipid Units Per MilliLiter [Arbitrary Concentration Units],null
 Result unit,[arb'U],arbitrary unit,9260,arbitrary unit,null
@@ -1644,6 +1674,7 @@ Result unit,nmol/L,nanomole per liter,8736,nanomole per liter,null
 Result unit,nmol/mL,nanomole per milliliter,8843,nanomole per milliliter,null
 Result unit,nmol/mL/min,nanomole per milliliter per minute,44777635,nanomole per minute and milliliter,null
 Result unit,pg,picogram,8564,picogram,null
+Result unit,pg/dL,picogram per deciliter,8820,picogram per deciliter,null
 Result unit,pg/L,picogram per liter,9625,picogram per liter,null
 Result unit,pg/mL,picogram per milliliter,9626,picogram per millimeter,null
 Result unit,S,Siemens,9639,siemens,null
@@ -1760,7 +1791,7 @@ Route,INTRAVENOUS_CENTRAL,Intravenous central route (qualifier value),,,null
 Route,INTRAVENOUS_PERIPHERAL,Intravenous peripheral route (qualifier value),,,null
 Route,INTRAVENOUS,Intravenous route (qualifier value),4112421,Intravenous,null
 Route,INTRAVENOUS,Intravenous route (qualifier value),4171047,Intravenous,null
-Route,INTRAVENTRICULAR___CARDIAC,Intraventricular route - cardiac (qualifier value),4222259,Intraventricular cardiac,null
+Route,INTRAVENTRICULAR_CARDIAC,Intraventricular route - cardiac (qualifier value),4222259,Intraventricular cardiac,null
 Route,INTRAVESICAL,Intravesical route (qualifier value),4186838,Intravesical,null
 Route,INTRAVITREAL,Intravitreal route (qualifier value),4302785,Intravitreal,null
 Route,JEJUNOSTOMY,Jejunostomy route (qualifier value),,,null
