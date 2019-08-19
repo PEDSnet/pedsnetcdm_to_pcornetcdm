@@ -34,6 +34,7 @@ select distinct
 		     end
 		end
 	end as dx_type,
+	co.condition_start_date as dx_date,
 	coalesce(m1.target_concept,'OT') as dx_source,
 	coalesce(m2.target_concept, 'NI') as pdx,
 	coalesce(m3.target_concept,'OT') as dx_origin,
