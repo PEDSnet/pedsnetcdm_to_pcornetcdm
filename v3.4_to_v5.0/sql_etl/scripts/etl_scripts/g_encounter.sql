@@ -117,7 +117,7 @@ as
 	 as date) as discharge_date,
 	date_part('hour',visit_end_datetime)||':'||date_part('minute',visit_end_datetime) as discharge_time,
 	provider_id as providerid,
-	left(zip,3) as facility_location,	
+	left(zip,5) as facility_location,
     care_site_id as facilityid,
     value_as_string_drg as drg, -- -records having multiple DRGs
 	case when visit_start_date<'2007-10-01' then '01' else '02' end as drg_type,
