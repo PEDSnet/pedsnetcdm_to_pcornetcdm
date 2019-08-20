@@ -10,8 +10,9 @@ begin;
 create table SITE_pcornet.ms_ht as
 (
     select  distinct person_id, site, measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number
-	,  measurement_concept_id,measurement_source_value  
-	from SITE_pedsnet.measurement
+	,  measurement_concept_id,measurement_source_value ,coalesce(m1.target_concept,'NI') as vital_source
+	from SITE_pedsnet.measurement m
+    left join pcornet_maps.pedsnet_pcornet_valueset_map_v50_081519 m1 on m1.source_concept_id::int = m.measurement_type_concept_id and m1.source_concept_class = 'vital_source'
 	where measurement_concept_id = '3023540'
 );
 
@@ -28,8 +29,9 @@ CREATE INDEX idx_msht_visid
 create table SITE_pcornet.ms_wt as
 (
    select distinct person_id, site, measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number
-	,  measurement_concept_id,measurement_source_value
-	from SITE_pedsnet.measurement
+	,  measurement_concept_id,measurement_source_value,coalesce(m1.target_concept,'NI') as vital_source
+	from SITE_pedsnet.measurement m
+    left join pcornet_maps.pedsnet_pcornet_valueset_map_v50_081519 m1 on m1.source_concept_id::int = m.measurement_type_concept_id and m1.source_concept_class = 'vital_source'
 	where measurement_concept_id = '3013762'
 );
 
@@ -48,8 +50,9 @@ begin;
 create table SITE_pcornet.ms_bmi as
 (
     select distinct person_id, site, measurement_id,visit_occurrence_id,
-	measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value
-    from SITE_pedsnet.measurement
+	measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value,coalesce(m1.target_concept,'NI') as vital_source
+    from SITE_pedsnet.measurement m
+left join pcornet_maps.pedsnet_pcornet_valueset_map_v50_081519 m1 on m1.source_concept_id::int = m.measurement_type_concept_id and m1.source_concept_class = 'vital_source'
     where measurement_concept_id = '3038553'
 );
 
@@ -67,8 +70,9 @@ begin;
 create table SITE_pcornet.ms_sys as
 (
    select distinct person_id, site, measurement_id, visit_occurrence_id,
-		measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value
-   from SITE_pedsnet.measurement
+		measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value,coalesce(m1.target_concept,'NI') as vital_source
+   from SITE_pedsnet.measurement m
+left join pcornet_maps.pedsnet_pcornet_valueset_map_v50_081519 m1 on m1.source_concept_id::int = m.measurement_type_concept_id and m1.source_concept_class = 'vital_source'
    where measurement_concept_id in ('3018586','3035856','3009395','3004249')
 );
 
@@ -86,8 +90,9 @@ create table SITE_pcornet.ms_dia as
 (
     select distinct person_id, site, measurement_id,
 		visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, 
-			 measurement_concept_id,measurement_source_value
-	from SITE_pedsnet.measurement
+			 measurement_concept_id,measurement_source_value,coalesce(m1.target_concept,'NI') as vital_source
+	from SITE_pedsnet.measurement m
+left join pcornet_maps.pedsnet_pcornet_valueset_map_v50_081519 m1 on m1.source_concept_id::int = m.measurement_type_concept_id and m1.source_concept_class = 'vital_source'
 	where measurement_concept_id in ('3034703','3019962','3013940','3012888')
 );
 
@@ -104,15 +109,20 @@ commit;
 
 begin;
 create table SITE_pcornet.ms as
-	select * from SITE_pcornet.ms_ht
-	UNION 
-	select * from SITE_pcornet.ms_wt
-	UNION 
-	select * from SITE_pcornet.ms_bmi
-	UNION 
-	select * from SITE_pcornet.ms_sys
-	UNION 
-	select * from SITE_pcornet.ms_dia;
+	select person_id, site, measurement_id, visit_occurrence_id, vital_source, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value
+	from SITE_pcornet.ms_ht
+	UNION
+	select person_id, site, measurement_id, visit_occurrence_id, vital_source, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value
+	from SITE_pcornet.ms_wt
+	UNION
+	select person_id, site, measurement_id, visit_occurrence_id, vital_source, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value
+	from SITE_pcornet.ms_bmi
+	UNION
+	select person_id, site, measurement_id, visit_occurrence_id, vital_source, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value
+	from SITE_pcornet.ms_sys
+	UNION
+	select person_id, site, measurement_id, visit_occurrence_id, vital_source, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value
+	from SITE_pcornet.ms_dia;
 
     CREATE INDEX idx_ms_dtm
         ON SITE_pcornet.ms USING btree
@@ -195,6 +205,7 @@ ms_sys.measurement_concept_id as measurement_concept_id_sys,
 tobacco,
 tobacco_type,
 smoking,
+vital_source,
 ms_sys.measurement_source_value as measurement_source_value_sys, 
 ms_dia.measurement_source_value as measurement_source_value_dia, 
 ms.site
@@ -228,7 +239,7 @@ cast(visit_occurrence_id as text) as encounterid,
 cast(cast(date_part('year', measurement_date) as text)||'-'||lpad(cast(date_part('month', measurement_date) as text),2,'0')||'-'||lpad(cast(date_part('day', measurement_date) as text),2,'0') as date) 
      as measure_date,
 lpad(cast(date_part('hour', measurement_datetime) as text),2,'0')||':'||lpad(cast(date_part('minute', measurement_datetime) as text),2,'0') as measure_time,
-'HC' as vital_source, -- defaulting to 'HC' 
+vital_source, -- defaulting to 'HC'
 -- In the meanwhile, we will ask the sites whether they can differentiate between HC and HD and will make any applicable changes to PEDSnet conventions 2.1
     (value_as_number_ht*0.393701) as ht, -- cm to inch conversion
     (value_as_number_wt*2.20462) as wt, -- kg to pound conversion
