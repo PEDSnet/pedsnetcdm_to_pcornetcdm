@@ -55,7 +55,7 @@ begin;
 insert into SITE_pcornet.lab_result_cm (
 	lab_result_cm_id,
 	patid, encounterid,
-	 specimen_source, lab_result_source,
+	 specimen_source, lab_result_source, lab_loinc_source,
 	lab_loinc, priority, result_loc,
 	lab_px, lab_px_type,
 	lab_order_date,
@@ -72,6 +72,7 @@ select distinct on (m.measurement_id) m.measurement_id as lab_result_cm_id,
 	cast(m.visit_occurrence_id as text) as encounterid,
 	specimen_source,
 	'OD' as lab_result_source,
+	null as lab_loinc_source, -- need to implement using measure_ment_concept_id
 	lab_loinc,
 	m7.target_concept as priority,
 	case when m.measurement_source_value like 'POC%'
