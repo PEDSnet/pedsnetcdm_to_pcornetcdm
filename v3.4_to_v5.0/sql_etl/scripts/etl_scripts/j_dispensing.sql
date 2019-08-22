@@ -20,7 +20,7 @@ create table SITE_pcornet.rxnorm_ndc_crosswalk as
  
  insert into SITE_pcornet.dispensing( dispensingid, patid, prescribingid, dispense_date,
                                         ndc, dispense_sup, dispense_amt, dispense_dose_disp, 
-                                        dispense_dose_disp_unit, dispense_route, raw_ndc,
+                                        dispense_dose_disp_unit, dispense_route, dispense_source, raw_ndc,
                                         raw_dispense_dose_disp, raw_dispense_dose_disp_unit, raw_dispense_route, site)
 select distinct
 	de.drug_exposure_id,
@@ -37,6 +37,7 @@ select distinct
 	de.effective_drug_dose as dispense_dose_disp, 
 	coalesce(m1.target_concept,'OT') as dispense_dose_disp_unit,
 	coalesce(m2.target_concept,'OT') as dispense_route,
+	'CL' as dispense_source, -- defaulting it to sourced from pharmacy
 	drug_source_value as raw_ndc,
 	eff_drug_dose_source_value as raw_dispense_dose_disp, 
 	dose_unit_source_value as raw_dispense_dose_disp_unit,
