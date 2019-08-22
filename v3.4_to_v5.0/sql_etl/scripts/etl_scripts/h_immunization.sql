@@ -1,4 +1,4 @@
-INSERT INTO test.immunization(immunizationid, patid, encounterid, procedureid, vx_providerid,
+INSERT INTO SITE.immunization(immunizationid, patid, encounterid, procedureid, vx_providerid,
 vx_record_date, vx_admin_date, vx_code_type, vx_code, vx_status, vx_status_reason, vx_source, vx_dose,
 vx_dose_unit, vx_route, vx_body_site, vx_manufacturer, vx_lot_num, vx_exp_date, raw_vx_name,
 raw_vx_code, raw_vx_code_type, raw_vx_dose, raw_vx_dose_unit, raw_vx_route, raw_vx_body_site,
@@ -33,7 +33,7 @@ select imm.immunization_id::text as immunizationid,
         'CP' as raw_vx_status,
 		null as raw_vx_status_reason,
 		imm.site
-from dcc_pedsnet.immunization imm
+from SITE_pedsnet.immunization imm
 left join vocabulary.concept c on c.concept_id = imm.immunization_concept_id
 left join pcornet_maps.imm_code_type_map m1 on m1.source_concept_id = c.vocabulary_id and m1.source_concept_class = 'immunization_type'
 left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on cast(imm_dose_unit_concept_id as text) = m2.source_concept_id
