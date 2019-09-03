@@ -1,4 +1,3 @@
-source_concept_class,target_concept,pcornet_name,source_concept_id,concept_description,value_as_concept_id
 Dose unit,%,percent,8554,percent,null
 Dose unit,cm,centimeter,8582,centimeter,null
 Dose unit,g,gram,8504,gram,null
@@ -626,6 +625,7 @@ Payer,513,Commercial Managed Care - POS,Private/Commercial-POS,,null
 Payer,514,Exclusive Provider Organization,,,null
 Payer,515,Gatekeeper PPO (GPPO),,,null
 Payer,516,Commercial Managed Care - Pharmacy Benefit Manager,,,null
+Specimen source,BODY_FLD,,fluid,,
 Payer,517,Commercial Managed Care - Dental,,,null
 Payer,519,Managed Care Other (non HMO),,,null
 Payer,52,Private Health Insurance - Indemnity,,,null
@@ -865,6 +865,7 @@ Provider Specialty,373H00000X,Day Training/Habilitation Specialist ,,,null
 Provider Specialty,126800000X,Dental Assistant ,38003685,Dental Providers Dental Assistant,null
 Provider Specialty,124Q00000X,Dental Hygienist ,38003684,Dental Providers Dental Hygienist,null
 Provider Specialty,292200000X,Dental Laboratory ,,,null
+Specimen source,URINE,,urine kidney,,
 Provider Specialty,126900000X,Dental Laboratory Technician ,38003686,Dental Providers Dental Laboratory Technician,null
 Provider Specialty,125J00000X,Dental Therapist ,43125857,Dental Therapist,null
 Provider Specialty,122300000X,Dentist ,43125856,Dentist,null
@@ -1073,6 +1074,7 @@ Provider Specialty,207VF0040X,Obstetrics & Gynecology Female Pelvic Medicine and
 Provider Specialty,207VX0201X,Obstetrics & Gynecology Gynecologic Oncology,,,null
 Provider Specialty,207VG0400X,Obstetrics & Gynecology Gynecology,38004513,,null
 Provider Specialty,207VH0002X,Obstetrics & Gynecology Hospice and Palliative Medicine,,,null
+Provider Specialty,207ZI0100X,Pathology Immunopathology,,,null
 Provider Specialty,207VM0101X,Obstetrics & Gynecology Maternal & Fetal Medicine,45756780,,null
 Provider Specialty,207VB0002X,Obstetrics & Gynecology Obesity Medicine,,,null
 Provider Specialty,207VX0000X,Obstetrics & Gynecology Obstetrics,,,null
@@ -1149,7 +1151,6 @@ Provider Specialty,207ZC0500X,Pathology Cytopathology,,,null
 Provider Specialty,207ZD0900X,Pathology Dermatopathology,,,null
 Provider Specialty,207ZF0201X,Pathology Forensic Pathology,,,null
 Provider Specialty,207ZH0000X,Pathology Hematology,45756811,,null
-Provider Specialty,207ZI0100X,Pathology Immunopathology,,,null
 Provider Specialty,207ZM0300X,Pathology Medical Microbiology,,,null
 Provider Specialty,207ZP0007X,Pathology Molecular Genetic Pathology,,,null
 Provider Specialty,207ZN0500X,Pathology Neuropathology,45756790,,null
@@ -1217,6 +1218,7 @@ Provider Specialty,2081P2900X,Physical Medicine & Rehabilitation Pain Medicine,,
 Provider Specialty,2081P0010X,Physical Medicine & Rehabilitation Pediatric Rehabilitation Medicine,45756817,,null
 Provider Specialty,2081P0004X,Physical Medicine & Rehabilitation Spinal Cord Injury Medicine,,,null
 Provider Specialty,2081S0010X,Physical Medicine & Rehabilitation Sports Medicine,,,null
+Provider Specialty,103T00000X,Psychologist ,38004488,Psychology,null
 Provider Specialty,225100000X,Physical Therapist ,38004490,Physical Therapy,null
 Provider Specialty,2251C2600X,Physical Therapist Cardiopulmonary,,,null
 Provider Specialty,2251E1300X,Physical Therapist Electrophysiology Clinical,,,null
@@ -1289,7 +1291,6 @@ Provider Specialty,2084S0012X,Psychiatry & Neurology Sleep Medicine,45756827,Sle
 Provider Specialty,2084S0010X,Psychiatry & Neurology Sports Medicine,,,null
 Provider Specialty,2084V0102X,Psychiatry & Neurology Vascular Neurology,45756834,Vascular Neurology,null
 Provider Specialty,102L00000X,Psychoanalyst ,,,null
-Provider Specialty,103T00000X,Psychologist ,38004488,Psychology,null
 Provider Specialty,103TA0400X,Psychologist Addiction (Substance Use Disorder),,,null
 Provider Specialty,103TA0700X,Psychologist Adult Development & Aging,,,null
 Provider Specialty,103TC0700X,Psychologist Clinical,,,null
@@ -1368,6 +1369,7 @@ Provider Specialty,163WH1000X,Registered Nurse Hospice,,,null
 Provider Specialty,163WI0600X,Registered Nurse Infection Control,,,null
 Provider Specialty,163WI0500X,Registered Nurse Infusion Therapy,,,null
 Provider Specialty,163WL0100X,Registered Nurse Lactation Consultant,,,null
+Specimen source,BODY_FLD,,pleural fluid,,
 Provider Specialty,163WM0102X,Registered Nurse Maternal Newborn,,,null
 Provider Specialty,163WM0705X,Registered Nurse Medical-Surgical,,,null
 Provider Specialty,163WN0002X,Registered Nurse Neonatal Intensive Care,,,null
@@ -1426,6 +1428,8 @@ Provider Specialty,2278P3900X,Respiratory Therapist Certified Neonatal/Pediatric
 Provider Specialty,2278P3800X,Respiratory Therapist Certified Palliative/Hospice,38004100,Respiratory Developmental Rehabilitative and Restorative Service Providers Respiratory Therapist Certified Palliative/Hospice,null
 Provider Specialty,2278P4000X,Respiratory Therapist Certified Patient Transport,38004102,Respiratory Developmental Rehabilitative and Restorative Service Providers Respiratory Therapist Certified Patient Transport,null
 Provider Specialty,2278P1004X,Respiratory Therapist Certified Pulmonary Diagnostics,38004097,Respiratory Developmental Rehabilitative and Restorative Service Providers Respiratory Therapist Certified Pulmonary Diagnostics,null
+Provider Specialty,284300000X,Special Hospital ,,,null
+Provider Specialty,174400000X,Specialist ,,,null
 Provider Specialty,2278P1006X,Respiratory Therapist Certified Pulmonary Function Technologist,38004099,Respiratory Developmental Rehabilitative and Restorative Service Providers Respiratory Therapist Certified Pulmonary Function Technologist,null
 Provider Specialty,2278P1005X,Respiratory Therapist Certified Pulmonary Rehabilitation,38004098,Respiratory Developmental Rehabilitative and Restorative Service Providers Respiratory Therapist Certified Pulmonary Rehabilitation,null
 Provider Specialty,2278S1500X,Respiratory Therapist Certified SNF/Subacute Care,38004103,Respiratory Developmental Rehabilitative and Restorative Service Providers Respiratory Therapist Certified SNF/Subacute Care,null
@@ -1475,8 +1479,7 @@ Provider Specialty,246QL0900X,Spec/Tech Pathology Laboratory Management,,,null
 Provider Specialty,246QL0901X,Spec/Tech Pathology Laboratory Management Diplomate,,,null
 Provider Specialty,246QM0706X,Spec/Tech Pathology Medical Technologist,,,null
 Provider Specialty,246QM0900X,Spec/Tech Pathology Microbiology,,,null
-Provider Specialty,284300000X,Special Hospital ,,,null
-Provider Specialty,174400000X,Specialist ,,,null
+Rx Frequency,,,qhs prn,,null
 Provider Specialty,1744G0900X,Specialist Graphics Designer,,,null
 Provider Specialty,1744P3200X,Specialist Prosthetics Case Management,,,null
 Provider Specialty,1744R1103X,Specialist Research Data Abstracter/Coder,,,null
@@ -1877,6 +1880,7 @@ Rx Dose Form,ENTERIC_COATED_TABLET,Enteric Coated Tablet,,,null
 Rx Dose Form,EXTENDED_RELEASE_CAPSULE,Extended Release Capsule,19082077,Extended Release Oral Capsule,null
 Rx Dose Form,EXTENDED_RELEASE_ENTERIC_COATED_CAPSULE,Extended Release Enteric Coated Capsule,19082078,Extended Release Enteric Coated Capsule,null
 Rx Dose Form,EXTENDED_RELEASE_ENTERIC_COATED_TABLET,Extended Release Enteric Coated Tablet,19082257,Extended Release Enteric Coated Tablet,null
+Specimen source,STOOL,,stool.,,
 Rx Dose Form,EXTENDED_RELEASE_SUSPENSION,Extended Release Suspension,19082080,Extended Release Suspension,null
 Rx Dose Form,EXTENDED_RELEASE_TABLET,Extended Release Tablet,19082079,Extended Release Oral Tablet,null
 Rx Dose Form,FLAKES,Flakes,19082101,Oral Flakes,null
@@ -2055,7 +2059,6 @@ Rx Frequency,,,qday mwf,,null
 Rx Frequency,,,qday prn,,null
 Rx Frequency,,,qday w food,,null
 Rx Frequency,10,Every evening,qhs,,null
-Rx Frequency,,,qhs prn,,null
 Rx Frequency,04,Four times a day (QID),qid,,null
 Rx Frequency,,,qid prn,,null
 Rx Frequency,,,qnoon,,null
@@ -2173,9 +2176,6 @@ Specimen source,URINE,,urine supra-pubic,,
 Specimen source,BODY_FLD,,pericardial fluid.,,
 Specimen source,BLD,,middle catheter-neck,,
 Specimen source,URINE,,urethral.,,
-Specimen source,STOOL,,stool.,,
-Specimen source,BODY_FLD,,fluid,,
-Specimen source,URINE,,urine kidney,,
 Specimen source,BLD,,blood (edta purple top),,
 Specimen source,BLD,,blood-trough,,
 Specimen source,BODY_FLD,,duodenal fld,,
@@ -2293,7 +2293,6 @@ Specimen source,BLD,,blood-a line,,
 Specimen source,BLD,,arterial catheter blood,,
 Specimen source,URINE,,straight cath,,
 Specimen source,URINE,,urine-bagged,,
-Specimen source,BODY_FLD,,pleural fluid,,
 Specimen source,URINE,,24 hr urine,,
 Specimen source,UN,,unspecified source,,
 Specimen source,BLD,,broviac (blood),,
@@ -4750,3 +4749,12 @@ specimen_loinc,XXX,,32324-6,,
 specimen_loinc,BLD,,802-9,,
 specimen_loinc,SER,,31017-7,,
 specimen_loinc,URINE,,2161-8,,
+immunization_type,CX,CVX,CVX,CVX,
+immunization_type,ND,NDC,NDC,NDC,
+immunization_type,NI,No information,44814650,no information,
+immunization_type,UN,unknown,44814653,unknown,
+immunization_type,OT,other,44814649,other,
+vital_source,PR,Patient reported value,44818704,Patient reported value,
+vital_source,HD,Healthcare device direct feed,2000000032,Healthcare device direct feed,
+vital_source,HC,Healthcare delivery setting,2000000033,Healthcare delivery setting,
+vital_source,DR,Derived value,45754907,Derived value,
