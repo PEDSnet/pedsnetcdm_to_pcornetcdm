@@ -30,9 +30,7 @@ coalesce(case when de.cause_source_value = '0' then '0|NULL'
                     length(trim(split_part(de.cause_source_value, '|',1))) > 8
 			   then c.concept_code || '|' || c.vocabulary_id
 			   else left(de.cause_source_value,8) end end, left(de.cause_source_value,8)) as death_cause,
-case when de.death_impute_concept_id = 44814650 then 'NI'
-     when de.death_impute_concept_id = 2000000038 then 'DR'
-     else 'L' end as death_cause_source, site, c1.concept_code, c1.vocabulary_id
+'L' as death_cause_source, site, c1.concept_code, c1.vocabulary_id
 From SITE_pedsnet.death de
 left join vocabulary.concept c1 on c1.concept_code = trim(split_part(de.cause_source_value, '|',1))
 left join vocabulary.concept c on c.concept_name = trim(split_part(de.cause_source_value, '|',1))

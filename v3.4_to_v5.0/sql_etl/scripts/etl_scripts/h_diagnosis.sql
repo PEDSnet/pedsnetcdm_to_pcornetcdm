@@ -1,7 +1,7 @@
 begin;
 
 insert into SITE_pcornet.diagnosis(
-            diagnosisid,patid, encounterid, enc_type, admit_date, providerid, dx, dx_type,
+            diagnosisid,patid, encounterid, enc_type, admit_date, providerid, dx, dx_type, dx_date,
             dx_source, pdx, dx_origin, raw_dx, raw_dx_type, raw_dx_source, raw_pdx,site, dx_poa)
 select distinct
 	cast(co.condition_occurrence_id as text) as diagnosisid,

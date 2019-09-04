@@ -37,7 +37,7 @@ select distinct
 	de.effective_drug_dose as dispense_dose_disp, 
 	coalesce(m1.target_concept,'OT') as dispense_dose_disp_unit,
 	coalesce(m2.target_concept,'OT') as dispense_route,
-	'CL' as dispense_source, -- defaulting it to sourced from pharmacy
+	'PM' as dispense_source, -- defaulting it to sourced from pharmacy
 	drug_source_value as raw_ndc,
 	eff_drug_dose_source_value as raw_dispense_dose_disp, 
 	dose_unit_source_value as raw_dispense_dose_disp_unit,

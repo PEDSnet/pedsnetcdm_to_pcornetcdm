@@ -44,11 +44,10 @@ CREATE INDEX idx_labms_valconid
 commit;
 begin;
 create table SITE_pcornet.specimen_values as
-select distinct on (measurement_id) measurement_id, person_id,visit_occurrence_id,measurement_concept_id, measurement_date, modifier, measurement_datetime, measurement_order_date, measurement_order_datetime, measurement_result_date, measurement_result_datetime, measurement_source_concept_id, measurement_source_value, measurement_type_concept_id, operator_concept_id, priority_concept_id, priority_source_value, range_high, range_high_operator_concept_id, range_high_source_value, range_low, range_low_operator_concept_id, range_low_source_value, specimen_concept_id, specimen_source_value, unit_concept_id, unit_source_value, m.value_as_concept_id, value_as_number, value_source_value, measurement_age_in_months, measurement_result_age_in_months, measurement_concept_name, measurement_source_concept_name, measurement_type_concept_name, operator_concept_name, priority_concept_name, range_high_operator_concept_name, range_low_operator_concept_name, specimen_concept_name, unit_concept_name, value_as_concept_name, site, site_id, provider_id, loinc_desc as raw_lab_name,lab_loinc_vocab as lab_loinc, coalesce(c.target_concept, p.target_concept,s.target_concept, 'OT') as specimen_source 
+select distinct on (measurement_id) measurement_id, person_id,visit_occurrence_id,measurement_concept_id, measurement_date, modifier, measurement_datetime, measurement_order_date, measurement_order_datetime, measurement_result_date, measurement_result_datetime, measurement_source_concept_id, measurement_source_value, measurement_type_concept_id, operator_concept_id, priority_concept_id, priority_source_value, range_high, range_high_operator_concept_id, range_high_source_value, range_low, range_low_operator_concept_id, range_low_source_value, specimen_concept_id, specimen_source_value, unit_concept_id, unit_source_value, m.value_as_concept_id, value_as_number, value_source_value, measurement_age_in_months, measurement_result_age_in_months, measurement_concept_name, measurement_source_concept_name, measurement_type_concept_name, operator_concept_name, priority_concept_name, range_high_operator_concept_name, range_low_operator_concept_name, specimen_concept_name, unit_concept_name, value_as_concept_name, site, site_id, provider_id, loinc_desc as raw_lab_name,lab_loinc_vocab as lab_loinc, coalesce(c.target_concept, p.target_concept, 'OT') as specimen_source
 from SITE_pcornet.lab_measurements m
 left join pcornet_maps.pedsnet_pcornet_valueset_map c on c.source_concept_id = m.specimen_concept_id::text and c.source_concept_class = 'Specimen concept'
-left join pcornet_maps.pedsnet_pcornet_valueset_map p on trim(lower(split_part(m.specimen_source_value,'|',1))) = p.source_concept_id and p.source_concept_class = 'Specimen source'
-left join pcornet_maps.pedsnet_pcornet_valueset_map s on s.source_concept_id = m.lab_loinc_vocab and p.source_concept_class = 'specimen_loinc';
+left join pcornet_maps.pedsnet_pcornet_valueset_map p on trim(lower(split_part(m.specimen_source_value,'|',1))) = p.source_concept_id and p.source_concept_class = 'Specimen source';
 commit;
 
 begin;
@@ -72,7 +71,7 @@ select distinct on (m.measurement_id) m.measurement_id as lab_result_cm_id,
 	cast(m.visit_occurrence_id as text) as encounterid,
 	specimen_source,
 	'OD' as lab_result_source,
-	null as lab_loinc_source, -- need to implement using measure_ment_concept_id
+	'LM' as lab_loinc_source,
 	lab_loinc,
 	m7.target_concept as priority,
 	case when m.measurement_source_value like 'POC%'
