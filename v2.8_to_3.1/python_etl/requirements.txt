@@ -1,5 +1,5 @@
 django>=1.10.8
-Pillow==4.1.1
+Pillow==6.2.0
 dj-database-url==0.4.2
 amqp==2.2.2
 Babel==2.5.1
