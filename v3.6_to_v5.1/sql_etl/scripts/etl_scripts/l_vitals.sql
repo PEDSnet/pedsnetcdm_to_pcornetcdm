@@ -1,8 +1,8 @@
 begin;
 ALTER TABLE SITE_pcornet.vital ALTER original_bmi SET DATA TYPE NUMERIC(20,8);
-
-drop sequence if exists SITE_pcornet.sq_vitalid;
-create sequence SITE_pcornet.sq_vitalid start 1;
+commit;
+begin;
+create sequence sq_vitalid start 1;
 commit;
 
 -- extract all fields 
@@ -137,7 +137,7 @@ create table SITE_pcornet.ob_tobacco as
     select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime,
            coalesce(m1.target_concept,'OT') as tobacco, f.fact_id_2
 	from SITE_pedsnet.observation o1
-	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on cast(o1.value_as_concept_id as text) = m1.source_concept_id
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on cast(o1.value_as_concept_id as text) = m1.value_as_concept_id
 	left join SITE_pedsnet.fact_relationship f on o1.observation_id = f.fact_id_1
 	where observation_concept_id IN ('4005823') and m1.source_concept_class = 'tobacco'
 );
@@ -151,7 +151,7 @@ create table SITE_pcornet.ob_tobacco_type as
 (
     select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime, coalesce(m2.target_concept,'OT') as tobacco_type
 	from SITE_pedsnet.observation o1 
-	left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on cast(o1.value_as_concept_id as text) = m2.source_concept_id
+	left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on o1.value_as_concept_id::text = m2.value_as_concept_id
 	where observation_concept_id IN ('4219336') and m2.source_concept_class = 'tobacco type'
 );
 commit;
@@ -165,7 +165,7 @@ begin;
 create table SITE_pcornet.ob_smoking as
 (
     select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime, coalesce(m3.target_concept,'OT') as smoking
-	from SITE_pedsnet.observation o1 left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on cast(o1.value_as_concept_id as text)= m3.source_concept_id
+	from SITE_pedsnet.observation o1 left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on o1.value_as_concept_id::text = m3.value_as_concept_id
 	where observation_concept_id IN ('4275495') and m3.source_concept_class = 'smoking'
 );
 commit;
