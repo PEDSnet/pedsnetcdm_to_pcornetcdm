@@ -1,0 +1,15 @@
+PCORnet_field,Source_CDM,Source_table,Source_table_alias,Source_field,join condition,extraction condition
+conditionid,PEDSnet,condition_occurrence,CO,condition_occurrence_id,,"condition_type_concept_id in ( 2000000089, 2000000090, 2000000091,38000245) and condition_start_date>=2001"
+patid,PCORnet,condition_occurrence,CO,person_id,,
+encounterid,PCORnet,condition_occurrence,CO,visit_occurrence_id,,
+report_date,PCORnet,condition_occurrence,CO,condition_start_date,,
+resolve_date,PCORnet,condition_occurrence,CO,condition_end_date,,
+onset_date,,,,,,
+condition_status,PEDSnet,condition_occurrence,CO,condition_end_date,,
+condition,PEDSnet,condition_occurrence,CO,"condition_source_concept_id,condition_concept_id, condition_source_value",,
+condition_type,PEDSnet,condition_occurrence,CO,"condition_source_concept_id,condition_concept_id",,
+condition_source,,,,default to 'HC',,
+raw_condition_status,PEDSnet,condition_occurrence,CO,condition_status_source_value,,
+raw_condition,PEDSnet,condition_occurrence,CO,condition_source_value,,
+raw_condition_type,PEDSnet,condition_occurrence,CO,condition_source_concept_id,,
+raw_condition_source,,,,,,
