@@ -10,7 +10,7 @@ select
 		 else loc.city end as address_city, 
 	loc_his.end_date as address_period_end, 
 	loc_his.start_date as address_period_start, 
-	coalesce(addr_pref.target_concept,'')  as address_preferred, 
+	coalesce(addr_pref.target_concept,'Y')  as address_preferred, 
 	coalesce(addr_st.target_concept, 'NI') as address_state, 
 	coalesce(addr_typ.target_concept, 'BO') as address_type, 
 	'HO' as address_use, 
@@ -23,7 +23,7 @@ from SITE_pedsnet.location loc
 left join SITE_pedsnet.location_history loc_his on loc.location_id = loc_his.location_id and lower(loc_his.domain_id) = 'person'
 left join pcornet_maps.pedsnet_pcornet_valueset_map addr_pref on addr_pref.source_concept_id::int = loc_his.location_preferred_concept_id and addr_pref.source_concept_class = 'address_preferred'
 left join pcornet_maps.pedsnet_pcornet_valueset_map addr_typ on addr_typ.source_concept_id::int = loc_his.relationship_type_concept_id and addr_typ.source_concept_class = 'address_type'
-left join pcornet_maps.immunization_body_site addr_st on case when length(loc.state) = 2 then lower(trim(split_part(addr_st.pcornet_name,'=',1))) = lower(loc.state) 
+left join pcornet_maps.pedsnet_pcornet_valueset_map addr_st on case when length(loc.state) = 2 then lower(trim(split_part(addr_st.pcornet_name,'=',1))) = lower(loc.state) 
 															    else lower(trim(split_part(addr_st.pcornet_name,'=',2))) = lower(loc.state) 
 																end 
                                                           and addr_st.source_concept_class = 'address_state'

@@ -7,7 +7,7 @@ Insert into SITE_pcornet.death(
 Select
 	de.person_id as patid,
 	de.death_date as death_date,
-	coalesce(m1.target_concept,'OT') as death_impute,
+	coalesce(m1.target_concept,'OT') as death_date_impute,
 	'L' as death_source, --  default for now until new conventions
 	null as death_match_confidence, --  we do not capture it dicretely in the EHRs
 	'SITE' as site -- retrieve one record in case of multiple death causes

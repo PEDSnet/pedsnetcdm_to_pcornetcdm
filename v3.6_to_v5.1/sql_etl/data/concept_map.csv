@@ -922,6 +922,7 @@ Provider Specialty,302F00000X,Exclusive Provider Organization ,,,null
 Provider Specialty,332G00000X,Eye Bank ,,,null
 Provider Specialty,332H00000X,Eyewear Supplier (Equipment not the service) ,,,null
 Provider Specialty,207Q00000X,Family Medicine ,38004453,Family Practice,null
+Provider Specialty,207Q00000X,Family Medicine ,38003851,Family Practice,null
 Provider Specialty,207QA0401X,Family Medicine Addiction Medicine,,,null
 Provider Specialty,207QA0000X,Family Medicine Adolescent Medicine,,,null
 Provider Specialty,207QA0505X,Family Medicine Adult Medicine,,,null
@@ -1168,6 +1169,7 @@ Provider Specialty,2080P0008X,Pediatrics Neurodevelopmental Disabilities,4575678
 Provider Specialty,2080B0002X,Pediatrics Obesity Medicine,,,null
 Provider Specialty,2080P0201X,Pediatrics Pediatric Allergy/Immunology,,,null
 Provider Specialty,2080P0202X,Pediatrics Pediatric Cardiology,45756805,Pediatric Cardiology,null
+Provider Specialty,2080P0202X,Pediatrics Pediatric Cardiology,38004451,Pediatric Cardiology,null
 Provider Specialty,2080P0203X,Pediatrics Pediatric Critical Care Medicine,45756806,Pediatric Critical Care Medicine,null
 Provider Specialty,2080P0204X,Pediatrics Pediatric Emergency Medicine,45756808,Pediatric Emergency Medicine,null
 Provider Specialty,2080P0205X,Pediatrics Pediatric Endocrinology,45756809,Pediatric Endocrinology,null
