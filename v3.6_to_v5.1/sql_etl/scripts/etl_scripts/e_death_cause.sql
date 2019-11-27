@@ -1,9 +1,7 @@
 begin;
 
 Insert into SITE_pcornet.death_cause(
-	patid,
-	death_cause, death_cause_code, death_cause_type,
-	death_cause_source, death_cause_confidence, site
+	patid,death_cause, death_cause_code, death_cause_type,death_cause_source, death_cause_confidence, site
 )
 with
 dist_cause as

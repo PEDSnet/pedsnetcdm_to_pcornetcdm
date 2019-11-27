@@ -2,10 +2,8 @@ begin;
 
 ALTER TABLE SITE_pcornet.provider ALTER provider_npi SET DATA TYPE NUMERIC(20,0);
 
-Insert into SITE_pcornet.provider
-	(providerid, provider_sex, 
-	provider_specialty_primary, provider_npi,
-	provider_npi_flag, 
+Insert into SITE_pcornet.provider(providerid, provider_sex, 
+provider_specialty_primary, provider_npi,provider_npi_flag, 
 	raw_provider_specialty_primary, site
 )
 Select distinct on (p.provider_id) p.provider_id as providerid,
@@ -13,7 +11,7 @@ Select distinct on (p.provider_id) p.provider_id as providerid,
 	coalesce(m.target_concept,'OT') as provider_specialty_primary, 
 	null::numeric as provider_npi,
 	'N' as provider_npi_flag,
-	p.specialty_source_value as raw_provider_specialty_primary,
+	m.concept_description as raw_provider_specialty_primary,
 	'SITE' as site
 From
 	SITE_pedsnet.provider p
