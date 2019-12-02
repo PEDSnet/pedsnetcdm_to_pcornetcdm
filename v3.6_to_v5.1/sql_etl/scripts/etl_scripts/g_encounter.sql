@@ -71,7 +71,9 @@ as
 	v.care_site_id, 
 	place_of_service_concept_id, 
 	specialty_concept_id, 
-	dis_disposition.value_as_concept_id as value_as_concept_id_ddisp,
+	case when dis_disposition.value_as_concept_id in (4161979,4216643) then dis_disposition.value_as_concept_id
+	else case when v.discharge_to_concept_id in (4216643) then v.discharge_to_concept_id
+	else 4161979 end end as value_as_concept_id_ddisp,
 	discharge_to_concept_id, 
 	admitted_from_concept_id,
     drg_value.value_as_string as value_as_string_drg, 
@@ -127,7 +129,7 @@ as
 	null as raw_drg_type, -- since it is not discretely captured in the EHRs
 	admitted_from_source_value as raw_admitting_source,
 	coalesce(m1.target_concept,'OT') as enc_type,
-    coalesce(m2.target_concept,'NI')  as discharge_disposition,
+    coalesce(m2.target_concept,'A')  as discharge_disposition,
 	coalesce(m3a.target_concept,'NI') as discharge_status,
 	coalesce(m4a.target_concept,'NI') as admitting_source,
 	payer_type_primary,
