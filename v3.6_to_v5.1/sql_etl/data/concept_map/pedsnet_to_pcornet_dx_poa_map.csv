@@ -1,0 +1,9 @@
+class,pcornet_code,pcornet_name,pedsnet_code,pedsnet_name,value_as_concept_id
+dx_poa,Y,Diagnosis present,4188539,Yes,null
+dx_poa,N,Diagnosis not present,4188540,No,null
+dx_poa,U,Insufficient documentation,,,null
+dx_poa,W,Clinically undetermined,,,null
+dx_poa,1,Unreported / not used,0,none,null
+dx_poa,NI,No information,44814650,No Information,null
+dx_poa,UN,Unknown,44814653,Unknown,null
+dx_poa,OT,Other,44814649,Other,null
