@@ -22,9 +22,9 @@ select distinct on (immunization_id)imm.immunization_id::text as immunizationid,
 			 else left(nullif(regexp_replace(imm.immunization_dose, '[^0-9.]*','','g'), ''),8)::numeric end as vx_dose,
 		coalesce(m2.target_concept, 'OT') as vx_dose_unit,
 		coalesce(m3.target_concept, 'OT') as vx_route,
-		coalesce(bdy_site_1.target_concept,bdy_site_2.target_concept, bdy_site_3.target_concept,'NI') as vx_body_site,
-		case when imm.imm_manufacturer is null then 'NI'
-			else coalesce(manf_2.target_concept, manf_1.target_concept,'OTH') end as vx_manufacturer,
+		coalesce(bdy_site.target_concept,'NI') as vx_body_site, --bdy_site_2.target_concept, bdy_site_3.target_concept,
+		case when imm.imm_manufacturer is null or imm.imm_manufacturer = '' then 'NI'
+			else coalesce(manf_3.target_concept,'OTH') end as vx_manufacturer, -- coalesce(manf1.target_concept,manf2.target_concept,'OTH')  
 		imm.imm_lot_num as vx_lot_num,
 		imm.imm_exp_date as vx_exp_date,
 		c.concept_name as raw_vx_name,
@@ -45,13 +45,10 @@ left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on cast(imm.imm_dose_unit
 			and m2.source_concept_class='Dose unit'
 left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on cast(imm.imm_route_concept_id as text) = m3.source_concept_id
 			and m3.source_concept_class='Route'
-left join pcornet_maps.immunization_body_site bdy_site_1 on imm.imm_body_site_concept_id::text = bdy_site_1.source_concept_id	and bdy_site_1.source_concept_class = 'imm_body_site'
-left join pcornet_maps.immunization_body_site bdy_site_2 on lower(bdy_site_2.concept_description) ilike '%'||lower(trim(split_part(imm_body_site_source_value,'|',1)))||'%'
-and bdy_site_2.source_concept_class = 'imm_body_site'
-left join pcornet_maps.immunization_body_site bdy_site_3 on lower(bdy_site_3.pcornet_name) ilike '%'||lower(trim(split_part(imm_body_site_source_value,'|',1)))||'%'
-and bdy_site_3.source_concept_class = 'imm_body_site_source'
-left join pcornet_maps.immunization_body_site manf_1 on lower(manf_1.pcornet_name) ilike '%'||lower(imm.imm_manufacturer)||'%' and manf_1.source_concept_class = 'vx_manufacturer_source'
-left join pcornet_maps.immunization_body_site manf_2 on manf_2.source_concept_id = imm.imm_manufacturer and manf_2.source_concept_class = 'vx_manufacturer'
+left join pcornet_maps.pedsnet_pcornet_valueset_map bdy_site on case when imm.imm_body_site_concept_id is not null 
+then imm.imm_body_site_concept_id::text = bdy_site.source_concept_id and bdy_site.source_concept_class = 'imm_body_site' and bdy_site.source_concept_id is not null
+else lower(bdy_site.pcornet_name) ilike '%'||lower(trim(split_part(imm_body_site_source_value,'|',1)))||'%' and bdy_site.source_concept_class = 'imm_body_site_source' and bdy_site.source_concept_id is null end
+left join pcornet_maps.immunization_map manf_3 on imm.imm_manufacturer ~* manf_3.source_concept_id
 where
 	imm.person_id IN (select person_id from SITE_pcornet.person_visit_start2001) and 
 	imm.visit_occurrence_id IN (select visit_id from SITE_pcornet.person_visit_start2001);

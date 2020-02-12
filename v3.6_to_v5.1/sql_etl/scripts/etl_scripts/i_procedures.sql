@@ -13,20 +13,17 @@ select distinct
 	enc.providerid as providerid,
 	procedure_date as px_date,
 	coalesce(px_cd_1.concept_code, px_cd_2.concept_code, split_part(procedure_source_value,'|',2),null) as px,
-    coalesce(px_cd_1.vocabulary_id,px_cd_1.vocabulary_id,'OT')as px_type
+    coalesce(px_typ.target_concept,'OT')as px_type,
 	coalesce(m4.target_concept,'OT') as px_source,
 	coalesce(m5.target_concept,'OT') as ppx,
-	split_part(procedure_source_value,'.',1) as raw_px,
-	case when c2.vocabulary_id IS Null
-	     then 'Other'
-	     else c2.vocabulary_id
-	     end as raw_px_type,
+	split_part(procedure_source_value,'|',1) as raw_px,
+	coalesce(px_cd_1.vocabulary_id,px_cd_1.vocabulary_id,'OT') as raw_px_type,
 	procedure_type_concept_id as raw_ppx, 
 	'SITE' as site
 from SITE_pedsnet.procedure_occurrence po
 	join SITE_pcornet.encounter enc on cast(po.visit_occurrence_id as text)=enc.encounterid
 	left join vocabulary.concept px_cd_1 on px_cd_1.concept_id = po.procedure_concept_id and px_cd_1.vocabulary_id in ('HCPCS','CPT4','ICD10PCS','SNOMED','ICD9Proc')
-    left join vocabulary.concept px_cd_2 on px_cd_2.concept_id = po.procedure_source_concept_id and px_cd_1.vocabulary_id in ('HCPCS','CPT4','ICD10PCS','SNOMED','ICD9Proc')
+    left join vocabulary.concept px_cd_2 on px_cd_2.concept_id = po.procedure_source_concept_id and px_cd_2.vocabulary_id in ('HCPCS','CPT4','ICD10PCS','SNOMED','ICD9Proc')
     left join pcornet_maps.pedsnet_pcornet_valueset_map px_typ on px_typ.source_concept_id = px_cd_1.vocabulary_id or px_typ.source_concept_id = px_cd_2.vocabulary_id and source_concept_class = 'Procedure Code Type'
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m4 on cast(po.procedure_type_concept_id as text) = m4.source_concept_id AND
 	                                                                m4.source_concept_class='px source'
