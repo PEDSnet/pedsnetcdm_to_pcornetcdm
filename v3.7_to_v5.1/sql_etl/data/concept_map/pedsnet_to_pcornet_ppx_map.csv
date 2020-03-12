@@ -1,0 +1,3 @@
+class,pcornet_code,pcornet_name,pedsnet_code,pedsnet_name,value_as_concept_id
+ppx,P,Principal,44786630,Primary Procedure,null
+ppx,S,Secondary,44786631,Secondary Procedure,null
