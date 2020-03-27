@@ -4,7 +4,7 @@ import os
 import re
 import time
 import datetime
-import query
+from loading import query
 import psycopg2
 import config
 import subprocess
@@ -65,7 +65,7 @@ def ddl_only():
         table_exists = cur.fetchone()[0]
         if not table_exists:
            # load_maps()
-           print 'load maps'
+           print('load maps')
 
         # endregion
 
@@ -76,20 +76,20 @@ def ddl_only():
             schema_exist = cur.fetchone()[0]
 
             if not schema_exist:
-                print '% schema does not exist..... \n Creating schema ....' % schemas
+                print('% schema does not exist..... \n Creating schema ....' % schemas)
                 cur.execute(query.create_schema(schemas))
-                print '% schema created' % schemas
+                print('% schema created' % schemas)
                 conn.commit()
             # set the search pat to the schema
-            cur.execute("""SET search_path TO """ + schemas + """;""")
+            cur.execute("SET search_path TO " + schemas + ";")
             time.sleep(0.1)
             # endregion
 
             # region run the DDL
             try:
-                print '\nRunning the DDL ...'
+                print('\nRunning the DDL ...')
                 # set the search pat to the schema
-                cur.execute("""SET search_path TO """ + schemas + """;""")
+                cur.execute("SET search_path TO " + schemas + ";")
                 time.sleep(0.1)
                 cur.execute(query.dll(pcornet_version))
                 conn.commit()
@@ -99,8 +99,8 @@ def ddl_only():
 
             # region Alter tables and add site column
             try:
-                print '\nAltering table, adding {site} column ...'
-                cur.execute("""SET search_path TO """ + schemas + """;""")
+                print('\nAltering table, adding {site} column ...')
+                cur.execute("SET search_path TO " + schemas + ";")
                 cur.execute(query.site_col(schemas))
                 conn.commit()
             except(Exception, psycopg2.OperationalError) as error:
@@ -109,8 +109,8 @@ def ddl_only():
 
             # region permissions
             try:
-                print '\nSetting permissions'
-                cur.execute("""SET search_path TO """ + schemas + """;""")
+                print('\nSetting permissions')
+                cur.execute("SET search_path TO " + schemas + ";")
                 time.sleep(0.1)
                 cur.execute(query.permission(schemas))
                 conn.commit()
@@ -120,7 +120,7 @@ def ddl_only():
 
             # region Alter owner of tables
             try:
-                cur.execute("""SET search_path TO """ + schemas + """;""")
+                cur.execute("SET search_path TO " + schemas + ";")
                 time.sleep(0.1)
                 cur.execute(query.owner(schemas))
                 conn.commit()
@@ -130,7 +130,7 @@ def ddl_only():
 
             # region Populate Harvest
             try:
-                print '\nPopulating harvest table... '
+                print('\nPopulating harvest table... ')
                 if os.path.isfile(harvest_file):
                     f = open('data/harvest_data.csv', 'r')
                     cur.copy_from(f, schemas + ".harvest", columns=("admit_date_mgmt",
@@ -185,7 +185,7 @@ def ddl_only():
             except (Exception, psycopg2.DatabaseError) as error:
                 print(error)
             # endregion
-        print '\nPcornet data model set up complete ... \nClosing database connection...'
+        print('\nPcornet data model set up complete ... \nClosing database connection...')
         cur.close()
     except (Exception, psycopg2.OperationalError) as error:
         print(error)
@@ -238,7 +238,7 @@ def truncate_fk():
         conn.commit()
         for schemas in schema:
             # query.truncate(schema)
-            cur.execute("""SET search_path TO """ + schemas + """;""")
+            cur.execute("SET search_path TO " + schemas + ";")
             query.truncateqry(schemas)
             print('Truncated')
             conn.commit()
@@ -270,7 +270,7 @@ def etl_only():
     for infile in sorted(filelist):
         args = infile
 
-        print 'starting ETL \t:' + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') + "\n"
+        print('starting ETL \t:' + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') + "\n")
         proc = subprocess.Popen([etl_bash, args], stderr=subprocess.STDOUT)
         output, error = proc.communicate()
 
@@ -300,15 +300,15 @@ def etl_only():
         cur = conn.cursor()
         cur.execute(open(view, "r").read())
         conn.commit()
-        cur.execute("""SET search_path TO """ + schema[1] + """;""")
-        cur.execute("""select capitalview(\'""" + params[1] + """\',\'""" + schema[1] + """\');""")
+        cur.execute("SET search_path TO " + schema[1] + ";")
+        cur.execute("select capitalview(\'" + params[1] + "\',\'" + schema[1] + """\');""")
         conn.commit()
         for schemas in schema:
-            cur.execute("""SET search_path TO """ + schemas + """;""")
+            cur.execute("SET search_path TO " + schemas + ";")
             time.sleep(0.1)
             cur.execute(query.permission(schemas))
             conn.commit()
-            cur.execute("""SET search_path TO """ + schemas + """;""")
+            cur.execute("SET search_path TO " + schemas + ";")
             time.sleep(0.1)
             cur.execute(query.owner(schemas))
             conn.commit()
@@ -323,7 +323,7 @@ def etl_only():
         if conn is not None:
             conn.close()
             print('Database connection closed.')
-    print 'ETL is complete'
+    print('ETL is complete')
 
 
 # endregion
@@ -351,14 +351,14 @@ def harvest_date_refresh(date):
 def test_script():
     args = test_script_file
 
-    print 'starting ETL \t:' + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') + "\n"
+    print('starting ETL \t:' + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') + "\n")
     proc = subprocess.Popen([test_etl_bash, args], stderr=subprocess.STDOUT)
     output, error = proc.communicate()
 
     if output:
-        print output
+        print(output)
     if error:
-        print error
+        print(error)
 
 
 # endregion
@@ -385,18 +385,18 @@ def load_maps():
         schema_exist = cur.fetchone()[0]
 
         if not schema_exist:
-            print '% schema does not exist..... \n Creating schema ....' % schema
+            print('% schema does not exist..... \n Creating schema ....' % schema)
             cur.execute(query.create_schema(schema))
-            print '% schema created' % schema
+            print('% schema created' % schema)
             conn.commit()
             # set the search pat to the schema
-            cur.execute("""SET search_path TO """ + schema + """;""")
+            cur.execute("SET search_path TO " + schema + ";")
             time.sleep(0.1)
         # endregion
 
         # region create tables
         try:
-            print '\ncreating and populating the mapping table ...'
+            print('\ncreating and populating the mapping table ...')
             cur.execute(query.create_table(schema))
             conn.commit()
 
@@ -418,8 +418,8 @@ def load_maps():
 
         # region permissions
         try:
-            print '\nSetting permissions'
-            cur.execute("""SET search_path TO """ + schema + """;""")
+            print('\nSetting permissions')
+            cur.execute("SET search_path TO " + schema + ";")
             time.sleep(0.1)
             cur.execute(query.permission(schema))
             conn.commit()
@@ -437,7 +437,7 @@ def load_maps():
             print(error)
         # endregion
 
-        print '\nPcornet valueset map loaded ... \nClosing database connection...'
+        print('\nPcornet valueset map loaded ... \nClosing database connection...')
         cur.close()
     except (Exception, psycopg2.OperationalError) as error:
         print(error)

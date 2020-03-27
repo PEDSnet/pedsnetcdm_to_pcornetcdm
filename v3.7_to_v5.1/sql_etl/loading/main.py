@@ -1,8 +1,9 @@
 # region import
-import ConfigParser
+#import ConfigParser
+import configparser
 import click
 import os
-import process
+from loading import process
 import shutil
 
 # endregion
@@ -62,7 +63,6 @@ def cli(searchpath, pwprompt, user, database, host, options, harvest, testscript
         options = click.prompt('Process Options: \tpipeline \n\t\tetl \n\t\ttruncate \n\t\tddl \n\t\tupdate_map \n\t\tload_maps \n')
 
     if not pcornet_version:
-        print 'Default PCORnet CDM V4.1 selected'
         pcornet_version = click.prompt('Pcornet version', hide_input=False)
 
     if harvest:
@@ -82,7 +82,7 @@ def cli(searchpath, pwprompt, user, database, host, options, harvest, testscript
     if not os.path.isfile(configfile_name):
         cfgfile = open(configfile_name, 'w')
 
-        configini = ConfigParser.ConfigParser()
+        configini = configparser.ConfigParser()
         configini.add_section('postgresql')
         configini.set('postgresql', 'host', host)
         configini.set('postgresql', 'database', database)

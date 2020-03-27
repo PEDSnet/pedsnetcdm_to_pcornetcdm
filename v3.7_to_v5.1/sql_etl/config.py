@@ -1,10 +1,10 @@
-import ConfigParser
+import configparser
 
 
 def config(info):
     filename = 'database.ini'
     # create a parser
-    parser = ConfigParser.ConfigParser()
+    parser = configparser.ConfigParser()
     # read config file
     parser.read(filename)
     # get the section, sefault to postgresql
