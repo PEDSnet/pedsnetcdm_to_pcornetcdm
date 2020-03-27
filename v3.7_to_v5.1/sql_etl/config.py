@@ -1,4 +1,4 @@
-import ConfigParser
+import configparser
 
 
 def config(info):
