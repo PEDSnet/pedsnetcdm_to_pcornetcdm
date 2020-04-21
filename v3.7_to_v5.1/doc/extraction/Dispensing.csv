@@ -1,0 +1,16 @@
+PCORnet_field,Source_CDM,Source_table,Source_table_alias,Source_field,join condition,extraction condition
+dispense_amt,PEDSnet,drug_exposure,DE,quantity,,
+dispense_date,PEDSnet,drug_exposure,DE,drug_exposure_start_date,,
+dispense_dose_disp,PEDSnet,drug_exposure,DE,effective_drug_dose,,
+dispense_dose_disp_unit,PEDSnet,drug_exposure,DE,dose_unit_concept_id,pdsnet_pcornet_valueset_map on source_concept_id where source_concept_class='Dose unit',
+dispense_route,PEDSnet,drug_exposure,DE,route_concept_id,pdsnet_pcornet_valueset_map on source_concept_id where source_concept_class='Route',
+dispense_sup,PEDSnet,drug_exposure,DE,days_supply,,
+dispensingid,PEDSnet,drug_exposure,DE,drug_exposure_id,,drug_type_concept_id = '38000175' 
+ndc,PEDSnet,drug_exposure,DE,"drug_source_concept_id, drug_concept_id, drug_source_value",,
+patid,PEDSnet,drug_exposure,DE,person_id,,
+prescribingid,,,,,,hardcode as NULL
+raw_ndc,PEDSnet,drug_exposure,DE,drug_source_value,,
+raw_dispense_route,PEDSnet,drug_exposure,DE,route_source_value,,
+raw_dispense_dose_disp,PEDSnet,drug_exposure,DE,eff_drug_dose_source_value,,
+raw_dispense_dose_disp_unit,PEDSnet,drug_exposure,DE,dose_unit_source_value,,
+site,PEDSnet,drug_exposure,DE,site,,
