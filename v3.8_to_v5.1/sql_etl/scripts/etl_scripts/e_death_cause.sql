@@ -52,3 +52,8 @@ From death_cause_derived de
 left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on trim(split_part(death_cause,'|', 2)) = m1.source_concept_id
 															AND m1.source_concept_class='death cause code';
 commit;
+
+begin;
+delete from SITE_pcornet.death_cause
+where patid::int not in (select person_id from SITE_pcornet.person_visit_start2001);
+commit;
