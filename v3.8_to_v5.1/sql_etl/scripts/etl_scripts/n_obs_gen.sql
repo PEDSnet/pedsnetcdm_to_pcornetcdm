@@ -105,7 +105,8 @@ null as raw_obsgen_result,
 null as raw_obsgen_unit,
 obs.site
 from SITE_pedsnet.device_exposure dev
-inner join SITE_pedsnet.observation obs on obs.person_id = dev.person_id and obs.observation_date = dev.device_exposure_start_date
+left join SITE_pcornet.encounter enc on enc.encounterid::int = dev.visit_occurrence_id
+inner join SITE_pcornet.filter_obs obs on obs.person_id = dev.person_id and obs.observation_date = dev.device_exposure_start_date
 where device_concept_id in (4044008,4097216,4138614,45761494,4224038,4139525,45768222,4222966,40493026);
 
 commit;
@@ -129,7 +130,7 @@ select (nextval('obs_gen_seq_id')) as obsgenid, patid, encounterid, obsgen_provi
 from SITE_pcornet.meas_obs
 union 
 select (nextval('obs_gen_seq_id')) as obsgenid, patid, encounterid, obsgen_providerid,  obsgen_date,obsgen_time, obsgen_type, obsgen_code, obsgen_result_qual, 
-	 obsgen_result_text, obsgen_result_num,obsgen_result_modifier,  obsgen_result_unit, obsgen_table_modified, 
+	 obsgen_result_text, obsgen_result_num::numeric, obsgen_result_modifier,  obsgen_result_unit, obsgen_table_modified, 
 	obsgen_id_modified, obsgen_source,raw_obsgen_name,raw_obsgen_type, raw_obsgen_code,  raw_obsgen_result::text, 
 	raw_obsgen_unit,  site 
 from SITE_pcornet.device_obs;
