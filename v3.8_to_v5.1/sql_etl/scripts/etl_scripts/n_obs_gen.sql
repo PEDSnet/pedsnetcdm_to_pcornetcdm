@@ -25,7 +25,7 @@ LPAD(date_part('hour',observation_datetime)::text,2,'0')||':'||LPAD(date_part('m
 'PC_COVID' as obsgen_type,
 '2000' as obsgen_code,
 null as obsgen_result_qual,
-null as obsgen_result_text,
+case when adt.service_concept_id in (2000000079,2000000080,2000000078) then 'Y' else 'N' end as obsgen_result_text,
 null as obsgen_result_num,
 null as obsgen_result_modifier,
 null as obsgen_result_unit,
@@ -79,6 +79,38 @@ where meas.measurement_concept_id in (2000001422,4353936);
 commit;
 
 begin;
+create table SITE_pcornet.device_obs
+as
+select distinct on (obs.observation_id)obs.observation_id::text as obsgenid,
+obs.person_id::text as patid,
+obs.visit_occurrence_id::text as encounterid,
+obs.provider_id as obsgen_providerid,
+obs.observation_date::date as obsgen_date,
+LPAD(date_part('hour',observation_datetime)::text,2,'0')||':'||LPAD(date_part('minute',observation_datetime)::text,2,'0') as obsgen_time,
+'PC_COVID' as obsgen_type,
+'3000' as obsgen_code,
+null as obsgen_result_qual,
+case when dev.device_exposure_start_date <= enc.admit_date and dev.device_exposure_end_date > enc.admit_date
+     then 'Y' else 'N' end as obsgen_result_text,
+null as obsgen_result_num,
+null as obsgen_result_modifier,
+null as obsgen_result_unit,
+null as obsgen_table_modified,
+null as obsgen_id_modified,
+'DR' as obsgen_source,
+null as raw_obsgen_name,
+null as raw_obsgen_type,
+null as raw_obsgen_code,
+null as raw_obsgen_result,
+null as raw_obsgen_unit,
+obs.site
+from SITE_pedsnet.device_exposure dev
+inner join SITE_pedsnet.observation obs on obs.person_id = dev.person_id and obs.observation_date = dev.device_exposure_start_date
+where device_concept_id in (4044008,4097216,4138614,45761494,4224038,4139525,45768222,4222966,40493026);
+
+commit;
+
+begin;
 INSERT INTO SITE_pcornet.obs_gen(
 	obsgenid, patid, encounterid, obsgen_providerid,  obsgen_date,obsgen_time, obsgen_type, obsgen_code, obsgen_result_qual, 
 	 obsgen_result_text, obsgen_result_num,obsgen_result_modifier,  obsgen_result_unit, obsgen_table_modified, 
@@ -94,6 +126,18 @@ select (nextval('obs_gen_seq_id')) as obsgenid, patid, encounterid, obsgen_provi
 	 obsgen_result_text, obsgen_result_num,obsgen_result_modifier,  obsgen_result_unit, obsgen_table_modified, 
 	obsgen_id_modified, obsgen_source,raw_obsgen_name,raw_obsgen_type, raw_obsgen_code,  raw_obsgen_result::text, 
 	raw_obsgen_unit,  site 
-from SITE_pcornet.meas_obs;
+from SITE_pcornet.meas_obs
+union 
+select (nextval('obs_gen_seq_id')) as obsgenid, patid, encounterid, obsgen_providerid,  obsgen_date,obsgen_time, obsgen_type, obsgen_code, obsgen_result_qual, 
+	 obsgen_result_text, obsgen_result_num,obsgen_result_modifier,  obsgen_result_unit, obsgen_table_modified, 
+	obsgen_id_modified, obsgen_source,raw_obsgen_name,raw_obsgen_type, raw_obsgen_code,  raw_obsgen_result::text, 
+	raw_obsgen_unit,  site 
+from SITE_pcornet.device_obs;
 
+commit;
+
+begin;
+drop table SITE_pcornet.adt_obs;
+drop table SITE_pcornet.meas_obs;
+drop table SITE_pcornet.device.obs;
 commit;
