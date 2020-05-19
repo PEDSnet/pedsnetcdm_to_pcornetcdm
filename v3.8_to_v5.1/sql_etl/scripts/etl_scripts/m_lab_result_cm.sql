@@ -98,7 +98,7 @@ select distinct on (m.measurement_id) m.measurement_id as lab_result_cm_id,
 	date_part('hour',m.measurement_datetime)||':'||date_part('minute',m.measurement_datetime) as specimen_time,
 	coalesce(m.measurement_result_date, m.measurement_date) as result_date,
 	date_part('hour',m.measurement_result_datetime)||':'||date_part('minute',m.measurement_result_datetime) as result_time,
-	coalesce(m8.target_concept,'OT') as result_qual,
+	coalesce(m8.target_concept,map_qual.target_concept,'OT') as result_qual,
 	null as result_snomed, 
 	m.value_as_number as result_num,
 	m3.target_concept as result_modifier,
@@ -117,13 +117,14 @@ select distinct on (m.measurement_id) m.measurement_id as lab_result_cm_id,
 	null as raw_facility_code,
 	'SITE' as site
 from
-	SITE_pcornet.specimen_values m
-	left join vocabulary.concept c2 on m.operator_concept_id = c2.concept_id and  c2.domain_id = 'Meas Value Operator'
-	left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on cast(m.operator_concept_id as text) = m3.source_concept_id and m3.source_concept_class = 'Result modifier'
-	left join pcornet_maps.pedsnet_pcornet_valueset_map m4 on cast(m.unit_concept_id as text)= m4.source_concept_id and m4.source_concept_class = 'Result unit'
-	left join pcornet_maps.pedsnet_pcornet_valueset_map m7 on cast(m.priority_concept_id as text)= m7.source_concept_id and m7.source_concept_class = 'Lab priority'
-	left join pcornet_maps.pedsnet_pcornet_valueset_map m8 on cast(m.value_as_concept_id as text)= m8.source_concept_id and m8.source_concept_class = 'Result qualifier'
-    	where m.visit_occurrence_id IN (select visit_id from SITE_pcornet.person_visit_start2001)
-	and EXTRACT(YEAR FROM m.measurement_date)>=2001;
+SITE_pcornet.specimen_values m
+left join vocabulary.concept c2 on m.operator_concept_id = c2.concept_id and  c2.domain_id = 'Meas Value Operator'
+left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on cast(m.operator_concept_id as text) = m3.source_concept_id and m3.source_concept_class = 'Result modifier'
+left join pcornet_maps.pedsnet_pcornet_valueset_map m4 on cast(m.unit_concept_id as text)= m4.source_concept_id and m4.source_concept_class = 'Result unit'
+left join pcornet_maps.pedsnet_pcornet_valueset_map m7 on cast(m.priority_concept_id as text)= m7.source_concept_id and m7.source_concept_class = 'Lab priority'
+left join pcornet_maps.pedsnet_pcornet_valueset_map m8 on cast(m.value_as_concept_id as text)= m8.source_concept_id and m8.source_concept_class = 'Result qualifier'
+left join pcornet_maps.pedsnet_pcornet_valueset_map map_qual on cast(m.value_source_value as text) ilike '%'|| map_qual.concept_description || '%' and map_qual.source_concept_class = 'result_qual_source'
+where m.visit_occurrence_id IN (select visit_id from SITE_pcornet.person_visit_start2001)
+and EXTRACT(YEAR FROM m.measurement_date)>=2001;
 
 commit;
