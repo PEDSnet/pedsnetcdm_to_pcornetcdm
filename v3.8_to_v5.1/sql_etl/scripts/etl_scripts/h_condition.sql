@@ -84,15 +84,15 @@ insert into SITE_pcornet.condition(
             conditionid, patid, encounterid, report_date, resolve_date, onset_date,
             condition_status, condition, condition_type, condition_source,
             raw_condition_status, raw_condition, raw_condition_type, raw_condition_source,site)
-select conditionid, patid, encounterid, report_date, resolve_date, onset_date,
+select ('c'||conditionid) as conditionid, patid, encounterid, report_date, resolve_date, onset_date,
         condition_status, condition, condition_type, condition_source,
-        raw_condition_status, raw_condition, raw_condition_type, raw_condition_source,site,condition_code
-from SITE_pcornet.condition_transform
+        raw_condition_status, raw_condition, raw_condition_type, raw_condition_source,site
+from SITE_pcornet.condition_orig-- condition_transform
 union
 select conditionid, patid, encounterid, report_date, resolve_date, onset_date,
         condition_status, condition, condition_type, condition_source,
         raw_condition_status, raw_condition, raw_condition_type, raw_condition_source,site
-from SITE_pcornet.obs_deriv_transform
+from SITE_pcornet.obs_deriv_transform;
 
 commit;	
 begin;
