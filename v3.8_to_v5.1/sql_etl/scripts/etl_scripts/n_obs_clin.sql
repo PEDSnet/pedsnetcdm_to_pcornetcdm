@@ -45,6 +45,16 @@ where meas.measurement_concept_id in (3020891,3024171,40762499,3027018,4353936);
 commit;
 
 begin;
+delete from SITE_pcornet.meas_obsclin
+where patid::int not in (select person_id from SITE_pcornet.person_visit_start2001);
+
+delete from SITE_pcornet.meas_obsclin
+where (encounterid is not null
+and encounterid::int not in (select visit_id from SITE_pcornet.person_visit_start2001));
+
+commit;
+
+begin;
 create table SITE_pcornet.obs_vaping as
 select distinct on (obs.observation_id)('o'||obs.observation_id)::text as obsclinid,
 obs.person_id::text as patid,
@@ -73,6 +83,16 @@ where observation_concept_id = 4219336 and value_as_concept_id in (42536422,4253
 commit;
 
 begin;
+delete from SITE_pcornet.obs_vaping
+where patid::int not in (select person_id from SITE_pcornet.person_visit_start2001);
+
+delete from SITE_pcornet.obs_vaping
+where (encounterid is not null
+and encounterid::int not in (select visit_id from SITE_pcornet.person_visit_start2001));
+
+commit;
+
+begin;
 INSERT INTO SITE_pcornet.obs_clin(encounterid, obsclin_code, obsclin_date, obsclin_providerid, obsclin_result_modifier, obsclin_result_snomed, obsclin_result_qual, obsclin_result_text, 
 	obsclin_result_unit, obsclin_source, obsclin_time, obsclin_type, obsclinid, patid, raw_obsclin_code, raw_obsclin_modifier, raw_obsclin_name, raw_obsclin_result, raw_obsclin_type, 
 	raw_obsclin_unit, site)
@@ -90,10 +110,11 @@ commit;
 
 begin;
 delete from SITE_pcornet.obs_clin
-where patid::int not in (select person_id from SITE_pcornet.person_visit_start2001)
-and (encounterid is not null
-and encounterid::int not in (select visit_id from SITE_pcornet.person_visit_start2001));
+where patid::int not in (select person_id from SITE_pcornet.person_visit_start2001);
 
+delete from SITE_pcornet.obs_clin
+where (encounterid is not null
+and encounterid::int not in (select visit_id from SITE_pcornet.person_visit_start2001));
 
 commit;
 

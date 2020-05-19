@@ -1,4 +1,12 @@
 begin;
+create table SITE_pcornet.filter_adt as
+select * 
+from SITE_pedsnet.adt_occurrence adt
+where adt.service_concept_id in (2000000079,2000000080,2000000078);
+
+commit;
+
+begin;
 create table SITE_pcornet.adt_obs
 as
 select distinct on (adt.adt_occurrence_id)('a'||adt.adt_occurrence_id)::text as obsgenid,
@@ -23,7 +31,7 @@ null as raw_obsgen_code,
 null as raw_obsgen_result,
 null as raw_obsgen_unit,
 adt.site
-from SITE_pedsnet.adt_occurrence adt 
+from SITE_pcornet.filter_adt adt 
 left join SITE_pcornet.encounter enc on enc.encounterid::int = adt.visit_occurrence_id and enc.admit_date = adt.adt_date
 where adt.service_concept_id in (2000000079,2000000080,2000000078);
 
@@ -123,8 +131,10 @@ commit;
 
 begin;
 delete from SITE_pcornet.obs_gen
-where patid::int not in (select person_id from SITE_pcornet.person_visit_start2001)
-and (encounterid is not null
+where patid::int not in (select person_id from SITE_pcornet.person_visit_start2001);
+
+delete from SITE_pcornet.obs_gen
+where (encounterid is not null
 and encounterid::int not in (select visit_id from SITE_pcornet.person_visit_start2001));
 commit;
 
