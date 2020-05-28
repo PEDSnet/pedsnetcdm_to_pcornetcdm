@@ -104,3 +104,14 @@ where encounterid IS not NULL
 					extract(year from visit_start_date)<2001);
 
 commit;
+
+begin;
+with 
+tpn as 
+(select drug_exposure_id
+from SITE_pcornet.prescribing n
+inner join SITE_pedsnet.drug_exposure de on n.prescribingid::int = de.drug_exposure_id
+where rxnorm_cui is null and lower(drug_source_value) ilike any(array['%human milk%','%tpn%','%similac%','%fat emulsion%']))
+delete from SITE_pcornet.prescribing
+where prescribingid::int in (select drug_exposure_id from tpn);
+commit;

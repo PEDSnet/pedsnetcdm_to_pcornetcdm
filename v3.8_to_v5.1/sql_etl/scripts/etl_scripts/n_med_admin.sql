@@ -63,7 +63,7 @@ from
 where
 	de.drug_type_concept_id IN ('38000180')
 	and de.person_id IN (select person_id from SITE_pcornet.person_visit_start2001) and EXTRACT(YEAR FROM drug_exposure_start_date) >= 2001
-	and de.drug_source_value not ilike any (array['%breastmilk%','%kit%','%item%','%formula%', '%tpn%','%custom%']); 
+	and de.drug_source_value not ilike any (array['%breastmilk%','%kit%','%item%','%formula%', '%tpn%','%custom%','%fat emulsion%']); 
 
 
  create index med_admin_enc on SITE_pcornet.med_admin (encounterid);
@@ -74,5 +74,18 @@ delete from SITE_pcornet.med_admin
 	and encounterid in (select cast(visit_occurrence_id as text) from SITE_pedsnet.visit_occurrence V where
 					extract(year from visit_start_date)<2001); 
 			;
+
+commit;
+
+begin;
+with 
+tpn as 
+(select drug_exposure_id 
+from SITE_pcornet.med_admin n
+inner join SITE_pedsnet.drug_exposure de on n.medadminid::int = de.drug_exposure_id
+where medadmin_code is null and lower(drug_source_value) ilike any(array['%human milk%','%tpn%','%similac%','%fat emulsion%']))
+delete from SITE_pcornet.med_admin
+where medadminid::int in (select drug_exposure_id from tpn);
+
 
 commit;

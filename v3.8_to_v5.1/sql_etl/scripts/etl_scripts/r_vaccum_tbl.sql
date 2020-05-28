@@ -12,3 +12,7 @@ VACUUM (VERBOSE, ANALYZE) SITE_pcornet.procedures;
 VACUUM (VERBOSE, ANALYZE) SITE_pcornet.vital;
 VACUUM (VERBOSE, ANALYZE) SITE_pcornet.provider;
 VACUUM (VERBOSE, ANALYZE) SITE_pcornet.med_admin;
+VACUUM (VERBOSE, ANALYZE) SITE_pcornet.obs_clin;
+VACUUM (VERBOSE, ANALYZE) SITE_pcornet.obs_gen;
+VACUUM (VERBOSE, ANALYZE) SITE_pcornet.prescribing;
+VACUUM (VERBOSE, ANALYZE) SITE_pcornet.private_demographic;

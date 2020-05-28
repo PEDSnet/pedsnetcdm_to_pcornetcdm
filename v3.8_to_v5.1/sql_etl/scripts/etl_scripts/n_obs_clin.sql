@@ -119,8 +119,14 @@ and encounterid::int not in (select visit_id from SITE_pcornet.person_visit_star
 commit;
 
 begin;
+update SITE_pcornet.obs_clin
+set obsclin_result_modifier = 'UN'
+where obsclin_result_modifier = 'NO';
+commit;
 
-drop table SITE_pcornet.meas_obsclin;
-drop table SITE_pcornet.obs_vaping;
+begin;
+
+--drop table SITE_pcornet.meas_obsclin;
+--drop table SITE_pcornet.obs_vaping;
 
 commit;

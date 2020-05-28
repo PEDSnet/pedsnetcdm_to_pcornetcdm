@@ -9,7 +9,7 @@ commit;
 
 begin;
 create table SITE_pcornet.condition_transform as
-select distinct on (co.condition_occurrence_id)('c'||co.condition_occurrence_id)::text as conditionid,
+select distinct on (co.condition_occurrence_id)(co.condition_occurrence_id)::text as conditionid,
 cast(co.person_id as text) as patid,
 cast(co.visit_occurrence_id as text) as encounterid,
 co.condition_start_date as report_date,
@@ -44,6 +44,23 @@ join vocabulary.concept c2 on co.condition_source_concept_id = c2.concept_id
 where length(trim(split_part(condition_source_value,'|',3))) <= 18 ;
 commit;
 
+
+begin;
+update SITE_pcornet.condition_transform
+set condition = v.concept_code, 
+condition_type = case when v.vocabulary_id = 'ICD9CM'  then '09'else
+		case when  v.vocabulary_id in ('ICD10','ICD10CM')
+		     then '10'
+		     else 'OT' end end
+from SITE_pcornet.condition_transform d
+inner join SITE_pedsnet.condition_occurrence c on c.condition_occurrence_id = trim(leading 'c' from d.conditionid)::int
+inner join vocabulary.concept v on v.concept_code ilike trim(split_part(condition_source_value,'|',3)) and v.vocabulary_id in ('ICD10','ICD9CM','ICD10CM')
+where trim(split_part(condition_source_value,'|',3)) ilike any (array['%B97.28%','%U07.1%','%B34.2%','%B34.9%','%B97.2%','%B97.21%','%J12.81%','%U04%','%U04.9%','%U07.2%','%Z20.828%'])
+and d.condition_type in ('SM','OT') 
+and SITE_pcornet.condition_transform.conditionid = d.conditionid 
+and SITE_pcornet.condition_transform.condition_type in ('SM','OT');
+commit;
+
 begin;
 
 create table SITE_pcornet.filter_obs_deriv as
@@ -54,7 +71,7 @@ and value_as_concept_id in (2000001411,2000001412,2000001413) -- 42894222 removi
 and EXTRACT(YEAR FROM observation_date)>=2001
 and person_id in (select person_id from SITE_pcornet.person_visit_start2001);
 
-commit
+commit;
 
 begin;
 create table SITE_pcornet.obs_deriv_transform as
@@ -88,18 +105,19 @@ observation_date as report_date,
 cast (null as date) as resolve_date,
 cast (null as date) as onset_date,
 'AC'  as condition_status,
-'COVID' as condition,
-'AG' as condition_type,
+comp.concept_code as condition,
+comp.pcornet_condition_type as condition_type,
 'PR' as condition_source,
 null as raw_condition_status,
-null as raw_condition,
-null as raw_condition_type,
-null as raw_condition_source ,-- it is not discretely captured in the EHRs
+obs.observation_source_value as raw_condition,
+comp.vocabulary_id as raw_condition_type,
+null as raw_condition_source,
 'SITE' as site
 from SITE_pedsnet.observation obs
-where observation_concept_id  = '42894222' 
+inner join pcornet_maps.cheif_complaint_map comp on obs.observation_source_value = comp.observation_source_value
+where obs.observation_concept_id  = '42894222'  and obs.site = 'SITE'
 and EXTRACT(YEAR FROM observation_date)>=2001
-and person_id in (select person_id from SITE_pcornet.person_visit_start2001);
+and person_id in (select person_id from SITE_pcornet.person_visit_start2001); -- 2,948,927 -- 5,830,220
 
 commit;
 
@@ -157,7 +175,7 @@ select conditionid, patid, encounterid, report_date, resolve_date, onset_date,
         condition_status, condition, condition_type, condition_source,
         raw_condition_status, raw_condition, raw_condition_type, raw_condition_source,site
 from SITE_pcornet.obs_deriv_transform
-union
+union 
 select conditionid, patid, encounterid, report_date, resolve_date, onset_date,
         condition_status, condition, condition_type, condition_source,
         raw_condition_status, raw_condition, raw_condition_type, raw_condition_source,site
@@ -166,11 +184,11 @@ union
 select conditionid, patid, encounterid, report_date, resolve_date, onset_date,
         condition_status, condition, condition_type, condition_source,
         raw_condition_status, raw_condition, raw_condition_type, raw_condition_source,site
-from SITE_pcornet.cond_cheif_compl_transf;
+from SITE_pcornet.cond_cheif_compl_transf; 
 
 commit;	
 begin;
-CREATE INDEX idx_cond_encid ON SITE_pcornet.condition (encounterid);
+CREATE INDEX idx_cond_encid2 ON SITE_pcornet.condition (encounterid);
 commit;
 
 begin;		
@@ -181,21 +199,4 @@ delete from SITE_pcornet.condition where
         (select cast(visit_occurrence_id as text) 	from SITE_pedsnet.visit_occurrence
         where 
         EXTRACT(YEAR FROM visit_start_date) < 2001);
-commit;
-
-
-begin;
-update SITE_pcornet.condition
-set condition = v.concept_code, 
-condition_type = case when v.vocabulary_id = 'ICD9CM'  then '09'else
-		case when  v.vocabulary_id in ('ICD10','ICD10CM')
-		     then '10'
-		     else 'OT' end end
-from SITE_pcornet.condition d
-inner join SITE_pedsnet.condition_occurrence c on c.condition_occurrence_id = d.conditionid::int
-left join vocabulary.concept v on v.concept_code ilike trim(split_part(condition_source_value,'|',3)) and v.vocabulary_id in ('ICD10','ICD9CM','ICD10CM')
-where trim(split_part(condition_source_value,'|',3)) ilike any (array['%B97.28%','%U07.1%','%B34.2%','%B34.9%','%B97.2%','%B97.21%','%J12.81%','%U04%','%U04.9%','%U07.2%','%Z20.828%'])
-and d.condition_type in ('SM','OT') 
-and SITE_pcornet.condition.conditionid = d.conditionid 
-and SITE_pcornet.condition.condition_type in ('SM','OT');
 commit;

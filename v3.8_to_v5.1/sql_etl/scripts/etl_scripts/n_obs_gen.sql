@@ -91,14 +91,15 @@ null as obsgen_result_unit,
 null as obsgen_table_modified,
 null as obsgen_id_modified,
 'DR' as obsgen_source,
-null as raw_obsgen_name,
-null as raw_obsgen_type,
-null as raw_obsgen_code,
+snomed.concept_name as raw_obsgen_name,
+snomed.vocabulary_id as raw_obsgen_type,
+snomed.concept_code as raw_obsgen_code,
 null as raw_obsgen_result,
 null as raw_obsgen_unit,
 dev.site
 from SITE_pedsnet.device_exposure dev
 left join SITE_pcornet.encounter enc on enc.encounterid::int = dev.visit_occurrence_id
+left join vocabulary.concept snomed on snomed.concept_id = dev.device_concept_id and snomed.vocabulary_id in ('SNOMED') and snomed.domain_id = 'Device'
 where device_concept_id in (4044008,4097216,4138614,45761494,4224038,4139525,45768222,4222966,40493026);
 
 commit;
@@ -141,5 +142,5 @@ commit;
 begin;
 drop table SITE_pcornet.adt_obs;
 drop table SITE_pcornet.meas_obs;
-drop table SITE_pcornet.device.obs;
+drop table SITE_pcornet.device_obs;
 commit;
