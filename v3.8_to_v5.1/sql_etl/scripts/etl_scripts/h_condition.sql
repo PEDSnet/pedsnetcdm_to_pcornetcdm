@@ -53,7 +53,7 @@ condition_type = case when v.vocabulary_id = 'ICD9CM'  then '09'else
 		     then '10'
 		     else 'OT' end end
 from SITE_pcornet.condition_transform d
-inner join SITE_pedsnet.condition_occurrence c on c.condition_occurrence_id = trim(leading 'c' from d.conditionid)::int
+inner join SITE_pedsnet.condition_occurrence c on c.condition_occurrence_id = d.conditionid::int
 inner join vocabulary.concept v on v.concept_code ilike trim(split_part(condition_source_value,'|',3)) and v.vocabulary_id in ('ICD10','ICD9CM','ICD10CM')
 where trim(split_part(condition_source_value,'|',3)) ilike any (array['%B97.28%','%U07.1%','%B34.2%','%B34.9%','%B97.2%','%B97.21%','%J12.81%','%U04%','%U04.9%','%U07.2%','%Z20.828%'])
 and d.condition_type in ('SM','OT') 

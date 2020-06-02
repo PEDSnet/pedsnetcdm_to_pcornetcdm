@@ -32,7 +32,7 @@ null as raw_obsgen_result,
 null as raw_obsgen_unit,
 adt.site
 from SITE_pcornet.filter_adt adt 
-left join SITE_pcornet.encounter enc on enc.encounterid::int = adt.visit_occurrence_id and enc.admit_date = adt.adt_date
+inner join SITE_pcornet.encounter enc on enc.encounterid::int = adt.visit_occurrence_id and enc.admit_date = adt.adt_date
 where adt.service_concept_id in (2000000079,2000000080,2000000078);
 
 commit;
@@ -98,7 +98,7 @@ null as raw_obsgen_result,
 null as raw_obsgen_unit,
 dev.site
 from SITE_pedsnet.device_exposure dev
-left join SITE_pcornet.encounter enc on enc.encounterid::int = dev.visit_occurrence_id
+inner join SITE_pcornet.encounter enc on enc.encounterid::int = dev.visit_occurrence_id
 left join vocabulary.concept snomed on snomed.concept_id = dev.device_concept_id and snomed.vocabulary_id in ('SNOMED') and snomed.domain_id = 'Device'
 where device_concept_id in (4044008,4097216,4138614,45761494,4224038,4139525,45768222,4222966,40493026);
 

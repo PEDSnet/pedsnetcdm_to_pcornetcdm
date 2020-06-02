@@ -33,5 +33,9 @@ drop table SITE_pcornet.filter_adt;
 drop table SITE_pcornet.filter_obs;
 drop table SITE_pcornet.filter_obs_deriv;
 drop table SITE_pcornet.obs_deriv_transform;
+drop table SITE_pcornet.condition_transform;
+drop table SITE_pcornet.filter_condition;
+
+
 
 commit;
