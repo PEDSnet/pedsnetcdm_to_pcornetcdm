@@ -84,9 +84,7 @@ cast (null as date) as onset_date,
 'AC'  as condition_status,
 'COVID' as condition,
 'AG' as condition_type,
-case when observation_concept_id in (2000001411) then 'PC'
-	 when observation_concept_id in (42894222) then 'PR' 
-else 'HC' end as condition_source,
+'PR'  as condition_source,
 null as raw_condition_status,
 null as raw_condition,
 null as raw_condition_type,
