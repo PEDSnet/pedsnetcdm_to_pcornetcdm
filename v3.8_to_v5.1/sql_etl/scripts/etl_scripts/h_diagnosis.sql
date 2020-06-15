@@ -78,7 +78,6 @@ where length(dx) < 2;
 
 commit;
 
-
 begin;
 update SITE_pcornet.diagnosis
 set dx = v.concept_code, 
@@ -88,7 +87,7 @@ dx_type = case when v.vocabulary_id = 'ICD9CM'  then '09'else
 		     else 'OT' end end
 from SITE_pcornet.diagnosis d
 inner join SITE_pedsnet.condition_occurrence c on c.condition_occurrence_id = d.diagnosisid::int
-left join vocabulary.concept v on v.concept_code ilike trim(split_part(condition_source_value,'|',3)) and v.vocabulary_id in ('ICD10','ICD9CM','ICD10CM')
+inner join vocabulary.concept v on v.concept_code ilike trim(split_part(condition_source_value,'|',3)) and v.vocabulary_id in ('ICD10','ICD9CM','ICD10CM')
 and trim(split_part(condition_source_value,'|',3)) ilike any (array['%B97.28%','%U07.1%','%B34.2%','%B34.9%','%B97.2%','%B97.21%','%J12.81%','%U04%','%U04.9%','%U07.2%','%Z20.828%'])
 where d.dx_type in ('SM','OT') 
 and SITE_pcornet.diagnosis.diagnosisid = d.diagnosisid 
