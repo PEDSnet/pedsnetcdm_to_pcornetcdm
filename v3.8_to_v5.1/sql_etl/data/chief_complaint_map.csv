@@ -1,0 +1,67 @@
+observation_source_value,count,condition_concept_id,condition_concept_name,concept_code,vocabulary_id,pcornet_condition_type
+well child,388335,1575983,Encounter for routine child health examination,Z00.12,ICD10CM,10
+fever,337758,35211387,"Fever, unspecified",R50.9,ICD10CM,10
+cough,308523,35211275,Cough,R05,ICD10CM,10
+cold symptoms,127851,35207921,Acute nasopharyngitis [common cold],J00,ICD10CM,10
+other,118011,1572268,Other general symptoms and signs,R68,ICD10CM,10
+derm problem,116651,4183958,Skin problem,297982009,SNOMED,SM
+WELL CHILD CARE|122,114483,1575983,Encounter for routine child health examination,Z00.12,ICD10CM,10
+ear problem,113789,4114472,Ear problem,300197009,SNOMED,SM
+sore throat,113502,35207924,"Acute pharyngitis, unspecified",J02.9,ICD10CM,10
+congestion,111782,45602003,Nasal congestion,R09.81,ICD10CM,10
+vomiting,100159,45534430,Vomiting,R11.1,ICD10CM,10
+COUGH|28,97931,35211275,Cough,R05,ICD10CM,10
+FEVER|47,90873,35211387,"Fever, unspecified",R50.9,ICD10CM,10
+follow up,69171,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+FOLLOW-UP|133,65327,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+recheck,64381,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+eye problem,63913,40267711,Eye problem,103267008,SNOMED,SM
+diarrhea,61124,45534435,"Diarrhea, unspecified",R19.7,ICD10CM,10
+update,60172,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+flu vaccine,58943,35225097,Encounter for immunization,Z23,ICD10CM,10
+abdominal pain,52135,200219,Abdominal pain,21522001,SNOMED,SM
+earache,48777,45552764,"Otalgia, unspecified ear",H92.09,ICD10CM,10
+imm/inj,43646,35225097,Encounter for immunization,Z23,ICD10CM,10
+headache,42734,35211388,Headache,R51,ICD10CM,10
+new patient visit,42709,1575983,Encounter for routine child health examination,Z00.12,ICD10CM,10
+respiratory distress,38145,1326788,Acute respiratory distress,R06.03,ICD10CM,10
+pt follow-up,36255,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+rash,34177,35211309,Rash and other nonspecific skin eruption,R21,ICD10CM,10
+asthma,33704,1569488,Asthma,J45,ICD10CM,10
+newborn,33191,1575982,"Encounter for newborn, infant and child health examinations",Z00.1,ICD10CM,10
+runny nose,33107,40326995,Nasal discharge,162381008,SNOMED,SM
+NASAL CONGESTION|144,31794,45602003,Nasal congestion,R09.81,ICD10CM,10
+VOMITING|120,30481,45534430,Vomiting,R11.1,ICD10CM,10
+SORE THROAT|82,30127,35207924,"Acute pharyngitis, unspecified",J02.9,ICD10CM,10
+appetite decreased,29434,4275273,Decrease in appetite,64379006,SNOMED,SM
+constipation,28763,1569650,Constipation,K59.0,ICD10CM,10
+RASH|418,26926,35211309,Rash and other nonspecific skin eruption,R21,ICD10CM,10
+EAR PAIN|128,26376,45552764,"Otalgia, unspecified ear",H92.09,ICD10CM,10
+IMM/INJ|58,22387,35225097,Encounter for immunization,Z23,ICD10CM,10
+wheezing,21190,35211277,Wheezing,R06.2,ICD10CM,10
+ear recheck,20778,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+ed f/u,19151,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+DIARRHEA|35,18330,45534435,"Diarrhea, unspecified",R19.7,ICD10CM,10
+diaper rash,17897,35208455,Diaper dermatitis,L22,ICD10CM,10
+feeding question,17866,1572264,Symptoms and signs concerning food and fluid intake,R63,ICD10CM,10
+ABDOMINAL PAIN|1,16369,200219,Abdominal pain,21522001,SNOMED,SM
+NEW PATIENT|163,15854,1575983,Encounter for routine child health examination,Z00.12,ICD10CM,10
+sleep problem,14965,1576169,Problems related to sleep,Z72.82,ICD10CM,10
+RUNNY NOSE|424,14614,40326995,Nasal discharge,162381008,SNOMED,SM
+injury,14231,1574231,Unspecified injury,T14.9,ICD10CM,10
+URI SYMPTOMS|115,13936,35207929,"Acute upper respiratory infection, unspecified",J06.9,ICD10CM,10
+DIAGNOSTIC TEST REVIEW|911,13779,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+asthma flare,13282,1569488,Asthma,J45,ICD10CM,10
+ER F/U|41,13030,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+mouth/lip problem,12971,1569554,Other diseases of lip and oral mucosa,K13,ICD10CM,10
+EAR PROBLEM|38,12641,4114472,Ear problem,300197009,SNOMED,SM
+breathing problem,11978,35208109,"RespiratoryÊdisorder, unspecified",J98.9,ICD10CM,10
+weight check,11866,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+HEADACHE|52,11443,35211388,Headache,R51,ICD10CM,10
+fatigue,11205,4223659,Fatigue,84229001,SNOMED,SM
+EYE PROBLEM|43,10983,40267711,Eye problem,103267008,SNOMED,SM
+ear pain,10796,45552764,"Otalgia, unspecified ear",H92.09,ICD10CM,10
+ear pulling,10735,44783321,Pulling at own ear,699393002,SNOMED,SM
+eye pus or discharge,10566,4080696,Discharge from eye,246679005,SNOMED,SM
+allergies,10561,19264,"Allergy, unspecified",T78.40,ICD10CM,10
+bowel movement,10488,35211300,Change in bowel habit,R19.4,ICD10CM,10
