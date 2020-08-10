@@ -65,3 +65,303 @@ ear pulling,10735,44783321,Pulling at own ear,699393002,SNOMED,SM
 eye pus or discharge,10566,4080696,Discharge from eye,246679005,SNOMED,SM
 allergies,10561,19264,"Allergy, unspecified",T78.40,ICD10CM,10
 bowel movement,10488,35211300,Change in bowel habit,R19.4,ICD10CM,10
+refill request,196826,4016388,Renewal of prescription,103742009,SNOMED,SM
+refill request|94,125603,4016388,Renewal of prescription,103742009,SNOMED,SM
+other|0,121237,1572268,Other general symptoms and signs,R68,ICD10CM,10
+results,89909,35225265,Person consulting for explanation of examination or test findings,Z71.2,ICD10CM,10
+question,63478,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+form completion,59112,441482,Administrative reason for encounter,185351004,SNOMED,SM
+medication question,51535,1576162,"Medication prescription education, guidance and counselling",423076000,SNOMED,SM
+scheduling|474,47553,441482,Administrative reason for encounter,185351004,SNOMED,SM
+question/concern|1401,41109,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+fussy,40913,40480711,Fussy toddler,444767004,SNOMED,SM
+care coordination,34987,4024601,Care planning and problem solving actions,225297008,SNOMED,SM
+missed/return call,33530,441482,Administrative reason for encounter,185351004,SNOMED,SM
+medication problem,31667,1576162,"Medication prescription education, guidance and counselling",423076000,SNOMED,SM
+recheck weight,30913,45590689,Encounter for routine child health examination with abnormal findings,Z00.121,ICD10CM,10
+results inquiry|95,29849,35225265,Person consulting for explanation of examination or test findings,Z71.2,ICD10CM,10
+appointment request,29156,441482,Administrative reason for encounter,185351004,SNOMED,SM
+referral request,27596,4186199,Patient referral for consultation,44383000,SNOMED,SM
+lab results,26463,35225265,Person consulting for explanation of examination or test findings,Z71.2,ICD10CM,10
+scheduling - appointment|1057,24844,441482,Administrative reason for encounter,185351004,SNOMED,SM
+concern|477,23717,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+med question|285,22274,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+patient update|695,22242,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+general inquiry|244,18854,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+irritability/fussiness|556,18510,4168681,Irritability and anger,74646000,SNOMED,SM
+prescription refill,18358,4016388,Renewal of prescription,103742009,SNOMED,SM
+constipation|25,17831,75860,Constipation,14760008,SNOMED,SM
+form request|1082,17684,441482,Administrative reason for encounter,185351004,SNOMED,SM
+prior authorization,17064,441482,Administrative reason for encounter,185351004,SNOMED,SM
+asthma|11,16533,1569488,Asthma,J45,ICD10CM,10
+returning call|384,16310,441482,Administrative reason for encounter,185351004,SNOMED,SM
+breathing problem|17,15314,35208109,"Respiratory disorder, unspecified",J98.9,ICD10CM,10
+prescription request,14636,4141121,Medication prescription,33633005,SNOMED,SM
+follow up call,14579,441482,Administrative reason for encounter,185351004,SNOMED,SM
+psychological therapy|1427,13838,4062352,Psychological counseling,171022008,SNOMED,SM
+weight check|486,13117,45590689,Encounter for routine child health examination with abnormal findings,Z00.121,ICD10CM,10
+cardiac testing|1127,12734,35225079,Encounter for screening for cardiovascular disorders,Z13.6,ICD10CM,10
+results discussion|1289,12673,35225265,Person consulting for explanation of examination or test findings,Z71.2,ICD10CM,10
+er report,12373,35225265,Person consulting for explanation of examination or test findings,Z71.2,ICD10CM,10
+result report,12152,35225265,Person consulting for explanation of examination or test findings,Z71.2,ICD10CM,10
+social work,12096,3021867,Problem related to social environment,2.89E+14,SNOMED,SM
+letter,11802,441482,Administrative reason for encounter,185351004,SNOMED,SM
+appointment inquiry,11716,441482,Administrative reason for encounter,185351004,SNOMED,SM
+speech-language therapy,11407,4201412,Speech therapy,5154007,SNOMED,SM
+hospital follow-up|57,11099,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+refill|155,11051,4016388,Renewal of prescription,103742009,SNOMED,SM
+referral/request|1418,10903,4186199,Patient referral for consultation,44383000,SNOMED,SM
+wheezing|415,10886,35211277,Wheezing,R06.2,ICD10CM,10
+allergies|4,10691,19264,"Allergy, unspecified",T78.40,ICD10CM,10
+scheduling - surgery|1055,10611,441482,Administrative reason for encounter,185351004,SNOMED,SM
+audiometric evaluation,10454,1575987,Encounter for examination of ears and hearing,Z01.1,ICD10CM,10
+derm problem|33,10385,4183958,Skin problem,297982009,SNOMED,SM
+ent/orl audiometric evaluation,10293,1575987,Encounter for examination of ears and hearing,Z01.1,SNOMED,SM
+social work follow up|855,10026,3021867,Problem related to social environment,2.89E+14,SNOMED,SM
+seizures|97,9921,377091,Seizure,91175000,SNOMED,SM
+hives,9801,139902,Allergic urticaria,40178009,SNOMED,SM
+ reflux,9743,46271381,Digestive system reflux,709493000,SNOMED,SM
+hearing evaluation|135,9691,1575987,Encounter for examination of ears and hearing,Z01.1,SNOMED,SM
+sinus problem,9682,45596279,Unspecified disorder of nose and nasal sinuses,J34.9,ICD10CM,10
+urination problem,9548,35209327,"Disorder of urinary system, unspecified",N39.9,ICD10CM,10
+conjunctivitis|24,9491,376707,Acute conjunctivitis,53726008,SNOMED,SM
+asthma follow up|528,9346,1569488,Asthma,J45,ICD10CM,10
+musculoskeletal problem,9314,45558461,Unspecified symptoms and signs involving the musculoskeletal system,R29.91,ICD10CM,10
+plan of care|820,9059,441482,Administrative reason for encounter,185351004,SNOMED,SM
+pain with urination,8875,4329041,Pain,22253000,SNOMED,SM
+reduced appetite|1246,8871,4275273,Decrease in appetite,64379006,SNOMED,SM
+school excuse/form,8847,441482,Administrative reason for encounter,185351004,SNOMED,SM
+allergy food,8802,4188027,Allergy to food,414285001,SNOMED,SM
+chest pain,8759,77670,Chest pain,29857009,SNOMED,SM
+diaper rash|543,8538,35208455,Diaper dermatitis,L22,ICD10CM,10
+seizures,8398,377091,Seizure,91175000,SNOMED,SM
+ear check|482,8177,1575987,Encounter for examination of ears and hearing,Z01.1,ICD10CM,10
+oncology follow-up|19,8069,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+lab only visit,8007,4203722,Patient encounter procedure,308335008,SNOMED,SM
+letter of medical necessity,7859,441482,Administrative reason for encounter,185351004,SNOMED,SM
+trauma (extremity),7776,1574231,Unspecified injury,T14.9,ICD10CM,10
+feeding issue,7696,1572264,Symptoms and signs concerning food and fluid intake,R63,ICD10CM,10
+mouth/lip problem|68,7608,1569554,Other diseases of lip and oral mucosa,K13,ICD10CM,10
+confirm appointment|478,7607,441482,Administrative reason for encounter,185351004,SNOMED,SM
+cold|1336,7596,35207921,Acute nasopharyngitis [common cold],J00,ICD10CM,10
+chop cardiology,7443,35225079,Encounter for screening for cardiovascular disorders,Z13.6,ICD10CM,10
+behavioral problem,7332,4080568,Problem behavior,277843001,SNOMED,SM
+vaginal problem,7276,4126727,Vaginal problem,289610003,SNOMED,SM
+lab discussion|812,7266,35225265,Person consulting for explanation of examination or test findings,Z71.2,ICD10CM,10
+needs note from physician|380,7155,441482,Administrative reason for encounter,185351004,SNOMED,SM
+school letter|974,7087,441482,Administrative reason for encounter,185351004,SNOMED,SM
+nose bleed,7044,4096682,Bleeding from nose,249366005,SNOMED,SM
+multiple ear infections|143,6959,45581732,"Otitis media, unspecified, unspecified ear",H66.90,ICD10CM,10
+lump,6837,40358827,Lump,271586000,SNOMED,SM
+nausea,6752,31967,Nausea,422587007,SNOMED,SM
+prior authorization|1840,6704,441482,Administrative reason for encounter,185351004,SNOMED,SM
+provider call,6603,441482,Administrative reason for encounter,185351004,SNOMED,SM
+weight problem,6554,4118264,Body weight problem,301336003,SNOMED,SM
+attention deficit disorder|585,6465,35207265,"Attention-deficit hyperactivity disorder, unspecified type",F90.9,ICD10CM,10
+medication evaluation,6441,1576162,"Medication prescription education, guidance and counselling",423076000,SNOMED,SM
+urinary frequency,6419,35209327,"Disorder of urinary system, unspecified",N39.9,ICD10CM,10
+head injury,6304,375415,Injury of head,82271004,SNOMED,SM
+lab f/u,6207,35225265,Person consulting for explanation of examination or test findings,Z71.2,ICD10CM,10
+new prescription,6187,4141121,Medication prescription,33633005,SNOMED,SM
+teething,6135,40397424,Teething,196292004,SNOMED,SM
+post-op visit|258,6122,4046550,Postoperative care,33899007,SNOMED,SM
+penis/scrotum problem,5985,4113718,Penis problem,300528000,SNOMED,SM
+medication authorization|818,5959,1576162,"Medication prescription education, guidance and counselling",423076000,SNOMED,SM
+pain,5874,4329041,Pain,22253000,SNOMED,SM
+tb screening,5798,4062637,Tuberculosis screening,171126009,SNOMED,SM
+medication problem|65,5703,1576162,"Medication prescription education, guidance and counselling",423076000,SNOMED,SM
+f/u pe tubes|129,5617,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+eczema,5576,133835,Eczema,43116000,SNOMED,SM
+procedure,5573,35225130,"Encounter for procedure for purposes other than remedying health state, unspecified",Z41.9,ICD10CM,10
+electroencephalogram|480,5506,4031049,Electroencephalographic procedure ,14318007,SNOMED,SM
+sickle cell anemia/thalassemia,5491,35206724,Sickle-cell disease without crisis,D57.1,ICD10CM,10
+insurance authorization|622,5476,441482,Administrative reason for encounter,185351004,SNOMED,SM
+cystic fibrosis|234,5431,441267,Cystic fibrosis,190905008,SNOMED,SM
+trauma (face/head/neck),5411,1574231,Unspecified injury,T14.9,ICD10CM,10
+back pain,5383,134736,Backache,161891005,SNOMED,SM
+medication follow-up|734,5380,1576162,"Medication prescription education, guidance and counselling",423076000,SNOMED,SM
+leg pain,5301,4024561,Pain in lower limb,10601006,SNOMED,SM
+injury upper extremity|1584,5291,4130851,Injury of upper extremity,127278005,SNOMED,SM
+cardiac follow up|1329,5248,35225079,Encounter for screening for cardiovascular disorders,Z13.6,ICD10CM,10
+injury lower extremity|1519,5187,4130852,Injury of lower extremity,127279002,SNOMED,SM
+lab request|284,5041,4203722,Patient encounter procedure,308335008,SNOMED,SM
+immunization question,4970,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+information request,4940,441482,Administrative reason for encounter,185351004,SNOMED,SM
+school letter request,4901,441482,Administrative reason for encounter,185351004,SNOMED,SM
+medical question|1757,4892,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+head injury|525,4884,375415,Injury of head,82271004,SNOMED,SM
+musculoskeletal problem|69,4880,45558461,Unspecified symptoms and signs involving the musculoskeletal system,R29.91,ICD10CM,10
+chest pain|21,4833,77670,Chest pain,29857009,SNOMED,SM
+umbilical problem,4791,4125620,Umbilical cord problem,289316000,SNOMED,SM
+ear discharge,4781,378160,Otorrhea,65668001,SNOMED,SM
+gastroesophageal reflux|704,4781,46271381,Digestive system reflux,709493000,SNOMED,SM
+allergic reaction,4730,19264,"Allergy, unspecified",T78.40,ICD10CM,10
+chest congestion|1065,4724,45558453,Other specified symptoms and signs involving the circulatory and respiratory systems,R09.89,ICD10CM,10
+frequent spitting up,4720,4301596,Regurgitation,78104003,SNOMED,SM
+pain with urination|239,4710,4329041,Pain,22253000,SNOMED,SM
+thrush,4651,35205820,Candidal stomatitis,B37.0,ICD10CM,10
+croup|979,4650,260134,Croup,71186008,SNOMED,SM
+croup,4627,260134,Croup,71186008,SNOMED,SM
+trauma-head,4586,375415,Injury of head,82271004,SNOMED,SM
+eczema|417,4490,133835,Eczema,43116000,SNOMED,SM
+draining ears|125,4439,378160,Otorrhea,65668001,SNOMED,SM
+concussion,4432,439183,Concussion,81371004,SNOMED,SM
+dizziness,4420,4223938,Dizziness,404640003,SNOMED,SM
+referral report,4407,441482,Administrative reason for encounter,185351004,SNOMED,SM
+feeding problems|132,4363,1572264,Symptoms and signs concerning food and fluid intake,R63,ICD10CM,10
+hand foot mouth disease,4363,4141481,Enteroviral vesicular stomatitis with exanthem,266108008,SNOMED,SM
+medication reconciliation,4360,1576162,"Medication prescription education, guidance and counselling",423076000,SNOMED,SM
+prescription for lab tests,4317,4141121,Medication prescription,33633005,SNOMED,SM
+bug bite(s)|488,4313,4151842,Bite - wound,283682007,SNOMED,SM
+viral syndrome|119,4285,40493255,Viral syndrome,445939008,SNOMED,SM
+trauma|112,4266,1574231,Unspecified injury,T14.9,ICD10CM,10
+letter of medical necessity|781,4237,441482,Administrative reason for encounter,185351004,SNOMED,SM
+general|1422,4229,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+sickle cell|787,4224,35206724,Sickle-cell disease without crisis,D57.1,ICD10CM,10
+new patient assessment,4169,1575983,Encounter for routine child health examination,Z00.12,ICD10CM,10
+nose bleeds|145,4138,4096682,Bleeding from nose,249366005,SNOMED,SM
+immunization reactions,4134,18592,Adverse effect of other vaccines and biological substances,T50.Z95,ICD10CM,10
+f/u ear infection|259,4127,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+medication follow-up,4126,1576162,"Medication prescription education, guidance and counselling",423076000,SNOMED,SM
+bite,4120,4151842,Bite - wound,283682007,SNOMED,SM
+tele-medicine|880,4038,40489429,Telemedicine consultation with patient,448337001,SNOMED,SM
+nutrition assessment|680,4005,763457,Nutrition counseling,4.41E+14,SNOMED,SM
+crying baby < 3 mths,3946,35624226,Constantly crying infant,766877008,SNOMED,SM
+nurse only visit,3901,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+tick bite,3804,4320831,Tick bite,95898004,SNOMED,SM
+post-op|1652,3772,4046550,Postoperative care,33899007,SNOMED,SM
+fatigue|46,3769,4223659,Fatigue,84229001,SNOMED,SM
+review of plan,3758,4024601,Care planning and problem solving actions,225297008,SNOMED,SM
+report/letter out,3734,441482,Administrative reason for encounter,185351004,SNOMED,SM
+food allergy|575,3728,4188027,Allergy to food,414285001,SNOMED,SM
+cc,3717,4024601,Care planning and problem solving actions,225297008,SNOMED,SM
+viral syndrome,3701,40493255,Viral syndrome,445939008,SNOMED,SM
+ringworm,3698,4224968,Tinea corporis,84849002,SNOMED,SM
+form completed|1081,3656,441482,Administrative reason for encounter,185351004,SNOMED,SM
+post-op,3650,4046550,Postoperative care,33899007,SNOMED,SM
+hives|56,3630,139902,Allergic urticaria,40178009,SNOMED,SM
+eye emergencies,3584,40267711,Eye problem,103267008,SNOMED,SM
+nausea|70,3574,31967,Nausea,422587007,SNOMED,SM
+med clarification|1752,3541,1576162,"Medication prescription education, guidance and counselling",423076000,SNOMED,SM
+lice,3534,40378727,Lice,187207005,SNOMED,SM
+question for nurse,3415,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+toe problem,3415,4203106,Toe problem,309567004,SNOMED,SM
+dehydration,3395,435796,Dehydration,34095006,SNOMED,SM
+prescription calls pharmacy,3392,4141121,Medication prescription,33633005,SNOMED,SM
+psychological evaluation|1428,3381,4062352,Psychological counseling,171022008,SNOMED,SM
+body aches,3361,4329041,Pain,22253000,SNOMED,SM
+breathing difficulty,3332,35208109,"Respiratory disorder, unspecified",J98.9,ICD10CM,10
+blood in stools,3322,443530,Hematochezia,405729008,SNOMED,SM
+feeding intake,3318,1572264,Symptoms and signs concerning food and fluid intake,R63,ICD10CM,10
+medication change|1237,3312,1576162,"Medication prescription education, guidance and counselling",423076000,SNOMED,SM
+cough persistant,3292,35211275,Cough,R05,ICD10CM,10
+post sedation follow-up|1543,3285,4046550,Postoperative care,33899007,SNOMED,SM
+strep exposure,3226,40485017,Exposure to communicable disease,444107005,SNOMED,SM
+back pain|12,3222,134736,Backache,161891005,SNOMED,SM
+behavioral problem|13,3215,4080568,Problem behavior,277843001,SNOMED,SM
+respiratory assessments|1365,3204,1326788,Acute respiratory distress,R06.03,ICD10CM,10
+insect bite,3183,4173025,Insect bite - wound,276433004,SNOMED,SM
+weight management|1724,3159,37397658,Weight management program,718361005,SNOMED,SM
+eeg procedure,3144,4031049,Electroencephalographic procedure ,14318007,SNOMED,SM
+raspy voice,3121,4243913,Abnormal voice,38160000,SNOMED,SM
+diabetes,3087,201820,Diabetes mellitus,73211009,SNOMED,SM
+lumps/bumps|933,3065,40358827,Lump,271586000,SNOMED,SM
+crying baby > 3 mths,3052,35624226,Constantly crying infant,766877008,SNOMED,SM
+nutrition counseling|76,3037,763457,Nutrition counseling,4.41E+14,SNOMED,SM
+prescription new,3016,4141121,Medication prescription,33633005,SNOMED,SM
+nurse call|694,3013,441482,Administrative reason for encounter,185351004,SNOMED,SM
+new prescription|1096,3005,4141121,Medication prescription,33633005,SNOMED,SM
+scheduling issues|252,2983,441482,Administrative reason for encounter,185351004,SNOMED,SM
+suture removal,2966,4147691,Removal of suture,30549001,SNOMED,SM
+cardiology,2942,35225079,Encounter for screening for cardiovascular disorders,Z13.6,ICD10CM,10
+trauma-finger,2934,1574231,Unspecified injury,T14.9,ICD10CM,10
+breast feed quest,2922,46272635,Counseling about breastfeeding,711029005,SNOMED,SM
+fracture follow up|379,2902,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+urologic problem,2888,35209327,"Disorder of urinary system, unspecified",N39.9,ICD10CM,10
+jaundice,2844,263780001,Jaundice,263780001,SNOMED,SM
+pain|78,2822,4329041,Pain,22253000,SNOMED,SM
+note/letter/form request,2819,441482,Administrative reason for encounter,185351004,SNOMED,SM
+dizziness|36,2803,4223938,Dizziness,404640003,SNOMED,SM
+uti|116,2798,81902,Urinary tract infectious disease,68566005,SNOMED,SM
+reflux,2773,46271381,Digestive system reflux,709493000,SNOMED,SM
+allergic rhinitis,2768,19264,"Allergy, unspecified",T78.40,ICD10CM,10
+ear infections,2759,45581732,"Otitis media, unspecified, unspecified ear",H66.90,ICD10CM,10
+wound,2734,4168335,Wound,416462003,SNOMED,SM
+spitting up|1185,2722,4301596,Regurgitation,78104003,SNOMED,SM
+frequent urination|240,2714,45757776,Abnormal urination,3.87E+13,SNOMED,SM
+rectal problem,2711,35208313,"Disease of anus and rectum, unspecified",K62.9,ICD10CM,10
+resp distress,2698,1326788,Acute respiratory distress,R06.03,ICD10CM,10
+neck pain or stiffness,2670,24134,Neck pain,81680005,SNOMED,SM
+attention deficit hyperactivity disorder,2643,35207265,"Attention-deficit hyperactivity disorder, unspecified type",F90.9,ICD10CM,10
+tonsils enlarged|238,2587,4103504,Enlarged tonsil,301471002,SNOMED,SM
+consult note,2577,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+question for physician,2572,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+fu asthma,2555,1569488,Asthma,J45,ICD10CM,10
+consult,2553,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+consult|541,2548,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+blood in stool|736,2491,443530,Hematochezia,405729008,SNOMED,SM
+cough constant,2461,35211275,Cough,R05,ICD10CM,10
+stools-unusual,2461,35211301,Other fecal abnormalities,R19.5,SNOMED,SM
+audiogram|77,2430,1575987,Encounter for examination of ears and hearing,Z01.1,ICD10CM,10
+new patient records|1654,2422,1575983,Encounter for routine child health examination,Z00.12,ICD10CM,10
+esophageal reflux|1200,2407,46271381,Digestive system reflux,709493000,SNOMED,SM
+hearing aid check,2385,1575987,Encounter for examination of ears and hearing,Z01.1,SNOMED,SM
+diabetes - type 1|276,2382,201820,Diabetes mellitus,73211009,SNOMED,SM
+foot pain,2382,4169905,Foot pain,47933007,SNOMED,SM
+neck pain,2380,24134,Neck pain,81680005,SNOMED,SM
+knee pain|383,2363,4150062,Knee pain,30989003,SNOMED,SM
+hearing aid chart|1540,2357,1575987,Encounter for examination of ears and hearing,Z01.1,SNOMED,SM
+dental problem,2356,45547290,Encounter for screening for dental disorders,Z13.84,ICD10CM,10
+strep throat,2353,28060,Streptococcal sore throat,43878008,SNOMED,SM
+allergic reaction|420,2346,19264,"Allergy, unspecified",T78.40,ICD10CM,10
+vaginal problem|117,2339,4126727,Vaginal problem,289610003,SNOMED,SM
+edema,2338,433595,Edema,267038008,SNOMED,SM
+fell/injury to|317,2338,1574231,Unspecified injury,T14.9,ICD10CM,10
+abnormal lab result|859,2267,35225265,Person consulting for explanation of examination or test findings,Z71.2,ICD10CM,10
+nurse call,2266,441482,Administrative reason for encounter,185351004,SNOMED,SM
+nasal drainage|462,2254,40326995,Nasal discharge,162381008,SNOMED,SM
+post-op audiology evaluation|280,2211,4046550,Postoperative care,33899007,SNOMED,SM
+test results,2206,35225265,Person consulting for explanation of examination or test findings,Z71.2,ICD10CM,10
+teething|1239,2177,40397424,Teething,196292004,SNOMED,SM
+autism|452,2162,439780,Autistic disorder,408856003,SNOMED,SM
+radiology order(s),2161,44793508,Radiology procedures,2.84E+14,SNOMED,SM
+cystic fibrosis follow up|533,2146,441267,Cystic fibrosis,190905008,SNOMED,SM
+nurse visit|168,2124,1576162,"Persons encountering health services for other counseling and medical advice, not elsewhere classified",Z71,ICD10CM,10
+medication management,2110,1576162,"Medication prescription education, guidance and counselling",423076000,SNOMED,SM
+lethargy,2107,4061577,Lethargy,214264003,SNOMED,SM
+dehydration|479,2060,435796,Dehydration,34095006,SNOMED,SM
+ingestion,2060,4008101,Ingestion,111984006,SNOMED,SM
+breast feeding,2052,46272635,Counseling about breastfeeding,711029005,SNOMED,SM
+follow-up for non-urgent er visit,2002,35225060,Encounter for follow-up examination after completed treatment for conditions other than malignant neoplasm,Z09,ICD10CM,10
+eye discharge,1987,4080696,Discharge from eye,246679005,SNOMED,SM
+immunization reaction|1181,1981,18592,Adverse effect of other vaccines and biological substances,T50.Z95,ICD10CM,10
+eczema flare,1972,133835,Eczema,43116000,SNOMED,SM
+urinary problem,1966,35209327,"Disorder of urinary system, unspecified",N39.9,ICD10CM,10
+new patient appointment intake,1964,1575983,Encounter for routine child health examination,Z00.12,ICD10CM,10
+gastrostomy problems,1959,1569712,Gastrostomy complications,K94.2,ICD10CM,10
+anxiety,1958,441542,Anxiety,48694002,SNOMED,SM
+fever ,1920,35211387,"Fever, unspecified",R50.9,ICD10CM,10
+patient education|91,1916,4151485,Patient education,311401005,SNOMED,SM
+insurance communication,1906,441482,Administrative reason for encounter,185351004,SNOMED,SM
+allergy shot|463,1905,37202294,Encounter for desensitization to allergens,Z51.6,ICD10CM,10
+foreign body,1900,764523,Foreign body,4.56E+14,SNOMED,SM
+respiratory distress|1726,1860,1326788,Acute respiratory distress,R06.03,ICD10CM,10
+h1n1/swine flu vaccine,1858,35225097,Encounter for immunization,Z23,ICD10CM,10
+surgical follow-up|104,1853,4046550,Postoperative care,33899007,SNOMED,SM
+feeding adjustment|586,1851,1572264,Symptoms and signs concerning food and fluid intake,R63,ICD10CM,10
+immunotherapy,1851,4295112,Immunological therapy,76334006,SNOMED,SM
+post operative,1845,4046550,Postoperative care,33899007,SNOMED,SM
+hearing problem,1840,1575987,Encounter for examination of ears and hearing,Z01.1,SNOMED,SM
+speech/language disorder|1123,1839,46287197,Speech disorder,9.59E+14,SNOMED,SM
+head lice|542,1833,35205993,Pediculosis due to Pediculus humanus capitis,B85.0,ICD10CM,10
+penis/scrotum problem|80,1832,4113718,Penis problem,300528000,SNOMED,SM
+difficulty sleeping|421,1817,1576169,Problems related to sleep,Z72.82,ICD10CM,10
+schedule imaging|1075,1815,441482,Administrative reason for encounter,185351004,SNOMED,SM
+burn,1805,442013,Burn,125666000,SNOMED,SM
+newborn|1190,1798,1575982,"Encounter for newborn, infant and child health examinations",Z00.1,ICD10CM,10
+dysphagia|981,1794,31317,Dysphagia,40739000,SNOMED,SM
+anticoagulation,1793,765418,Anticoagulation service,2.37E+12,SNOMED,SM
+strabismus,1784,4329707,Strabismus,22066006,ICD10CM,10
+ringworm|665,1462,4224968,Tinea corporis,84849002,SNOMED,SM
+sleep issues,1445,1576169,Problems related to sleep,Z72.82,ICD10CM,10
+anxiety|9,1399,441542,Anxiety,48694002,SNOMED,SM

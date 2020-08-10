@@ -67,7 +67,7 @@ left join pcornet_maps.pedsnet_pcornet_valueset_map map on map.source_concept_id
 left join pcornet_maps.pedsnet_pcornet_valueset_map map_mod on map.source_concept_id = meas.operator_concept_id::text and map_mod.source_concept_class = 'Result modifier'
 left join pcornet_maps.pedsnet_pcornet_valueset_map map_qual on cast(meas.value_as_concept_id as text)= map_qual.source_concept_id and map_qual.source_concept_class = 'Result qualifier'
 left join pcornet_maps.pedsnet_pcornet_valueset_map map_qual_src on cast(meas.value_source_value as text) ilike '%'|| map_qual_src.concept_description || '%' and map_qual_src.source_concept_class = 'result_qual_source'
-where meas.measurement_concept_id in (2000001422); -- ,4353936
+where meas.measurement_concept_id in (2000001422,4353936);
 
 commit;
 
