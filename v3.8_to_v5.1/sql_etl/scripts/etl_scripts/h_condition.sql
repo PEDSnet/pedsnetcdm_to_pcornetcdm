@@ -112,7 +112,7 @@ comp.vocabulary_id as raw_condition_type,
 null as raw_condition_source,
 'SITE' as site
 from SITE_pedsnet.observation obs
-inner join pcornet_maps.cheif_complaint_map comp on obs.observation_source_value = comp.observation_source_value
+inner join pcornet_maps.cheif_complaint_map comp on lower(obs.observation_source_value) = lower(comp.observation_source_value)
 where obs.observation_concept_id  = '42894222'  and obs.site = 'SITE'
 and EXTRACT(YEAR FROM observation_date)>=2001
 and person_id in (select person_id from SITE_pcornet.person_visit_start2001); -- 2,948,927 -- 5,830,220

@@ -69,4 +69,22 @@ ALTER TABLE SITE_pcornet.vital ADD CONSTRAINT fk_vital_encounterid FOREIGN KEY(e
 
 ALTER TABLE SITE_pcornet.encounter ADD CONSTRAINT fk_encounter_providerid FOREIGN KEY(providerid) REFERENCES SITE_pcornet.provider (providerid) DEFERRABLE INITIALLY DEFERRED;
 
+ALTER TABLE SITE_pcornet.hash_token ADD CONSTRAINT fk_hash_token_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE SITE_pcornet.immunization ADD CONSTRAINT fk_immun_encounterid FOREIGN KEY(encounterid) REFERENCES SITE_pcornet.encounter (encounterid) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE SITE_pcornet.immunization ADD CONSTRAINT fk_immun_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE SITE_pcornet.immunization ADD CONSTRAINT fk_immun_procedureid FOREIGN KEY(proceduresid) REFERENCES SITE_pcornet.procedures (proceduresid) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE SITE_pcornet.immunization ADD CONSTRAINT fk_immun_providerid FOREIGN KEY(vx_providerid) REFERENCES SITE_pcornet.provider (providerid) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE SITE_pcornet.lds_address_history ADD CONSTRAINT fk_lds_addhist_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE SITE_pcornet.private_address_geocode ADD CONSTRAINT fk_gecode_addressid FOREIGN KEY(addressid) REFERENCES SITE_pcornet.private_address_history (addressid) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE SITE_pcornet.private_address_history ADD CONSTRAINT fk_add_history_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
+
+ALTER TABLE SITE_pcornet.private_demographic ADD CONSTRAINT fk_priv_demographic_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
+
 commit;
