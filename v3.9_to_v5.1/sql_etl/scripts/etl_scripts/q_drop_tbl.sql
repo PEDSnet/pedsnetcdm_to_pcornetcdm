@@ -35,7 +35,7 @@ drop table SITE_pcornet.filter_obs_deriv;
 drop table SITE_pcornet.obs_deriv_transform;
 drop table SITE_pcornet.condition_transform;
 drop table SITE_pcornet.filter_condition;
-
-
-
+drop table SITE_pcornet.imm_body_site;
+drop table SITE_pcornet.lab_qual;
+drop table SITE_pcornet.filter_diag;
 commit;

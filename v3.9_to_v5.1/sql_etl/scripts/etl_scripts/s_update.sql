@@ -125,6 +125,50 @@ and SITE_pcornet.lab_result_cm.lab_result_cm_id = l.lab_result_cm_id;
 commit;
 
 begin;
+update SITE_pcornet.lab_result_cm
+set result_unit = 'ug/dL'
+from SITE_pcornet.lab_result_cm l
+inner join SITE_pedsnet.measurement m on m.measurement_id = l.lab_result_cm_id::int and m.unit_source_value in ('mcg/dL','MCG/DL','mcg/dl','mcg/dL (calc)')
+where l.result_unit in ('NI','UN','OT','',null)
+and SITE_pcornet.lab_result_cm.lab_result_cm_id = l.lab_result_cm_id;
+commit;
+
+begin;
+update SITE_pcornet.lab_result_cm
+set result_unit = 'mg/dL'
+from SITE_pcornet.lab_result_cm l
+inner join SITE_pedsnet.measurement m on m.measurement_id = l.lab_result_cm_id::int and m.unit_source_value in ('mg/dL')
+where l.result_unit in ('NI','UN','OT','',null)
+and SITE_pcornet.lab_result_cm.lab_result_cm_id = l.lab_result_cm_id;
+commit;
+
+
+
+begin;
+update SITE_pcornet.lab_result_cm 
+set result_unit = '[pH]'
+where (lab_loinc in ('11558-4','2749-0','5803-2','2746-6')
+or raw_lab_name ilike any(array['%pH of Venous blood%','%pH of Blood%','%pH of Urine by Test strip%','%pH of Blood%','%pH of Urine by Test strip%','%pH of Gastric fluid%','%pH of Capillary blood%','%pH of Venous blood%','%pH of Urine by Test strip%']))
+and result_unit in ('OT','','NI','UN')
+commit;
+
+begin;
+update SITE_pcornet.lab_result_cm 
+set result_unit = '{ratio}'
+where (lab_loinc in ('5811-5','1759-0','2965-2','6301-6')
+or raw_lab_name ilike any(array['%INR in Platelet poor plasma by Coagulation assay%','%Specific gravity of Urine%','%Specific gravity of Urine by Test strip%','%Albumin/Globulin [Mass Ratio] in Serum or Plasma%']))
+and result_unit in ('OT','','NI','UN')
+commit;
+
+begin;
+update SITE_pcornet.lab_result_cm 
+set result_unit = '{#}'
+where (lab_loinc in ('11282-1')
+or raw_lab_name ilike any(array['%Cells Counted Total [#] in Blood%']))
+and result_unit in ('OT','','NI','UN')
+commit;
+
+begin;
 update SITE_pcornet.lab_result_cm 
 set result_modifier = 'EQ' 
 where norm_modifier_high = 'EQ' and norm_modifier_low = 'OT' and result_modifier = 'OT'	;	
