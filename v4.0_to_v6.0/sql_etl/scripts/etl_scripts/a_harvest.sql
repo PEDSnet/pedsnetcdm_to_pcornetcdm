@@ -21,7 +21,8 @@ refresh_prescribing_date = now()::date,
 refresh_pro_cm_date = now()::date,
 refresh_procedures_date = now()::date,
 refresh_provider_date = now()::date,
-refresh_vital_date = now()::date
+refresh_vital_date = now()::date,
+token_encryption_key = 'pcornet-pedsnet_TOKEN_ENCRYPTION_KEY'
 from pcornet_maps.pedsnet_pcornet_valueset_map v1, pcornet_maps.pedsnet_pcornet_valueset_map v2
 WHERE v1.source_concept_id = 'SITE' and
 v1.source_concept_class = 'datamart_name' and

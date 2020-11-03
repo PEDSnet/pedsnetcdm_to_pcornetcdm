@@ -18,6 +18,7 @@ From
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on m1.source_concept_class='Gender' and
 	cast(p.gender_concept_id as text) = m1.source_concept_id
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m on m.source_concept_class='Provider Specialty' 
+	    and m.source_concept_id is not null
         and case when m.source_concept_id != '' then m.source_concept_id = p.specialty_concept_id::text 
                                                 else m.concept_description LIKE '%' || specialty_source_value || '%'
             end;
