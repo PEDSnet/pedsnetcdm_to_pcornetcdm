@@ -65,7 +65,7 @@ meas.operator_concept_id,
 meas.unit_concept_id, meas.unit_source_value,
 null as obsgen_table_modified,
 null as obsgen_id_modified,
-'OD' as obsgen_source,
+'HC' as obsgen_source,
 null as raw_obsgen_name,
 null as raw_obsgen_type,
 null as raw_obsgen_code,
@@ -124,7 +124,7 @@ coalesce(map.target_concept,'{ratio}') as obsgen_result_unit,coalesce(abn.target
 obsgen_table_modified,obsgen_id_modified,obsgen_source,raw_obsgen_name,raw_obsgen_type,raw_obsgen_code,
 raw_obsgen_result,raw_obsgen_unit,meas.site, obsgen_stop_time, obsgen_stop_date
 from SITE_pcornet.meas_obs_qual meas 
-Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id = meas.value_source_value and abn.source_concept_class = 'abnormal_indicator'
+Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id = meas.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator'
 left join pcornet_maps.pedsnet_pcornet_valueset_map map on map.source_concept_id = meas.unit_concept_id::text and map.source_concept_class = 'Result unit'
 left join pcornet_maps.pedsnet_pcornet_valueset_map map_mod on map.source_concept_id = meas.operator_concept_id::text and map_mod.source_concept_class = 'Result modifier';
 

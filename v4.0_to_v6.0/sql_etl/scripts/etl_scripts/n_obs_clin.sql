@@ -26,7 +26,7 @@ case when meas.measurement_concept_id =4353936 then '250774007' else null end as
 meas.value_as_number::text as obsclin_result_text,
 meas.operator_concept_id,
 meas.unit_concept_id, meas.unit_source_value,
-'OD' as obsclin_source,
+'HC' as obsclin_source,
 null as raw_obsclin_name,
 null as raw_obsclin_type,
 null as raw_obsclin_code,
@@ -36,7 +36,7 @@ meas.unit_concept_name as raw_obsclin_unit,
 meas.site
 from SITE_pedsnet.measurement meas 
 left join vocabulary.concept loinc on loinc.concept_id = meas.measurement_concept_id and loinc.vocabulary_id = 'LOINC'
-Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id = meas.value_source_value and abn.source_concept_class = 'abnormal_indicator'
+Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id = meas.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator'
 where meas.measurement_concept_id in (3020891,3024171,40762499,3027018,4353936);
 
 commit;
@@ -119,7 +119,7 @@ snomed.concept_code as obsclin_result_snomed, --meas.value_as_number as obsclin_
 obs.value_as_string::text as obsclin_result_text,
 null as obsclin_result_modifier,
 null as obsclin_result_unit,
-'OD' as obsclin_source,
+'HC' as obsclin_source,
 null as raw_obsclin_name,
 null as raw_obsclin_type,
 null as raw_obsclin_code,
@@ -132,7 +132,7 @@ obs.site
 from SITE_pcornet.filter_obs obs
 left join pcornet_maps.pedsnet_pcornet_valueset_map qual on qual.source_concept_id = tobac.qualifier_concept_id::text and qual.source_concept_class in ('Result qualifier')
 left join vocabulary.concept snomed on snomed.concept_id = obs.value_as_string::int and snomed.vocabulary_id = 'SNOMED'
-Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id = obs.value_source_value and abn.source_concept_class = 'abnormal_indicator'
+Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id = obs.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator'
 where observation_concept_id = 4219336 and value_as_concept_id in (42536422,42536421,36716478);
 commit;
 
@@ -195,7 +195,7 @@ from SITE_pcornet.ms
 left join vocabulary.concept code on code.concept_id = ms.measurement_concept_id and code.vocabulary_id = 'LOINC'
 left join pcornet_maps.pedsnet_pcornet_valueset_map modif on modif.source_concept_id = ms.operator_concept_id::text and modif.source_concept_class = 'Result modifier'
 left join pcornet_maps.pedsnet_pcornet_valueset_map unit on unit.source_concept_id = ms.unit_concept_id::text and unit.source_concept_class in ('Dose unit','Result unit')
-Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id = ms.value_source_value and abn.source_concept_class = 'abnormal_indicator';
+Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id = ms.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator';
 commit;
 
 /* vital data - tobacco*/
