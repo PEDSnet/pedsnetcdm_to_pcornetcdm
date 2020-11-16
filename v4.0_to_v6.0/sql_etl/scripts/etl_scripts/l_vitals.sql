@@ -10,7 +10,7 @@ begin;
 create table SITE_pcornet.ms_ht as
 (
     select  distinct person_id, 'SITE' as site, measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number
-	,  measurement_concept_id,measurement_source_value
+	,  measurement_concept_id,measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value
 	from SITE_pedsnet.measurement
 	where measurement_concept_id = '3023540'
 	and EXTRACT(YEAR FROM measurement_date) >= 2001 and
@@ -34,7 +34,7 @@ begin;
 create table SITE_pcornet.ms_wt as
 (
    select distinct person_id, 'SITE' as site, measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number
-	,  measurement_concept_id,measurement_source_value
+	,  measurement_concept_id,measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value
 	from SITE_pedsnet.measurement
 	where measurement_concept_id = '3013762'
 	and EXTRACT(YEAR FROM measurement_date) >= 2001 and
@@ -57,8 +57,8 @@ commit;
 begin;
 create table SITE_pcornet.ms_bmi as
 (
-    select distinct person_id, 'SITE' as site, measurement_id,visit_occurrence_id,
-	measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value
+    select distinct person_id, 'SITE' as site, measurement_id,visit_occurrence_id, provider_id,
+	measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value,operator_concept_id, unit_concept_id, unit_source_value
     from SITE_pedsnet.measurement
     where measurement_concept_id = '3038553'
 	and EXTRACT(YEAR FROM measurement_date) >= 2001 and
@@ -80,8 +80,8 @@ commit;
 begin;
 create table SITE_pcornet.ms_sys as
 (
-   select distinct person_id, 'SITE' as site, measurement_id, visit_occurrence_id,
-		measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value
+   select distinct person_id, 'SITE' as site, measurement_id, visit_occurrence_id, provider_id,
+		measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value,operator_concept_id, unit_concept_id, unit_source_value
    from SITE_pedsnet.measurement
    where measurement_concept_id in ('3018586','3035856','3009395','3004249')
 	and EXTRACT(YEAR FROM measurement_date) >= 2001 and
@@ -103,9 +103,9 @@ commit;
 begin;
 create table SITE_pcornet.ms_dia as
 (
-    select distinct person_id, 'SITE' as site, measurement_id,
+    select distinct person_id, 'SITE' as site, measurement_id, provider_id,
 		visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, 
-			 measurement_concept_id,measurement_source_value
+			 measurement_concept_id,measurement_source_value,operator_concept_id, unit_concept_id, unit_source_value
 	from SITE_pedsnet.measurement
 	where measurement_concept_id in ('3034703','3019962','3013940','3012888')
 	and EXTRACT(YEAR FROM measurement_date) >= 2001 and
@@ -127,19 +127,19 @@ commit;
 
 begin;
 create table SITE_pcornet.ms as
-	select person_id, site, measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value
+	select person_id, site, measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value
 	from SITE_pcornet.ms_ht
 	UNION
-	select person_id, site, measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value
+	select person_id, site, measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value
 	from SITE_pcornet.ms_wt
 	UNION
-	select person_id, site, measurement_id, visit_occurrence_id,measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value
+	select person_id, site, measurement_id, visit_occurrence_id,measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value
 	from SITE_pcornet.ms_bmi
 	UNION
-	select person_id, site, measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value
+	select person_id, site, measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value
 	from SITE_pcornet.ms_sys
 	UNION
-	select person_id, site, measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value
+	select person_id, site, measurement_id, visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value
 	from SITE_pcornet.ms_dia;
 commit;
 begin;
@@ -159,7 +159,7 @@ begin;
 create table SITE_pcornet.ob_tobacco as
 (
     select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime,
-           coalesce(m1.target_concept,'OT') as tobacco, f.fact_id_2
+           coalesce(m1.target_concept,'OT') as tobacco, f.fact_id_2, observation_concept_id, observation_id, qualifier_concept_id,site
 	from SITE_pedsnet.observation o1
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on cast(o1.value_as_concept_id as text) = m1.value_as_concept_id
 	left join SITE_pedsnet.fact_relationship f on o1.observation_id = f.fact_id_1
@@ -178,7 +178,7 @@ commit;
 begin;
 create table SITE_pcornet.ob_tobacco_type as
 (
-    select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime, coalesce(m2.target_concept,'OT') as tobacco_type
+    select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime, coalesce(m2.target_concept,'OT') as tobacco_type, observation_concept_id, observation_id, qualifier_concept_id,site
 	from SITE_pedsnet.observation o1 
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on o1.value_as_concept_id::text = m2.value_as_concept_id
 	where observation_concept_id IN ('4219336') and m2.source_concept_class = 'tobacco type'
@@ -196,7 +196,7 @@ commit;
 begin;
 create table SITE_pcornet.ob_smoking as
 (
-    select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime, coalesce(m3.target_concept,'OT') as smoking
+    select distinct observation_id, visit_occurrence_id, observation_date, observation_datetime, coalesce(m3.target_concept,'OT') as smoking, observation_concept_id, observation_id, qualifier_concept_id,site
 	from SITE_pedsnet.observation o1 left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on o1.value_as_concept_id::text = m3.value_as_concept_id
 	where observation_concept_id IN ('4275495') and m3.source_concept_class = 'smoking'
 	and EXTRACT(YEAR FROM observation_date) >= 2001 and

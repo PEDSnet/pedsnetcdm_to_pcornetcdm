@@ -1,16 +1,18 @@
-alter table nemours_pcornet.demographic add column site character varying not NULL;
-alter table nemours_pcornet.enrollment add column site character varying not null;
-alter table nemours_pcornet.death add column site character varying not null;
-alter table nemours_pcornet.death_cause add column site character varying not null;
-alter table nemours_pcornet.encounter add column site character varying not null;
-alter table nemours_pcornet.condition add column site character varying not null;
-alter table nemours_pcornet.diagnosis add column site character varying not null;
-alter table nemours_pcornet.procedures add column site character varying not null;
-alter table nemours_pcornet.dispensing   add column site character varying not null;
-alter table nemours_pcornet.prescribing   add column site character varying not null;
-alter table nemours_pcornet.vital   add column site character varying not null;
-alter table nemours_pcornet.lab_result_cm   add column site character varying not null;
-alter table nemours_pcornet.provider  add column site character varying not null;
-alter table nemours_pcornet.obs_gen   add column site character varying not null;
-alter table nemours_pcornet.obs_clin   add column site character varying not null;
-alter table nemours_pcornet.med_admin   add column site character varying not null;
+create or replace function add_site_col(_schema character varying) returns void as
+$BODY$
+declare
+	select_row record;
+begin
+for select_row in
+	select 'alter table '|| _schema || '.' || tablename ||' add column site character varying not NULL;' as query
+    from pg_tables
+    where schemaname = _schema
+	and tablename not in ('person_visit_start2001','harvest','version_history')
+    loop
+    execute select_row.query;
+    end loop;
+end;
+$BODY$
+language plpgsql;
+
+select * from add_site_col('site');

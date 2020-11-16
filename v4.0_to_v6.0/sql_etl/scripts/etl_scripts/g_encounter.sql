@@ -159,14 +159,13 @@ left join pcornet_maps.pedsnet_pcornet_valueset_map m4a on cast(admitted_from_co
 left join pcornet_maps.pedsnet_pcornet_valueset_map m3a on cast(discharge_to_concept_id as text) = m3a.source_concept_id 
 			                                             and m3a.source_concept_class='Discharge status'
 left join pcornet_maps.pedsnet_pcornet_valueset_map m6 on cast(place_of_service_concept_id as text) = m6.source_concept_id
-                                                        and m6.source_concept_class='Facility type'  
+                                                        and m6.source_concept_class='Facility type'  and m6.source_concept_id is not null
 left join pcornet_maps.pedsnet_pcornet_valueset_map m7 on cast(visit_concept_id as text) = m7.source_concept_id
                                                         and cast(specialty_concept_id as text) = m7.value_as_concept_id
-                                                        and m7.source_concept_class='Facility type'        
+                                                        and m7.source_concept_class='Facility type' and m7.value_as_concept_id is not null      
 left join pcornet_maps.pedsnet_pcornet_valueset_map m8 on cast(visit_concept_id as text) = m8.source_concept_id
                                                         and m8.source_concept_class='Facility type'  
 			                                            and m8.value_as_concept_id is null ;
-
 
 --- loading 
 insert into SITE_pcornet.encounter (admit_date, admit_time, admitting_source, discharge_date, discharge_disposition, 
