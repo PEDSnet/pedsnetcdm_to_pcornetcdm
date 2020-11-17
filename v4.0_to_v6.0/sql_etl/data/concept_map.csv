@@ -2249,7 +2249,6 @@ vx_manufacturer_source,PRX,Praxis Biologics,,,
 vx_manufacturer_source,JPN,The Research Foundation for Microbial Diseases of Osaka University (BIKEN),,,
 vx_manufacturer_source,PMC,Sanofi Pasteur,,,
 vx_manufacturer_source,SCL,Sclavo,,,
-vx_manufacturer_source, SOL,Solvay Pharmaceuticals,,,
 vx_manufacturer_source,SI,Swiss Serum and Vaccine Inst,,,
 vx_manufacturer_source,TAL,Talecris Biotherapeutics,,,
 vx_manufacturer_source,USA,United States Army Medical Research and Material Command,,,
@@ -6183,4 +6182,22 @@ tobacco type,01,,4219336,Cigar smoking tobacco,4132133
 tobacco type,01,,4219336,Cigarette smoking tobacco,4282779
 tobacco type,01,,4219336,Pipe smoking tobacco,4224317
 tobacco type,01,,4219336,Smoked tobacco only,4298794
-Encounter type,OA,,581399,Telehealth,
+vx_manufacturer_source,SOL,Solvay Pharmaceuticals,,,
+Encounter type,TH,,581399,Telehealth,
+Facility type,HOSPITAL_OUTPATIENT_HEMONC_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,8756,outpatient hospital Hematology Oncology,45756811
+Facility type,HOSPITAL_OUTPATIENT_CARDIOLOGY_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,8756,Outpatient Hospital Cardiology,45756805
+Facility type,HOSPITAL_OUTPATIENT_NEUROSURGERY_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,8756,Outpatient Hospital Neurosurgery,38004459
+result_qual_source,A NEG,A Neg,,A Neg,
+result_qual_source,A POS,A Pos,,A Pos,
+result_qual_source,AB NEG,AB Neg,,AB Negative,
+result_qual_source,AB NOT DETECTED,Ab not detected,,AB Not detected,
+result_qual_source,AB POS,AB Pos,,AB POSITIVE,
+result_qual_source,B NEG,B Neg,,B Neg,
+result_qual_source,B POS,B Pos,,B Pos,
+result_qual_source,INCONCLUSIVE,Inconclusive,,Inconclusive,
+result_qual_source,INFLUENZA A VIRUS,Influenza A virus,,Influenza A virus,
+result_qual_source,INFLUENZA B VIRUS,Influenza B virus,,Influenza B virus,
+result_qual_source,O NEG,O Neg,,O NEGATIVE,
+result_qual_source,B POS,B Pos,,O positive,
+result_qual_source,SARS CORONAVIRUS 2,SARS coronavirus 2,,SARS coronavirus,
+result_qual_source,SPECIMEN UNSATISFACTORY FOR EVALUATION,Specimen unsatisfactory for evaluation,,Specimen unsatisfactory for evaluation,
