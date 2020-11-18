@@ -18,8 +18,8 @@ create table SITE_pcornet.lab_measurements as
 	range_high_operator_concept_id in (4172704) then 'NO|LT'
 	else hi.target_concept||'|'||lo.target_concept end as modifier
   from SITE_pedsnet.measurement m
-  inner join vocabulary.concept c1 on m.measurement_concept_id = c1.concept_id and c1.vocabulary_id = 'LOINC'
-  left join vocabulary.concept raw_loinc on m.measurement_source_concept_id = raw_loinc.concept_id and raw_loinc.vocabulary_id = 'LOINC'
+  inner join vocabulary.concept c1 on m.measurement_concept_id = c1.concept_id and c1.vocabulary_id = 'LOINC' and concept_class_id='Lab Test'
+  left join vocabulary.concept raw_loinc on m.measurement_source_concept_id = raw_loinc.concept_id and raw_loinc.vocabulary_id = 'LOINC' and concept_class_id='Lab Test'
   left join pcornet_maps.pedsnet_pcornet_valueset_map hi on hi.source_concept_id = m.range_high_operator_concept_id::text and hi.source_concept_class = 'Result modifier'
   left join pcornet_maps.pedsnet_pcornet_valueset_map lo on lo.source_concept_id = m.range_low_operator_concept_id::text and lo.source_concept_class = 'Result modifier'
   where measurement_type_Concept_id = 44818702 and measurement_concept_id>0 
