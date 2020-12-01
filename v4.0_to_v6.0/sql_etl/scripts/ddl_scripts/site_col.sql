@@ -4,7 +4,7 @@ declare
 	select_row record;
 begin
 for select_row in
-	select 'alter table '|| _schema || '.' || tablename ||' add column site character varying not NULL;' as query
+	select 'alter table '|| _schema || '.' || tablename ||' add column site character varying(256);' as query
     from pg_tables
     where schemaname = _schema
 	and tablename not in ('person_visit_start2001','harvest','version_history')
@@ -15,4 +15,4 @@ end;
 $BODY$
 language plpgsql;
 
-select * from add_site_col('site');
+select add_site_col('SITE_pcornet');

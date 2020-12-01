@@ -6,13 +6,16 @@ select distinct person_id, visit_occurrence_id,min(value_as_concept_id) as value
 from SITE_pedsnet.observation 
 where observation_concept_id = 44813951
 group by person_id,visit_occurrence_id;
+commit;
 
+begin;
 CREATE INDEX idx_disp_visid
     ON SITE_pcornet.dis_disposition USING btree
     (visit_occurrence_id)
     TABLESPACE pg_default;
-			
-			
+commit;	
+
+begin;			
 create  table SITE_pcornet.drg_value 
 as 
 select distinct on (o.person_id)o.person_id, visit_occurrence_id,
@@ -30,13 +33,16 @@ where observation_concept_id = 3040464 and
 						   )
 group by o.person_id, visit_occurrence_id, qualifier_concept_id, value_as_string
 order by person_id asc;
+commit;
 
+begin;
 CREATE INDEX idx_drg_visid
     ON SITE_pcornet.drg_value USING btree
     (visit_occurrence_id)
     TABLESPACE pg_default;
+commit;
 
-
+begin;
 -- Link the visit payer infromation
 create table SITE_pcornet.visit_payer as
 select distinct on (visit_occurrence_id) visit_occurrence_id, visit_payer_id, 
@@ -50,12 +56,16 @@ left join pcornet_maps.pedsnet_pcornet_valueset_map m5 on cast(plan_class||'-'||
 			and m5.source_concept_class='Payer'
 where visit_occurrence_id IN (select visit_id from SITE_pcornet.person_visit_start2001)
 order by visit_occurrence_id, target_concept asc ; -- extracting the visits that have valid minimum payer which mapped to target_concept
+commit;
 
+begin;
 CREATE INDEX idx_vispay_visid
     ON SITE_pcornet.visit_payer USING btree
     (visit_occurrence_id)
     TABLESPACE pg_default;
+commit;
 
+begin;
 -- Extract Data
 create  table SITE_pcornet.encounter_extract
 as 
@@ -104,9 +114,9 @@ left join SITE_pcornet.dis_disposition on v.visit_occurrence_id = dis_dispositio
 left join SITE_pcornet.drg_value on v.visit_occurrence_id = drg_value.visit_occurrence_id 
 left join SITE_pcornet.visit_payer vp on v.visit_occurrence_id = vp.visit_occurrence_id 
 WHERE  v.visit_occurrence_id in (select visit_id from SITE_pcornet.person_visit_start2001);
-
+commit;
 --- transform datashape
-
+begin;
 create  table SITE_pcornet.encounter_transform 
 as 
  select distinct
@@ -166,18 +176,19 @@ left join pcornet_maps.pedsnet_pcornet_valueset_map m7 on cast(visit_concept_id 
 left join pcornet_maps.pedsnet_pcornet_valueset_map m8 on cast(visit_concept_id as text) = m8.source_concept_id
                                                         and m8.source_concept_class='Facility type'  
 			                                            and m8.value_as_concept_id is null ;
-
+commit;
+begin;
 --- loading 
-insert into SITE_pcornet.encounter (admit_date, admit_time, admitting_source, discharge_date, discharge_disposition, 
-	discharge_status, discharge_time, drg, drg_type, enc_type, encounterid, facility_location, 
+insert into SITE_pcornet.encounter (encounterid, admit_date, admit_time, admitting_source, discharge_date, discharge_disposition, 
+	discharge_status, discharge_time, drg, drg_type, enc_type,  facility_location, 
 	facility_type, facilityid, patid, payer_type_primary, payer_type_secondary, providerid, 
 	raw_admitting_source, raw_discharge_disposition, raw_discharge_status, raw_drg_type, 
 	raw_enc_type, raw_facility_type, raw_payer_id_primary, raw_payer_id_secondary, 
 	raw_payer_name_primary, raw_payer_name_secondary, raw_payer_type_primary, raw_payer_type_secondary, 
 	raw_siteid, site)
- select 
+ select distinct on (encounterid) encounterid,
 	admit_date, admit_time, admitting_source, discharge_date, discharge_disposition, 
-	discharge_status, discharge_time, drg, drg_type, enc_type, encounterid, facility_location, 
+	discharge_status, discharge_time, drg, drg_type, enc_type, facility_location, 
 	facility_type, facilityid, patid, payer_type_primary, payer_type_secondary, providerid, 
 	raw_admitting_source, raw_discharge_disposition, raw_discharge_status, raw_drg_type, 
 	raw_enc_type, raw_facility_type, raw_payer_id_primary, raw_payer_id_secondary, 

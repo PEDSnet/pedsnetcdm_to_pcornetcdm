@@ -92,15 +92,14 @@ begin;
 create table SITE_pcornet.imm_body_site as
 select immunizationid,patid,encounterid,proceduresid,vx_providerid,vx_record_date,vx_admin_date,vx_code_type,
 		vx_code,vx_status,vx_status_reason,vx_source, vx_dose,vx_dose_unit, vx_route,
-		coalesce(bdy_site.target_concept,'NI') as vx_body_site, 
+		coalesce(bdy_site.target_concept,bdy_site_src.target_concept,'NI') as vx_body_site, 
 		vx_manufacturer, vx_lot_num,vx_exp_date,raw_vx_name, raw_vx_code, raw_vx_code_type,raw_vx_dose,raw_vx_dose_unit,
 		raw_vx_route,
 		imm.imm_body_site_source_value as raw_vx_body_site,
         raw_vx_status,raw_vx_status_reason,site
 from SITE_pcornet.imm_manuf imm																																				 
-left join pcornet_maps.pedsnet_pcornet_valueset_map bdy_site on case when imm.imm_body_site_concept_id is not null 
-then imm.imm_body_site_concept_id::text = bdy_site.source_concept_id and bdy_site.source_concept_class = 'imm_body_site' and bdy_site.source_concept_id is not null
-else lower(bdy_site.pcornet_name) ilike '%'||lower(trim(split_part(imm_body_site_source_value,'|',1)))||'%' and bdy_site.source_concept_class = 'imm_body_site_source' and bdy_site.source_concept_id is null end;
+left join pcornet_maps.pedsnet_pcornet_valueset_map bdy_site on imm.imm_body_site_concept_id::text = bdy_site.source_concept_id and bdy_site.source_concept_class = 'imm_body_site' and bdy_site.source_concept_id is not null
+left join pcornet_maps.pedsnet_pcornet_valueset_map bdy_site_src on  lower(bdy_site_src.source_concept_id) ilike '%'||lower(trim(split_part(imm_body_site_source_value,'|',1)))||'%' and bdy_site.source_concept_class = 'imm_body_site_source';
 commit;
 
 begin;
