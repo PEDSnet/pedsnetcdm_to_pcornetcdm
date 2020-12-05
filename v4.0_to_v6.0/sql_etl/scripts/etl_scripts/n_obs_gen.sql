@@ -71,7 +71,7 @@ null as raw_obsgen_type,
 null as raw_obsgen_code,
 meas.value_as_number as raw_obsgen_result,
 meas.unit_concept_name as raw_obsgen_unit,
-meas.site
+meas.site,
 null as obsgen_stop_time,
 null as obsgen_stop_date
 from SITE_pedsnet.measurement meas 
@@ -87,7 +87,7 @@ obsgen_type,obsgen_code,
 coalesce(map_qual.target_concept, 'OT') as obsgen_result_qual, value_source_value,
 obsgen_result_text, obsgen_result_num,meas.operator_concept_id, meas.unit_concept_id, meas.unit_source_value,
 obsgen_table_modified,obsgen_id_modified,obsgen_source,raw_obsgen_name,raw_obsgen_type,raw_obsgen_code,
-raw_obsgen_result,raw_obsgen_unit,meas.site, obsgen_stop_time, obsgen_stop_date
+raw_obsgen_result,raw_obsgen_unit,meas.site, obsgen_stop_time, obsgen_stop_date, meas.value_as_concept_id
 from SITE_pcornet.meas_obs_filt meas 
 left join pcornet_maps.pedsnet_pcornet_valueset_map map_qual on cast(meas.value_as_concept_id as text)= map_qual.source_concept_id and map_qual.source_concept_class = 'Result qualifier';
 
@@ -124,7 +124,7 @@ coalesce(map.target_concept,'{ratio}') as obsgen_result_unit,coalesce(abn.target
 obsgen_table_modified,obsgen_id_modified,obsgen_source,raw_obsgen_name,raw_obsgen_type,raw_obsgen_code,
 raw_obsgen_result,raw_obsgen_unit,meas.site, obsgen_stop_time, obsgen_stop_date
 from SITE_pcornet.meas_obs_qual meas 
-Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id = meas.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator'
+Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id::int = meas.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator'
 left join pcornet_maps.pedsnet_pcornet_valueset_map map on map.source_concept_id = meas.unit_concept_id::text and map.source_concept_class = 'Result unit'
 left join pcornet_maps.pedsnet_pcornet_valueset_map map_mod on map.source_concept_id = meas.operator_concept_id::text and map_mod.source_concept_class = 'Result modifier';
 
@@ -197,27 +197,14 @@ drop table SITE_pcornet.device_obs_filt;
 commit ;
 
 begin;
-INSERT INTO SITE_pcornet.obs_gen(
-	obsgenid, patid, encounterid, obsgen_abn_ind,obsgen_providerid,  obsgen_start_date,obsgen_start_time, obsgen_type, obsgen_code, obsgen_result_qual, 
-	 obsgen_result_text, obsgen_result_num,obsgen_result_modifier,  obsgen_result_unit, obsgen_table_modified, 
-	obsgen_id_modified, obsgen_source,raw_obsgen_name,raw_obsgen_type, raw_obsgen_code,  raw_obsgen_result, 
-	raw_obsgen_unit,obsgen_stop_time, obsgen_stop_date, site)
-select distinct obsgenid, patid, obsgen_abn_ind,encounterid, obsgen_providerid,  obsgen_start_date,obsgen_start_time, obsgen_type, obsgen_code, obsgen_result_qual, 
-	 obsgen_result_text, obsgen_result_num::numeric,obsgen_result_modifier,  obsgen_result_unit, obsgen_table_modified, 
-	obsgen_id_modified, obsgen_source,raw_obsgen_name,raw_obsgen_type, raw_obsgen_code,  raw_obsgen_result, 
-	raw_obsgen_unit, obsgen_stop_time, obsgen_stop_date,site 
+INSERT INTO SITE_pcornet.obs_gen(encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date, obsgen_start_time, obsgen_stop_date, obsgen_stop_time, obsgen_table_modified, obsgen_type, obsgenid, patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result, raw_obsgen_type, raw_obsgen_unit, site)
+select 	encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num::numeric, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date, obsgen_start_time, obsgen_stop_date, obsgen_stop_time, obsgen_table_modified, obsgen_type, obsgenid, patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result::numeric, raw_obsgen_type, raw_obsgen_unit, site
 from SITE_pcornet.adt_obs
 union 
-select obsgenid, patid, encounterid, obsgen_abn_ind,obsgen_providerid::text,  obsgen_start_date,obsgen_start_time, obsgen_type, obsgen_code, obsgen_result_qual, 
-	 obsgen_result_text, obsgen_result_num,obsgen_result_modifier,  obsgen_result_unit, obsgen_table_modified, 
-	obsgen_id_modified, obsgen_stop_time, obsgen_stop_date, obsgen_source,raw_obsgen_name,raw_obsgen_type, raw_obsgen_code,  raw_obsgen_result::text, 
-	raw_obsgen_unit,  site 
+select 	encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num::numeric, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date, obsgen_start_time, obsgen_stop_date::date, obsgen_stop_time, obsgen_table_modified, obsgen_type, obsgenid, patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result::numeric, raw_obsgen_type, raw_obsgen_unit, site 
 from SITE_pcornet.meas_obs
 union 
-select obsgenid, patid, encounterid, obsgen_abn_ind,obsgen_providerid::text,  obsgen_start_date,obsgen_start_time, obsgen_type, obsgen_code, obsgen_result_qual, 
-	 obsgen_result_text, obsgen_stop_time, obsgen_stop_date, obsgen_result_num::numeric, obsgen_result_modifier,  obsgen_result_unit, obsgen_table_modified, 
-	obsgen_id_modified, obsgen_source,raw_obsgen_name,raw_obsgen_type, raw_obsgen_code,  raw_obsgen_result::text, 
-	raw_obsgen_unit,  site 
+select 	encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num::numeric, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date, obsgen_start_time, obsgen_stop_date, obsgen_stop_time, obsgen_table_modified, obsgen_type, obsgenid, patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result::numeric, raw_obsgen_type, raw_obsgen_unit, site 
 from SITE_pcornet.device_obs;
 
 commit;

@@ -149,7 +149,7 @@ update SITE_pcornet.lab_result_cm
 set result_unit = '[pH]'
 where (lab_loinc in ('11558-4','2749-0','5803-2','2746-6')
 or raw_lab_name ilike any(array['%pH of Venous blood%','%pH of Blood%','%pH of Urine by Test strip%','%pH of Blood%','%pH of Urine by Test strip%','%pH of Gastric fluid%','%pH of Capillary blood%','%pH of Venous blood%','%pH of Urine by Test strip%']))
-and result_unit in ('OT','','NI','UN')
+and result_unit in ('OT','','NI','UN');
 commit;
 
 begin;
@@ -157,7 +157,7 @@ update SITE_pcornet.lab_result_cm
 set result_unit = '{ratio}'
 where (lab_loinc in ('5811-5','1759-0','2965-2','6301-6')
 or raw_lab_name ilike any(array['%INR in Platelet poor plasma by Coagulation assay%','%Specific gravity of Urine%','%Specific gravity of Urine by Test strip%','%Albumin/Globulin [Mass Ratio] in Serum or Plasma%']))
-and result_unit in ('OT','','NI','UN')
+and result_unit in ('OT','','NI','UN');
 commit;
 
 begin;
@@ -165,7 +165,7 @@ update SITE_pcornet.lab_result_cm
 set result_unit = '{#}'
 where (lab_loinc in ('11282-1')
 or raw_lab_name ilike any(array['%Cells Counted Total [#] in Blood%']))
-and result_unit in ('OT','','NI','UN')
+and result_unit in ('OT','','NI','UN');
 commit;
 
 begin;
