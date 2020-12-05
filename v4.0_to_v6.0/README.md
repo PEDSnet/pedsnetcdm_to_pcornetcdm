@@ -1,5 +1,5 @@
-![version](https://img.shields.io/badge/PCORnet version-6.0-blue)
-![version](https://img.shields.io/badge/PEDSnet version-4.0-orange)
+![version](https://img.shields.io/badge/PCORnetversion-6.0-blue)
+![version](https://img.shields.io/badge/PEDSnetversion-4.0-orange)
 [![](https://img.shields.io/badge/python-3.4+-blue.svg)](https://www.python.org/downloads/) 
 [![](https://img.shields.io/badge/PostgreSQL-9.5+-blue.svg)](https://www.postgresql.org/downloads/)
 [![](https://img.shields.io/badge/Datavant-3.4+-blue.svg)](https://datavant.com)
@@ -14,7 +14,7 @@
 ## Version
 The master branch may contain changes that do not apply to the latest released PEDSnet version. Always refer to one of the official releases. For convenience, the DCC will maintain an up-to-date list of release branch links here:
 
-PCORnet Cycle [![ETL Scripts](https://img.shields.io/badge/ETL Scripts--<COLOR>.svg)](https://shields.io/)| Scheduled Refresh | PEDSnet CDM version [![ETL Scripts](https://img.shields.io/badge/docs--<COLOR>.svg)](https://shields.io/) |PCORNet CDM version [![ETL Scripts](https://img.shields.io/badge/docs--<COLOR>.svg)](https://shields.io/)|
+PCORnet Cycle [![ETL Scripts](https://img.shields.io/badge/ETLScripts--<COLOR>.svg)](https://shields.io/)| Scheduled Refresh | PEDSnet CDM version [![ETL Scripts](https://img.shields.io/badge/docs--<COLOR>.svg)](https://shields.io/) |PCORNet CDM version [![ETL Scripts](https://img.shields.io/badge/docs--<COLOR>.svg)](https://shields.io/)|
 :--------:|:-----------: | :----: | :---: | 
 [Cycle 9](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/v4.0_to_v6.0_pre-release) | First Refresh |[4.0](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v4.0.0_1/) |6.0 | 
 [Cycle 8](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/v3.9_to_v5.1)|Third Refresh |[3.9](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v3.9.0_1/) |[5.1](https://pcornet.org/wp-content/uploads/2019/09/PCORnet-Common-Data-Model-v51-2019_09_12.pdf)|
