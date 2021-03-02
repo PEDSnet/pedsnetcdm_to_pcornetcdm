@@ -61,7 +61,7 @@ where
 	de.drug_type_concept_id IN ('38000180')
 	and de.person_id IN (select person_id from SITE_pcornet.person_visit_start2001) 
 	and EXTRACT(YEAR FROM drug_exposure_start_date) >= 2001
-	and de.drug_source_value not ilike any (array['%UNDILUTED DILUENT%','%KCAL/OZ%','%breastmilk%','%kit%','%item%','%formula%', '%tpn%','%custom%','%fat emulsion%']); 
+	and (de.drug_source_value is null or de.drug_source_value not ilike any (array['%UNDILUTED DILUENT%','%KCAL/OZ%','%breastmilk%','%kit%','%item%','%formula%', '%tpn%','%custom%','%fat emulsion%'])); 
 commit;
 
 begin;
