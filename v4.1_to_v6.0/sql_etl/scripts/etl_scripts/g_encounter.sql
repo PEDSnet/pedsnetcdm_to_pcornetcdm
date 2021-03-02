@@ -98,10 +98,22 @@ as
 	     else 'NI' end as raw_payer_name_primary,
 	case when primary_payer_flag is false then plan_name
 	     else 'NI' end as raw_payer_name_secondary,
-	case when primary_payer_flag is true then visit_payer_id
-	     else null end as raw_payer_id_primary,
-	case when primary_payer_flag is false then visit_payer_id
-	     else null end as raw_payer_id_secondary,
+	case when primary_payer_flag is true 
+	then 
+		case when plan_name not ilike 'DNU%' then plan_name 
+		else
+			case when plan_name ilike 'DNU%'
+			then regexp_replace(regexp_replace(plan_name,'[^[:alpha:]\s]', '', 'g'),'DNU','') end 
+			end 
+		else 'NI' end as raw_payer_name_primary,
+	case when primary_payer_flag is false 
+	then 
+		case when plan_name not ilike 'DNU%' then plan_name 
+		else
+			case when plan_name ilike 'DNU%' 
+			then regexp_replace(regexp_replace(plan_name,'[^[:alpha:]\s]', '', 'g'),'DNU','') end 
+			end 
+		else 'NI' end as raw_payer_name_secondary,
 	case when primary_payer_flag is true then payer
 	     else 'NI' end as payer_type_primary,
 	case when primary_payer_flag is false then payer
@@ -124,10 +136,10 @@ as
 	cast(encounter_extract.visit_occurrence_id as text) as encounterid ,
 	cast(cast(date_part('year', visit_start_date) as text)||'-'||lpad(cast(date_part('month', visit_start_date) as text),2,'0')||'-'||lpad(cast(date_part('day', visit_start_date) as text),2,'0') 
 	as date) as admit_date,
-    date_part('hour',visit_start_datetime)||':'||date_part('minute',visit_start_datetime) as admit_time,
+    	LPAD(date_part('hour',visit_start_datetime)::text,2,'0')||':'||LPAD(date_part('minute',visit_start_datetime)::text,2,'0') as admit_time,
 	cast(cast(date_part('year', visit_end_date) as text)||'-'||lpad(cast(date_part('month', visit_end_date) as text),2,'0')||'-'||lpad(cast(date_part('day', visit_end_date) as text),2,'0')
 	 as date) as discharge_date,
-	date_part('hour',visit_end_datetime)||':'||date_part('minute',visit_end_datetime) as discharge_time,
+	LPAD(date_part('hour',visit_end_datetime)::text,2,'0')||':'||LPAD(date_part('minute',visit_end_datetime)::text,2,'0') as discharge_time,
 	provider_id as providerid,
 	case when zip !~ '^[0-9]+$' then null else left(zip, 5) end as facility_location,
     care_site_id as facilityid,
