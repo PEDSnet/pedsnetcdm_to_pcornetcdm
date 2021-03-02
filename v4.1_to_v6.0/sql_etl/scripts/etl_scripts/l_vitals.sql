@@ -11,7 +11,7 @@ create table SITE_pcornet.ms_ht as
 (
     select  distinct person_id, 'SITE' as site, measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number
 	,  measurement_concept_id,measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value, value_as_concept_id,
-	value_source_value, measurment_concept_id
+	value_source_value
 	from SITE_pedsnet.measurement
 	where measurement_concept_id = '3023540'
 );
@@ -33,7 +33,7 @@ create table SITE_pcornet.ms_wt as
 (
    select person_id, 'SITE' as site, measurement_id,visit_occurrence_id, measurement_date, measurement_datetime, value_as_number
 	,  measurement_concept_id,measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value, value_as_concept_id,
-	value_source_value, measurment_concept_id
+	value_source_value
 	from SITE_pedsnet.measurement
 	where measurement_concept_id = '3013762'
 );
@@ -55,7 +55,7 @@ create table SITE_pcornet.ms_bmi as
 (
     select distinct person_id, 'SITE' as site, measurement_id,visit_occurrence_id, provider_id, value_as_concept_id,
 	measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value,operator_concept_id, unit_concept_id, unit_source_value,
-	value_source_value, measurment_concept_id
+	value_source_value
     from SITE_pedsnet.measurement
     where measurement_concept_id = '3038553'
 );
@@ -76,7 +76,7 @@ create table SITE_pcornet.ms_sys as
 (
    select distinct person_id, 'SITE' as site, measurement_id, visit_occurrence_id, provider_id, value_as_concept_id,
 		measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value,operator_concept_id, unit_concept_id, unit_source_value,
-	value_source_value, measurment_concept_id
+	value_source_value
    from SITE_pedsnet.measurement
    where measurement_concept_id in ('3018586','3035856','3009395','3004249')
 );
@@ -98,7 +98,7 @@ create table SITE_pcornet.ms_dia as
     select distinct person_id, 'SITE' as site, measurement_id, provider_id, value_as_concept_id,
 		visit_occurrence_id, measurement_date, measurement_datetime, value_as_number, 
 			 measurement_concept_id,measurement_source_value,operator_concept_id, unit_concept_id, unit_source_value,
-	value_source_value, measurment_concept_id
+	value_source_value
 	from SITE_pedsnet.measurement
 	where measurement_concept_id in ('3034703','3019962','3013940','3012888')
 );
@@ -118,23 +118,23 @@ commit;
 begin;
 create table SITE_pcornet.ms as
 	select person_id, site, measurement_id, visit_occurrence_id, value_as_concept_id, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value,
-	value_source_value, measurment_concept_id
+	value_source_value
 	from SITE_pcornet.ms_ht
 	UNION
 	select person_id, site, measurement_id, visit_occurrence_id, value_as_concept_id, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value,
-	value_source_value, measurment_concept_id
+	value_source_value
 	from SITE_pcornet.ms_wt
 	UNION
 	select person_id, site, measurement_id, visit_occurrence_id, value_as_concept_id, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value,
-	value_source_value, measurment_concept_id
+	value_source_value
 	from SITE_pcornet.ms_bmi
 	UNION
 	select person_id, site, measurement_id, visit_occurrence_id, value_as_concept_id, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value,
-	value_source_value, measurment_concept_id
+	value_source_value
 	from SITE_pcornet.ms_sys
 	UNION
 	select person_id, site, measurement_id, visit_occurrence_id, value_as_concept_id, measurement_date, measurement_datetime, value_as_number, measurement_concept_id, measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value,
-	value_source_value, measurment_concept_id
+	value_source_value
 	from SITE_pcornet.ms_dia;
 commit;
 

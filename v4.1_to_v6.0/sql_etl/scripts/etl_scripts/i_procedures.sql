@@ -13,7 +13,7 @@ select distinct
 	enc.providerid as providerid,
 	procedure_date as px_date,
 	coalesce(px_cd_1.concept_code, px_cd_2.concept_code, left(split_part(procedure_source_value,'|',2),11),null) as px,
-    	coalesce(px_typ.target_concept,'OT')as px_type,
+    coalesce(px_typ.target_concept,'OT')as px_type,
 	coalesce(m4.target_concept,'OT') as px_source,
 	coalesce(m5.target_concept,'OT') as ppx,
 	split_part(procedure_source_value,'|',1) as raw_px,

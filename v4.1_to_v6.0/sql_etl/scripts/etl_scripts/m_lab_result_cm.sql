@@ -60,24 +60,14 @@ commit;
 
 begin;
 create table SITE_pcornet.specimen_values as
-select distinct on (measurement_id) measurement_id, person_id,visit_occurrence_id,measurement_concept_id, measurement_date, modifier, measurement_datetime, measurement_order_date, measurement_order_datetime, measurement_result_date, measurement_result_datetime, measurement_source_concept_id, measurement_source_value, measurement_type_concept_id, operator_concept_id, priority_concept_id, priority_source_value, range_high, range_high_operator_concept_id, range_high_source_value, range_low, range_low_operator_concept_id, range_low_source_value, specimen_concept_id, specimen_source_value, unit_concept_id, unit_source_value, m.value_as_concept_id, value_as_number, value_source_value, measurement_concept_name, measurement_source_concept_name, measurement_type_concept_name, operator_concept_name, priority_concept_name, range_high_operator_concept_name, range_low_operator_concept_name, specimen_concept_name, unit_concept_name, value_as_concept_name, site, site_id, provider_id, loinc_desc as raw_lab_name,lab_loinc_vocab as lab_loinc, raw_lab_loinc_vocab as raw_lab_code, coalesce(c.target_concept, s.target_concept,'OT') as specimen_source
+select measurement_id, person_id,visit_occurrence_id,measurement_concept_id, measurement_date, modifier, measurement_datetime, measurement_order_date, measurement_order_datetime, measurement_result_date, measurement_result_datetime, measurement_source_concept_id, measurement_source_value, measurement_type_concept_id, operator_concept_id, priority_concept_id, priority_source_value, range_high, range_high_operator_concept_id, range_high_source_value, range_low, range_low_operator_concept_id, range_low_source_value, specimen_concept_id, specimen_source_value, unit_concept_id, unit_source_value, m.value_as_concept_id, value_as_number, value_source_value, measurement_concept_name, measurement_source_concept_name, measurement_type_concept_name, operator_concept_name, priority_concept_name, range_high_operator_concept_name, range_low_operator_concept_name, specimen_concept_name, unit_concept_name, value_as_concept_name, site, site_id, provider_id, loinc_desc as raw_lab_name,lab_loinc_vocab as lab_loinc, raw_lab_loinc_vocab as raw_lab_code, coalesce(c.target_concept, s.target_concept,spec_src.target_concept,'OT') as specimen_source
 from SITE_pcornet.lab_measurements m
 left join pcornet_maps.pedsnet_pcornet_valueset_map c on c.source_concept_id = m.specimen_concept_id::text and c.source_concept_class = 'Specimen concept'
-left join pcornet_maps.pedsnet_pcornet_valueset_map s on s.source_concept_id = m.lab_loinc_vocab and s.source_concept_class = 'specimen_loinc';
+left join pcornet_maps.pedsnet_pcornet_valueset_map s on s.source_concept_id = m.lab_loinc_vocab and s.source_concept_class = 'specimen_loinc'
+left join pcornet_maps.pedsnet_pcornet_valueset_map spec_src on trim(lower(split_part(m.specimen_source_value,'|',1))) = spec_src.source_concept_id and spec_src.source_concept_class = 'specimen_source';
+
 commit;
 
-begin;
-with filter_lab as
-(select measurement_id, specimen_source_value
- from SITE_pcornet.specimen_values
- where specimen_source = 'OT' or specimen_source is null
-)
-update SITE_pcornet.specimen_values 
-set specimen_source = coalesce(s.target_concept, 'OT')
-from filter_lab m
-inner join pcornet_maps.pedsnet_pcornet_valueset_map s on trim(lower(split_part(m.specimen_source_value,'|',1))) = s.source_concept_id and s.source_concept_class = 'specimen_source'
-where m.measurement_id = SITE_pcornet.specimen_values.measurement_id and SITE_pcornet.specimen_values.specimen_source = 'OT' or SITE_pcornet.specimen_values.specimen_source is null;
-commit;
 
 begin;
 drop table SITE_pcornet.lab_measurements;
@@ -184,27 +174,13 @@ begin;
 create table SITE_pcornet.lab_qual as
 select lab_result_cm_id,patid,encounterid,specimen_source,lab_result_source,lab_loinc_source,lab_loinc,
 	priority,result_loc,lab_px,lab_px_type,lab_order_date,specimen_date,specimen_time,result_date,result_time,
-	coalesce(qual.target_concept,'OT') as result_qual, value_source_value,
+	coalesce(qual.target_concept,qual_src.target_concept,'OT') as result_qual, value_source_value,
 	result_snomed, result_num,result_modifier,result_unit,norm_range_low,norm_modifier_low,norm_range_high,
     norm_modifier_high,abn_ind, raw_lab_name,raw_lab_code,raw_panel,raw_result,raw_unit,raw_order_dept,raw_facility_code,site
 from SITE_pcornet.lab_unit m
-left join pcornet_maps.pedsnet_pcornet_valueset_map qual on cast(m.value_as_concept_id as text)= qual.source_concept_id and qual.source_concept_class = 'Result qualifier';
-commit;
+left join pcornet_maps.pedsnet_pcornet_valueset_map qual on cast(m.value_as_concept_id as text)= qual.source_concept_id and qual.source_concept_class = 'Result qualifier'
+left join pcornet_maps.pedsnet_pcornet_valueset_map qual_src on lower(trim(regexp_replace(value_source_value, '([!$()*+.:<=>?[\\\]^{|}-])', '\\\1', 'g'))) ilike lower(regexp_replace(qual_src.concept_description, '([!$()*+.:<=>?[\\\]^{|}-])', '\\\1', 'g')) ESCAPE '\' and qual_src.source_concept_class = 'result_qual_source' and m.value_as_concept_id = 0 and m.value_source_value ~* '[a-z]';
 
-begin;
-with filter_lab as
-(
-	select lab_result_cm_id, result_qual, value_source_value
-	from SITE_pcornet.lab_qual
-	where result_qual = 'OT'
-	and value_source_value ~ '[a-z]'
-)
-update SITE_pcornet.lab_qual
-set result_qual = coalesce(qual.target_concept)
-from filter_lab l
-inner join pcornet_maps.pedsnet_pcornet_valueset_map qual on lower(value_source_value) ilike '%'|| qual.concept_description || '%' and qual.source_concept_class = 'result_qual_source'
-where l.lab_result_cm_id = SITE_pcornet.lab_qual.lab_result_cm_id
-and SITE_pcornet.lab_qual.result_qual = 'OT';
 commit;
 
 begin;
