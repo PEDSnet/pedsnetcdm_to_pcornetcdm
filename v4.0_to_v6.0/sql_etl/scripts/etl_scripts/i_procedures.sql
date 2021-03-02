@@ -21,7 +21,7 @@ select distinct
                 procedure_type_concept_id as raw_ppx,
                 'SITE' as site
 from SITE_pedsnet.procedure_occurrence po
-                join SITE_pcornet.encounter enc on cast(po.visit_occurrence_id as text)=enc.encounterid
+                left join SITE_pcornet.encounter enc on cast(po.visit_occurrence_id as text)=enc.encounterid
                 left join vocabulary.concept px_cd_1 on px_cd_1.concept_id = po.procedure_concept_id and px_cd_1.vocabulary_id in ('HCPCS','CPT4','ICD10PCS','SNOMED','ICD9Proc')
     left join vocabulary.concept px_cd_2 on px_cd_2.concept_id = po.procedure_source_concept_id and px_cd_2.vocabulary_id in ('HCPCS','CPT4','ICD10PCS','SNOMED','ICD9Proc')
     left join pcornet_maps.pedsnet_pcornet_valueset_map px_typ on px_typ.source_concept_id = px_cd_1.vocabulary_id
@@ -32,7 +32,7 @@ from SITE_pedsnet.procedure_occurrence po
                                                                                 m5.source_concept_class='ppx'                                                               
                 where  person_id IN (select person_id from SITE_pcornet.person_visit_start2001)
                        and EXTRACT(YEAR FROM procedure_date) >= 2001
-                       and visit_occurrence_id is not null
-                       and visit_occurrence_id not in (select visit_occurrence_id from SITE_pedsnet.visit_occurrence where
-                                                                                extract(year from visit_start_date)<2001);  
+                       and (visit_occurrence_id is null
+                       or visit_occurrence_id not in (select visit_occurrence_id from SITE_pedsnet.visit_occurrence where
+                                                                                extract(year from visit_start_date)<2001));  
 commit;
