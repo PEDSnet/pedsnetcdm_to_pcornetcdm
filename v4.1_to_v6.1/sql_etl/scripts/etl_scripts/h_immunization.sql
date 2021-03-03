@@ -103,7 +103,7 @@ left join pcornet_maps.pedsnet_pcornet_valueset_map bdy_site_src on  lower(bdy_s
 commit;
 
 begin;
-drop table SITE_pedsnet.imm_manuf;
+drop table if exists SITE_pcornet.imm_manuf;
 commit;
 
 begin;

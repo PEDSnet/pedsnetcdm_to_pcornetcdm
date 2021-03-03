@@ -1,8 +1,34 @@
 begin;
 /* out of CDM ICD px codes */
 delete from SITE_pcornet.procedures
-where length(px) != 7  and px_type = '10';																	 
+where length(px) != 7  and px_type = '10';					
 commit;
+
+begin;
+with vals (source_concept_class,target_concept,pcornet_name,source_concept_id,concept_description, value_as_concept_id) AS (VALUES
+	('vx_code_source','48','CX','40213315','HIB (PRP-T)',''),
+	('vx_code_source','171','CX','40213143','INFLUENZA, INJ., MDCK, PF, QUAD',''),
+	('vx_code_source','185','CX','40213152','INFLUENZA, RECOMBINANT, QUADRIVALENT, PF',''),
+	('vx_code_source','98','CX','40213237','PPD TEST',''),
+	('vx_code_source','9','CX','40213228','TD (ADULT),2 LF TETANUS TOXOID,PRESERV VACCINE',''),
+	('vx_code_source','115','CX','40213230','TDAP VACCINE',''),
+	('vx_code_source','146','CX','40213284','DTAP/HEPB/IPV COMBINED VACCINE',''),
+	('vx_code_source','49','CX','40213314','HIB (PRP-OMP)',''),
+	('vx_code_source','15','CX','40213156','INFLUENZA SPLIT HIGH DOSE PF VACCINE',''),
+	('vx_code_source','94','CX','40213184','MMR/VARICELLA COMBINED VACCINED','')
+)
+update SITE_pcornet.immunization
+set vx_code = coalesce(target_concept,''),
+vx_code_type = pcornet_name
+from SITE_pcornet.immunization imm
+left join SITE_pedsnet.immunization dimm on dimm.site = 'SITE' and dimm.immunization_id = imm.immunizationid::int
+left join vals on vals.concept_description ilike dimm.immunization_source_value
+where imm.vx_code = ''
+and imm.immunizationid = SITE_pcornet.immunization.immunizationid
+and SITE_pcornet.immunization.vx_code = ''
+and SITE_pcornet.immunization.vx_code = imm.vx_code;
+commit;
+
 begin;
 /* updateing the NO mapps to UN */
 update SITE_pcornet.obs_clin

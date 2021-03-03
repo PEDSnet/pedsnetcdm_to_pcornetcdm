@@ -16,7 +16,9 @@ The master branch may contain changes that do not apply to the latest released P
 
 PCORnet Cycle [![ETL Scripts](https://img.shields.io/badge/ETLScripts--<COLOR>.svg)](https://shields.io/)| Scheduled Refresh | PEDSnet CDM version [![ETL Scripts](https://img.shields.io/badge/docs--<COLOR>.svg)](https://shields.io/) |PCORNet CDM version [![ETL Scripts](https://img.shields.io/badge/docs--<COLOR>.svg)](https://shields.io/)|
 :--------:|:-----------: | :----: | :---: | 
-[Cycle 9](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/v4.0_to_v6.0_pre-release) | First Refresh |[4.0](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v4.0.0_1/) |6.0 | 
+[Cycle 10](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/v4.1_to_v6.1) | First Refresh |[4.1](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v4.1.0_1/) |6.1 | 
+[Cycle 9](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/v4.1_to_v6.0) | Second Refresh |[4.1](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v4.1.0_1/) |6.0 | 
+[Cycle 9](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/v4.0_to_v6.0) | First Refresh |[4.0](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v4.0.0_1/) |6.0 | 
 [Cycle 8](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/v3.9_to_v5.1)|Third Refresh |[3.9](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v3.9.0_1/) |[5.1](https://pcornet.org/wp-content/uploads/2019/09/PCORnet-Common-Data-Model-v51-2019_09_12.pdf)|
 [Cycle 8](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/v3.8_to_v5.1)|Second Refresh |[3.8](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v3.8.0_1/) |[5.1](https://pcornet.org/wp-content/uploads/2019/09/PCORnet-Common-Data-Model-v51-2019_09_12.pdf)|
 [Cycle 8](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/v3.7_to_v5.1)|First Refresh |[3.7](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v3.7.0_1/) |[5.1](https://pcornet.org/wp-content/uploads/2019/09/PCORnet-Common-Data-Model-v51-2019_09_12.pdf)|

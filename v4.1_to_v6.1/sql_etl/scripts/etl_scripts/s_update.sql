@@ -1,5 +1,15 @@
 begin;
 update SITE_pcornet.lab_result_cm
+set result_unit = target_concept
+from SITE_pcornet.lab_result_cm l
+left join pcornet_maps.pedsnet_pcornet_valueset_map map on lower(map.target_concept) = lower(l.raw_unit) and source_concept_class in ('result_unit_source','Result unit')
+where l.result_unit in ('','OT','NI') 
+and SITE_pcornet.lab_result_cm.result_unit in ('','OT','NI') 
+and l.lab_result_cm_id = SITE_pcornet.lab_result_cm.lab_result_cm_id;
+commit;
+
+begin;
+update SITE_pcornet.lab_result_cm
 set result_unit = '/100{WBCs}'
 from SITE_pcornet.lab_result_cm l
 inner join SITE_pedsnet.measurement m on m.measurement_id = l.lab_result_cm_id::int and m.unit_source_value in ('/100 WBC','/100 WBC','/100 WBCS','/100(WBCs)','/100 wbc','/100WBC','/100wbc')
