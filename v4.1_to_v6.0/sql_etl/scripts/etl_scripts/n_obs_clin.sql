@@ -52,7 +52,7 @@ meas.unit_concept_id, meas.unit_source_value,obsclin_source,raw_obsclin_name,raw
 raw_obsclin_code,raw_obsclin_modifier,raw_obsclin_result,raw_obsclin_unit,meas.site
 from SITE_pcornet.meas_obsclin_loinc meas 
 left join pcornet_maps.pedsnet_pcornet_valueset_map map_qual on cast(meas.value_as_concept_id as text)= map_qual.source_concept_id and map_qual.source_concept_class = 'Result qualifier'
-left join pcornet_maps.pedsnet_pcornet_valueset_map qual on lower(value_source_value) ilike qual.concept_description and qual.source_concept_class = 'result_qual_source' and meas.value_as_concept_id = 0 and meas.value_source_value ~* '[a-z]';
+left join pcornet_maps.pedsnet_pcornet_valueset_map qual on lower(value_source_value) ilike '%'|| qual.concept_description || '%' and qual.source_concept_class = 'result_qual_source';
 
 commit;
 
@@ -101,7 +101,7 @@ obs.observation_date::date as obsclin_start_date,
 LPAD(date_part('hour',obs.observation_datetime)::text,2,'0')||':'||LPAD(date_part('minute',obs.observation_datetime)::text,2,'0') as obsclin_start_time,
 'SM' as obsclin_type,
 snomed.concept_code as obsclin_code,
-coalesce(qual.target_concept,qual_src.target_concept,'NI') as obsclin_result_qual,
+coalesce(qual.concept_id,'NI') as obsclin_result_qual,
 snomed.concept_code as obsclin_result_snomed, --meas.value_as_number as obsclin_result_snomed,
 obs.value_as_string::text as obsclin_result_text,
 null as obsclin_result_modifier,
@@ -117,11 +117,10 @@ null as obsclin_stop_date,
 null as obsclin_stop_time,
 obs.site
 from SITE_pcornet.filter_obs obs
-left join pcornet_maps.pedsnet_pcornet_valueset_map qual on qual.source_concept_id = obs.qualifier_concept_id::text and qual.source_concept_class in ('Result qualifier')
-left join pcornet_maps.pedsnet_pcornet_valueset_map qual_src on qual_src.concept_description ilike obs.qualifier_source_value and obs.qualifier_concept_id = 0 and obs.qualifier_source_value ~* '[a-z]' and obs.observation_concept_id != 2000001411
+left join pcornet_maps.pedsnet_pcornet_valueset_map qual on qual.source_concept_id = tobac.qualifier_concept_id::text and qual.source_concept_class in ('Result qualifier')
 left join vocabulary.concept snomed on snomed.concept_id = obs.value_as_string::int and snomed.vocabulary_id = 'SNOMED'
-Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id::int = obs.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator'
-where obs.observation_concept_id = 4219336 and obs.value_as_concept_id in (42536422,42536421,36716478);
+Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id = obs.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator'
+where observation_concept_id = 4219336 and value_as_concept_id in (42536422,42536421,36716478);
 commit;
 
 begin;
@@ -135,17 +134,17 @@ and encounterid::int not in (select visit_id from SITE_pcornet.person_visit_star
 commit;
 
 begin;
-INSERT INTO SITE_pcornet.obs_clin(obsclinid,encounterid, obsclin_code, obsclin_start_date, obsclin_providerid,obsclin_abn_ind, obsclin_result_modifier, obsclin_result_snomed, obsclin_result_qual, obsclin_result_text, 
-	obsclin_result_unit, obsclin_source, obsclin_start_time, obsclin_type,  patid, raw_obsclin_code, raw_obsclin_modifier, raw_obsclin_name, raw_obsclin_result, raw_obsclin_type, 
+INSERT INTO SITE_pcornet.obs_clin(encounterid, obsclin_code, obsclin_start_date, obsclin_providerid, obsclin_result_modifier, obsclin_result_snomed, obsclin_result_qual, obsclin_result_text, 
+	obsclin_result_unit, obsclin_source, obsclin_start_time, obsclin_type, obsclin_abn_ind,obsclinid, patid, raw_obsclin_code, raw_obsclin_modifier, raw_obsclin_name, raw_obsclin_result, raw_obsclin_type, 
 	raw_obsclin_unit, obsclin_stop_date, obsclin_stop_time,site)
-select distinct on (obsclinid) obsclinid,encounterid, obsclin_code, obsclin_start_date, obsclin_providerid::text, obsclin_abn_ind,obsclin_result_modifier, obsclin_result_snomed, obsclin_result_qual, obsclin_result_text::text, 
-	obsclin_result_unit, obsclin_source, obsclin_start_time, obsclin_type,patid, raw_obsclin_code, raw_obsclin_modifier, raw_obsclin_name, raw_obsclin_result::text, raw_obsclin_type, 
-	raw_obsclin_unit,obsclin_stop_date::date, obsclin_stop_time, site 
+select encounterid, obsclin_code, obsclin_start_date, obsclin_providerid::text, obsclin_abn_ind,obsclin_result_modifier, obsclin_result_snomed, obsclin_result_qual, obsclin_result_text::text, 
+	obsclin_result_unit, obsclin_source, obsclin_start_time, obsclin_type, obsclinid, patid, raw_obsclin_code, raw_obsclin_modifier, raw_obsclin_name, raw_obsclin_result::text, raw_obsclin_type, 
+	raw_obsclin_unit,obsclin_stop_date, obsclin_stop_time, site 
 from SITE_pcornet.meas_obsclin
 union
-select obsclinid,encounterid, obsclin_code, obsclin_start_date, obsclin_providerid::text, obsclin_abn_ind,obsclin_result_modifier, obsclin_result_snomed, obsclin_result_qual, obsclin_result_text::text, 
-	obsclin_result_unit, obsclin_source, obsclin_start_time, obsclin_type, patid, raw_obsclin_code, raw_obsclin_modifier, raw_obsclin_name, raw_obsclin_result::text, raw_obsclin_type, 
-	raw_obsclin_unit,obsclin_stop_date::date, obsclin_stop_time, site 
+select encounterid, obsclin_code, obsclin_start_date, obsclin_providerid::text, obsclin_abn_ind,obsclin_result_modifier, obsclin_result_snomed, obsclin_result_qual, obsclin_result_text::text, 
+	obsclin_result_unit, obsclin_source, obsclin_start_time, obsclin_type, obsclinid, patid, raw_obsclin_code, raw_obsclin_modifier, raw_obsclin_name, raw_obsclin_result::text, raw_obsclin_type, 
+	raw_obsclin_unit,obsclin_stop_date, obsclin_stop_time, site 
 from SITE_pcornet.obs_vaping;
 
 commit;
@@ -170,7 +169,7 @@ LPAD(date_part('hour',ms.measurement_datetime)::text,2,'0')||':'||LPAD(date_part
 'LC' as obsclin_type, 
 ('m'||measurement_id)::text as obsclinid, 
 person_id::text as patid, 
-coalesce(code.concept_code,'NI')  as raw_obsclin_code, 
+coalesce(code_src.concept_code,'NI')  as raw_obsclin_code, 
 null as raw_obsclin_modifier, 
 code.concept_name as raw_obsclin_name, 
 ms.value_as_number::text as raw_obsclin_result, 
@@ -181,11 +180,12 @@ null as obsclin_stop_time,
 ms.site as site
 from SITE_pcornet.ms
 left join vocabulary.concept code on code.concept_id = ms.measurement_concept_id and code.vocabulary_id = 'LOINC'
+left join vocabulary.concept code_src on code_src.concept_id = ms.measurement_source_concept_id and code_src.vocabulary_id = 'LOINC'
 left join pcornet_maps.pedsnet_pcornet_valueset_map modif on modif.source_concept_id = ms.operator_concept_id::text and modif.source_concept_class = 'Result modifier'
 left join pcornet_maps.pedsnet_pcornet_valueset_map unit on unit.source_concept_id = ms.unit_concept_id::text and unit.source_concept_class in ('Dose unit','Result unit')
 Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id::int = ms.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator'
 left join pcornet_maps.pedsnet_pcornet_valueset_map qual on cast(ms.value_as_concept_id as text)= qual.source_concept_id and qual.source_concept_class = 'Result qualifier'
-left join pcornet_maps.pedsnet_pcornet_valueset_map qual_src on lower(ms.value_source_value) ilike qual_src.concept_description and qual_src.source_concept_class = 'result_qual_source' and ms.value_as_concept_id = 0 and ms.value_source_value ~* '[a-z]';
+left join pcornet_maps.pedsnet_pcornet_valueset_map qual_src on lower(ms.value_source_value) ilike '%'|| qual_src.concept_description || '%' and qual_src.source_concept_class = 'result_qual_source'
 
 commit;
 
@@ -221,7 +221,7 @@ tobac.site as site
 from SITE_pcornet.ob_tobacco_data tobac
 left join vocabulary.concept code on code.concept_id = tobac.observation_concept_id and code.vocabulary_id = 'SNOMED'
 left join pcornet_maps.pedsnet_pcornet_valueset_map qual on qual.source_concept_id = tobac.qualifier_concept_id::text and qual.source_concept_class in ('Result qualifier')
-left join pcornet_maps.pedsnet_pcornet_valueset_map qual_src on lower(tobac.qualifier_source_value) ilike qual_src.concept_description and qual_src.source_concept_class = 'result_qual_source' and tobac.qualifier_concept_id = 0 and tobac.qualifier_source_value ~* '[a-z]' and observation_concept_id != 2000001411 
+left join pcornet_maps.pedsnet_pcornet_valueset_map qual_src on lower(tobac.qualifier_source_value) ilike '%'|| qual_src.concept_description || '%' and qual_src.source_concept_class = 'result_qual_source'
 Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id::int = tobac.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator';
 
 commit;
