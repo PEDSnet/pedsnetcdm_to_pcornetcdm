@@ -285,6 +285,14 @@ drop table SITE_pcornet.vital_extract_diasys;
 commit;
 
 begin;
+DELETE from SITE_pcornet.vital_extract
+where person_id not in (select person_id from SITE_pcornet.person_visit_start2001);
+
+DELETE from SITE_pcornet.vital_extract
+where visit_occurrence_id not in (select visit_id from SITE_pcornet.person_visit_start2001);
+commit;
+
+begin;
 --- transform 
 create table SITE_pcornet.vital_transform as
 SELECT distinct
