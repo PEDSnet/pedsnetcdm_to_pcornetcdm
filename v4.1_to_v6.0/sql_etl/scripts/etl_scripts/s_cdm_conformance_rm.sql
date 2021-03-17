@@ -9,6 +9,7 @@ with vals (source_concept_class,target_concept,pcornet_name,source_concept_id,co
 	('vx_code_source','48','CX','40213315','HIB (PRP-T)',''),
 	('vx_code_source','171','CX','40213143','INFLUENZA, INJ., MDCK, PF, QUAD',''),
 	('vx_code_source','185','CX','40213152','INFLUENZA, RECOMBINANT, QUADRIVALENT, PF',''),
+	('vx_code_source','185','CX','40213152','INFLUENZA, QUADRIVALENT, PF, PEDIATRICS', ''),
 	('vx_code_source','98','CX','40213237','PPD TEST',''),
 	('vx_code_source','9','CX','40213228','TD (ADULT),2 LF TETANUS TOXOID,PRESERV VACCINE',''),
 	('vx_code_source','115','CX','40213230','TDAP VACCINE',''),
@@ -23,7 +24,7 @@ vx_code_type = pcornet_name
 from SITE_pcornet.immunization imm
 left join SITE_pedsnet.immunization dimm on dimm.site = 'SITE' and dimm.immunization_id = imm.immunizationid::int
 left join vals on vals.concept_description ilike dimm.immunization_source_value
-where imm.vx_code = ''
+where imm.vx_code = '' and vals.target_concept is not null
 and imm.immunizationid = SITE_pcornet.immunization.immunizationid
 and SITE_pcornet.immunization.vx_code = ''
 and SITE_pcornet.immunization.vx_code = imm.vx_code;
