@@ -1,0 +1,19 @@
+PCORnet_field,Source_CDM,Source_table,Source_table_alias,Source_field,join condition,extraction condition
+admit_date,PCORnet,encounter,E,admit_date,,
+diagnosisid,PEDSnet,condition_occurrence,CO,condition_occurrence_id,,"condition_type_concept_id not in ( 2000000089, 2000000090, 2000000091, 38000245) and condition_start_date >=2001"
+dx,PEDSnet,condition_occurrence,CO,"condition_concept_id, condition_source_concept_id, condition_source_value",,
+dx_origin,PEDSnet,condition_occurrence,CO,condition_type_concept_id,,
+dx_poa,PEDSnet,condition_occurrence,CO,poa_concept_id,pedsnet_pcornet_valueset_map on source_concept_id where source_concept_class = 'dx_poa',
+dx_source,PEDSnet,condition_occurrence,CO,condition_type_concept_id,,
+dx_type,PEDSnet,condition_occurrence,CO,"condition_concept_id, condition_source_concept_id",,
+enc_type,PCORnet,encounter,E,enc_type,E.encounterid = CO.visit_occurrence_id,
+encounterid,PEDSnet,condition_occurrence,CO,visit_occurrence_id,,
+patid,PEDSnet,condition_occurrence,CO,person_id,,
+pdx,PEDSnet,condition_occurrence,CO,condition_type_concept_id,,
+providerid,PCORnet,encounter,E,providerid,,
+raw_dx,PEDSnet,condition_occurrence,CO,condition_source_value,,
+raw_dx_source,PEDSnet,condition_occurrence,CO,condition_type_concept_id,,
+raw_dx_type,PEDSnet,condition_occurrence,CO,condition_source_concept_id,,
+raw_pdx,PEDSnet,condition_occurrence,CO,condition_type_concept_id,,
+raw_dx_poa,,,,,,null
+site,PEDSnet,condition_occurrence,CO,site,,

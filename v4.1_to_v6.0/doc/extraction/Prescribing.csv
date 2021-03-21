@@ -1,0 +1,30 @@
+PCORnet_field,Source_CDM,Source_table,Source_table_alias,Source_field,join condition,extraction condition
+encounterid,PEDSnet,drug_exposure,DE,visit_occurrence_id,,
+patid,PEDSnet,drug_exposure,DE,person_id,,
+prescribingid,PEDSnet,drug_exposure,DE,drug_exposure_id,,drug_type_concept_id IN ('38000177') 
+raw_rx_dose_ordered,PEDSnet,drug_exposure,DE,eff_drug_dose_source_value,,
+raw_rx_dose_ordered_unit,PEDSnet,drug_exposure,DE,dose_unit_source_value,,
+raw_rx_frequency,PEDSnet,drug_exposure,DE,frequency,,
+raw_rx_med_name,PEDSnet,drug_exposure,DE,drug_concept_id,,
+raw_rx_ndc,,,,,,hardcode to NULL
+raw_rx_quantity,PEDSnet,drug_exposure,DE,quantity,,
+raw_rxnorm_cui,PEDSnet,drug_exposure,DE,drug_source_concept_id,,
+rx_basis,PEDSnet,drug_exposure,DE,drug_type_concept_id,,
+rx_days_supply,PEDSnet,drug_exposure,DE,days_supply,,
+rx_dispense_as_weitten,PEDSnet,drug_exposure,DE,dispense_as_written_concept_id,pedsnet_pornet_valueset_map on source_concept_id where source_concept_class='dispense written',
+rx_dose_form,PEDSnet,drug_exposure,DE,drug_exposure_id,"vocabulary.concept on concept_id and vocabulary.concept_relationship on concept_id where de.drug_type_concept_id IN (38000177, 38000180) and relationship_id = 'RxNorm has dose form'",
+rx_dose_ordered,PEDSnet,drug_exposure,DE,effective_drug_dose ,,
+rx_dose_ordered_unit,PEDSnet,drug_exposure,DE,dose_unit_concept_id,Pedsnet_pornet_valueset_map on source_concept_id where source_concept_class='Dose unit',
+rx_end_date,PEDSnet,drug_exposure,DE,drug_exposure_end_date,,
+rx_frequency,PEDSnet,drug_exposure,DE,frequency,,
+rx_order_date,PEDSnet,drug_exposure,DE,drug_exposure_start_date,,
+rx_order_time,PEDSnet,drug_exposure,DE,drug_exposure_start_time,,
+rx_providerid,PEDSnet,drug_exposure,DE,provider_id,,
+rx_quantity,PEDSnet,drug_exposure,DE,quantity,,
+rx_quantity_unit,,,,,,need to work on this
+rx_refills,PEDSnet,drug_exposure,DE,refills,,
+rx_route,PEDSnet,drug_exposure,DE,route_concept_id ,Pedsnet_pornet_valueset_map on source_concept_id where source_concept_class='Route',
+rx_source,PEDSnet,drug_exposure,DE,,,OD'
+rx_start_date,PEDSnet,drug_exposure,DE,drug_exposure_start_date,,
+rxnorm_cui,PEDSnet,drug_exposure,DE,drug_concept_id,,
+site,PEDSnet,drug_exposure,DE,site,,

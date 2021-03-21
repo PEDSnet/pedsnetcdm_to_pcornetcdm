@@ -1,0 +1,7 @@
+PCORnet_field,Source_CDM,Source_table,Source_table_alias,Source_field,join condition,extraction condition
+patid,PEDSnet,death,D,person_id,,
+death_cause,PEDSnet,death,D,default to 'NI',,
+death_cause_code,PEDSnet,death,D,cause_source_conept_id,,
+death_cause_type,,,,default to 'NI',,
+death_cause_source,,,,default to 'L',,
+death_cause_confidence,,,,,,
