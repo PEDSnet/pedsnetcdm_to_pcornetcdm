@@ -19,12 +19,12 @@ with vals (source_concept_class,target_concept,pcornet_name,source_concept_id,co
 	('vx_code_source','94','CX','40213184','MMR/VARICELLA COMBINED VACCINED','')
 )
 update SITE_pcornet.immunization
-set vx_code = coalesce(target_concept,''),
-vx_code_type = pcornet_name
+set vx_code = coalesce(target_concept,'999'),
+vx_code_type = coalesce(pcornet_name, 'CX')
 from SITE_pcornet.immunization imm
 left join SITE_pedsnet.immunization dimm on dimm.site = 'SITE' and dimm.immunization_id = imm.immunizationid::int
 left join vals on vals.concept_description ilike dimm.immunization_source_value
-where imm.vx_code = '' and vals.target_concept is not null
+where imm.vx_code = ''
 and imm.immunizationid = SITE_pcornet.immunization.immunizationid
 and SITE_pcornet.immunization.vx_code = ''
 and SITE_pcornet.immunization.vx_code = imm.vx_code;
