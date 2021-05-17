@@ -1163,7 +1163,7 @@ Provider Specialty,207ZN0500X,Pathology Neuropathology,45756790,,null
 Provider Specialty,207ZP0213X,Pathology Pediatric Pathology,45756802,Pathology - Pediatric,null
 Provider Specialty,208000000X,Pediatrics ,38004477,Pediatric Medicine,null
 Provider Specialty,208000000X,Pediatrics ,2000000063,Pediatric Medicine,null
-Provider Specialty,2080A0000X,Pediatrics Adolescent Medicine,45756747,Adolescent Medicine	,null
+Provider Specialty,2080A0000X,Pediatrics Adolescent Medicine,45756747,"Adolescent Medicine	",null
 Provider Specialty,2080C0008X,Pediatrics Child Abuse Pediatrics,45756755,Child Abuse Pediatrics,null
 Provider Specialty,2080I0007X,Pediatrics Clinical & Laboratory Immunology,,,null
 Provider Specialty,2080P0006X,Pediatrics Developmental Behavioral Pediatrics,45756768,,null
@@ -1523,7 +1523,7 @@ Provider Specialty,208600000X,Surgery ,38004010,Allopathic & Osteopathic Physici
 Provider Specialty,2086H0002X,Surgery Hospice and Palliative Medicine,,,null
 Provider Specialty,2086S0120X,Surgery Pediatric Surgery,45756819,Pediatric Surgery,null
 Provider Specialty,2086S0122X,Surgery Plastic and Reconstructive Surgery,38004467,Plastic And Reconstructive Surgery,null
-Provider Specialty,2086S0105X,Surgery Surgery of the Hand,38004480,	Hand Surgery,null
+Provider Specialty,2086S0105X,Surgery Surgery of the Hand,38004480,"	Hand Surgery",null
 Provider Specialty,2086S0102X,Surgery Surgical Critical Care,45756829,Surgical Critical Care,null
 Provider Specialty,2086X0206X,Surgery Surgical Oncology,38004508,Surgical Oncology,null
 Provider Specialty,2086X0206X,Surgery Surgical Oncology,45756764,Surgical Oncology,null
@@ -2047,12 +2047,12 @@ dx origin,BI,,2000000090,Billing,NULL
 dx origin,CL,,2000000097,Claim,NULL
 dx origin,CL,,2000000094,Claim,NULL
 dx origin,CL,,2000000100,Claim,NULL
-BP Position,03,,3013940,Supine (Diastolic),NULL
-BP Position,02,,3019962,Standing (Diastolic),NULL
-BP Position,01,,3034703,Sitting (Diastolic),NULL
-BP Position,03,,3009395,Supine (Systolic),NULL
-BP Position,02,,3035856,Standing (Systolic),NULL
-BP Position,01,,3018586,Sitting (Systolic),NULL
+BP Position,3,,3013940,Supine (Diastolic),NULL
+BP Position,2,,3019962,Standing (Diastolic),NULL
+BP Position,1,,3034703,Sitting (Diastolic),NULL
+BP Position,3,,3009395,Supine (Systolic),NULL
+BP Position,2,,3035856,Standing (Systolic),NULL
+BP Position,1,,3018586,Sitting (Systolic),NULL
 dx origin,NI,,44814653,No information,NULL
 dx origin,UN,,44814649,Unknown,NULL
 dx origin,OT,,44814650,Other,NULL
@@ -2145,9 +2145,9 @@ PRO Response,5,,45882536,Always,NULL
 tobacco,NI,,4005823,No information,44814650
 tobacco,UN,,4005823,Unknown,44814653
 tobacco,OT,,4005823,Other,44814649
-death cause code,09,,ICD9CM,ICD9CM,NULL
-condition type,09,,ICD9CM,ICD9CM,NULL
-condition type,09,,ICD9Proc,ICD9Proc,null
+death cause code,9,,ICD9CM,ICD9CM,NULL
+condition type,9,,ICD9CM,ICD9CM,NULL
+condition type,9,,ICD9Proc,ICD9Proc,null
 smoking,NI,,4275495,No information,44814650
 smoking,UN,,4275495,Unknown,44814653
 smoking,OT,,4275495,Other,44814649
@@ -5490,6 +5490,9 @@ Result qualifier,POSITIVE,Positive,4188539,Yes,
 Result qualifier,POSITIVE,Positive,4126673,++,
 Result qualifier,POSITIVE,Positive,4125547,+++,
 Result qualifier,NEGATIVE,negative,4125559,Nothing,
+Provider Specialty,101200000X,Drama Therapist,,,
+Provider Specialty,171400000X,Health & Wellness Coach,,,
+Provider Specialty,342000000X,Transportation Network Company,38004368,Transportation Broker,
 result_qual_source,NEGATIVE,negative,,negative,
 result_qual_source,NEGATIVE,negative,,Presumptive Negative,
 result_qual_source,POSITIVE,Positive,,positive,
@@ -6084,71 +6087,71 @@ result_unit_source,pg/dL,picogram per deciliter,pg/dL,,
 result_unit_source,{ratio},ratio,ratio,,
 result_unit_source,{ISR},immune status ratio,ISR,,
 result_unit_source,g/(24.h),gram per 24 hour,g/24hr,,
-Race,07,,44814660,Refuse to answer,NULL
-Race,06,,44814659,Multiple race,NULL
-Race,05,,8527,White,NULL
-Race,04,,8557,Native Hawaiian or Other Pacific Islander,NULL
-Race,03,,8516,Black or African American,NULL
-Race,02,,8515,Asian,NULL
-Race,01,,8657,American Indian or Alaska Native,NULL
-Procedure Code Type,09,,ICD9Proc,ICD-9-PCS,NULL
-Rx Frequency,02,Two times a day (BID),2 times a day,,null
-Rx Frequency,02,Two times a day (BID),2 times daily,,null
-Rx Frequency,02,Two times a day (BID),2 times daily before meals,,null
-Rx Frequency,02,Two times a day (BID),2 times daily with meals,,null
-Rx Frequency,03,Three times a day (TID),3 times a day,,null
-Rx Frequency,03,Three times a day (TID),3 times daily,,null
-Rx Frequency,03,Three times a day (TID),3 times daily with meals,,null
-Rx Frequency,04,Four times a day (QID),4 times a day,,null
-Rx Frequency,04,Four times a day (QID),4 times daily,,null
-Rx Frequency,02,Two times a day (BID),bid,,null
-Rx Frequency,01,Everyday,daily,,null
-Rx Frequency,02,Two times a day (BID),every 12 hours,,null
-Rx Frequency,01,Everyday,every 24 hours,,null
-Rx Frequency,04,Four times a day (QID),every 6 hours,,null
-Rx Frequency,03,Three times a day (TID),every 8 hours,,null
-Rx Frequency,01,Everyday,every day,,null
-Rx Frequency,05,Every morning,every morning,,null
-Rx Frequency,05,Every morning,every morning before breakfast,,null
-Rx Frequency,05,Every morning,every morning with breakfast,,null
-Rx Frequency,02,Two times a day (BID),every twelve hours,,null
-Rx Frequency,04,Four times a day (QID),four times a day,,null
-Rx Frequency,01,Everyday,once a day,,null
-Rx Frequency,02,Two times a day (BID),q 12 hrs,,null
-Rx Frequency,04,Four times a day (QID),q 6 hrs,,null
-Rx Frequency,03,Three times a day (TID),q 8 hrs,,null
-Rx Frequency,05,Every morning,q am,,null
-Rx Frequency,02,Two times a day (BID),q12h,,null
-Rx Frequency,04,Four times a day (QID),q6h,,null
-Rx Frequency,03,Three times a day (TID),q8h,,null
-Rx Frequency,05,Every morning,qam,,null
-Rx Frequency,01,Everyday,qday,,null
-Rx Frequency,04,Four times a day (QID),qid,,null
-Rx Frequency,03,Three times a day (TID),three times a day,,null
-Rx Frequency,03,Three times a day (TID),tid,,null
-Rx Frequency,02,Two times a day (BID),twice a day,,null
-Rx Frequency,02,Two times a day (BID),twice daily,,null
-smoking,06,,4275495,Unknown if ever smoked,4141786
-smoking,04,,4275495,Never smoker,4144272
-smoking,03,,4275495,Former smoker,4310250
-smoking,02,,4275495,Current someday smoker,4.28E+14
-smoking,01,,4275495,Current everyday smoker,42709996
-smoking,05,,4275495,Smoker current status unknown,4298794
-smoking,07,,4275495,Heavy tobacco smoker,4044778
-smoking,07,,4275495,Heavy tobacco smoker,4209006
-smoking,08,,4275495,Light tobacco smoker,4209585
-tobacco,04,,4005823,Passive or environmental exposure,4030580
-tobacco,03,,4005823,Quit/Former smoker,45765917
-tobacco,02,,4005823,Never,45765920
-tobacco,01,,4005823,Current user,4005823
-tobacco type,03,,4219336,Snuff tobacco,4218197
-tobacco type,03,,4219336,Chewing tobacco,4219234
-tobacco type,04,,4219336,None,4052465
-tobacco type,04,,4219336,None,4218917
-tobacco type,01,,4219336,Cigar smoking tobacco,4132133
-tobacco type,01,,4219336,Cigarette smoking tobacco,4282779
-tobacco type,01,,4219336,Pipe smoking tobacco,4224317
-tobacco type,01,,4219336,Smoked tobacco only,4298794
+Race,7,,44814660,Refuse to answer,NULL
+Race,6,,44814659,Multiple race,NULL
+Race,5,,8527,White,NULL
+Race,4,,8557,Native Hawaiian or Other Pacific Islander,NULL
+Race,3,,8516,Black or African American,NULL
+Race,2,,8515,Asian,NULL
+Race,1,,8657,American Indian or Alaska Native,NULL
+Procedure Code Type,9,,ICD9Proc,ICD-9-PCS,NULL
+Rx Frequency,2,Two times a day (BID),2 times a day,,null
+Rx Frequency,2,Two times a day (BID),2 times daily,,null
+Rx Frequency,2,Two times a day (BID),2 times daily before meals,,null
+Rx Frequency,2,Two times a day (BID),2 times daily with meals,,null
+Rx Frequency,3,Three times a day (TID),3 times a day,,null
+Rx Frequency,3,Three times a day (TID),3 times daily,,null
+Rx Frequency,3,Three times a day (TID),3 times daily with meals,,null
+Rx Frequency,4,Four times a day (QID),4 times a day,,null
+Rx Frequency,4,Four times a day (QID),4 times daily,,null
+Rx Frequency,2,Two times a day (BID),bid,,null
+Rx Frequency,1,Everyday,daily,,null
+Rx Frequency,2,Two times a day (BID),every 12 hours,,null
+Rx Frequency,1,Everyday,every 24 hours,,null
+Rx Frequency,4,Four times a day (QID),every 6 hours,,null
+Rx Frequency,3,Three times a day (TID),every 8 hours,,null
+Rx Frequency,1,Everyday,every day,,null
+Rx Frequency,5,Every morning,every morning,,null
+Rx Frequency,5,Every morning,every morning before breakfast,,null
+Rx Frequency,5,Every morning,every morning with breakfast,,null
+Rx Frequency,2,Two times a day (BID),every twelve hours,,null
+Rx Frequency,4,Four times a day (QID),four times a day,,null
+Rx Frequency,1,Everyday,once a day,,null
+Rx Frequency,2,Two times a day (BID),q 12 hrs,,null
+Rx Frequency,4,Four times a day (QID),q 6 hrs,,null
+Rx Frequency,3,Three times a day (TID),q 8 hrs,,null
+Rx Frequency,5,Every morning,q am,,null
+Rx Frequency,2,Two times a day (BID),q12h,,null
+Rx Frequency,4,Four times a day (QID),q6h,,null
+Rx Frequency,3,Three times a day (TID),q8h,,null
+Rx Frequency,5,Every morning,qam,,null
+Rx Frequency,1,Everyday,qday,,null
+Rx Frequency,4,Four times a day (QID),qid,,null
+Rx Frequency,3,Three times a day (TID),three times a day,,null
+Rx Frequency,3,Three times a day (TID),tid,,null
+Rx Frequency,2,Two times a day (BID),twice a day,,null
+Rx Frequency,2,Two times a day (BID),twice daily,,null
+smoking,6,,4275495,Unknown if ever smoked,4141786
+smoking,4,,4275495,Never smoker,4144272
+smoking,3,,4275495,Former smoker,4310250
+smoking,2,,4275495,Current someday smoker,4.28E+14
+smoking,1,,4275495,Current everyday smoker,42709996
+smoking,5,,4275495,Smoker current status unknown,4298794
+smoking,7,,4275495,Heavy tobacco smoker,4044778
+smoking,7,,4275495,Heavy tobacco smoker,4209006
+smoking,8,,4275495,Light tobacco smoker,4209585
+tobacco,4,,4005823,Passive or environmental exposure,4030580
+tobacco,3,,4005823,Quit/Former smoker,45765917
+tobacco,2,,4005823,Never,45765920
+tobacco,1,,4005823,Current user,4005823
+tobacco type,3,,4219336,Snuff tobacco,4218197
+tobacco type,3,,4219336,Chewing tobacco,4219234
+tobacco type,4,,4219336,None,4052465
+tobacco type,4,,4219336,None,4218917
+tobacco type,1,,4219336,Cigar smoking tobacco,4132133
+tobacco type,1,,4219336,Cigarette smoking tobacco,4282779
+tobacco type,1,,4219336,Pipe smoking tobacco,4224317
+tobacco type,1,,4219336,Smoked tobacco only,4298794
 vx_manufacturer_source,SOL,Solvay Pharmaceuticals,,,
 Encounter type,TH,,581399,Telehealth,
 Facility type,HOSPITAL_OUTPATIENT_HEMONC_CLINIC,HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset,8756,outpatient hospital Hematology Oncology,45756811
@@ -6639,3 +6642,21 @@ result_unit_source,umol/mol{creat},micromole per mole of creatinine,umol/mol{cre
 result_unit_source,umol/mol{creat},micromole per mole of creatinine,umol/mol{creat},,
 result_unit_source,%{vol},percent by volume,vol %,,
 Rx Dose Form,MUCUOUS_MEMBRANE_TOPICAL_SOLUTION,Mucous  Membrane  Topical  Solution,19082110,Mucous Membrane Topical Solution,
+result_qual_source,ACANTHOCYTES,Acanthocytes,,FEW ACANTHOCYTES,
+result_qual_source,ACANTHOCYTES,Acanthocytes,,MODERATE ACANTHOCYTE,
+result_qual_source,ACANTHOCYTES,Acanthocytes,,RARE ACANTHOCYTES,
+result_qual_source,ACANTHOCYTES,Acanthocytes,,MANY ACANTHOCYTES,
+result_qual_source,ACANTHOCYTES,Acanthocytes,,ACANTHOCYTES,
+result_qual_source,ACANTHOCYTES,Acanthocytes,,MOD ACANTHOCYTES,
+result_qual_source,ACANTHOCYTES,Acanthocytes,,Few Acanthocytes,
+Result qualifier,CURRENT EVERY DAY SMOKER,Current every day smoker,42709996,01 = Current everyday smoker,
+Result qualifier,CURRENT SOME DAY SMOKER,Current some day smoker,37395605,02 = current some day smoker,
+Result qualifier,HEAVY TOBACCO SMOKER,Heavy tobacco smoker,762499,07 = Heavy tobacco smoker,
+Result qualifier,LIGHT TOBACCO SMOKER,Light tobacco smoker,4209585,08 = Light tobacco smoker,
+Result qualifier,NEVER SMOKER,Never smoker,4144272,04 = Never smoker,
+Result qualifier,FORMER SMOKER,Former smoker,4310250,03 = Former smoker,
+result_qual_source,ADEQUATE,Adequate,,adequate,
+result_qual_source,ADEQUATE,Adequate,,ADEQUATE PLATELETS,
+result_qual_source,ADEQUATE,Adequate,,ADEQUATE,
+result_qual_source,AMNIOTIC FLUID,Amniotic fluid,,amniotic fluid,
+result_qual_source,AMNIOTIC FLUID,Amniotic fluid,,AMNIOTIC FLUID,
