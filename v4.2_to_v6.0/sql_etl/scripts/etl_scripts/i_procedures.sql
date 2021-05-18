@@ -17,7 +17,7 @@ select distinct
 	coalesce(m4.target_concept,'OT') as px_source,
 	coalesce(m5.target_concept,'OT') as ppx,
 	split_part(procedure_source_value,'|',1) as raw_px,
-	coalesce(px_cd_1.vocabulary_id,px_cd_1.vocabulary_id,'OT') as raw_px_type,
+	coalesce(px_cd_1.vocabulary_id,px_cd_2.vocabulary_id,'OT') as raw_px_type,
 	procedure_type_concept_id as raw_ppx, 
 	'SITE' as site
 from SITE_pedsnet.procedure_occurrence po
