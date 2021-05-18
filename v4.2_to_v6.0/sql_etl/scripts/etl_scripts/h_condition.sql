@@ -4,7 +4,9 @@ create table SITE_pcornet.filter_condition as
 select * from SITE_pedsnet.condition_occurrence co
 where co.condition_type_concept_id in ( 2000000089, 2000000090, 2000000091,38000245)
 	and EXTRACT(YEAR FROM condition_start_date)>=2001
-	and co.person_id in (select person_id from SITE_pcornet.person_visit_start2001);
+	and co.person_id in (select person_id from SITE_pcornet.person_visit_start2001)
+	and not condition_source_value ~ 'NOD.X'
+	;
 commit;
 
 begin;
