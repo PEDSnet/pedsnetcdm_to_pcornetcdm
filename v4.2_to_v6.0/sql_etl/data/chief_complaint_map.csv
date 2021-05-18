@@ -361,7 +361,7 @@ burn,1805,442013,Burn,125666000,SNOMED,SM
 newborn|1190,1798,1575982,"Encounter for newborn, infant and child health examinations",Z00.1,ICD10CM,10
 dysphagia|981,1794,31317,Dysphagia,40739000,SNOMED,SM
 anticoagulation,1793,765418,Anticoagulation service,2.37E+12,SNOMED,SM
-strabismus,1784,4329707,Strabismus,22066006,ICD10CM,10
+strabismus,1784,4329707,Strabismus,22066006,SNOMED,SM
 ringworm|665,1462,4224968,Tinea corporis,84849002,SNOMED,SM
 sleep issues,1445,1576169,Problems related to sleep,Z72.82,ICD10CM,10
 anxiety|9,1399,441542,Anxiety,48694002,SNOMED,SM
