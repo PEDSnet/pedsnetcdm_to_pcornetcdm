@@ -16,7 +16,18 @@ with vals (source_concept_class,target_concept,pcornet_name,source_concept_id,co
 	('vx_code_source','146','CX','40213284','DTAP/HEPB/IPV COMBINED VACCINE',''),
 	('vx_code_source','49','CX','40213314','HIB (PRP-OMP)',''),
 	('vx_code_source','15','CX','40213156','INFLUENZA SPLIT HIGH DOSE PF VACCINE',''),
-	('vx_code_source','94','CX','40213184','MMR/VARICELLA COMBINED VACCINED','')
+	('vx_code_source','94','CX','40213184','MMR/VARICELLA COMBINED VACCINED',''),
+	('vx_code_source','208','CX','724907','PR PFIZER SARS-COV-2 VACCINE',''),
+	('vx_code_source','208','CX','724907','PFIZER SARS-COV-2 VACCINATION',''),
+	('vx_code_source','208','CX','724907','COVID-19, MRNA, LNP-S, PF, 30 MCG/0.3 ML DOSE',''),
+	('vx_code_source','208','CX','724907','PFIZER COVID-19',''),
+	('vx_code_source','207','CX','724907','MODERNA SARS-COV-2 VACCINE',''),
+	('vx_code_source','207','CX','724907','MODERNA COVID-19',''),
+	('vx_code_source','207','CX','724907','SARS-COV-2 (MODERNA)',''),
+	('vx_code_source','207','CX','724907','MODERNA SARS-COV-2 VACCINATION',''),
+	('vx_code_source','212','CX','702866','JANSSEN SARS-COV-2 VACCINE',''),
+	('vx_code_source','212','CX','702866','JANSSEN (J&J) COVID-19',''),
+	('vx_code_source','212','CX','702866','SARS-COV-2 (JANSSEN)','')
 )
 update SITE_pcornet.immunization
 set vx_code = coalesce(target_concept,'999'),
