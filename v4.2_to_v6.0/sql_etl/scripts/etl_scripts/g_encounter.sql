@@ -123,13 +123,13 @@ as
 	cast(cast(date_part('year', visit_start_date) as text)||'-'||lpad(cast(date_part('month', visit_start_date) as text),2,'0')||'-'||lpad(cast(date_part('day', visit_start_date) as text),2,'0') 
 	as date) as admit_date,
     LPAD(date_part('hour',visit_start_datetime)::text,2,'0')||':'||LPAD(date_part('minute',visit_start_datetime)::text,2,'0') as admit_time,
-	case when visit_concept in (9202,44814711,2000000469) -- remove discharge date for AV and OA visit types
+	case when visit_concept_id in (9202,44814711,2000000469) -- remove discharge date for AV and OA visit types
 	then null
 	else
 		cast(cast(date_part('year', visit_end_date) as text)||'-'||lpad(cast(date_part('month', visit_end_date) as text),2,'0')||'-'||lpad(cast(date_part('day', visit_end_date) as text),2,'0')
 	 as date) 
 	end as discharge_date,
-	case when visit_concept in (9202,44814711,2000000469) -- remove discharge date for AV and OA visit types
+	case when visit_concept_id in (9202,44814711,2000000469) -- remove discharge date for AV and OA visit types
 	then null
 	else
 		LPAD(date_part('hour',visit_end_datetime)::text,2,'0')||':'||LPAD(date_part('minute',visit_end_datetime)::text,2,'0')
