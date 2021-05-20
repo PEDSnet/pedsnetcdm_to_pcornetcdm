@@ -94,8 +94,8 @@ as
 	     else 'NI' end as raw_payer_type_primary,
 	case when primary_payer_flag is false then plan_class||'-'||plan_type
 	     else 'NI' end as raw_payer_type_secondary,
-	case when primary_payer_flag is true then case when plan_name not ilike 'DNU%' then plan_name else case when plan_name ilike 'DNU%' then regexp_replace(regexp_replace(plan_name,'[^[:alpha:]\s]', '', 'g'),'DNU','') end end else 'NI' end as raw_payer_name_primary,
-	case when primary_payer_flag is false then case when plan_name not ilike 'DNU%' then plan_name else case when plan_name ilike 'DNU%' then regexp_replace(regexp_replace(plan_name,'[^[:alpha:]\s]', '', 'g'),'DNU','') end end else 'NI' end as raw_payer_name_secondary,
+	case when primary_payer_flag is true then plan_class||'-'||plan_type else 'NI' end as raw_payer_name_primary,
+	case when primary_payer_flag is false then plan_class||'-'||plan_type else 'NI' end as raw_payer_name_secondary,
 	case when primary_payer_flag is true then visit_payer_id
 	     else null end as raw_payer_id_primary,
 	case when primary_payer_flag is false then visit_payer_id
