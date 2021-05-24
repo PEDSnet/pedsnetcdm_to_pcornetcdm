@@ -20,7 +20,7 @@ select distinct drug_exposure_id as medadminid,
 	de.drug_exposure_start_date as medadmin_start_date,
 	LPAD(date_part('hour',drug_exposure_start_datetime)::text,2,'0')||':'||LPAD(date_part('minute',drug_exposure_start_datetime)::text,2,'0') as medadmin_start_time,
 	de.drug_exposure_end_date as medadmin_stop_date,
-	LPAD(date_part('hour',drug_exposure_end_datetime)||':'||LPAD(date_part('minute',drug_exposure_start_datetime)::text,2,'0') as medadmin_stop_time,
+	LPAD(date_part('hour',drug_exposure_end_datetime)::text,2,'0')||':'||LPAD(date_part('minute',drug_exposure_start_datetime)::text,2,'0') as medadmin_stop_time,
 	null as prescribingid,
 	de.provider_id as medadmin_providerid,
 	coalesce(
