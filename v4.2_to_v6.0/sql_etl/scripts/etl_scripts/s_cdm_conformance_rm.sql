@@ -29,7 +29,8 @@ with vals (source_concept_class,target_concept,pcornet_name,source_concept_id,co
 	('vx_code_source','212','CX','702866','JANSSEN SARS-COV-2 VACCINE',''),
 	('vx_code_source','212','CX','702866','JANSSEN (J&J) COVID-19',''),
 	('vx_code_source','212','CX','702866','SARS-COV-2 (JANSSEN)',''),
-	('vx_code_source','213','CX','724904','COVID-19 VACCINE (NOT SPECIFIED)','')
+	('vx_code_source','213','CX','724904','COVID-19 VACCINE (NOT SPECIFIED)',''),
+	('vx_code_source','213','CX','724904','SARS-COV-2, UNSPECIFIED','')
 )
 update SITE_pcornet.immunization
 set vx_code = coalesce(target_concept,'999'),
