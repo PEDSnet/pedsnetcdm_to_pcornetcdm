@@ -22,13 +22,16 @@ with vals (source_concept_class,target_concept,pcornet_name,source_concept_id,co
 	('vx_code_source','208','CX','724907','COVID-19, MRNA, LNP-S, PF, 30 MCG/0.3 ML DOSE',''),
 	('vx_code_source','208','CX','724907','PFIZER COVID-19',''),
 	('vx_code_source','208','CX','724907','SARS-COV-2 (PFIZER)',''),
+	('vx_code_source','208','CX','724907','SARS-COV-2 (PFIZER)|319',''),
 	('vx_code_source','207','CX','724907','MODERNA SARS-COV-2 VACCINE',''),
 	('vx_code_source','207','CX','724907','MODERNA COVID-19',''),
 	('vx_code_source','207','CX','724907','SARS-COV-2 (MODERNA)',''),
+	('vx_code_source','207','CX','724907','SARS-COV-2 (MODERNA)|318',''),
 	('vx_code_source','207','CX','724907','MODERNA SARS-COV-2 VACCINATION',''),
 	('vx_code_source','212','CX','702866','JANSSEN SARS-COV-2 VACCINE',''),
 	('vx_code_source','212','CX','702866','JANSSEN (J&J) COVID-19',''),
 	('vx_code_source','212','CX','702866','SARS-COV-2 (JANSSEN)',''),
+	('vx_code_source','212','CX','702866','SARS-COV-2 (JANSSEN)|321',''),
 	('vx_code_source','213','CX','724904','COVID-19 VACCINE (NOT SPECIFIED)',''),
 	('vx_code_source','213','CX','724904','SARS-COV-2, UNSPECIFIED','')
 )
