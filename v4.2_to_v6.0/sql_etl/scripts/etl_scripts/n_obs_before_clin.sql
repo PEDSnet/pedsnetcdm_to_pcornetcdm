@@ -37,7 +37,11 @@ meas.site
 from SITE_pedsnet.measurement meas 
 left join vocabulary.concept loinc on loinc.concept_id = meas.measurement_concept_id and loinc.vocabulary_id = 'LOINC'
 Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id::int = meas.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator'
-where meas.measurement_concept_id in (3020891,3024171,40762499,3027018,4353936);
+where meas.measurement_concept_id in (3020891, --Temperature
+	3024171, -- Respiratory Rate
+	40762499, --SpO2
+	3027018, --Heart Rate
+	4353936); -- FiO2
 
 commit;
 
