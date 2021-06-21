@@ -64,7 +64,7 @@ select
 	immunization_type_concept_id as raw_ppx, 
 	'SITE' as site
 from SITE_pedsnet.immunization imm
-	left join SITE_pcornet.encounter enc on cast(imm.visit_occurrence_id as text)=enc.encounterid                                                           
+	inner join SITE_pcornet.encounter enc on cast(imm.visit_occurrence_id as text)=enc.encounterid                                                           
 	where  
 		immunization_concept_id in (
 		724907, -- PFIZER
