@@ -2111,7 +2111,7 @@ Unit,UL,,9665,Micro liter (source vocab = UCUM),NULL
 Unit,OT,,44814649,Other,NULL
 Unit,UN,,44814653,Unkown,NULL
 Unit,NI,,44814650,No Information,NULL
-Admitting source,NULL,,4145666,NULL,NULL
+Admitting source,OT,,4145666,NULL,NULL
 PRO Item,PN-0001,,40764338,In general would you say your health is ,NULL
 PRO Item,PN-0002,,40764339,In general would you say your quality of life is,NULL
 PRO Item,PN-0003,,NULL,NULL,NULL
