@@ -135,7 +135,7 @@ as
 		LPAD(date_part('hour',visit_end_datetime)::text,2,'0')||':'||LPAD(date_part('minute',visit_end_datetime)::text,2,'0')
 	end as discharge_time,
 	provider_id as providerid,
-	case when zip !~ '^[0-9]+$' then null else left(zip, 5) end as facility_location,
+	case when replace(zip,'-','') ~ '^[0-9]+$' and length(replace(zip,'-',''))>=5  then left(zip, 5) else null end as facility_location,
     care_site_id as facilityid,
     value_as_string_drg as drg, -- -records having multiple DRGs
 	case when visit_start_date<'2007-10-01' then '01' else '02' end as drg_type,
