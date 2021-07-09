@@ -1993,7 +1993,9 @@ PRO Item,PN-0004,,NULL,NULL,NULL
 Race,UN,,44814653,Unknown,NULL
 Race,OT,,44814649,Other,NULL
 Race,NI,,44814650,No information,NULL
-dx_source,AD,,-1,Admitting,NULL
+dx_source,AD,,2000001424,Admitting Diagnosis - Billing,
+dx_source,AD,,2000001423,Admitting Diagnosis - Order,
+dx_source,AD,,2000001425,Admitting Diagnosis - Claim,
 dx_source,DI,,38000199,Discharge,NULL
 dx_source,DI,,38000201,Discharge,NULL
 dx_source,FI,,38000230,Final,NULL
