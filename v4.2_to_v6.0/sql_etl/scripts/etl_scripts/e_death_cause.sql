@@ -6,7 +6,7 @@ insert into SITE_pcornet.death_cause(
 select
 distinct
 cast(person_id as text) as patid,
-case when c.vocabulary_id in ('ICD9CM', 'ICD10','ICD10CM')
+left(case when c.vocabulary_id in ('ICD9CM', 'ICD10','ICD10CM')
 	     then c.concept_code
 	     else 
  			case when c3.concept_code is not null 
@@ -22,7 +22,7 @@ case when c.vocabulary_id in ('ICD9CM', 'ICD10','ICD10CM')
          	  end
  		end
  	end
-    end as death_cause,
+    end,8) as death_cause,
 	case when c.vocabulary_id = 'ICD9CM'  then '09'
 		else
  		 case when c3.vocabulary_id = 'ICD9CM'  then '09'
