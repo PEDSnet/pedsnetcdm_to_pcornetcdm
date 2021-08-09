@@ -1,4 +1,4 @@
-## The ETL scripts for PEDSnet CDM v3.8 to PCORnet CDM v5.1 transformation
+## The ETL scripts for PEDSnet CDM v3.9 to PCORnet CDM v5.1 transformation
 
 ### Schema Conventions
 
