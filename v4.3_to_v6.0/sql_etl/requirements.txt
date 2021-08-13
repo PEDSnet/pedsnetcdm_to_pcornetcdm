@@ -6,7 +6,7 @@ cycler==0.10.0
 decorator==4.1.2
 Flask-Cors==3.0.3
 logutils==0.3.3
-MarkupSafe==1.0
+MarkupSafe==1.1.1
 multipledispatch==0.4.9
 networkx==1.11
 numpy==1.13.3
