@@ -102,6 +102,49 @@ from SITE_pcornet.tobacco_obclin;
 commit;
 
 begin;
+
+create table SITE_pcornet.gestational_age as
+select null::int as encounterid, 
+'18185-9' as obsclin_code, 
+'NI' as obsclin_abn_ind,
+p.birth_date as obsclin_start_date, 
+p.provider_id as obsclin_providerid, 
+'NI' as obsclin_result_modifier, 
+null as obsclin_result_snomed, 
+'NI' as obsclin_result_qual, 
+p.pn_gestational_age::text as obsclin_result_text,
+'wk' as obsclin_result_unit, 
+'HC' as obsclin_source,
+LPAD(date_part('hour',p.birth_datetime)::text,2,'0')||':'||LPAD(date_part('minute',p.birth_datetime)::text,2,'0') as obsclin_start_time,
+'LC' as obsclin_type, 
+('p'||p.person_id)::text as obsclinid, 
+p.person_id::text as patid, 
+'18185-9'  as raw_obsclin_code, 
+null as raw_obsclin_modifier, 
+'Gestational age' as raw_obsclin_name, 
+pn_gestational_age::text as raw_obsclin_result, 
+'LOINC' as raw_obsclin_type, 
+'week' as raw_obsclin_unit, 
+null::date as obsclin_stop_date, 
+null as obsclin_stop_time,
+site as site
+from SITE_pedsnet.person p
+where pn_gestational_age is not null;
+
+commit;
+
+begin;
+INSERT INTO SITE_pcornet.obs_clin( obsclinid,encounterid, obsclin_code, obsclin_abn_ind,obsclin_start_date, obsclin_providerid, obsclin_result_modifier, obsclin_result_snomed, obsclin_result_qual, obsclin_result_text, 
+	obsclin_result_unit, obsclin_source, obsclin_start_time, obsclin_type, patid, raw_obsclin_code, raw_obsclin_modifier, raw_obsclin_name, raw_obsclin_result, raw_obsclin_type, 
+	raw_obsclin_unit, obsclin_stop_date, obsclin_stop_time,site)
+select distinct on (obsclinid) obsclinid, encounterid, obsclin_code, obsclin_abn_ind,obsclin_start_date, obsclin_providerid, obsclin_result_modifier, obsclin_result_snomed, obsclin_result_qual, obsclin_result_text, 
+	obsclin_result_unit, obsclin_source, obsclin_start_time, obsclin_type, patid, raw_obsclin_code, raw_obsclin_modifier, raw_obsclin_name, raw_obsclin_result, raw_obsclin_type, 
+	raw_obsclin_unit, obsclin_stop_date, obsclin_stop_time,site
+from SITE_pcornet.gestational_age;
+
+commit;
+
+begin;
 delete from SITE_pcornet.obs_clin
 where patid::int not in (select person_id from SITE_pcornet.person_visit_start2001);
 
@@ -122,4 +165,5 @@ begin;
 drop table if exists SITE_pcornet.meas_obsclin;
 drop table if exists SITE_pcornet.obs_vaping;
 drop table if exists SITE_pcornet.tobacco_obclin;
+drop table if exists SITE_pcornet.gestational_age;
 commit;
