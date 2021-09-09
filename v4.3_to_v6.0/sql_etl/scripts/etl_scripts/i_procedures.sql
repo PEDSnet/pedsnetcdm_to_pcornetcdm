@@ -34,8 +34,8 @@ from SITE_pedsnet.procedure_occurrence po
 	       and visit_occurrence_id is not null
 	       and visit_occurrence_id not in (select visit_occurrence_id from SITE_pedsnet.visit_occurrence where
 					extract(year from visit_start_date)<2001)
-	       and po.procedure_concept_id not in (select concept_id from vocabulary.concept where concept_class_id in ('CPT4 Modifier','2-dig nonbill code'))
-	       and po.procedure_source_concept_id not in (select concept_id from vocabulary.concept where concept_class_id in ('CPT4 Modifier','2-dig nonbill code'));
+	       and po.procedure_concept_id not in (select concept_id from vocabulary.concept where concept_class_id in ('CPT4 Modifier','2-dig nonbill code','HCPCS Modifier'))
+	       and po.procedure_source_concept_id not in (select concept_id from vocabulary.concept where concept_class_id in ('CPT4 Modifier','2-dig nonbill code','HCPCS Modifier'));
 
 
 -- insert covid 19 immunization records into procedures table

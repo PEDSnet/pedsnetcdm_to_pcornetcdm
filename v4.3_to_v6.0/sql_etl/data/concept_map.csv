@@ -147,6 +147,8 @@ Facility type,WALK_IN_CLINIC,CLINIC/CENTER_AMBULATORY_OUTPATIENT_CARE-subset,380
 Facility type,NI,No information,44814650,No information,
 Facility type,UN,Unknown,44814653,Unknown,
 Facility type,OT,Other,44814649,Other,
+Facility type,OT,Other,38004479,Nephrology,
+Facility type,OT,Other,45756813,Pediatirc Nephrology,
 Language,AAR,Afar,,,null
 Language,ABK,Abkhazian,,,null
 Language,ACE,Achinese,,,null
@@ -6787,4 +6789,4 @@ result_qual_source,TRACE,Trace,,TRACE,
 result_qual_source,URINE,Urine,,Urine,
 result_qual_source,URINE,Urine,,URINE, 
 Birth Measures,'8339-4','Birth weight Measured',3013762,'Birth weight Measured',
-Birth Measures,'89269-5','Birth height Measured',3023540,'Birth height Measured',  
+Birth Measures,'89269-5','Birth height Measured',3023540,'Birth height Measured', 
