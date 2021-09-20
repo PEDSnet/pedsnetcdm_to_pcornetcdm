@@ -3,7 +3,7 @@ create table SITE_pcornet.imm_code as
 select imm.immunization_id::text as immunizationid,
         imm.person_id::text as patid,
 		imm.visit_occurrence_id::text as encounterid,
-		imm.procedure_occurrence_id::text as proceduresid,
+		proc.proceduresid as proceduresid,
 		imm.provider_id::text as vx_providerid,
 		imm.imm_recorded_date  as vx_record_date,
 		imm.immunization_date as vx_admin_date,
@@ -29,6 +29,7 @@ from SITE_pedsnet.immunization imm
 left join vocabulary.concept code on code.concept_id = imm.immunization_concept_id
 left join vocabulary.concept imm_type on imm_type.concept_id = imm.immunization_type_concept_id and imm_type.domain_id = 'Immunization Type' and imm_type.vocabulary_id = 'PEDSnet'																 																	   
 left join pcornet_maps.pedsnet_pcornet_valueset_map pcor_imm_type on pcor_imm_type.source_concept_id = code.vocabulary_id and pcor_imm_type.source_concept_class = 'immunization_type'
+left join SITE_pcornet.procedures proc on cast(proc.proceduresid as bigint)=imm.procedure_occurrence_id
 where imm.person_id IN (select person_id from SITE_pcornet.person_visit_start2001);
 commit;
 
