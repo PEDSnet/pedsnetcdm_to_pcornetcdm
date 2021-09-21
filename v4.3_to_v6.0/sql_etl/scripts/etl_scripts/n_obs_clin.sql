@@ -53,7 +53,7 @@ null as obsclin_stop_time,
 ms.site as site
 from SITE_pcornet.ms
 left join vocabulary.concept code on code.concept_id = ms.measurement_concept_id and code.vocabulary_id = 'LOINC'
-left join pcornet_maps.pedsnet_pcornet_valueset_map birth_meas on birth_meas.source_concept_id=ms.measurement_concept_id and birth_meas.source_concept_class = 'Birth Measures'
+left join pcornet_maps.pedsnet_pcornet_valueset_map birth_meas on birth_meas.source_concept_id=ms.measurement_concept_id::text and birth_meas.source_concept_class = 'Birth Measures'
 left join pcornet_maps.pedsnet_pcornet_valueset_map modif on modif.source_concept_id = ms.operator_concept_id::text and modif.source_concept_class = 'Result modifier'
 left join pcornet_maps.pedsnet_pcornet_valueset_map unit on unit.source_concept_id = ms.unit_concept_id::text and unit.source_concept_class in ('Dose unit','Result unit')
 Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id::int = ms.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator'
