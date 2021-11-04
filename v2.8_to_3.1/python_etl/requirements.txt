@@ -1,6 +1,6 @@
 dj-database-url==0.4.2
 amqp==2.2.2
-Babel==2.5.1
+Babel==2.9.1
 backports-abc==0.5
 billiard==3.5.0.3
 blaze==0.10.1
