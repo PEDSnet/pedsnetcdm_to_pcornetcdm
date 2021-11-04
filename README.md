@@ -1,7 +1,7 @@
 ![version](https://img.shields.io/badge/PCORnetversion-6.0-blue)
-![version](https://img.shields.io/badge/PEDSnetversion-4.2-orange)
+![version](https://img.shields.io/badge/PEDSnetversion-4.3-orange)
 [![](https://img.shields.io/badge/python-3.4+-blue.svg)](https://www.python.org/downloads/) 
-[![](https://img.shields.io/badge/PostgreSQL-9.5+-blue.svg)](https://www.postgresql.org/downloads/)
+[![](https://img.shields.io/badge/PostgreSQL-13.4+-blue.svg)](https://www.postgresql.org/downloads/)
 [![](https://img.shields.io/badge/Datavant-3.5+-blue.svg)](https://datavant.com)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/graphs/commit-activity)
 
@@ -16,7 +16,8 @@ The master branch may contain changes that do not apply to the latest released P
 
 PCORnet Cycle [![ETL Scripts](https://img.shields.io/badge/ETLScripts--<COLOR>.svg)](https://shields.io/)| Scheduled Refresh | PEDSnet CDM version [![ETL Scripts](https://img.shields.io/badge/docs--<COLOR>.svg)](https://shields.io/) |PCORNet CDM version [![ETL Scripts](https://img.shields.io/badge/docs--<COLOR>.svg)](https://shields.io/)|
 :--------:|:-----------: | :----: | :---: | 
-***Currently in Development***| Second Refresh |[4.3](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v4.3.0_1/) |6.0 | 
+[Cycle 11]***Currently Under Development***| First Refresh |[4.4](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v4.4.0_1/) |6.0 | 
+[Cycle 10](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/v4.3_to_v6.0)| Second Refresh |[4.3](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v4.3.0_1/) |6.0 | 
 [Cycle 10](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/v4.2_to_v6.0) | First Refresh |[4.2](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v4.2.0_1/) |6.0 | 
 [Cycle 9](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/v4.1_to_v6.0) | Second Refresh |[4.1](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v4.1.0_1/) |6.0 | 
 [Cycle 9](https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm/tree/v4.0_to_v6.0) | First Refresh |[4.0](https://github.com/PEDSnet/Data_Models/tree/pedsnet_v4.0.0_1/) |6.0 | 
