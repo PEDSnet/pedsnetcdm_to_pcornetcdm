@@ -82,13 +82,13 @@ as
 	place_of_service_concept_id, 
 	specialty_concept_id, 
 	case when dis_disposition.value_as_concept_id in (4161979,4216643) then dis_disposition.value_as_concept_id
-	else case when v.discharge_to_concept_id in (4216643) then v.discharge_to_concept_id
+	else case when v.discharged_to_concept_id in (4216643) then v.discharged_to_concept_id
 	else 4161979 end end as value_as_concept_id_ddisp,
-	discharge_to_concept_id, 
+	discharged_to_concept_id, 
 	admitted_from_concept_id,
     drg_value.value_as_string as value_as_string_drg, 
 	visit_source_value, 
-	discharge_to_source_value, 
+	discharged_to_source_value, 
 	admitted_from_source_value,
 	case when primary_payer_flag is true then plan_class||'-'||plan_type
 	     else 'NI' end as raw_payer_type_primary,
@@ -140,8 +140,8 @@ as
     value_as_string_drg as drg, -- -records having multiple DRGs
 	case when visit_start_date<'2007-10-01' then '01' else '02' end as drg_type,
 	visit_source_value as raw_enc_type,
-	discharge_to_source_value as raw_discharge_disposition, 
-	discharge_to_source_value as raw_discharge_status,
+	discharged_to_source_value as raw_discharge_disposition, 
+	discharged_to_source_value as raw_discharge_status,
 	null as raw_drg_type, -- since it is not discretely captured in the EHRs
 	admitted_from_source_value as raw_admitting_source,
 	coalesce(m1.target_concept,'OT') as enc_type,
@@ -172,7 +172,7 @@ left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on case when value_as_con
 															   and m2.source_concept_class='Discharge disposition'
 left join pcornet_maps.pedsnet_pcornet_valueset_map m4a on cast(admitted_from_concept_id as text) = m4a.source_concept_id
 			                                             and m4a.source_concept_class='Admitting source'            
-left join pcornet_maps.pedsnet_pcornet_valueset_map m3a on cast(discharge_to_concept_id as text) = m3a.source_concept_id 
+left join pcornet_maps.pedsnet_pcornet_valueset_map m3a on cast(discharged_to_concept_id as text) = m3a.source_concept_id 
 			                                             and m3a.source_concept_class='Discharge status'
 left join pcornet_maps.pedsnet_pcornet_valueset_map m6 on cast(place_of_service_concept_id as text) = m6.source_concept_id
                                                         and m6.source_concept_class='Facility type'  and m6.source_concept_id is not null
