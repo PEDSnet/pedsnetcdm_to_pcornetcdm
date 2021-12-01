@@ -41,7 +41,19 @@ where meas.measurement_concept_id in (3020891, --Temperature
 	3024171, -- Respiratory Rate
 	40762499, --SpO2
 	3027018, --Heart Rate
-	4353936); -- FiO2
+	4353936, -- FiO2
+	21490852, --Invasive Mean arterial pressure (MAP)
+	21492241, -- Non-Invasive Mean arterial pressure (MAP)
+	3020158,--		See Note 1	FVC	
+	3037879,--		See Note 1	FVC pre (if recorded differently)	
+	3001668,--	See Note 1	FVC post	
+	3024653,--	See Note 1	FEV 1	
+	3005025,--	See Note 1	FEV 1 pre (if recorded differently)	
+	3023550,--		See Note 1	FEV 1 post	
+	42868460,--		See Note 1	FEF 25-75	
+	42868461,--		See Note 1	FEF 25-75 pre (if recorded differently)	
+	42868462,--		See Note 1	FEF 25-75 post	
+	3023329); -- Peak Flow (PF) 
 
 commit;
 
