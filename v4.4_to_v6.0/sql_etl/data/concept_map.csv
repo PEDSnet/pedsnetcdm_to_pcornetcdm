@@ -6794,3 +6794,8 @@ result_qual_source,URINE,Urine,,Urine,
 result_qual_source,URINE,Urine,,URINE, 
 Birth Measures,8339-4,Birth weight Measured,3013762,Birth weight Measured,
 Birth Measures,89269-5,Birth height Measured,3023540,Birth height Measured, 
+immunization_source_value, 40213202, "pneumococcal vaccine, unspecified formulation", "PNEUMOCOCCAL, UNSPECIFIED" , pneumococcal vaccine,
+immunization_source_value, 40213148, "influenza, intradermal, quadrivalent", "preservative free, injectable", "INFLUENZA SPLIT PRESERVATIVE FREE ID", influenza split,
+immunization_source_value, 40213229, "Td(adult) unspecified formulation", "TD, UNSPECIFIED", td vaccine unspecified,
+immunization_source_value, 40213315, "Haemophilus influenzae type b vaccine, PRP-T conjugate", HIB (PRP-T), HIB,
+

@@ -159,7 +159,7 @@ as
 	 coalesce(  m7.target_concept,  m6.target_concept, 
            m8.target_concept, 'NI')
       as facility_type, 
-      coalesce(  m7.source_concept_id,  m6.source_concept_id, 
+      '|' || coalesce(  m7.source_concept_id,  m6.source_concept_id, 
            m8.source_concept_id, NULL) as raw_facility_type,
 	site
 from SITE_pcornet.encounter_extract
