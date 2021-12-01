@@ -91,7 +91,7 @@ where
 	de.drug_type_concept_id IN ('38000177','581373')
 	and de.person_id IN (select person_id from SITE_pcornet.person_visit_start2001)
 	and EXTRACT(YEAR FROM drug_exposure_start_date) >= 2001
-        and de.drug_source_value not ilike any (array['%breastmilk%','%kit%','%item%','%formula%', '%tpn%','%custom%','%UNDILUTED DILUENT%','%KCAL/OZ%','%parenteral nutrition%']);
+        and de.drug_source_value not ilike any (array['%breastmilk%','%kit%','%item%','%formula%', '%tpn%','%custom%','%UNDILUTED DILUENT%','%KCAL/OZ%','%parenteral nutrition%','%ZZBREAST MILK%','%FAT EMULSION%']);
 commit;
  
 begin;
@@ -112,7 +112,7 @@ tpn as
 (select drug_exposure_id
 from SITE_pcornet.prescribing n
 inner join SITE_pedsnet.drug_exposure de on n.prescribingid::int = de.drug_exposure_id
-where rxnorm_cui is null and lower(drug_source_value) ilike any(array['%human milk%','%tpn%','%similac%','%fat emulsion%','%UNDILUTED DILUENT%','%KCAL/OZ%','%parenteral nutrition%']))
+where rxnorm_cui is null and lower(drug_source_value) ilike any(array['%human milk%','%tpn%','%similac%','%fat emulsion%','%UNDILUTED DILUENT%','%KCAL/OZ%','%parenteral nutrition%','%ZZBREAST MILK%','%FAT EMULSION%']))
 delete from SITE_pcornet.prescribing
 where prescribingid::int in (select drug_exposure_id from tpn);
 commit;

@@ -59,6 +59,6 @@ where
 		or  split_part(drug_source_value,'|',1) in (
 		                                             select concept_code
 		                                             from SITE_pcornet.ndc_concepts ))
-and de.drug_source_value not ilike any (array['%UNDILUTED DILUENT%','%KCAL/OZ%','%breastmilk%','%kit%','%item%','%formula%', '%tpn%','%custom%','%parenteral nutrition%']);
+and de.drug_source_value not ilike any (array['%UNDILUTED DILUENT%','%KCAL/OZ%','%breastmilk%','%kit%','%item%','%formula%', '%tpn%','%custom%','%parenteral nutrition%','%ZZBREAST MILK%','%FAT EMULSION%']);
 
 commit;
