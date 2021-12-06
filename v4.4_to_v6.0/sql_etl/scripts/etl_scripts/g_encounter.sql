@@ -159,8 +159,8 @@ as
 	 coalesce(  m7.target_concept,  m6.target_concept, 
            m8.target_concept, 'NI')
       as facility_type, 
-      '|' || coalesce(  m7.source_concept_id,  m6.source_concept_id, 
-           m8.source_concept_id, NULL) as raw_facility_type,
+      '|' || coalesce( m7.concept_description,  m6.concept_description, 
+           m8.concept_description, NULL) as raw_facility_type,
 	site
 from SITE_pcornet.encounter_extract
 left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on cast(visit_concept_id as text)= m1.source_concept_id 
