@@ -195,37 +195,76 @@ commit;
 begin;
 create table SITE_pcornet.census_block_group
 as
-select 
+with person_location_id_dates as (
+/*
+Get person and location id combinations with the first date associated a location id for a given person
+where location history is available
+*/
+    select 
+    entity_id as person_id,
+    location_id,
+    min(start_date) first_start_date
+    from SITE_pedsnet.location_history
+    where domain_id='person'
+    group by entity_id,location_id
+),
+/*
+Capture persons with location information in the person table that does not have an entry in location_history
+to associate with a date
+*/
+person_current_location_no_dates as (
+    select distinct
+    person_id,
+    location_id,
+    null::date as first_start_date
+    from SITE_pedsnet.person p
+    where not exists (
+                    select null 
+                    from 
+                    person_location_id_dates plid
+                    where plid.person_id=p.person_id
+                    and plid.location_id=p.location_id)
+)
+select
+('L' ||row_number() over(order by person_locations.person_id,person_locations.location_id))::text as obsgenid,
+person_locations.person_id  as patid,
 null as encounterid,
 null as obsgen_abn_ind,
 '49084-7' as obsgen_code,
-null as obsgen_id_modified,
+loc.location_id as obsgen_id_modified,
 null as obsgen_providerid,
 null as obsgen_result_modifier,
 null as obsgen_result_num,
 null as obsgen_result_qual,
-'Census block group (2019)' as obsgen_result_text,
+loc.census_block_group as obsgen_result_text,
 null as obsgen_result_unit,
 null as obsgen_source,
-select max(start_date)
-from SITE_pedsnet.person
-left join SITE_pedsnet.location_history on SITE_pedsnet.location_history.location_id == SITE_pedsnet.person.location_id
-group by person_id, location_id as obsgen_start_date,
+coalesce(first_start_date,current_date) as obsgen_start_date,
 null as obsgen_start_time,
 null as obsgen_stop_date,
 null as obsgen_stop_time,
 'LDS' as obsgen_table_modified,
 'LC' as obsgen_type,
-select CONCAT('L', dense_rank() over(order by location_id),SITE_pedsnet.location.location_id::text) from SITE_pedsnet.location as obsgenid,
-SITE_pedsnet.person.person_id  as patid,
 null as raw_obsgen_code,
-null as raw_obsgen_name,
-null as raw_obsgen_result,
+'Census Block Group (2019)' as raw_obsgen_name,
+loc.location_id||'-'||loc.census_block_group as raw_obsgen_result,
 null as raw_obsgen_type,
 null as raw_obsgen_unit
 from
-SITE_pedsnet.person
-left join SITE_pedsnet.location on SITE_pedsnet.person.location_id == SITE_pedsnet.location.location_id
+    (
+    select person_id,
+    location_id,
+    first_start_date
+    from person_location_id_dates
+union
+    select person_id,
+    location_id,
+    first_start_date
+    from person_current_location_no_dates
+) person_locations 
+inner join SITE_pedsnet.location loc on person_locations.location_id=loc.location_id
+where loc.census_block_group is not null
+and person_locations.person_id in (select person_id from SITE_pcornet.person_visit_start2001);
 commit;
 
 
