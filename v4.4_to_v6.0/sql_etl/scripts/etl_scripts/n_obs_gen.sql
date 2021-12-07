@@ -207,8 +207,8 @@ null as obsgen_result_qual,
 'Census block group (2019)' as obsgen_result_text,
 null as obsgen_result_unit,
 null as obsgen_source,
-select max(SITE_pedsnet.location_history.start_date)
-from SITE_pedsnet.location_history 
+select max(start_date)
+from SITE_pedsnet.person
 left join SITE_pedsnet.location_history on SITE_pedsnet.location_history.location_id == SITE_pedsnet.person.location_id
 group by person_id, location_id as obsgen_start_date,
 null as obsgen_start_time,
@@ -216,8 +216,7 @@ null as obsgen_stop_date,
 null as obsgen_stop_time,
 'LDS' as obsgen_table_modified,
 'LC' as obsgen_type,
-((dense_rank () over(order by SITE_pedsnet.location.location_id) dense_loc) ||
-'L' || SITE_pedsnet.location.location_id)::text as obsgenid,
+select CONCAT('L', dense_rank() over(order by location_id),SITE_pedsnet.location.location_id::text) from SITE_pedsnet.location as obsgenid,
 SITE_pedsnet.person.person_id  as patid,
 null as raw_obsgen_code,
 null as raw_obsgen_name,
@@ -226,7 +225,7 @@ null as raw_obsgen_type,
 null as raw_obsgen_unit
 from
 SITE_pedsnet.person
-left join SITE_pedsnet.person on SITE_pedsnet.person.location_id == SITE_pedsnet.location.location_id
+left join SITE_pedsnet.location on SITE_pedsnet.person.location_id == SITE_pedsnet.location.location_id
 commit;
 
 
