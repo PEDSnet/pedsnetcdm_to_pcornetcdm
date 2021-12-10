@@ -203,10 +203,11 @@ where location history is available
     select 
     entity_id as person_id,
     location_id,
+    site,
     min(start_date) first_start_date
     from SITE_pedsnet.location_history
     where domain_id='person'
-    group by entity_id,location_id
+    group by entity_id,location_id,site
 ),
 /*
 Capture persons with location information in the person table that does not have an entry in location_history
@@ -216,6 +217,7 @@ person_current_location_no_dates as (
     select distinct
     person_id,
     location_id,
+    site,
     null::date as first_start_date
     from SITE_pedsnet.person p
     where not exists (
@@ -249,16 +251,19 @@ null as raw_obsgen_code,
 'Census Block Group (2019)' as raw_obsgen_name,
 loc.location_id||'-'||loc.census_block_group as raw_obsgen_result,
 null as raw_obsgen_type,
-null as raw_obsgen_unit
+null as raw_obsgen_unit,
+person_locations.site
 from
     (
     select person_id,
     location_id,
+    site,
     first_start_date
     from person_location_id_dates
 union
     select person_id,
     location_id,
+    site,
     first_start_date
     from person_current_location_no_dates
 ) person_locations 
