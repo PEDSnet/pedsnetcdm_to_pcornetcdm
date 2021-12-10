@@ -243,7 +243,7 @@ select distinct on (obsgenid) obsgenid, encounterid, obsgen_abn_ind, obsgen_code
 from SITE_pcornet.meas_obs
 union 
 select distinct on (obsgenid) obsgenid, encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num::numeric, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date, obsgen_start_time, obsgen_stop_date, obsgen_stop_time, obsgen_table_modified, obsgen_type, patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result::numeric, raw_obsgen_type, raw_obsgen_unit, site 
-from SITE_pcornet.device_obs;
+from SITE_pcornet.device_obs
 union
 select distinct on (obsgenid) obsgenid, encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num::numeric, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date::date, obsgen_start_time, obsgen_stop_date, obsgen_stop_time, obsgen_table_modified, obsgen_type, patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result, raw_obsgen_type, raw_obsgen_unit, site 
 from SITE_pcornet.census_block_group;
