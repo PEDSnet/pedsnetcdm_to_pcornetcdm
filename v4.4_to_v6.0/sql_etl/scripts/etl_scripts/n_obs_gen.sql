@@ -229,11 +229,11 @@ person_current_location_no_dates as (
 )
 select
 ('L' ||row_number() over(order by person_locations.person_id,person_locations.location_id))::text as obsgenid,
-person_locations.person_id  as patid,
+person_locations.person_id::text as patid,
 null as encounterid,
 null as obsgen_abn_ind,
 '49084-7' as obsgen_code,
-loc.location_id as obsgen_id_modified,
+loc.location_id::text as obsgen_id_modified,
 null as obsgen_providerid,
 null as obsgen_result_modifier,
 null as obsgen_result_num,
@@ -241,9 +241,9 @@ null as obsgen_result_qual,
 loc.census_block_group as obsgen_result_text,
 null as obsgen_result_unit,
 null as obsgen_source,
-coalesce(first_start_date,current_date) as obsgen_start_date,
+coalesce(first_start_date,current_date)::date as obsgen_start_date,
 null as obsgen_start_time,
-null as obsgen_stop_date,
+null::date as obsgen_stop_date,
 null as obsgen_stop_time,
 'LDS' as obsgen_table_modified,
 'LC' as obsgen_type,
@@ -280,16 +280,16 @@ commit ;
 
 begin;
 INSERT INTO SITE_pcornet.obs_gen(obsgenid,encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date, obsgen_start_time, obsgen_stop_date, obsgen_stop_time, obsgen_table_modified, obsgen_type,  patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result, raw_obsgen_type, raw_obsgen_unit, site)
-select distinct on (obsgenid) obsgenid, encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num::numeric, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date, obsgen_start_time, obsgen_stop_date, obsgen_stop_time, obsgen_table_modified, obsgen_type, patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result::numeric, raw_obsgen_type, raw_obsgen_unit, site
+select distinct on (obsgenid) obsgenid, encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num::numeric, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date, obsgen_start_time, obsgen_stop_date, obsgen_stop_time, obsgen_table_modified, obsgen_type, patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result::text, raw_obsgen_type, raw_obsgen_unit, site
 from SITE_pcornet.adt_obs
 union 
-select distinct on (obsgenid) obsgenid, encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num::numeric, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date, obsgen_start_time, obsgen_stop_date::date, obsgen_stop_time, obsgen_table_modified, obsgen_type, patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result::numeric, raw_obsgen_type, raw_obsgen_unit, site 
+select distinct on (obsgenid) obsgenid, encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num::numeric, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date, obsgen_start_time, obsgen_stop_date::date, obsgen_stop_time, obsgen_table_modified, obsgen_type, patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result::text, raw_obsgen_type, raw_obsgen_unit, site 
 from SITE_pcornet.meas_obs
 union 
-select distinct on (obsgenid) obsgenid, encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num::numeric, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date, obsgen_start_time, obsgen_stop_date, obsgen_stop_time, obsgen_table_modified, obsgen_type, patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result::numeric, raw_obsgen_type, raw_obsgen_unit, site 
+select distinct on (obsgenid) obsgenid, encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num::numeric, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date, obsgen_start_time, obsgen_stop_date, obsgen_stop_time, obsgen_table_modified, obsgen_type, patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result::text, raw_obsgen_type, raw_obsgen_unit, site 
 from SITE_pcornet.device_obs
 union
-select distinct on (obsgenid) obsgenid, encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num::numeric, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date::date, obsgen_start_time, obsgen_stop_date, obsgen_stop_time, obsgen_table_modified, obsgen_type, patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result, raw_obsgen_type, raw_obsgen_unit, site 
+select distinct on (obsgenid) obsgenid, encounterid, obsgen_abn_ind, obsgen_code, obsgen_id_modified, obsgen_providerid, obsgen_result_modifier, obsgen_result_num::numeric, obsgen_result_qual, obsgen_result_text, obsgen_result_unit, obsgen_source, obsgen_start_date, obsgen_start_time, obsgen_stop_date, obsgen_stop_time, obsgen_table_modified, obsgen_type, patid, raw_obsgen_code, raw_obsgen_name, raw_obsgen_result::text, raw_obsgen_type, raw_obsgen_unit, site 
 from SITE_pcornet.census_block_group;
 commit;
 
