@@ -40,7 +40,15 @@ select distinct on (m.measurement_id) m.measurement_id as lab_result_cm_id,
 	m.value_as_concept_id, value_source_value,
 	null as result_snomed, 
 	m.value_as_number as result_num,
-	coalesce(rslt_modif.target_concept, case when trim(split_part(m.modifier, '|', 1)) in ('EQ','GE','GT') then trim(split_part(m.modifier, '|', 1)) when trim(split_part(m.modifier, '|', 2)) in ('EQ','LE','LT') then trim(split_part(m.modifier, '|', 2)) end) as result_modifier,
+	coalesce(rslt_modif.target_concept, 
+		case 
+			when trim(split_part(m.modifier, '|', 1)) in ('EQ','GE','GT') 
+				then trim(split_part(m.modifier, '|', 1)) 
+			when trim(split_part(m.modifier, '|', 2)) in ('EQ','LE','LT') 
+				then trim(split_part(m.modifier, '|', 2)) 
+		end,
+		case when value_source_value is not null then 'EQ' end
+	) as result_modifier,
 	m.unit_concept_id,
 	left(m.range_low::text,10) as norm_range_low,
     coalesce(case when rslt_modif.target_concept = 'EQ' then 'EQ' when rslt_modif.target_concept in ('GE','GT') then rslt_modif.target_concept when rslt_modif.target_concept in ('LE','LT') then 'NO' end,

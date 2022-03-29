@@ -111,7 +111,7 @@ begin;
 update SITE_pcornet.lab_result_cm
 set result_unit = '10*3/uL'
 from SITE_pcornet.lab_result_cm l
-inner join SITE_pedsnet.measurement m on m.measurement_id = l.lab_result_cm_id::int and m.unit_source_value in ('THOU/uL','Thousand/uL','THOU/ul','10 3/uL','th/uL','Thousands/uL','thousand/u;','Thou/uL','thou/uL','THOUS/MCL','thous/mcL','thousand/u;','Thousand/uL','thousand/ul','Thousands/uL')
+inner join SITE_pedsnet.measurement m on m.measurement_id = l.lab_result_cm_id::int and m.unit_source_value in ('THOU/uL','Thousand/uL','THOU/ul','10 3/uL','th/uL','Thousands/uL','thousand/u;','Thou/uL','thou/uL','THOUS/MCL','thous/mcL','thousand/u;','Thousand/uL','thousand/ul','Thousands/uL', 'K/mm3','k/mm3')
 where l.result_unit in ('NI','UN','OT','',null)
 and SITE_pcornet.lab_result_cm.lab_result_cm_id = l.lab_result_cm_id;
 commit;
@@ -120,7 +120,7 @@ begin;
 update SITE_pcornet.lab_result_cm
 set result_unit = '10*6/uL'
 from SITE_pcornet.lab_result_cm l
-inner join SITE_pedsnet.measurement m on m.measurement_id = l.lab_result_cm_id::int and m.unit_source_value in ('10 6/uL','MIL/uL','mil/uL','MILL/MCL','mill/mcL','Mill/uL','mill/uL','Million/uL','million/ul','x10E6/uL')
+inner join SITE_pedsnet.measurement m on m.measurement_id = l.lab_result_cm_id::int and m.unit_source_value in ('10 6/uL','MIL/uL','mil/uL','MILL/MCL','mill/mcL','Mill/uL','mill/uL','Million/uL','million/ul','x10E6/uL','M/mm3','m/mm3')
 where l.result_unit in ('NI','UN','OT','',null)
 and SITE_pcornet.lab_result_cm.lab_result_cm_id = l.lab_result_cm_id;
 commit;

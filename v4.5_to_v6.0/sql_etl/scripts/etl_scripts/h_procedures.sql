@@ -12,7 +12,14 @@ select distinct
 	enc.admit_date as admit_date,
 	enc.providerid as providerid,
 	procedure_date as px_date,
-	coalesce(px_cd_1.concept_code, px_cd_2.concept_code, left(split_part(procedure_source_value,'|',2),11),null) as px,
+	coalesce(
+		px_cd_1.concept_code, 
+		px_cd_2.concept_code, 
+		case 
+			when left(split_part(procedure_source_value,'|',2),11) = ' ' 
+			or left(split_part(procedure_source_value,'|',2),11) = '' then null
+			else LTRIM(left(split_part(procedure_source_value,'|',2),11))
+		end) as px,
     coalesce(px_typ.target_concept,'OT')as px_type,
 	coalesce(m4.target_concept,'OT') as px_source,
 	coalesce(m5.target_concept,'OT') as ppx,
