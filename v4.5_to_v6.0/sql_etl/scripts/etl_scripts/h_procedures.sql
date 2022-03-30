@@ -17,7 +17,7 @@ select distinct
 		px_cd_2.concept_code, 
 		case 
 			when left(split_part(procedure_source_value,'|',2),11) = ' ' 
-			or left(split_part(procedure_source_value,'|',2),11) = '' then null
+			or left(split_part(procedure_source_value,'|',2),11) = '' then 'NI'
 			else LTRIM(left(split_part(procedure_source_value,'|',2),11))
 		end) as px,
     coalesce(px_typ.target_concept,'OT')as px_type,
