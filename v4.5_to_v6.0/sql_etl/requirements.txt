@@ -9,7 +9,7 @@ logutils==0.3.3
 MarkupSafe==1.1.1
 multipledispatch==0.4.9
 networkx==1.11
-numpy==1.13.3
+numpy==1.21.0
 pandas==0.20.3
 progressbar==2.5
 psutil==5.6.6
