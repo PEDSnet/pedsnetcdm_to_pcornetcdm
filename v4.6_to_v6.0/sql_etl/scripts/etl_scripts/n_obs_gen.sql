@@ -204,10 +204,10 @@ where location history is available
     entity_id as person_id,
     location_id,
     site,
-    min(start_date) first_start_date
+    start_date,
+	end_date
     from SITE_pedsnet.location_history
     where domain_id='person'
-    group by entity_id,location_id,site
 ),
 /*
 Capture persons with location information in the person table that does not have an entry in location_history
@@ -218,7 +218,8 @@ person_current_location_no_dates as (
     person_id,
     location_id,
     site,
-    null::date as first_start_date
+    null::date as start_date,
+	null::date as end_date
     from SITE_pedsnet.person p
     where not exists (
                     select null 
@@ -241,9 +242,9 @@ null as obsgen_result_qual,
 loc.census_block_group as obsgen_result_text,
 null as obsgen_result_unit,
 null as obsgen_source,
-coalesce(first_start_date,current_date)::date as obsgen_start_date,
+coalesce(start_date,current_date)::date as obsgen_start_date,
 null as obsgen_start_time,
-null::date as obsgen_stop_date,
+end_date::date as obsgen_stop_date,
 null as obsgen_stop_time,
 'LDS' as obsgen_table_modified,
 'LC' as obsgen_type,
@@ -258,13 +259,15 @@ from
     select person_id,
     location_id,
     site,
-    first_start_date
+    start_date,
+	end_date
     from person_location_id_dates
 union
     select person_id,
     location_id,
     site,
-    first_start_date
+    start_date,
+	end_date
     from person_current_location_no_dates
 ) person_locations 
 inner join SITE_pedsnet.location loc on person_locations.location_id=loc.location_id
