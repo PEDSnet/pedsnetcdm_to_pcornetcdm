@@ -207,7 +207,7 @@ where location history is available
     start_date,
 	end_date
     from SITE_pedsnet.location_history
-    where domain_id='person'
+    where trim(lower(domain_id))='person'
 ),
 /*
 Capture persons with location information in the person table that does not have an entry in location_history
