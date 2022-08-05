@@ -31,7 +31,12 @@ from SITE_pedsnet.procedure_occurrence po
 	join SITE_pcornet.encounter enc on cast(po.visit_occurrence_id as text)=enc.encounterid
 	left join vocabulary.concept px_cd_1 on px_cd_1.concept_id = po.procedure_concept_id and px_cd_1.vocabulary_id in ('HCPCS','CPT4','ICD10PCS','SNOMED','ICD9Proc')
     left join vocabulary.concept px_cd_2 on px_cd_2.concept_id = po.procedure_source_concept_id and px_cd_2.vocabulary_id in ('HCPCS','CPT4','ICD10PCS','SNOMED','ICD9Proc')
-    left join pcornet_maps.pedsnet_pcornet_valueset_map px_typ on px_typ.source_concept_id = px_cd_1.vocabulary_id or px_typ.source_concept_id = px_cd_2.vocabulary_id and source_concept_class = 'Procedure Code Type'
+	left join pcornet_maps.pedsnet_pcornet_valueset_map px_typ 
+ 		on case 
+			when px_cd_1.vocabulary_id is not null then px_cd_1.vocabulary_id
+	  		else px_cd_2.vocabulary_id 
+		end = px_typ.source_concept_id 
+ 		and source_concept_class = 'Procedure Code Type'
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m4 on cast(po.procedure_type_concept_id as text) = m4.source_concept_id AND
 	                                                                m4.source_concept_class='px source'
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m5 on cast(po.procedure_type_concept_id as text) = m5.source_concept_id AND
