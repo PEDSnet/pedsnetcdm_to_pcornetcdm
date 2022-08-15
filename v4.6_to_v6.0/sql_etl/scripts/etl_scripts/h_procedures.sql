@@ -29,8 +29,8 @@ select distinct
 	'SITE' as site
 from SITE_pedsnet.procedure_occurrence po
 	join SITE_pcornet.encounter enc on cast(po.visit_occurrence_id as text)=enc.encounterid
-	left join vocabulary.concept px_cd_1 on px_cd_1.concept_id = po.procedure_concept_id and px_cd_1.vocabulary_id in ('HCPCS','CPT4','ICD10PCS','SNOMED','ICD9Proc')
-    left join vocabulary.concept px_cd_2 on px_cd_2.concept_id = po.procedure_source_concept_id and px_cd_2.vocabulary_id in ('HCPCS','CPT4','ICD10PCS','SNOMED','ICD9Proc')
+	left join vocabulary.concept px_cd_1 on px_cd_1.concept_id = po.procedure_concept_id and px_cd_1.vocabulary_id in ('HCPCS','CPT4','ICD10PCS','ICD9Proc')
+    left join vocabulary.concept px_cd_2 on px_cd_2.concept_id = po.procedure_source_concept_id and px_cd_2.vocabulary_id in ('HCPCS','CPT4','ICD10PCS','ICD9Proc')
 	left join pcornet_maps.pedsnet_pcornet_valueset_map px_typ 
  		on case 
 			when px_cd_1.vocabulary_id is not null then px_cd_1.vocabulary_id
