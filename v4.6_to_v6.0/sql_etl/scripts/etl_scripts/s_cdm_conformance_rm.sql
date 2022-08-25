@@ -5,6 +5,13 @@ where length(px) != 7  and px_type = '10';
 commit;
 
 begin;
+/* out of CDM CPT/HCPCS px codes */
+delete from SITE_pcornet.procedures
+where length(px) < 5  and px_type = 'CH';			
+commit;
+
+
+begin;
 with vals (source_concept_class,target_concept,pcornet_name,source_concept_id,concept_description, value_as_concept_id) AS (VALUES
 	('vx_code_source','48','CX','40213315','HIB (PRP-T)',''),
 	('vx_code_source','171','CX','40213143','INFLUENZA, INJ., MDCK, PF, QUAD',''),
