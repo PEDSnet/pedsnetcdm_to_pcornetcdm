@@ -4,6 +4,7 @@ delete from SITE_pcornet.procedures
 where length(px) != 7  and px_type = '10';					
 commit;
 
+begin;
 delete from SITE_pcornet.procedures
 where length(px) < 5  and px_type = 'CH';					
 commit;
