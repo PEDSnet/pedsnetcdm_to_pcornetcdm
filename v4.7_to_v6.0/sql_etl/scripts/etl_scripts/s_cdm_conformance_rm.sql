@@ -68,39 +68,121 @@ update SITE_pcornet.obs_gen
 set obsgen_result_modifier = 'UN'
 where obsgen_result_modifier = 'NO';
 commit;
-begin;
+
 /* deleting the tpn, formulae and milk -- the code in ETL does not remove these values */ 
-with 
-tpn as 
-(select drug_exposure_id  -- select count(*)
-from SITE_pcornet.med_admin n
-inner join SITE_pedsnet.drug_exposure de on n.medadminid::int = de.drug_exposure_id
-where medadmin_code is null and lower(drug_source_value) ilike any(array['%UNDILUTED DILUENT%','%KCAL/OZ%','%human milk%','%tpn%','%similac%','%fat emulsion%']))
-delete from SITE_pcornet.med_admin
-where medadminid::int in (select drug_exposure_id from tpn);
-commit;
 begin;
+with tpn as (
+	select
+		medadminid
+		from SITE_pcornet.med_admin n
+	inner join 
+		SITE_pedsnet.drug_exposure de 
+		on n.medadminid::bigint = de.drug_exposure_id
+	left join 
+		vocabulary.concept v
+		on n.medadmin_code = v.concept_code 
+		and vocabulary_id = 'RxNorm'
+	where
+		(
+			concept_class_id not in 
+			('Clinical Drug', 'Branded Drug', 'Quant Clinical Drug', 
+			'Quant Branded Drug', 'Clinical Pack', 'Branded Pack')	
+			or concept_class_id is null
+		)
+		and drug_source_value ilike any
+			(array[
+			'%human milk%',
+			'%breastmilk%',
+			'%breast milk%',
+			'%formula%',
+			'%similac%',
+			'%tpn%',
+			'%parenteral nutrition%',
+			'%fat emulsion%',
+			'%UNDILUTED DILUENT%',
+			'%KCAL/OZ%',
+			'%kit%',
+			'%item%',
+			'%custom%',
+			'%EMPTY BAG%'
+			])
+)
+delete from SITE_pcornet.med_admin
+where medadminid in (select medadminid from tpn);
+commit;
+
 /* removing tpn from prescribing */
-with 
-tpn as 
-(select drug_exposure_id -- select count(*)
-from SITE_pcornet.prescribing n
-inner join SITE_pedsnet.drug_exposure de on n.prescribingid::int = de.drug_exposure_id
-where rxnorm_cui is null and lower(drug_source_value) ilike any(array['%UNDILUTED DILUENT%','%KCAL/OZ%','%human milk%','%tpn%','%similac%','%fat emulsion%']))
+begin;
+with tpn as (
+	select 
+		drug_exposure_id
+	from 
+		SITE_pcornet.prescribing n
+	inner join 
+		SITE_pedsnet.drug_exposure de 
+		on n.prescribingid::int = de.drug_exposure_id
+	left join 
+		vocabulary.concept v
+		on n.prescribingid = v.concept_code 
+		and vocabulary_id = 'RxNorm'
+	where 
+		(
+			concept_class_id not in 
+			('Clinical Drug', 'Branded Drug', 'Quant Clinical Drug', 
+			'Quant Branded Drug', 'Clinical Pack', 'Branded Pack')	
+			or concept_class_id is null
+		)
+		and drug_source_value ilike any
+			(array[
+			'%human milk%',
+			'%breastmilk%',
+			'%breast milk%',
+			'%formula%',
+			'%similac%',
+			'%tpn%',
+			'%parenteral nutrition%',
+			'%fat emulsion%',
+			'%UNDILUTED DILUENT%',
+			'%KCAL/OZ%',
+			'%kit%',
+			'%item%',
+			'%custom%',
+			'%EMPTY BAG%'
+			])
+)	
 delete from SITE_pcornet.prescribing
 where prescribingid::int in (select drug_exposure_id from tpn);
 commit;
-begin;
+
 /* removing TPN from dispensing */
-with 
-tpn as 
-(select drug_exposure_id 
+begin;
+with tpn as (
+
+select drug_exposure_id 
 from SITE_pcornet.dispensing n
 inner join SITE_pedsnet.drug_exposure de on n.dispensingid::int = de.drug_exposure_id
-where lower(drug_source_value) ilike any(array['%UNDILUTED DILUENT%','%KCAL/OZ%','%human milk%','%tpn%','%similac%','%fat emulsion%']))
+where drug_source_value ilike any
+		(array[
+		'%human milk%',
+		'%breastmilk%',
+		'%breast milk%',
+		'%formula%',
+		'%similac%',
+		'%tpn%',
+		'%parenteral nutrition%',
+		'%fat emulsion%',
+		'%UNDILUTED DILUENT%',
+		'%KCAL/OZ%',
+		'%kit%',
+		'%item%',
+		'%custom%',
+		'%EMPTY BAG%'
+		])
+)
 delete from SITE_pcornet.dispensing
 where dispensingid::int in (select drug_exposure_id from tpn);
 commit;
+
 begin;
 /* updating norm_modifier_low for the values */
 update SITE_pcornet.lab_result_cm
