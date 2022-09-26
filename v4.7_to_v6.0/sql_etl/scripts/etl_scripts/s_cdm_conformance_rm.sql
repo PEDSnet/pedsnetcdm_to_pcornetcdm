@@ -250,34 +250,3 @@ update lurie_pcornet.lab_result_cm
 set norm_modifier_high = 'OT'
 where result_modifier = 'OT' and norm_modifier_low in ('OT') and norm_modifier_high = 'GT';
 commit;
-
-/* ensure effective drug dosage number fits within numeric(15,8) for each of the corresponding fields in PCORnet */
-begin;
-update SITE_pcornet.prescribing
-set rx_dose_ordered = trunc(rx_dose_ordered, (15 - length(split_part(rx_dose_ordered::text, '.', 1))))
-from 
-	SITE_pcornet.prescribing
-where
-	length(rx_dose_ordered::text) - 1 > 15
-	and length(split_part(rx_dose_ordered::text, '.', 2)) > (15 - length(split_part(rx_dose_ordered::text, '.', 1)));
-commit;
-
-begin;
-update SITE_pcornet.med_admin
-set MEDADMIN_DOSE_ADMIN = trunc(MEDADMIN_DOSE_ADMIN, (15 - length(split_part(MEDADMIN_DOSE_ADMIN::text, '.', 1))))
-from 
-	SITE_pcornet.med_admin
-where
-	length(MEDADMIN_DOSE_ADMIN::text) - 1 > 15
-	and length(split_part(MEDADMIN_DOSE_ADMIN::text, '.', 2)) > (15 - length(split_part(MEDADMIN_DOSE_ADMIN::text, '.', 1)));
-commit;
-
-begin;
-update SITE_pcornet.dispensing
-set DISPENSE_DOSE_DISP = trunc(DISPENSE_DOSE_DISP, (15 - length(split_part(DISPENSE_DOSE_DISP::text, '.', 1))))
-from 
-	SITE_pcornet.dispensing
-where
-	length(DISPENSE_DOSE_DISP::text) - 1 > 15
-	and length(split_part(DISPENSE_DOSE_DISP::text, '.', 2)) > (15 - length(split_part(DISPENSE_DOSE_DISP::text, '.', 1)));
-commit;

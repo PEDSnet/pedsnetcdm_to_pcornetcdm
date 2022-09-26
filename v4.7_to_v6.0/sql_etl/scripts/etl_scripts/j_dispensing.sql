@@ -1,3 +1,15 @@
+/* ensure effective drug dosage number fits within numeric(15,8)
+If total number of digits > 15, truncate decimal places if able to */
+begin;
+update 
+	SITE_pedsnet.drug_exposure
+set 
+	effective_drug_dose = trunc(effective_drug_dose, (15 - length(split_part(effective_drug_dose::text, '.', 1))))
+where
+	length(effective_drug_dose::text) - 1 > 15
+	and length(split_part(effective_drug_dose::text, '.', 2)) > (15 - length(split_part(effective_drug_dose::text, '.', 1)));
+commit;
+
 begin;
 
 
