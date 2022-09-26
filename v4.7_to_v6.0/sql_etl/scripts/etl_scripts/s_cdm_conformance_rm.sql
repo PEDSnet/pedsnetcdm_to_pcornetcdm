@@ -1,11 +1,11 @@
 begin;
 /* out of CDM ICD px codes */
-delete from SITE_pcornet.procedures
+delete from lurie_pcornet.procedures
 where length(px) != 7  and px_type = '10';					
 commit;
 
 begin;
-delete from SITE_pcornet.procedures
+delete from lurie_pcornet.procedures
 where length(px) < 5  and px_type = 'CH';					
 commit;
 
@@ -44,27 +44,27 @@ with vals (source_concept_class,target_concept,pcornet_name,source_concept_id,co
 	('vx_code_source','213','CX','724904','COVID-19 VACCINE (NOT SPECIFIED)|79',''),
 	('vx_code_source','213','CX','724904','SARS-COV-2, UNSPECIFIED','')
 )
-update SITE_pcornet.immunization
+update lurie_pcornet.immunization
 set vx_code = coalesce(target_concept,'999'),
 vx_code_type = coalesce(pcornet_name, 'CX')
-from SITE_pcornet.immunization imm
-left join SITE_pedsnet.immunization dimm on dimm.site = 'SITE' and dimm.immunization_id = imm.immunizationid::int
+from lurie_pcornet.immunization imm
+left join lurie_pedsnet.immunization dimm on dimm.lurie = 'lurie' and dimm.immunization_id = imm.immunizationid::int
 left join vals on vals.concept_description ilike dimm.immunization_source_value
 where imm.vx_code = ''
-and imm.immunizationid = SITE_pcornet.immunization.immunizationid
-and SITE_pcornet.immunization.vx_code = ''
-and SITE_pcornet.immunization.vx_code = imm.vx_code;
+and imm.immunizationid = lurie_pcornet.immunization.immunizationid
+and lurie_pcornet.immunization.vx_code = ''
+and lurie_pcornet.immunization.vx_code = imm.vx_code;
 commit;
 
 begin;
 /* updateing the NO mapps to UN */
-update SITE_pcornet.obs_clin
+update lurie_pcornet.obs_clin
 set obsclin_result_modifier = 'UN'
 where obsclin_result_modifier = 'NO';
 commit;
 begin;
 /* updateing the NO mapps to UN */
-update SITE_pcornet.obs_gen
+update lurie_pcornet.obs_gen
 set obsgen_result_modifier = 'UN'
 where obsgen_result_modifier = 'NO';
 commit;
@@ -74,9 +74,9 @@ begin;
 with tpn as (
 	select
 		medadminid
-		from SITE_pcornet.med_admin n
+		from lurie_pcornet.med_admin n
 	inner join 
-		SITE_pedsnet.drug_exposure de 
+		lurie_pedsnet.drug_exposure de 
 		on n.medadminid::bigint = de.drug_exposure_id
 	left join 
 		vocabulary.concept v
@@ -107,7 +107,7 @@ with tpn as (
 			'%EMPTY BAG%'
 			])
 )
-delete from SITE_pcornet.med_admin
+delete from lurie_pcornet.med_admin
 where medadminid in (select medadminid from tpn);
 commit;
 
@@ -116,10 +116,10 @@ begin;
 with 
 tpn as 
 (select drug_exposure_id -- select count(*)
-from SITE_pcornet.prescribing n
-inner join SITE_pedsnet.drug_exposure de on n.prescribingid::int = de.drug_exposure_id
+from lurie_pcornet.prescribing n
+inner join lurie_pedsnet.drug_exposure de on n.prescribingid::int = de.drug_exposure_id
 where rxnorm_cui is null and lower(drug_source_value) ilike any(array['%UNDILUTED DILUENT%','%KCAL/OZ%','%human milk%','%tpn%','%similac%','%fat emulsion%']))
-delete from SITE_pcornet.prescribing
+delete from lurie_pcornet.prescribing
 where prescribingid::int in (select drug_exposure_id from tpn);
 commit;
 
@@ -128,125 +128,156 @@ begin;
 with 
 tpn as 
 (select drug_exposure_id 
-from SITE_pcornet.dispensing n
-inner join SITE_pedsnet.drug_exposure de on n.dispensingid::int = de.drug_exposure_id
+from lurie_pcornet.dispensing n
+inner join lurie_pedsnet.drug_exposure de on n.dispensingid::int = de.drug_exposure_id
 where lower(drug_source_value) ilike any(array['%UNDILUTED DILUENT%','%KCAL/OZ%','%human milk%','%tpn%','%similac%','%fat emulsion%']))
-delete from SITE_pcornet.dispensing
+delete from lurie_pcornet.dispensing
 where dispensingid::int in (select drug_exposure_id from tpn);
 commit;
 
 begin;
 /* updating norm_modifier_low for the values */
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'EQ',
 norm_modifier_high = 'EQ'
 where result_modifier = 'EQ' and norm_modifier_low in ('LT','LE') and norm_modifier_high = 'OT';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'GE',
 norm_modifier_high = 'NO'
 where result_modifier = 'GE' and norm_modifier_low in ('LT','LE') and norm_modifier_high = 'OT';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'EQ',
 norm_modifier_high = 'EQ'
 where result_modifier = 'EQ' and norm_modifier_low = 'OT' and norm_modifier_high in ('GE','GT');
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'GE',
 norm_modifier_high = 'NO'
 where result_modifier = 'GE' and norm_modifier_low = 'OT' and norm_modifier_high = 'GE';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set result_modifier = 'GT',
 norm_modifier_high = 'NO',
 norm_modifier_low = 'GT'
 where result_modifier = 'OT' and norm_modifier_low = 'OT' and norm_modifier_high = 'GT';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'NO',
 norm_modifier_high = 'LT'
 where result_modifier = 'LT' and norm_modifier_low = 'OT' and norm_modifier_high = 'GE';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'GT',
 norm_modifier_high = 'NO'
 where result_modifier = 'GT' and norm_modifier_low in ('LT','LE') and norm_modifier_high = 'OT';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'GT',
 norm_modifier_high = 'NO'
 where result_modifier = 'GT' and norm_modifier_low in ('OT') and norm_modifier_high in ('GT','GE');
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'NO',
 norm_modifier_high = 'LT'
 where result_modifier = 'LT' and norm_modifier_low in ('OT') and norm_modifier_high in ('GT','GE');
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'NO',
 norm_modifier_high = 'LE'
 where result_modifier = 'LE' and norm_modifier_low in ('LT') and norm_modifier_high = 'OT';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'NO',
 norm_modifier_high = 'LT'
 where result_modifier = 'LT' and norm_modifier_low in ('LT','LE') and norm_modifier_high = 'OT';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'OT'
 where result_modifier = 'OT' and norm_modifier_low in ('LT','LE') and norm_modifier_high = 'OT';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'NO',
 norm_modifier_high = 'LE'
 where result_modifier = 'LE' and norm_modifier_low in ('LT','LE') and norm_modifier_high = 'OT';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'GT',
 norm_modifier_high = 'NO'
 where result_modifier = 'GT' and norm_modifier_low = 'OT' and norm_modifier_high = 'GE';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'GT',
 norm_modifier_high = 'NO',
 result_modifier = 'GT'
 where result_modifier = 'OT' and norm_modifier_low = 'OT' and norm_modifier_high = 'GE';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'EQ',
 norm_modifier_high = 'EQ'
 where result_modifier = 'EQ' and norm_modifier_low in ('OT') and norm_modifier_high = 'GT';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'GE',
 norm_modifier_high = 'NO'
 where result_modifier = 'GT' and norm_modifier_low in ('OT') and norm_modifier_high = 'GT';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_low = 'NO',
 norm_modifier_high = 'LT'
 where result_modifier = 'LT' and norm_modifier_low in ('OT') and norm_modifier_high = 'GT';
 commit;
 begin;
-update SITE_pcornet.lab_result_cm
+update lurie_pcornet.lab_result_cm
 set norm_modifier_high = 'OT'
 where result_modifier = 'OT' and norm_modifier_low in ('OT') and norm_modifier_high = 'GT';
+commit;
+
+/* ensure effective drug dosage number fits within numeric(15,8) for each of the corresponding fields in PCORnet */
+begin;
+update SITE_pcornet.prescribing
+set rx_dose_ordered = trunc(rx_dose_ordered, (15 - length(split_part(rx_dose_ordered::text, '.', 1))))
+from 
+	SITE_pcornet.prescribing
+where
+	length(rx_dose_ordered::text) - 1 > 15
+	and length(split_part(rx_dose_ordered::text, '.', 2)) > (15 - length(split_part(rx_dose_ordered::text, '.', 1)));
+commit;
+
+begin;
+update SITE_pcornet.med_admin
+set MEDADMIN_DOSE_ADMIN = trunc(MEDADMIN_DOSE_ADMIN, (15 - length(split_part(MEDADMIN_DOSE_ADMIN::text, '.', 1))))
+from 
+	SITE_pcornet.med_admin
+where
+	length(MEDADMIN_DOSE_ADMIN::text) - 1 > 15
+	and length(split_part(MEDADMIN_DOSE_ADMIN::text, '.', 2)) > (15 - length(split_part(MEDADMIN_DOSE_ADMIN::text, '.', 1)));
+commit;
+
+begin;
+update SITE_pcornet.dispensing
+set DISPENSE_DOSE_DISP = trunc(DISPENSE_DOSE_DISP, (15 - length(split_part(DISPENSE_DOSE_DISP::text, '.', 1))))
+from 
+	SITE_pcornet.dispensing
+where
+	length(DISPENSE_DOSE_DISP::text) - 1 > 15
+	and length(split_part(DISPENSE_DOSE_DISP::text, '.', 2)) > (15 - length(split_part(DISPENSE_DOSE_DISP::text, '.', 1)));
 commit;
