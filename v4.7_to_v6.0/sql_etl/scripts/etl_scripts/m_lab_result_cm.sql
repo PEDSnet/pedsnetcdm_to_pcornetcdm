@@ -50,7 +50,8 @@ select distinct on (m.measurement_id) m.measurement_id as lab_result_cm_id,
         end,
         case 
             when m.value_as_number is not null then 'EQ' 
-        end
+        end,
+		rslt_modif.target_concept
     ) as result_modifier,
 	m.unit_concept_id,
 	left(m.range_low::text,10) as norm_range_low,
