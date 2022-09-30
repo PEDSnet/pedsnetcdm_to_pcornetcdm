@@ -48,7 +48,7 @@ update SITE_pcornet.immunization
 set vx_code = coalesce(target_concept,'999'),
 vx_code_type = coalesce(pcornet_name, 'CX')
 from SITE_pcornet.immunization imm
-left join SITE_pedsnet.immunization dimm on dimm.SITE = 'SITE' and dimm.immunization_id = imm.immunizationid::int
+left join SITE_pedsnet.immunization dimm on dimm.site = 'SITE' and dimm.immunization_id = imm.immunizationid::int
 left join vals on vals.concept_description ilike dimm.immunization_source_value
 where imm.vx_code = ''
 and imm.immunizationid = SITE_pcornet.immunization.immunizationid
