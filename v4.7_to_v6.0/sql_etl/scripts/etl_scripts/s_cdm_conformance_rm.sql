@@ -16,7 +16,7 @@ with vals (source_concept_class,target_concept,pcornet_name,source_concept_id,co
 	('vx_code_source','185','CX','40213152','INFLUENZA, RECOMBINANT, QUADRIVALENT, PF',''),
 	('vx_code_source','185','CX','40213152','INFLUENZA, QUADRIVALENT, PF, PEDIATRICS', ''),
 	('vx_code_source','98','CX','40213237','PPD TEST',''),
-	('vx_code_source','9','CX','40213228','TD (ADULT),2 LF TETANUS TOXOID,PRESERV VACCINE',''),
+	('vx_code_source','09','CX','40213228','TD (ADULT),2 LF TETANUS TOXOID,PRESERV VACCINE',''),
 	('vx_code_source','115','CX','40213230','TDAP VACCINE',''),
 	('vx_code_source','146','CX','40213284','DTAP/HEPB/IPV COMBINED VACCINE',''),
 	('vx_code_source','49','CX','40213314','HIB (PRP-OMP)',''),
