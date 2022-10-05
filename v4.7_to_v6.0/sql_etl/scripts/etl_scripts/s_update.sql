@@ -190,7 +190,7 @@ commit;
 
 begin;
 update SITE_pcornet.lab_result_cm
-set result_unit = '[iU]/L'
+set result_unit = '[IU]/L'
 from SITE_pcornet.lab_result_cm l
 inner join SITE_pedsnet.measurement m on m.measurement_id = l.lab_result_cm_id::bigint and m.unit_source_value in ('IU/L')
 where (l.result_unit in ('NI','UN','OT','') or l.result_unit is null)
