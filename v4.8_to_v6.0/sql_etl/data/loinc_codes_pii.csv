@@ -1,0 +1,667 @@
+﻿LOINC,LongName,Component
+11294-6,Current employment Narrative - Reported,Current employment
+11295-3,Current employment - Reported,Current employment
+11296-1,ED clinical finding practitioner identifier,ED clinical finding practitioner ID
+11298-7,ED consultant practitioner identifier,ED consultant practitioner ID
+11312-6,ED procedure practitioner identifier,ED procedure practitioner ID
+11318-3,Ambulance transport agency EMS system,Ambulance transport agency
+11319-1,Ambulance transport unit [Identifier] EMS system,Ambulance transport unit
+11340-7,History of Occupation Narrative,Occupation
+11341-5,History of Occupation,Occupation
+11513-9,Provider.signing [Identifier] Report,Provider.signing
+11530-3,Surgeon.assisting [Identifier],Surgeon.assisting
+11531-1,Surgeon.resident [Identifier],Surgeon.resident
+11532-9,Surgeon.staff [Identifier],Surgeon.staff
+18694-0,ED consultant practitioner name,ED consultant practitioner name
+18700-5,ED practitioner name,ED practitioner name
+18705-4,ED referring practitioner name,ED referring practitioner name
+18770-8,Dictating practitioner name,Dictating practitioner name
+18771-6,Provider signing name,Provider.signing name
+18772-4,Surgeon.resident name,Surgeon.resident name
+18773-2,Surgeon.staff name,Surgeon.staff name
+19111-4,Mother's hospital number,Hospital number
+21842-0,Birthplace,Birthplace
+21851-1,Address at cancer diagnosis,Address at cancer XXX Dx
+22018-6,Military patient number,Military patient number
+22019-4,Death certificate number,Death certificate number
+22020-2,Maiden name,Maiden name
+22021-0,Institution referred from Cancer registry,Institution referred from
+22022-8,Institution referred to Cancer registry,Institution referred to
+22023-6,Last follow-up hospital [Identifier] Cancer registry,Last follow-up hospital
+22024-4,Following registry [Identifier] Cancer registry,Following registry
+22025-1,Physician managing [Identifier],Physician managing
+22026-9,Physician follow up [Identifier],Physician follow up
+22027-7,Surgeon primary [Identifier],Surgeon primary
+22028-5,Physician [Identifier],Physician
+30947-6,Date form completed,Date form completed
+39233-2,"Screen test, other name CPHS","Screen test, other name"
+39250-6,"Program participation, name CPHS","Program participation, name"
+39268-8,"Follow-up (referred to) provider /specialist, name CPHS","Follow-up (referred to) provider &or specialist, name"
+39270-4,"Follow-up (referred to) provider /specialist, address CPHS","Follow-up (referred to) provider &or specialist, address"
+39271-2,"Follow-up (referred to) provider /specialist, phone CPHS","Follow-up (referred to) provider &or specialist, phone"
+39275-3,"Follow-up (referred to) program, name CPHS","Follow-up (referred to) program, name"
+39276-1,"Follow-up (referred to) program, address CPHS","Follow-up (referred to) program, address"
+39277-9,"Follow-up (referred to) program, phone CPHS","Follow-up (referred to) program, phone"
+39281-1,"Responsible party, name CPHS","Responsible party, name"
+39282-9,"Responsible party, home phone number CPHS","Responsible party, home phone number"
+39284-5,Patient escort information panel,Patient escort information panel
+39285-2,Escort Name,Name
+39286-0,Escort Relationship to patient,Relationship to patient
+42077-8,Patient phone number,Phone number
+42106-5,Archive facility identification number Cancer,Archive facility identification number
+42127-1,Name of follow-up contact,Name of follow-up contact
+44780-5,Organ donor ID number Narrative,Organ donor ID number
+44951-2,Physician NPI [Identifier],Physician NPI
+44952-0,Surgeon primary NPI [Identifier] Provider,Surgeon primary NPI
+44953-8,Physician follow up NPI [Identifier],Physician follow up NPI
+44954-6,Physician managing NPI [Identifier],Physician managing NPI
+44955-3,Archive facility identification number NPI Cancer,Archive facility identification number NPI
+44956-1,Following registry NPI [Identifier] Cancer registry,Following registry NPI
+44957-9,Institution referred to NPI Cancer registry,Institution referred to NPI
+44958-7,Institution referred from NPI Cancer registry,Institution referred from NPI
+44959-5,Hospital.reporting NPI [Identifier] Cancer,Hospital.reporting NPI
+44960-3,Institution data source NPI Registry message,Institution data source NPI
+45392-8,First (Given) name,First name
+45393-6,Middle initial,Middle initial
+45394-4,Last (Family) name,Last name
+45395-1,Name suffix,Name suffix
+45396-9,Social Security number [Identifier],Social Security number
+45397-7,Medicare or comparable number,Medicare or comparable number
+45398-5,State provider number for Facility,State provider number
+45400-9,Medicaid number,Medicaid number
+45401-7,Postal code [Location],Postal code
+45402-5,Language.primary,Language.primary
+45403-3,Room number [Location],Room number
+45404-1,Marital status,Marital status
+46098-0,Sex,Sex
+46106-1,Medical record number [Identifier],Medical record number
+46463-6,Race or ethnicity,Race or ethnicity
+46499-0,State of residence,State of residence
+49089-6,Sonographer [Identifier],Sonographer
+52023-9,"Ambulance transport, Origination site name and address",Origination site name and address
+52026-2,"Ambulance transport, Destination site name and address",Destination site name & address
+52455-3,Admission date,Admission date
+52462-9,Nickname,Nickname
+52463-7,Patient Identification Number or Provider Account Number,Patient Identification Number or Provider Account Number
+52526-1,Attending physician name,Attending physician name
+52539-4,Prior postal code [Location],Prior postal code
+52828-1,Federal provider name Facility,Federal provider name
+52831-5,Postal code [Location] Facility,Postal code
+54123-5,Sex of Family member,Sex
+54136-7,Relationship to patient Family member,Relationship to patient
+54503-8,Legal name of patient,Legal name of patient
+54581-4,Facility provider numbers,Facility provider numbers
+54588-9,Interpreter needed,Interpreter needed
+54704-2,How important it is to be able to use the phone in private while in this facility [CMS Assessment],How important it is to be able to use the phone in private while in this facility
+54899-0,Preferred language,Language.preferred
+56051-6,Hispanic or Latino,Hispanic or Latino
+56090-4,Hispanic origin,Hispanic origin
+56794-1,Internal identifier,Internal identifier
+56795-8,Account number [Identifier],Account number
+56796-6,Emergency contact information panel,Emergency contact information panel
+56797-4,Episode unique identifier,Episode unique identifier
+56799-0,Address,Address
+56802-2,Primary care provider [Identifier],Primary care provider
+56803-0,ED attending physician [Identifier],ED attending physician
+56804-8,ED nurse [Identifier] Provider,ED nurse
+56805-5,ED accepting/admitting provider [Identifier],ED accepting or admitting provider
+56806-3,ED transferring provider [Identifier],ED transferring provider
+56807-1,ED transferring facility [Identifier],ED transferring facility
+56808-9,ED accepting or admitting facility [Identifier],ED accepting or admitting facility
+56809-7,ED tech [Identifier] Provider,ED tech
+56810-5,ED triage nurse Provider,ED triage nurse
+56811-3,Primary care clinic or system [Identifier] Facility,Primary care clinic or system
+56812-1,Provider who accepted patient in transfer to another facility [Identifier],Provider who accepted patient in transfer to another facility
+56855-0,Provider assuming ultimate responsibility for care for patient upon ED disposition [Identifier],Provider assuming ultimate responsibility for care for patient upon ED disposition
+56856-8,Provider assuming care for patient upon ED disposition [Identifier],Provider assuming care for patient upon ED disposition
+56862-6,Emergency contact Address,Address
+56863-4,Emergency contact Phone number,Phone number
+56870-9,ED facility ID,ED facility ID
+62324-9,Post-discharge provider name in Provider,Post-discharge provider name
+62326-4,Post-discharge provider practice name,Post-discharge provider practice name
+62327-2,Post-discharge provider practice address,Post-discharge provider practice address
+62328-0,Post-discharge provider practice phone number,Post-discharge provider practice phone number
+62329-8,Birth hospital facility ID,Birth hospital facility ID
+62330-6,Birth hospital facility name,Birth hospital facility name
+62331-4,Birth hospital facility address,Birth hospital facility address
+62332-2,Birth hospital facility phone number,Birth hospital facility phone number
+62369-4,FISH probe name panel - Laboratory device,FISH probe name panel
+63052-5,PhenX - current address protocol 010801,PhenX - current address protocol 010801
+63492-3,Father birthplace,Birthplace
+63498-0,Current street name [Location] [PhenX],Current street name
+63517-7,Household member Relationship to patient,Relationship to patient
+63726-4,From what date did you live in the residence,From what date did you live in the residence
+63727-2,To what date did you live in the residence,To what date did you live in the residence
+63728-0,"What is the residence address, street - crosstreets, city, state or landmark [PEG]","What is the residence address, street - crosstreets, city, state or landmark"
+63754-6,"What was the name of the company where you first or next worked, for 6 months or longer [NHANES]","What was the name of the company where you first or next worked, for 6Mo or longer"
+63781-9,Sex of Sibling,Sex
+64604-2,Technician [Identifier],Technician ID
+65645-4,Reviewer initials,Reviewer initials
+65647-0,City Facility,City
+65649-6,Country Facility,Country
+65650-4,Email address Facility,Email address
+65651-2,Phone number Facility,Phone number
+65652-0,Testing facility name,Testing facility name
+65833-6,Facility Address,Address
+65840-1,Principal result interpreter phone number,Principal result interpreter phone number
+65884-9,Photographer ID,Photographer ID
+66276-7,Day name [PhenX],Day name
+66280-9,School Name,Name
+66302-1,Participant [Identifier],Participant ID
+66506-7,Image name Hand [PhenX],Image name
+66509-1,Image name Knee [PhenX],Image name
+66512-5,Image name Hip [PhenX],Image name
+66566-1,Image name Femur [PhenX],Image name
+66567-9,Image name Spine [PhenX],Image name
+67101-6,Dermatologist name Provider,Dermatologist name
+67153-7,Abstractor [Identifier],Abstractor ID
+67154-5,Nosologist [Identifier],Nosologist ID
+67288-1,Race or ethnicity [The Position Generator],Race or ethnicity
+67414-3,Region of origin [PhenX],Region of origin
+67714-6,Diagnosing provider phone number,Diagnosing provider phone number
+67878-9,Facility name Dialysis facility,Facility name
+67884-7,Tribal enrollment,Tribal enrollment
+68335-9,Self-dialysis training facility name Dialysis facility,Self-dialysis training facility name
+68340-9,Attending physician phone number Provider,Attending physician phone number
+68491-0,Self-dialysis training physician name Provider,Self-dialysis training physician name
+69417-4,CMS certification number (CCN) for Facility,CMS certification number
+69434-9,Location of death name Facility,Location of death name
+69435-6,Street address where death occurred if not facility,Street address where death occurred if not facility
+69854-8,"Hispanic, latino-a, or spanish origin","Hispanic, latino-a, or spanish origin"
+71509-4,Phone number extension Dialysis facility [ESRD],Phone number extension
+71530-0,Business name Dialysis facility [ESRD],Business name
+71534-2,Phone number Dialysis facility [ESRD],Phone number
+71591-2,Personnel Job title,Job title
+71720-7,Personnel Address,Address
+71723-1,Personnel Cell phone number,Cell phone number
+71724-9,Personnel Home phone number,Home phone number
+71725-6,Personnel Business phone number extension,Business phone number extension
+71726-4,Personnel Business phone number,Business phone number
+71727-2,Personnel Fax number,Fax number
+71728-0,Personnel Email address,Email address
+71729-8,Personnel Nine-digit postal code,Nine-digit postal code
+71730-6,Personnel Five-digit postal code,Five-digit postal code
+71731-4,Personnel State,State
+71732-2,Personnel City,City
+71733-0,Personnel Address 2,Address 2
+71734-8,Personnel Preferred mailing address,Preferred mailing address
+71735-5,Personnel Credentials,Credentials
+71736-3,Personnel Name prefix,Name prefix
+71737-1,Personnel Name suffix,Name suffix
+71738-9,Personnel Middle initial,Middle initial
+71739-7,Personnel First (Given) name,First name
+71740-5,Personnel Last (Family) name,Last name
+71749-6,Personnel unique identifier,Personnel unique identifier
+71750-4,Primary contact phone number extension Facility,Primary contact phone number extension
+71751-2,Primary contact phone number Facility,Primary contact phone number
+71766-0,Primary contact email Facility,Primary contact email
+72486-4,Laboratory director name in Provider,Laboratory director name
+74024-1,Family member identifier,Family member identifier
+74025-8,Mother identifier,Mother identifier
+74026-6,Father identifier,Father identifier
+74221-3,Referring physician address,Referring physician address
+74287-4,Occupation [NTDS],Occupation
+74288-2,Occupation industry [NTDS],Occupation industry
+74547-1,Reporter email,Reporter email
+74548-9,Reporter phone number,Reporter phone number
+75549-6,Performing laboratory phone number,Performing laboratory phone number
+75783-1,Primary healthcare agent [Reported],Primary healthcare agent
+75784-9,First alternate healthcare agent [Reported],First alternate healthcare agent
+75785-6,Second alternate healthcare agent [Reported],Second alternate healthcare agent
+76417-5,Provider First name,First Name
+76418-3,Provider Middle Initial,Middle Initial
+76419-1,Provider Last name,Last name
+76420-9,Provider Graduation year,Graduation year
+76428-2,Visit charge in dollars,Visit charge
+76430-8,CPT units [#],CPT units
+76432-4,Episode of care unique identifier,Episode of care unique identifier
+76435-7,Patient identifier,Identifier
+76437-3,Primary insurance,Primary insurance
+76438-1,Secondary insurance,Secondary insurance
+76458-9,Patient Email address,Email address
+76468-8,Organization NPI,National provider ID
+76469-6,Organization name,Name
+76470-4,Organization federal tax ID,Federal employer tax ID
+76471-2,Organization episode of care unique identifier,Organization episode of care unique identifier
+76516-4,Gestational age--at birth,Gestational age^at birth
+76689-9,Sex assigned at birth,Sex assigned^at birth
+76695-6,Organization ZIP code,Postal code
+76696-4,Name [Identifier] Facility,Name
+76698-0,Patient identifier assigning authority,Identifier assigning authority
+77981-9,Case outbreak name,Case outbreak name
+77983-5,Country of usual residence [Location],Country of usual residence
+78746-5,Country of birth [Location],Country of birth
+78977-6,Cardiologist name Provider,Cardiologist name
+79183-0,First name of Guardian or legally authorized representative,First name
+79184-8,Last name of Guardian or legally authorized representative,Last name
+80393-2,Emergency management incident name,Emergency management incident name
+80427-8,Employer name [Identifier],Employer name
+80429-4,Employer address,Employer address
+80430-2,Past employer address,Past employer address
+80431-0,Employer city,Employer city
+80432-8,Past employer city,Past employer city
+80433-6,Employer state,Employer state
+80434-4,Past employer state,Past employer state
+80435-1,Employer postal code [Location],Employer postal code
+80436-9,Past employer postal code [Location],Past employer postal code
+80437-7,Employer country [Location],Employer country
+80438-5,Past employer country [Location],Past employer country
+80909-5,Father's last name,Father's last name
+81230-5,Referring physician phone number,Referring physician phone number
+81369-1,First witness,First witness
+81370-9,Second witness,Second witness
+81371-7,Third witness,Third witness
+81372-5,Notary,Notary
+81373-3,Notary commission expiration date,Notary commission expiration date
+81374-1,Notary seal ID,Notary seal ID
+81886-4,Sex of Provider,Sex
+81887-2,Provider race OMB.1997,Race
+81888-0,Provider ethnicity OMB.1997,Ethnicity
+81889-8,Physical therapy provider entry-level degree,Physical therapy entry-level degree
+81890-6,Physical therapy provider post-professional degree,Physical therapy highest level of education
+81954-0,Date of death [Date],Date of death
+81956-5,Date and time of death [TimeStamp],Date and time of death
+82157-9,Birth date Provider,Birth date
+82158-7,Graduation state Provider,Graduation state
+82589-3,Highest level of education,Highest level of education
+82590-1,Years of education [#] - Reported,Y of education
+82607-3,Clinical data [Date and Time Range],Clinical data
+85078-4,Occupation industry [Type],Occupation industry
+85104-8,Compensation and sector employment type,Employment type.compensation and sector
+85431-5,Marital status of Contact,Marital status
+85432-3,Contact Relationship to patient,Relationship to patient
+85657-5,Occupation industry CDC Census code,Occupation industry CDC Census code
+85658-3,Occupation [Type],Occupation
+85659-1,Occupation CDC Census code,Occupation CDC Census code
+86637-6,Provider role,Provider role
+86639-2,Household size [#],Household size
+87219-2,Attesting individual first name Provider [CMS Assessment],Attesting individual first name
+87220-0,Attesting individual last name Provider [CMS Assessment],Attesting individual last name
+87226-7,Legal name of patient - first and last,Legal name of patient - first and last
+87286-1,Birth attendant [Extended Identifier],Birth attendant
+87287-9,Birth certifier [Extended Identifier],Birth certifier
+87288-7,Date of birth certification,Date of birth certification
+87289-5,Date of fetal death registration,Date of fetal death registration
+87293-7,Relationship to patient's mother,Relationship to patient's mother
+87520-3,Coverage type,Coverage type
+87720-9,Provider Postal code,Postal code
+87721-7,County of residence [Location],County of residence
+88080-7,Multiple birth set identifier,Multiple birth set identifier
+88081-5,Title of person completing the form Provider,Person completing form title
+88088-0,EMS transport destination name [Identifier] of Facility,EMS transport destination name
+88090-6,Physician specialty,Physician specialty
+89010-3,EMS physician name,EMS physician name
+89011-1,EMS assistant name,EMS assistant name
+89057-4,Permission to receive text messages,Permission to receive text messages
+89058-2,Contact email address,Email address
+89059-0,Secondary contact name,Secondary contact name
+89060-8,Contact Phone number,Phone number
+89061-6,Insurance group number [Identifier],Insurance group number
+89088-9,WIC services recipient,WIC services recipient
+89089-7,Immigration status,Immigration status
+89175-4,Billing information panel,Billing information panel
+89178-8,Patient's Financial responsibility amount [#],Financial responsibility amount
+89202-6,County location of Facility,County
+89265-3,"Procedures, Services, or Supplies modifier","Procedures, Services, or Supplies modifier"
+89266-1,"Procedures, Services, or Supplies code","Procedures, Services, or Supplies code"
+89550-8,Middle name Provider,Middle name
+89911-2,Emergency management plan name,Emergency management plan name
+89918-7,Emergency management plan approver name,Emergency management plan approver name
+90052-2,Organization Address,Address
+90053-0,Organization Phone number,Phone number
+90054-8,Organization Email address,Email address
+90055-5,Organization information panel,Organization contact information panel
+90057-1,Name of Contact at Organization,Contact name
+90058-9,Person responsible for generating report,Person responsible for generating report
+90059-7,Task description Narrative,Task description
+90060-5,Date task due,Date task due
+90063-9,Date and time task assigned,Date and time task assigned
+90093-6,Personnel name,Name
+90097-7,Email address of person responsible for generating report,Person responsible for generating report
+90108-2,Incident commander name,Incident commander name
+90109-0,Incident commander qualification,Incident commander qualification
+90110-8,Incident commander phone number,Incident commander phone number
+90111-6,Incident commander email address,Incident commander email address
+90113-2,Chief of staff name,Chief of staff name
+90114-0,Chief of staff phone number,Chief of staff phone number
+90115-7,Chief of staff email address,Chief of staff email address
+90118-1,Date and time of scheduled task,Date and time of scheduled task
+90119-9,Location of task,Location of task
+90123-1,Response team leader name,Response team leader name
+90124-9,Response team leader title,Response team leader title
+90125-6,Response team member name,Response team member name
+90126-4,Response team member title,Response team member title
+90852-5,Patient Fax number,Fax number
+90895-4,Task identifier,Task identifier
+90896-2,Personnel Person assigned to task,Person assigned to task
+90897-0,Percent of task completed,Percent of task completed
+90946-5,Date of laboratory phone call to provider to communicate test result,Date of laboratory phone call to provider to communicate test result
+91002-6,Personnel Job position,Job position
+91003-4,Personnel contact information panel,Personnel contact information panel
+91005-9,Organization assigned to task,Organization assigned to task
+91025-7,Lead department or agency name Organization,Lead department or agency name
+91098-4,Countermeasure name,Countermeasure name
+91387-1,Has valid driver license,Has valid driver license
+91562-9,Performing laboratory identifier Facility,Performing laboratory identifier
+91570-2,Employment net income in past 30 days,Employment net income
+91583-5,Date and time of public health emergency,Date and time of public health emergency
+91585-0,Reliability of information source,Reliability of information source
+91587-6,Accuracy of information from source,Accuracy of information from source
+91588-4,Latitude Event,Latitude
+91589-2,Longitude Event,Longitude
+91690-8,Testing services available at Facility,Testing services available
+91691-6,Personnel Age,Age
+91692-4,Sex of Personnel,Sex
+91693-2,Personnel specialty,Specialty
+91694-0,Highest level of education of Personnel,Highest level of education
+91695-7,Personnel Qualification,Qualification
+91696-5,Response team name,Response team name
+91697-3,Volunteer Name,Name
+91698-1,Volunteer age,Age
+91699-9,Sex of Volunteer,Sex
+91700-5,Specialty Volunteer,Specialty
+91702-1,Shelter name [Identifier] Facility,Shelter name
+91703-9,Shelter address Facility,Shelter address
+91704-7,Primary contact information panel Facility,Primary contact information panel
+91714-6,Date of interview,Date of interview
+91879-7,Reporter Information,Reporter information
+91880-5,Date and time of risk assessment meeting,Date and time of risk assessment meeting
+91881-3,Location of meeting,Location of meeting
+91886-2,Document name [Identifier],Document name
+91887-0,Agency type,Agency type
+91888-8,Qualification Volunteer,Qualification
+91889-6,Volunteer contact information panel,Volunteer contact information panel
+91891-2,Facility Bed type,Bed type
+91892-0,Address Volunteer,Address
+91893-8,Email address Volunteer,Email address
+91894-6,Volunteer Phone number,Phone number
+91904-3,Personnel Response team member qualification,Response team member qualification
+91905-0,Personnel Response team leader information panel,Response team leader information panel
+91906-8,Personnel Response team leader qualification,Response team leader qualification
+92009-0,Personnel Birth date,Birth date
+92026-4,Personnel Supervisor contact information panel,Supervisor contact information panel
+92028-0,Personnel Supervisor name,Supervisor name
+92029-8,Personnel Supervisor email address,Supervisor email address
+92030-6,Personnel Supervisor address,Supervisor address
+92031-4,Personnel Supervisor title,Supervisor title
+92032-2,Supervisor phone number,Supervisor phone number
+92033-0,Purchase cost [#] Supply,Purchase cost
+92035-5,Personnel Job experience,Job experience
+92045-4,Name of Donor,Name
+92046-2,Donor contact information panel,Donor contact information panel
+92047-0,Donated item by Donor,Donated item
+92048-8,Donated item [#] Donor,Donated item
+92191-6,Staff [#] Agency,Staff
+92193-2,Bed type [#] Facility,Bed type
+92194-0,Bed category Facility,Bed category
+92195-7,Bed category [#] Facility,Bed category
+92196-5,Supply owner [Identifier] Supply,Supply owner
+92197-3,Public health emergency budget [#] Reporting Period,Public health emergency budget
+92198-1,Public health emergency budget source,Public health emergency budget source
+92199-9,Public health emergency budget breakdown details Reporting Period Document,Public health emergency budget breakdown details
+92200-5,Public health emergency budget implementing unit name [Identifier],Public health emergency budget implementing unit name
+92201-3,Purchase activity Supply,Purchase activity
+92202-1,Recipient of supply [Identifier] Supply,Recipient of supply
+92203-9,Bed category panel Facility,Bed category panel
+92204-7,Bed type panel Facility,Bed type panel
+92573-5,Resident of region that is endemic for the disease of interest,Resident of region that is endemic for the disease of interest
+92634-5,Address type,Address type
+93186-5,Preferred language and interpreter need,Preferred language & interpreter need
+93449-7,Appointment of legal guardian,Appointment of legal guardian
+94130-2,Body disposition facility name [Identifier],Body disposition facility name
+94131-0,Body disposition facility address,Body disposition facility address
+94132-8,Funeral facility name [Identifier],Funeral facility name
+94133-6,Funeral facility address,Funeral facility address
+94134-4,Personnel Funeral service licensee or other agent assuming custody of the body of the deceased,Funeral service licensee or other agent assuming custody of the body of the deceased
+94135-1,Funeral service licensee identifier Facility,Funeral service licensee identifier
+94545-1,Household contacts [#],Household contacts
+94649-1,Health department identifier,Health department
+94650-9,Contact identifier Contact,Contact identifier
+94655-8,Identifier and Assigning authority panel,Identifier & Assigning authority panel
+94657-4,Contact case identifier,Case identifier
+94659-0,Case identifier,Case identifier
+95364-6,Personnel Organization,Organization
+95369-5,Affiliated with a tribe,Affiliated with a tribe
+95370-3,Tribal affiliation,Tribal affiliation
+95371-1,Enrolled in a tribe,Enrolled in a tribe
+95372-9,Workplace setting,Workplace setting
+95727-4,Contact Name,Name
+95728-2,Contact Address,Address
+95729-0,Relationship to decedent Contact,Relationship to decedent
+95730-8,Surviving spouse name,Surviving spouse name
+95731-6,Mother's Maiden name,Maiden name
+96676-2,Employer phone number,Employer phone number
+96677-0,School Address,Address
+96678-8,School code [ID],School code
+96679-6,School Identifier assigning authority,Identifier assigning authority
+21842-0,Birthplace,
+22019-4,Death certificate number,
+63490-7,Deprecated Birthplace [PhenX],
+64297-5,Death certificate,
+66909-3,"Have you ever had an immediate family member, romantic partner, or very close friend who was murdered [LTVH]",
+67116-4,"Was anyone murdered who was a parent, a brother, a sister, a very close friend, a boyfriend or girlfriend, or someone who lived with you [LTVH]",
+67118-0,"Have you ever known someone who committed suicide or killed themselves; that is, a parent, a sister, a brother, a very close friend, a boyfriend or girlfriend, or someone who lived with you [LTVH]",
+69454-7,Death date comment,
+74025-8,Mother identifier,
+74026-6,Father identifier,
+74499-5,Death pronouncer details,
+74734-5,Death certifier details,
+75257-6,Mother's Marital status [CDC.CS],
+80616-6,Date and time pronounced dead [US Standard Certificate of Death],
+80907-9,Death registration date,
+80909-5,Father's last name,
+81356-8,Death arrangements [Reported],
+86263-1,Data items collected at inpatient facility admission or agency discharge only - discharge from agency - death at home [CMS Assessment],
+86807-5,Death administrative information Document,
+87289-5,Date of fetal death registration,
+87297-8,Birth registration date,
+87302-6,Paternity acknowledgment form signed Father,
+88370-2,"Outcome and assessment information set (OASIS) form - version D, D1 - Discharged from agency - death at home [CMS Assessment]",
+88505-3,OASIS D - Data items collected at inpatient facility admission or agency discharge only - discharge from agency - death at home [CMS Assessment],
+92010-8,Jurisdiction fetal death report Document,
+92013-2,Father's administrative information,
+92019-9,Provider supplied mother's fetal death report Document,
+92021-5,Provider supplied facility fetal death report Document,
+11503-0,Medical records,
+11951-1,Fetal [Identifier] Identifier,
+19111-4,Mother's hospital number,
+19132-0,Mother's name,
+21851-1,Address at cancer diagnosis,
+22018-6,Military patient number,
+22020-2,Maiden name,
+42077-8,Patient phone number,
+45392-8,First name,
+45394-4,Last name,
+45396-9,Social Security number [Identifier],
+45397-7,Medicare or comparable number,
+45400-9,Medicaid number,
+45403-3,Room number [Location],
+45965-1,Name Set,
+45966-9,Social Security and Medicare numbers,
+46106-1,Medical record number [Identifier],
+52069-2,Tax ID number - IRS form W9,
+52461-1,Middle name,
+52462-9,Nickname,
+52463-7,Patient Identification Number or Provider Account Number,
+52532-9,Provider state,
+53599-7,Deprecated ZIP code of prior primary residence,
+54125-0,Name,
+54138-3,Name Family member,
+54503-8,Legal name of patient,
+54504-6,Deprecated Social Security and Medicare numbers,
+56794-1,Internal identifier,
+56795-8,Account number [Identifier],
+56799-0,Address,
+56861-8,Emergency contact Name,
+56862-6,Emergency contact Address,
+56863-4,Emergency contact Phone number,
+63497-2,Current street number [Location] [PhenX],
+63498-0,Current street name [Location] [PhenX],
+63500-3,Current city [PhenX],
+63502-9,Deprecated Current zip code [Location] [PhenX],
+63728-0,"What is the residence address, street - crosstreets, city, state or landmark [P",
+64866-7,In what city or town were you living when you were 18 [PhenX],
+64867-5,To what city or town did you move to next [PhenX],
+64869-1,City [PhenX],
+66280-9,School Name,
+68997-6,City,
+68998-4,U.S. standard certificate of live birth - 2003 revision,
+69409-1,U.S. standard certificate of death - 2003 revision,
+69435-6,Street address where death occurred if not facility,
+74024-1,Family member identifier,
+74027-4,Family pedigree identifier,
+74548-9,Reporter phone number,
+74710-5,Asset tag number,
+74711-3,Unique device identifier,
+74713-9,Other unique product identifier [Type],
+74726-1,Other unique product identifier,
+75519-9,Encounter identifier,
+76435-7,Patient identifier,
+76458-9,Patient Email address,
+78239-1,Resource identifier [URI] for Clinical document,
+80427-8,Employer name [Identifier],
+80428-6,Past employer name [Identifier],
+80429-4,Employer address,
+80430-2,Past employer address,
+80431-0,Employer city,
+80432-8,Past employer city,
+80433-6,Employer state,
+80434-4,Past employer state,
+80571-3,Certificate,
+80903-8,Birth certificate ID,
+82787-3,Participant identifier,
+86345-6,U.S. standard certificate of death - recommended 2003 revision set,
+86347-2,U.S. standard certificate of live birth - recommended 2003 revision set,
+87226-7,Legal name of patient - first and last,
+89058-2,Contact email address,
+89060-8,Contact Phone number,
+89061-6,Insurance group number [Identifier],
+89601-9,Proof of encounter certificate,
+90852-5,Patient Fax number,
+92045-4,Name of Donor,
+53245-7,Driver license,
+64290-0,Health insurance card,
+71230-7,Birth certificate,
+15514-3,"Ambulance transport, Ordering practitioner identifier type",
+18581-9,"Ambulance transport, Origination site Address",
+18583-5,"Ambulance transport, Destination site Address",
+18730-2,"Deprecated Psychiatric rehabilitation treatment plan, Author ID Identifier",
+21866-9,Patient ID.hospital,
+31211-6,Date of death,
+39270-4,"Follow-up (referred to) provider /specialist, address CPHS",
+39276-1,"Follow-up (referred to) program, address CPHS",
+39282-9,"Responsible party, home phone number CPHS",
+42127-1,Name of follow-up contact,
+44780-5,Organ donor ID number Narrative,
+45250-8,HIV confirmation facility Address,
+45253-2,HIV treatment prior clinic transferred from Address,
+45255-7,HIV treatment clinic transferred to Address,
+46446-1,Record ID section Set NAACCR v.11,
+46496-6,Agency patient number [CMS Assessment],
+46503-9,Deprecated Most recent inpatient discharge date [OASIS],
+46582-3,"Discharge, transfer, death date [CMS Assessment]",
+52010-6,"Ambulance transport, Other patient name",
+52011-4,"Ambulance transport, Other patient identifier",
+52014-8,"Ambulance transport, Receiving individual accepting responsibility for patient Identifier",
+52023-9,"Ambulance transport, Origination site name and address",
+52026-2,"Ambulance transport, Destination site name and address",
+52037-9,Member ID card copy,
+52455-3,Admission date,
+52525-3,Discharge date,
+54124-3,Birth date Family member,
+55078-0,Federal employer tax ID Software vendor,
+55093-9,Vendor email address Software,
+55174-7,Patient identification data Set DEEDS,
+60506-3,Record ID section Set NAACCR v.12,
+63052-5,PhenX - current address protocol 010801,
+66302-1,Participant [Identifier],
+71720-7,Personnel Address,
+71723-1,Personnel Cell phone number,
+71724-9,Personnel Home phone number,
+71725-6,Personnel Business phone number extension,
+71726-4,Personnel Business phone number,
+71727-2,Personnel Fax number,
+71728-0,Personnel Email address,
+71733-0,Personnel Address 2,
+71734-8,Personnel Preferred mailing address,
+71736-3,Personnel Name prefix,
+71737-1,Personnel Name suffix,
+71739-7,Personnel First name,
+71740-5,Personnel Last name,
+71750-4,Primary contact phone number extension Facility,
+71751-2,Primary contact phone number Facility,
+71752-0,Primary contact first name Facility,
+71753-8,Primary contact last name Facility,
+73766-8,Place where birth occurred [US Standard Certificate of Live Birth],
+73774-2,Onset of labor [US Standard Certificate of Live Birth],
+74718-8,Type of device identifier [AHRQ],
+76429-0,Physical therapy Discharge date,
+76470-4,Organization federal tax ID,
+76695-6,Organization ZIP code,
+77967-8,Reporting county,
+77972-8,Earliest date reported to county,
+77987-6,County of exposure to illness [Location],
+81681-9,Verified two types of patient identification,
+81954-0,Date of death [Date],
+82753-5,County of travel [Location],
+85058-6,Imputed values for date of death,
+85059-4,Confidence in date of death,
+86470-2,Most recent inpatient discharge date in the last 14 days [CMS Assessment],
+8649-6,Hospital discharge date,
+8656-1,Hospital admission date,
+87290-3,Date of Social Security Number request,
+87294-5,Guardian or legally authorized representative signature for Social Security Number request,
+87532-8,Most important mental health issue to address,
+87721-7,County of residence [Location],
+89059-0,Secondary contact name,
+90052-2,Organization Address,
+90054-8,Organization Email address,
+90057-1,Name of Contact at Organization,
+90093-6,Personnel name,
+90097-7,Email address of person responsible for generating report,
+90111-6,Incident commander email address,
+90123-1,Response team leader name,
+90125-6,Response team member name,
+91004-2,Deprecated Email address Personnel,
+91696-5,Response team name,
+91697-3,Volunteer Name,
+91703-9,Shelter address Facility,
+91892-0,Address Volunteer,
+91893-8,Email address Volunteer,
+91894-6,Volunteer Phone number,
+92009-0,Personnel Birth date,
+92028-0,Personnel Supervisor name,
+92029-8,Personnel Supervisor email address,
+92030-6,Personnel Supervisor address,
+92032-2,Supervisor phone number,
+92634-5,Address type,
+94131-0,Body disposition facility address,
+94133-6,Funeral facility address,
+94664-0,Anticipated discharge date,
+95367-9,Intensive care unit (ICU) admission date,
+95368-7,Intensive care unit (ICU) discharge date,
+52460-3,Patient Information,
+LP116197-7,Death certificate,
+LP416787-2,Death certificate | {Setting} | Document ontology,
+LP57353-2,Summary of death note,
+LP416803-7,Health insurance card &#x7C; {Setting} &#x7C; Document ontology,
+LP416787-2,Death certificate &#x7C; {Setting} &#x7C; Document ontology,
+LP416786-4,Birth certificate &#x7C; {Setting} &#x7C; Document ontology,
+LP267920-9,Proof of encounter certificate,
+LP416785-6,Certificate &#x7C; {Setting} &#x7C; Document ontology,
+LP230533-4,State of travel,
+LP419182-3,State of travel &#x7C; Patient &#x7C; History,
+LP416802-9,Driver license &#x7C; {Setting} &#x7C; Document ontology,
+LP418057-8,City of travel,
+LP419181-5,City of travel &#x7C; Patient &#x7C; History,
+LP418079-2,State of known exposure,
+LP419189-8,State of known exposure &#x7C; Patient &#x7C; History,
+LP116194-4,Health insurance card,
+LP149090-5,Birth certificate,
+LP149091-3,Certificate,
+LP74012-3,Driver license,
+LP418851-4,Intensive care unit (ICU) admission date,
+LP419194-8,Intensive care unit (ICU) admission date &#x7C; Patient &#x7C; History,
+LP418852-2,Intensive care unit (ICU) discharge date,
+LP419195-5,Intensive care unit (ICU) discharge date &#x7C; Patient &#x7C; History,
+LP36348-8,Patient information,
