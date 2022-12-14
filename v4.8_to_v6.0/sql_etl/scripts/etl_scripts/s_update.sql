@@ -300,3 +300,16 @@ update SITE_pcornet.lab_result_cm
 set result_modifier = 'EQ' 
 where norm_modifier_high = 'OT' and norm_modifier_low = 'EQ' and (result_modifier in ('','OT') or result_modifier is null);
 commit;
+
+begin;
+update SITE_pcornet.lab_result_cm 
+set  
+    norm_modifier_low = 'NO',
+    norm_modifier_high = 'LT'
+where 
+    result_modifier = 'EQ'
+    and norm_modifier_high = 'EQ' 
+    and norm_modifier_low = 'EQ' 
+    and norm_range_low is null
+    and norm_range_high is not null
+commit;
