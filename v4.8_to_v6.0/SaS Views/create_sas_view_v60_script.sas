@@ -368,6 +368,7 @@ proc sql;
         rx_prn_flag,
         rx_providerid,
         rx_quantity,
+        rx_quantity_unit,
         rx_refills,
         rx_route,
         rx_source,

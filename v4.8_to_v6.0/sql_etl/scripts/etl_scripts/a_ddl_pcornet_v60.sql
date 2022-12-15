@@ -454,6 +454,7 @@ CREATE TABLE prescribing (
 	rx_prn_flag VARCHAR(1), 
 	rx_providerid VARCHAR(256), 
 	rx_quantity NUMERIC(15, 8), 
+	rx_quantity_unit VARCHAR(2), 
 	rx_refills NUMERIC(15, 8), 
 	rx_route VARCHAR(256), 
 	rx_source VARCHAR(2), 

@@ -21,6 +21,7 @@ rx_order_date,PEDSnet,drug_exposure,DE,drug_exposure_start_date,,
 rx_order_time,PEDSnet,drug_exposure,DE,drug_exposure_start_time,,
 rx_providerid,PEDSnet,drug_exposure,DE,provider_id,,
 rx_quantity,PEDSnet,drug_exposure,DE,quantity,,
+rx_quantity_unit,,,,,,need to work on this
 rx_refills,PEDSnet,drug_exposure,DE,refills,,
 rx_route,PEDSnet,drug_exposure,DE,route_concept_id ,Pedsnet_pornet_valueset_map on source_concept_id where source_concept_class='Route',
 rx_source,PEDSnet,drug_exposure,DE,,,OD'
