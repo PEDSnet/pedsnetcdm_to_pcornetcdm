@@ -7021,3 +7021,4 @@ source_concept_class,target_concept,pcornet_name,source_concept_id,concept_descr
 "Facility type","HOSPITAL_OUTPATIENT_PEDIATRIC_HEMATOLOGY_ONCOLOGY_CLINIC","HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE_PEDIATRIC-subset","9202","Care Site Specialty","45756799"
 "Provider Specialty","2080P0207X","Allopathic & Osteopathic Physicians, Internal Medicine, Medical Oncology","38003886","Allopathic & Osteopathic Physicians, Internal Medicine, Medical Oncology",
 "Facility type","HOSPITAL_OUTPATIENT_PEDIATRIC_HEMATOLOGY_ONCOLOGY_CLINIC","HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE_PEDIATRIC-subset","9202","Care Site Specialty","38003886"
+"Encounter type","IP",NULL,"2000001532","Inpatient Visit - Ongoing",NULL
