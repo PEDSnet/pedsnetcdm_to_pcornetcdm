@@ -311,5 +311,5 @@ where
     and norm_modifier_high = 'EQ' 
     and norm_modifier_low = 'EQ' 
     and norm_range_low is null
-    and norm_range_high is not null
+    and norm_range_high is not null;
 commit;
