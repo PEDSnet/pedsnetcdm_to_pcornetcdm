@@ -1,5 +1,5 @@
 begin;
-insert into SITE_pcornet.enrollment (patid, enr_start_date, enr_end_date, chart, enr_basis, site)
+insert into SITE_pcornet.enrollment (patid, enr_start_date, enr_end_date, chart, enr_basis)
 select distinct
 	cast(op.person_id as text) as pat_id,
 	cast(
@@ -10,9 +10,7 @@ select distinct
 	as date)
 	as enr_end_date,
 	'Y' as chart, -- defaulting to yes
-	'E' as ENR_basis,
-	'SITE' as site
+	'E' as ENR_basis
 from
-	SITE_pedsnet.observation_period op
-	where person_id IN (select person_id from SITE_pcornet.person_visit_start2001);
+	SITE_pedsnet.observation_period op;
 commit;

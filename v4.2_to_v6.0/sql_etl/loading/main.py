@@ -5,6 +5,7 @@ import click
 import os
 from loading import process
 import shutil
+import config
 
 # endregion
 
@@ -40,6 +41,12 @@ def cli(searchpath, pwprompt, user, database, host, options, harvest, testscript
         'load_maps': process.load_maps
     }
     # endregion
+
+    if os.path.isfile(configfile_name):
+        db_params = config.config('db')
+        host = db_params['host']
+        database = db_params['database']
+        searchpath = config.config('schema')['schema']
 
     # region verify
     if not user:

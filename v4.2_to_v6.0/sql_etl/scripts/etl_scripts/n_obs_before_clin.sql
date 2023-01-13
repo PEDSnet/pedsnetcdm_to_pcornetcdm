@@ -3,10 +3,7 @@ Create table SITE_pcornet.filter_obs
 as
 select * 
 from SITE_pedsnet.observation obs
-where EXTRACT(YEAR FROM obs.observation_date)>=2001
-and obs.person_id in (select person_id from SITE_pcornet.person_visit_start2001)
-and (obs.visit_occurrence_id in (select visit_id from SITE_pcornet.person_visit_start2001)
-	 or obs.visit_occurrence_id is null);
+;
 commit;
 
 begin;
@@ -32,8 +29,7 @@ null as raw_obsclin_type,
 null as raw_obsclin_code,
 null as raw_obsclin_modifier,
 meas.value_as_number::text as raw_obsclin_result,
-meas.unit_concept_name as raw_obsclin_unit,
-meas.site
+null as raw_obsclin_unit
 from SITE_pedsnet.measurement meas 
 left join vocabulary.concept loinc on loinc.concept_id = meas.measurement_concept_id and loinc.vocabulary_id = 'LOINC'
 Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id::int = meas.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator'
@@ -53,7 +49,7 @@ coalesce(map_qual.target_concept,qual.target_concept,'OT') as obsclin_result_qua
 obsclin_result_snomed, obsclin_result_text,
 meas.operator_concept_id,
 meas.unit_concept_id, meas.unit_source_value,obsclin_source,raw_obsclin_name,raw_obsclin_type,
-raw_obsclin_code,raw_obsclin_modifier,raw_obsclin_result,raw_obsclin_unit,meas.site
+raw_obsclin_code,raw_obsclin_modifier,raw_obsclin_result,raw_obsclin_unit
 from SITE_pcornet.meas_obsclin_loinc meas 
 left join pcornet_maps.pedsnet_pcornet_valueset_map map_qual on cast(meas.value_as_concept_id as text)= map_qual.source_concept_id and map_qual.source_concept_class = 'Result qualifier'
 left join pcornet_maps.pedsnet_pcornet_valueset_map qual on lower(value_source_value) ilike '%'|| qual.concept_description || '%' and qual.source_concept_class = 'result_qual_source';
@@ -73,7 +69,7 @@ obsclin_result_qual,obsclin_result_snomed, obsclin_abn_ind, obsclin_result_text,
 coalesce(map_mod.target_concept,'OT') as obsclin_result_modifier,
 map.target_concept as obsclin_result_unit,
 obsclin_source,raw_obsclin_name,raw_obsclin_type,
-raw_obsclin_code,raw_obsclin_modifier,raw_obsclin_result,raw_obsclin_unit,meas.site
+raw_obsclin_code,raw_obsclin_modifier,raw_obsclin_result,raw_obsclin_unit
 from SITE_pcornet.meas_obsclin_qual meas 
 left join pcornet_maps.pedsnet_pcornet_valueset_map map on map.source_concept_id = meas.unit_concept_id::text and map.source_concept_class = 'Result unit'
 left join pcornet_maps.pedsnet_pcornet_valueset_map map_mod on map.source_concept_id = meas.operator_concept_id::text and map_mod.source_concept_class = 'Result modifier';
@@ -84,15 +80,6 @@ begin;
 drop table SITE_pcornet.meas_obsclin_qual;
 commit;
 
-begin;
-delete from SITE_pcornet.meas_obsclin
-where patid::int not in (select person_id from SITE_pcornet.person_visit_start2001);
-
-delete from SITE_pcornet.meas_obsclin
-where (encounterid is not null
-and encounterid::int not in (select visit_id from SITE_pcornet.person_visit_start2001));
-
-commit;
 
 begin;
 create table SITE_pcornet.obs_vaping as
@@ -118,8 +105,7 @@ null as raw_obsclin_modifier,
 null as raw_obsclin_result,
 null as raw_obsclin_unit,
 null::date as obsclin_stop_date,
-null as obsclin_stop_time,
-obs.site
+null as obsclin_stop_time
 from SITE_pcornet.filter_obs obs
 left join pcornet_maps.pedsnet_pcornet_valueset_map qual on qual.source_concept_id = obs.qualifier_concept_id::text and qual.source_concept_class in ('Result qualifier')
 left join vocabulary.concept snomed on snomed.concept_id = obs.value_as_string::int and snomed.vocabulary_id = 'SNOMED'
@@ -127,12 +113,4 @@ Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id
 where observation_concept_id = 4219336 and obs.value_as_concept_id in (42536422,42536421,36716478);
 commit;
 
-begin;
-delete from SITE_pcornet.obs_vaping
-where patid::int not in (select person_id from SITE_pcornet.person_visit_start2001);
 
-delete from SITE_pcornet.obs_vaping
-where (encounterid is not null
-and encounterid::int not in (select visit_id from SITE_pcornet.person_visit_start2001));
-
-commit;

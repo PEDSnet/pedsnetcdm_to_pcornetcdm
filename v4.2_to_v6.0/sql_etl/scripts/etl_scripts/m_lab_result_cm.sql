@@ -55,8 +55,7 @@ select distinct on (m.measurement_id) m.measurement_id as lab_result_cm_id,
 	c2.concept_name || m.value_as_number::text as raw_result,
 	m.unit_source_value,
 	null as raw_order_dept,
-	null as raw_facility_code,
-	'SITE' as site
+	null as raw_facility_code
 from SITE_pcornet.specimen_values m
 left join vocabulary.concept c2 on m.operator_concept_id = c2.concept_id and  c2.domain_id = 'Meas Value Operator'
 left join pcornet_maps.pedsnet_pcornet_valueset_map rslt_modif on cast(m.operator_concept_id as text) = rslt_modif.source_concept_id and rslt_modif.source_concept_class = 'Result modifier'
@@ -86,8 +85,7 @@ select lab_result_cm_id,patid,encounterid,specimen_source,lab_result_source,lab_
 	raw_result,
 	m.unit_source_value as raw_unit,
 	raw_order_dept,
-	raw_facility_code,
-	site
+	raw_facility_code
 from SITE_pcornet.lab_priority_modif m
 left join pcornet_maps.pedsnet_pcornet_valueset_map units on cast(m.unit_concept_id as text)= units.source_concept_id and units.source_concept_class = 'Result unit'
 left join pcornet_maps.pedsnet_pcornet_valueset_map unit_src on trim(m.unit_source_value)= unit_src.source_concept_id and unit_src.source_concept_class = 'result_unit_source';
@@ -98,19 +96,19 @@ begin;
 drop table SITE_pcornet.lab_priority_modif;
 commit;
 
-begin;
-CREATE INDEX idx_labms_valcptid
-    ON SITE_pcornet.lab_unit USING btree
-    (value_as_concept_id)
-    TABLESPACE pg_default;
-commit;
+-- begin;
+-- CREATE INDEX idx_labms_valcptid
+--     ON SITE_pcornet.lab_unit USING btree
+--     (value_as_concept_id)
+--     TABLESPACE pg_default;
+-- commit;
 
-begin;
-CREATE INDEX idx_labms_valsrcid
-    ON SITE_pcornet.lab_unit USING btree
-    (value_source_value)
-    TABLESPACE pg_default;
-commit;
+-- begin;
+-- CREATE INDEX idx_labms_valsrcid
+--     ON SITE_pcornet.lab_unit USING btree
+--     (value_source_value)
+--     TABLESPACE pg_default;
+-- commit;
 
 begin;
 create table SITE_pcornet.lab_qual as
@@ -118,7 +116,7 @@ select lab_result_cm_id,patid,encounterid,specimen_source,lab_result_source,lab_
 	priority,result_loc,lab_px,lab_px_type,lab_order_date,specimen_date,specimen_time,result_date,result_time,
 	coalesce(qual.target_concept,'OT') as result_qual, value_source_value,
 	result_snomed, result_num,result_modifier,result_unit,norm_range_low,norm_modifier_low,norm_range_high,
-    norm_modifier_high,abn_ind, raw_lab_name,raw_lab_code,raw_panel,raw_result,raw_unit,raw_order_dept,raw_facility_code,site
+    norm_modifier_high,abn_ind, raw_lab_name,raw_lab_code,raw_panel,raw_result,raw_unit,raw_order_dept,raw_facility_code
 from SITE_pcornet.lab_unit m
 left join pcornet_maps.pedsnet_pcornet_valueset_map qual on cast(m.value_as_concept_id as text)= qual.source_concept_id and qual.source_concept_class = 'Result qualifier';
 commit;
@@ -157,14 +155,14 @@ insert into SITE_pcornet.lab_result_cm (
 	norm_range_low, norm_modifier_low,
 	norm_range_high, norm_modifier_high,
 	abn_ind,
-	raw_lab_name, raw_lab_code, raw_panel, raw_result, raw_unit, raw_order_dept, raw_facility_code, site
+	raw_lab_name, raw_lab_code, raw_panel, raw_result, raw_unit, raw_order_dept, raw_facility_code
 )
 select distinct on (m.lab_result_cm_id) m.lab_result_cm_id as lab_result_cm_id,
 	patid,encounterid,specimen_source,lab_result_source,lab_loinc_source,lab_loinc,priority,result_loc,
 	lab_px,lab_px_type,lab_order_date,specimen_date, specimen_time,result_date,result_time, result_qual,
 	result_snomed, result_num,result_modifier,result_unit,norm_range_low,norm_modifier_low,norm_range_high,
-    norm_modifier_high,abn_ind,raw_lab_name,raw_lab_code,raw_panel,raw_result,raw_unit,raw_order_dept,raw_facility_code,site
+    norm_modifier_high,abn_ind,raw_lab_name,raw_lab_code,raw_panel,raw_result,raw_unit,raw_order_dept,raw_facility_code
 from SITE_pcornet.lab_qual m
-where m.encounterid::int IN (select visit_id from SITE_pcornet.person_visit_start2001);
+;
 
 commit;

@@ -21,7 +21,7 @@ create table SITE_pcornet.rxnorm_ndc_crosswalk as
  insert into SITE_pcornet.dispensing( dispensingid, patid, prescribingid, dispense_date,
                                         ndc, dispense_sup, dispense_amt, dispense_dose_disp, 
                                         dispense_dose_disp_unit, dispense_route, dispense_source, raw_ndc,
-                                        raw_dispense_dose_disp, raw_dispense_dose_disp_unit, raw_dispense_route, site)
+                                        raw_dispense_dose_disp, raw_dispense_dose_disp_unit, raw_dispense_route)
 select distinct
 	de.drug_exposure_id,
 	de.person_id::varchar(256) as patid,
@@ -41,8 +41,7 @@ select distinct
 	drug_source_value as raw_ndc,
 	eff_drug_dose_source_value as raw_dispense_dose_disp, 
 	dose_unit_source_value as raw_dispense_dose_disp_unit,
-	route_source_value as raw_dispense_route,
-	'SITE' as site
+	route_source_value as raw_dispense_route
 from
 	SITE_pedsnet.drug_exposure de
 	left join SITE_pcornet.rxnorm_ndc_crosswalk on drug_concept_id = rxnorm_concept_id
@@ -52,13 +51,12 @@ from
 	left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on cast(route_concept_id as text) = m2.source_concept_id 
 			and m2.source_concept_class='Route'
 where
-	de.drug_type_concept_id = '38000175' and
-    person_id in (select person_id from SITE_pcornet.person_visit_start2001) and
+	de.drug_type_concept_id = '38000175' 
+	and
 	( rxnorm_ndc_crosswalk.min_ndc_code is not null
 		or  ndc.concept_id is not null
 		or  split_part(drug_source_value,'|',1) in (
 		                                             select concept_code
 		                                             from SITE_pcornet.ndc_concepts ))
-and de.drug_source_value not ilike any (array['%UNDILUTED DILUENT%','%KCAL/OZ%','%breastmilk%','%kit%','%item%','%formula%', '%tpn%','%custom%','%parenteral nutrition%']);
-
+;
 commit;

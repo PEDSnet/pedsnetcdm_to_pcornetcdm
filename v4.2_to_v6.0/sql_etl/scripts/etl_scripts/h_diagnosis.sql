@@ -4,34 +4,32 @@ select *
 from SITE_pedsnet.condition_occurrence co
 where
 	co.condition_type_concept_id not in ( 2000000089, 2000000090, 2000000091, 38000245)
-	and visit_occurrence_id IN (select visit_id from SITE_pcornet.person_visit_start2001)
-	and extract (year from condition_start_date) >=2001
 	and not condition_source_value ~ 'NOD.X';
 commit;
 
-begin;
-CREATE INDEX idx_filtdia_encid
-    ON SITE_pcornet.filter_diag USING btree
-    (visit_occurrence_id )
-    TABLESPACE pg_default;
+-- begin;
+-- CREATE INDEX idx_filtdia_encid
+--     ON SITE_pcornet.filter_diag USING btree
+--     (visit_occurrence_id )
+--     TABLESPACE pg_default;
 
-CREATE INDEX idx_filtdia_patid
-    ON SITE_pcornet.filter_diag USING btree
-    (person_id )
-    TABLESPACE pg_default;
+-- CREATE INDEX idx_filtdia_patid
+--     ON SITE_pcornet.filter_diag USING btree
+--     (person_id )
+--     TABLESPACE pg_default;
 	
-CREATE INDEX idx_filtdia_diagid
-    ON SITE_pcornet.filter_diag USING btree
-    (condition_occurrence_id )
-    TABLESPACE pg_default;
+-- CREATE INDEX idx_filtdia_diagid
+--     ON SITE_pcornet.filter_diag USING btree
+--     (condition_occurrence_id )
+--     TABLESPACE pg_default;
 	
-commit;
+-- commit;
 
 begin;
 
 insert into SITE_pcornet.diagnosis(
             diagnosisid,patid, encounterid, enc_type, admit_date, providerid, dx, dx_type, dx_date,
-            dx_source, pdx, dx_origin, raw_dx, raw_dx_type, raw_dx_source, raw_pdx,site, dx_poa)
+            dx_source, pdx, dx_origin, raw_dx, raw_dx_type, raw_dx_source, raw_pdx, dx_poa)
 select cast(co.condition_occurrence_id as text) as diagnosisid,
 	cast(co.person_id as text) as patid,
 	cast(co.visit_occurrence_id as text) encounterid,
@@ -76,7 +74,6 @@ select cast(co.condition_occurrence_id as text) as diagnosisid,
 		 then c4.concept_name
 		 else NULL
 		 end as raw_pdx,
-	'SITE' as site,
 	coalesce(m4.target_concept,'OT') as dx_poa
 from SITE_pcornet.filter_diag co
 	join vocabulary.concept c2 on co.condition_concept_id = c2.concept_id
@@ -93,12 +90,7 @@ from SITE_pcornet.filter_diag co
 	                                                                 m4.source_concept_class='dx_poa';
 commit;
 
-begin;
 
-delete from SITE_pcornet.diagnosis
-where length(dx) < 2;
-
-commit;
 
 begin;
 update SITE_pcornet.diagnosis

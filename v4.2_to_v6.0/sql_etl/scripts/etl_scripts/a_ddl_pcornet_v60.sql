@@ -1,17 +1,5 @@
 set search_path to SITE_pcornet;
 
-CREATE TABLE IF NOT EXISTS version_history (
-	datetime TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP NOT NULL, 
-	operation VARCHAR(100), 
-	model VARCHAR(16), 
-	model_version VARCHAR(50), 
-	dms_version VARCHAR(50), 
-	dmsa_version VARCHAR(50), 
-	PRIMARY KEY (datetime)
-);
-
-INSERT INTO version_history (operation, model, model_version, dms_version, dmsa_version) VALUES ('create tables', 'pcornet', '6.0.0', '1.0.4-beta', '0.6.0');
-
 CREATE TABLE condition (
 	condition VARCHAR(18) NOT NULL, 
 	condition_source VARCHAR(2) NOT NULL, 

@@ -1,7 +1,5 @@
 begin;
 
-INSERT INTO SITE_pcornet.version_history (operation, model, model_version, dms_version, dmsa_version) VALUES ('create indexes', 'pcornet', '3.1.0', '1.0.4-beta', '0.6.0');
-
 CREATE INDEX idx_enrol_patid ON SITE_pcornet.enrollment (patid);
 
 CREATE INDEX idx_death_patid ON SITE_pcornet.death (patid);

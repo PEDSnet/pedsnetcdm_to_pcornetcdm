@@ -38,7 +38,7 @@ insert into SITE_pcornet.prescribing (prescribingid,
             rxnorm_cui, rx_source, rx_dispense_as_written,
             raw_rx_med_name, raw_rx_frequency, raw_rxnorm_cui,
             raw_rx_dose_ordered, raw_rx_dose_ordered_unit, 
-            raw_rx_route, raw_rx_refills, site)
+            raw_rx_route, raw_rx_refills)
 select distinct on (drug_exposure_id) drug_exposure_id::text as prescribingid,
 	cast(de.person_id as text) as patid,
 	cast(de.visit_occurrence_id as text) as encounterid,
@@ -70,8 +70,7 @@ select distinct on (drug_exposure_id) drug_exposure_id::text as prescribingid,
 	eff_drug_dose_source_value as raw_rx_dose_ordered,
 	dose_unit_source_value as raw_rx_dose_ordered_unit,
 	route_source_value as raw_rx_route,
-	de.refills as raw_rx_refills,
-	'SITE' as site
+	de.refills as raw_rx_refills
 from SITE_pedsnet.drug_exposure de
 	left join vocabulary.concept c1 on de.drug_concept_id = c1.concept_id AND
 	                                   vocabulary_id = 'RxNorm'
@@ -89,9 +88,7 @@ from SITE_pedsnet.drug_exposure de
 	                                                                 m5.source_concept_class='dispense written'
 where
 	de.drug_type_concept_id IN ('38000177','581373')
-	and de.person_id IN (select person_id from SITE_pcornet.person_visit_start2001)
-	and EXTRACT(YEAR FROM drug_exposure_start_date) >= 2001
-        and de.drug_source_value not ilike any (array['%breastmilk%','%kit%','%item%','%formula%', '%tpn%','%custom%','%UNDILUTED DILUENT%','%KCAL/OZ%','%parenteral nutrition%']);
+;
 commit;
  
 begin;
@@ -99,20 +96,4 @@ begin;
 CREATE INDEX idx_pres_encid ON SITE_pcornet.prescribing (encounterid);
 
 
-delete from SITE_pcornet.prescribing
-where encounterid IS not NULL
-	and encounterid  in (select cast(visit_occurrence_id as text) from SITE_pedsnet.visit_occurrence V where
-					extract(year from visit_start_date)<2001);
-
-commit;
-
-begin;
-with 
-tpn as 
-(select drug_exposure_id
-from SITE_pcornet.prescribing n
-inner join SITE_pedsnet.drug_exposure de on n.prescribingid::int = de.drug_exposure_id
-where rxnorm_cui is null and lower(drug_source_value) ilike any(array['%human milk%','%tpn%','%similac%','%fat emulsion%','%UNDILUTED DILUENT%','%KCAL/OZ%','%parenteral nutrition%']))
-delete from SITE_pcornet.prescribing
-where prescribingid::int in (select drug_exposure_id from tpn);
 commit;

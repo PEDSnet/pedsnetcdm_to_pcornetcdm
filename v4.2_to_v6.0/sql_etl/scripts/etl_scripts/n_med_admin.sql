@@ -12,7 +12,7 @@ insert into SITE_pcornet.med_admin (medadminid,
             raw_medadmin_med_name, 
             raw_medadmin_code, 
             raw_medadmin_dose_admin, raw_medadmin_dose_admin_unit, 
-            raw_medadmin_route, site
+            raw_medadmin_route
             )
 select distinct drug_exposure_id as medadminid,
 	cast(de.person_id as text) as patid,
@@ -46,8 +46,7 @@ select distinct drug_exposure_id as medadminid,
     de.drug_concept_id as raw_medadmin_code, 
     de.eff_drug_dose_source_value as raw_medadmin_dose_admin, 
     de.dose_unit_source_value as raw_medadmin_dose_admin_unit, 
-    de.route_source_value as raw_medadmin_route,
-	'SITE' as site
+    de.route_source_value as raw_medadmin_route
 from SITE_pedsnet.drug_exposure de
 	left join SITE_pcornet.ndc_concepts ndc_via_source_concept on ndc_via_source_concept.concept_id = drug_source_concept_id
 	left join SITE_pcornet.ndc_concepts ndc_via_source_value on ndc_via_source_value.concept_code = split_part(drug_source_value,'|',1)
@@ -59,32 +58,11 @@ from SITE_pedsnet.drug_exposure de
 			and m2.source_concept_class='Route'
 where
 	de.drug_type_concept_id IN ('38000180')
-	and de.person_id IN (select person_id from SITE_pcornet.person_visit_start2001) 
-	and EXTRACT(YEAR FROM drug_exposure_start_date) >= 2001
-	and de.drug_source_value not ilike any (array['%UNDILUTED DILUENT%','%KCAL/OZ%','%breastmilk%','%kit%','%item%','%formula%', '%tpn%','%custom%','%fat emulsion%','%parenteral nutrition%']); 
+; 
 commit;
 
 begin;
  create index med_admin_enc on SITE_pcornet.med_admin (encounterid);
 commit;
-begin;
-delete from SITE_pcornet.med_admin
-	where
-	encounterid IS not NULL
-	and encounterid in (select cast(visit_occurrence_id as text) from SITE_pedsnet.visit_occurrence V where
-					extract(year from visit_start_date)<2001); 
-
-commit;
-
-begin;
-with 
-tpn as 
-(select drug_exposure_id 
-from SITE_pcornet.med_admin n
-inner join SITE_pedsnet.drug_exposure de on n.medadminid::int = de.drug_exposure_id
-where medadmin_code is null and lower(drug_source_value) ilike any(array['%UNDILUTED DILUENT%','%KCAL/OZ%','%human milk%','%tpn%','%similac%','%fat emulsion%','%parenteral nutrition%']))
-delete from SITE_pcornet.med_admin
-where medadminid::int in (select drug_exposure_id from tpn);
 
 
-commit;

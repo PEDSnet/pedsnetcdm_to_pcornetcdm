@@ -23,13 +23,12 @@ select imm.immunization_id::text as immunizationid,
 		imm.imm_dose_unit_source_value,
 		imm.imm_route_source_value,
         'CP' as raw_vx_status,
-		null as raw_vx_status_reason,
-		'SITE' as site
+		null as raw_vx_status_reason
 from SITE_pedsnet.immunization imm																																				 
 left join vocabulary.concept code on code.concept_id = imm.immunization_concept_id
 left join vocabulary.concept imm_type on imm_type.concept_id = imm.immunization_type_concept_id and imm_type.domain_id = 'Immunization Type' and imm_type.vocabulary_id = 'PEDSnet'																 																	   
 left join pcornet_maps.pedsnet_pcornet_valueset_map pcor_imm_type on pcor_imm_type.source_concept_id = code.vocabulary_id and pcor_imm_type.source_concept_class = 'immunization_type'
-where imm.person_id IN (select person_id from SITE_pcornet.person_visit_start2001);
+;
 commit;
 
 begin;
@@ -42,7 +41,7 @@ select immunizationid,patid,encounterid,proceduresid,vx_providerid,vx_record_dat
 		imm.imm_route_concept_id,imm.imm_body_site_concept_id, imm.imm_body_site_source_value, imm.imm_manufacturer,		
         vx_lot_num,vx_exp_date,raw_vx_name,raw_vx_code,raw_vx_code_type,imm.immunization_dose as raw_vx_dose,
 		imm.imm_dose_unit_source_value as raw_vx_dose_unit,
-		imm.imm_route_source_value,raw_vx_status,raw_vx_status_reason,site
+		imm.imm_route_source_value,raw_vx_status,raw_vx_status_reason
 from SITE_pcornet.imm_code imm																																				 
 left join pcornet_maps.pedsnet_pcornet_valueset_map dose_unit on cast(imm.imm_dose_unit_concept_id as text) = dose_unit.source_concept_id
 			and dose_unit.source_concept_class='Dose unit';
@@ -60,7 +59,7 @@ select immunizationid,patid,encounterid,proceduresid,vx_providerid,vx_record_dat
 		imm.imm_body_site_concept_id, imm.imm_body_site_source_value, imm.imm_manufacturer,	vx_lot_num,
 		vx_exp_date,raw_vx_name,raw_vx_code,raw_vx_code_type,raw_vx_dose,raw_vx_dose_unit,
 		imm.imm_route_source_value as raw_vx_route,
-		raw_vx_status,raw_vx_status_reason,site
+		raw_vx_status,raw_vx_status_reason
 from SITE_pcornet.imm_dose imm																																				 
 left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on cast(imm.imm_route_concept_id as text) = m3.source_concept_id
 			and m3.source_concept_class='Route';
@@ -78,7 +77,7 @@ select immunizationid,patid,encounterid,proceduresid, vx_providerid,vx_record_da
 		case when imm.imm_manufacturer is null or imm.imm_manufacturer = '' then 'NI'
 			else coalesce(manf_1.target_concept,manf_2.target_concept,'OTH') end as vx_manufacturer,
 		vx_lot_num,vx_exp_date,raw_vx_name,raw_vx_code,raw_vx_code_type, raw_vx_dose,raw_vx_dose_unit,raw_vx_route,
-		raw_vx_status,raw_vx_status_reason,site
+		raw_vx_status,raw_vx_status_reason
 from SITE_pcornet.imm_route imm																																				 
 left join pcornet_maps.pedsnet_pcornet_valueset_map manf_1 on lower(manf_1.pcornet_name) ilike '%'||lower(imm.imm_manufacturer)||'%' and manf_1.source_concept_class = 'vx_manufacturer_source'
 left join pcornet_maps.pedsnet_pcornet_valueset_map manf_2 on manf_2.source_concept_id = imm.imm_manufacturer and manf_2.source_concept_class = 'vx_manufacturer';
@@ -96,7 +95,7 @@ select immunizationid,patid,encounterid,proceduresid,vx_providerid,vx_record_dat
 		vx_manufacturer, vx_lot_num,vx_exp_date,raw_vx_name, raw_vx_code, raw_vx_code_type,raw_vx_dose,raw_vx_dose_unit,
 		raw_vx_route,
 		imm.imm_body_site_source_value as raw_vx_body_site,
-        raw_vx_status,raw_vx_status_reason,site
+        raw_vx_status,raw_vx_status_reason
 from SITE_pcornet.imm_manuf imm																																				 
 left join pcornet_maps.pedsnet_pcornet_valueset_map bdy_site on imm.imm_body_site_concept_id::text = bdy_site.source_concept_id and bdy_site.source_concept_class = 'imm_body_site' and bdy_site.source_concept_id is not null
 left join pcornet_maps.pedsnet_pcornet_valueset_map bdy_site_src on  lower(bdy_site_src.source_concept_id) ilike '%'||lower(trim(split_part(imm_body_site_source_value,'|',1)))||'%' and bdy_site.source_concept_class = 'imm_body_site_source';
@@ -112,18 +111,18 @@ INSERT INTO SITE_pcornet.immunization(immunizationid, patid, encounterid, proced
 vx_record_date, vx_admin_date, vx_code_type, vx_code, vx_status, vx_status_reason, vx_source, vx_dose,
 vx_dose_unit, vx_route, vx_body_site, vx_manufacturer, vx_lot_num, vx_exp_date, raw_vx_name,
 raw_vx_code, raw_vx_code_type, raw_vx_dose, raw_vx_dose_unit, raw_vx_route, raw_vx_body_site,
-raw_vx_status, raw_vx_status_reason, site)
+raw_vx_status, raw_vx_status_reason)
 select distinct on (immunizationid)imm.immunizationid as immunizationid,
         patid,encounterid,proceduresid, vx_providerid,vx_record_date, vx_admin_date,vx_code_type,
 		vx_code, vx_status,vx_status_reason,vx_source, vx_dose,vx_dose_unit, vx_route,
 		vx_body_site, vx_manufacturer, vx_lot_num, vx_exp_date,raw_vx_name, raw_vx_code, raw_vx_code_type,
-		raw_vx_dose,raw_vx_dose_unit,raw_vx_route,raw_vx_body_site, raw_vx_status,raw_vx_status_reason,site
+		raw_vx_dose,raw_vx_dose_unit,raw_vx_route,raw_vx_body_site, raw_vx_status,raw_vx_status_reason
 from SITE_pcornet.imm_body_site imm																																				 
-where imm.patid::int IN (select person_id from SITE_pcornet.person_visit_start2001);
+;
 commit;
 
 begin;
 delete from SITE_pcornet.immunization 
-where encounterid IS NOT null and
-	   encounterid::int NOT IN (select visit_id from SITE_pcornet.person_visit_start2001);
+where encounterid IS NOT null
+;
 commit;

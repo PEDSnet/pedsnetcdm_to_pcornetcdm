@@ -1,7 +1,7 @@
 begin;
 
 insert into SITE_pcornet.death_cause(
-	patid,death_cause, death_cause_code, death_cause_type,death_cause_source, death_cause_confidence, site
+	patid,death_cause, death_cause_code, death_cause_type,death_cause_source, death_cause_confidence
 )
 select
 distinct
@@ -35,8 +35,7 @@ left(case when c.vocabulary_id in ('ICD9CM', 'ICD10','ICD10CM')
  	  end as death_cause_code,
 	'NI' as death_cause_type,
 	'L' as death_cause_source,
-	null as death_cause_confidence,
-	'SITE' as site
+	null as death_cause_confidence
 	from SITE_pedsnet.death d
 	left join vocabulary.concept c on d.cause_source_concept_id = c.concept_id
 	left join vocabulary.concept c2 on d.cause_concept_id = c2.concept_id
@@ -49,9 +48,4 @@ left(case when c.vocabulary_id in ('ICD9CM', 'ICD10','ICD10CM')
 	) 
  	and not cause_source_value ~ 'IMO' --colorado
 ;
-commit;
-
-begin;
-delete from SITE_pcornet.death_cause
-where patid::int not in (select person_id from SITE_pcornet.person_visit_start2001);
 commit;
