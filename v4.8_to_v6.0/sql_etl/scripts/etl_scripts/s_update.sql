@@ -313,3 +313,17 @@ where
     and norm_range_low is null
     and norm_range_high is not null;
 commit;
+
+begin;
+update SITE_pcornet.lab_result_cm 
+set  
+    result_modifier = 'EQ',
+    norm_modifier_low = 'EQ',
+    norm_modifier_high = 'EQ'
+where 
+    result_modifier = 'LT'
+    and norm_modifier_low = 'NO' 
+    and norm_modifier_high = 'LT' 
+    and norm_range_low is not null
+    and norm_range_high is not null;
+commit;
