@@ -14,8 +14,15 @@ select
 	coalesce(addr_st.target_concept, 'NI') as address_state, 
 	coalesce(addr_typ.target_concept, 'BO') as address_type, 
 	'HO' as address_use, 
-	case when length(loc.zip)= 5 and zip ~ '^[0-9]+$' then loc.zip else null end as address_zip5, 
-	case when length(replace(loc.zip,'-',''))= 9 and replace(loc.zip,'-','') ~ '^[0-9]+$' then left(replace(loc.zip,'-',''),9) else null end as address_zip9, 
+	case 
+		when length(loc.zip) = 5 and zip ~ '^[0-9]+$' then loc.zip 
+		when length(loc.zip) > 5 and replace(loc.zip,'-','') ~ '^[0-9]+$' then left(replace(loc.zip,'-',''),5)
+		else null 
+	end as address_zip5, 
+	case 
+		when length(replace(loc.zip,'-',''))= 9 and replace(loc.zip,'-','') ~ '^[0-9]+$' then left(replace(loc.zip,'-',''),9) 
+		else null 
+	end as address_zip9, 
 	loc_his.location_history_id::text as addressid, 
 	loc_his.entity_id::text as patid, 
 	'SITE' as site
