@@ -1,4 +1,6 @@
+-- filter for valid records in pedsnet.observation table
 begin;
+
 Create table SITE_pcornet.filter_obs
 as
 select * 
@@ -7,9 +9,12 @@ where EXTRACT(YEAR FROM obs.observation_date)>=2001
 and obs.person_id in (select person_id from SITE_pcornet.person_visit_start2001)
 and (obs.visit_occurrence_id in (select visit_id from SITE_pcornet.person_visit_start2001)
 	 or obs.visit_occurrence_id is null);
+
 commit;
 
+-- get vitals from pedsnet.measurement that are not collected in pcornet.vitals
 begin;
+
 create table SITE_pcornet.meas_obsclin_loinc
 as
 select ('m'||meas.measurement_id)::text as obsclinid,
@@ -57,6 +62,7 @@ where meas.measurement_concept_id in (3020891, --Temperature
 
 commit;
 
+-- populate result_qual for above meas_obsclin_loinc records
 begin;
 create table SITE_pcornet.meas_obsclin_qual
 as
@@ -76,8 +82,9 @@ begin;
 drop table SITE_pcornet.meas_obsclin_loinc;
 commit;
 
-
+-- finalize records from meas_obsclin_loinc to insert into obs_clin
 begin;
+
 create table SITE_pcornet.meas_obsclin
 as
 select obsclinid,patid,encounterid,obsclin_providerid,obsclin_start_date,obsclin_start_time,obsclin_type,obsclin_code,
@@ -92,6 +99,7 @@ left join pcornet_maps.pedsnet_pcornet_valueset_map map_mod on map.source_concep
 
 commit;
 
+-- cleanup
 begin;
 drop table SITE_pcornet.meas_obsclin_qual;
 commit;
@@ -103,9 +111,9 @@ where patid::int not in (select person_id from SITE_pcornet.person_visit_start20
 delete from SITE_pcornet.meas_obsclin
 where (encounterid is not null
 and encounterid::int not in (select visit_id from SITE_pcornet.person_visit_start2001));
-
 commit;
 
+-- format filter_obs data (first query block in this file) to format for insertion to obs_clin table
 begin;
 create table SITE_pcornet.obs_vaping as
 select ('o'||obs.observation_id)::text as obsclinid,
@@ -139,6 +147,7 @@ Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id
 where observation_concept_id = 4219336 and obs.value_as_concept_id in (42536422,42536421,36716478);
 commit;
 
+-- more cleanup
 begin;
 delete from SITE_pcornet.obs_vaping
 where patid::int not in (select person_id from SITE_pcornet.person_visit_start2001);
@@ -146,5 +155,4 @@ where patid::int not in (select person_id from SITE_pcornet.person_visit_start20
 delete from SITE_pcornet.obs_vaping
 where (encounterid is not null
 and encounterid::int not in (select visit_id from SITE_pcornet.person_visit_start2001));
-
 commit;
