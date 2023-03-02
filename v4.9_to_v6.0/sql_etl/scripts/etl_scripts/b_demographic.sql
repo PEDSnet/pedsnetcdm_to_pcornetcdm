@@ -109,6 +109,6 @@ from
 	left join s_o on p.person_id = s_o.person_id
 	left join gender_iden on p.person_id = gender_iden.person_id
 where 
-	person_id IN (select person_id from SITE_pcornet.person_visit_start2001);
+	p.person_id IN (select person_id from SITE_pcornet.person_visit_start2001);
 
 commit;
