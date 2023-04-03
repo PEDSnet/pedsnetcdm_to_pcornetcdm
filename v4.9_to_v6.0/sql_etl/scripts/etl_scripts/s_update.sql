@@ -277,6 +277,17 @@ where
 and result_unit in ('OT','','NI','UN');
 commit;
 
+-- DC 3.06 for seattle
+begin;
+update SITE_pcornet.lab_result_cm 
+set 
+	result_num = result_num / 1000,
+	result_unit = '10*3/uL'
+where
+	lab_loinc = '26499-4'
+	and result_unit in ('/mm3','/uL');
+commit;
+
 begin;
 update SITE_pcornet.lab_result_cm 
 set result_modifier = 'EQ' 
