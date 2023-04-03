@@ -140,6 +140,63 @@ delete from SITE_pcornet.dispensing
 where dispensingid::int in (select drug_exposure_id from tpn);
 commit;
 
+-- stanford map high count ingredients to clincal drugs
+begin;
+with herapin_1 as (
+	select medadminid 
+	from SITE_pcornet.med_admin med
+	inner join SITE_pedsnet.drug_exposure de on med.medadminid::bigint = de.drug_exposure_id
+	where drug_concept_id = 1367571
+	and drug_source_value ilike any
+			(array[
+			'%HEPARIN 1 UNIT/ML%',
+			'%HEPARIN (PORCINE) 250 UNIT/250 ML (1 UNIT/ML)%'
+			])
+)
+update SITE_pcornet.med_admin
+set MEDADMIN_CODE = '1362025', MEDADMIN_TYPE = 'RX'
+where medadminid in (select medadminid from herapin_1); 
+commit;
+
+begin;
+with herapin_2 as (
+	select medadminid 
+	from SITE_pcornet.med_admin med
+	inner join SITE_pedsnet.drug_exposure de on med.medadminid::bigint = de.drug_exposure_id
+	where drug_concept_id = 1367571
+	and drug_source_value ilike '%HEPARIN 2 UNIT/ML%'
+)
+update SITE_pcornet.med_admin
+set MEDADMIN_CODE = '1362935', MEDADMIN_TYPE = 'RX'
+where medadminid in (select medadminid from herapin_2); 
+commit;
+
+begin;
+with herapin_100 as (
+	select medadminid 
+	from SITE_pcornet.med_admin med
+	inner join SITE_pedsnet.drug_exposure de on med.medadminid::bigint = de.drug_exposure_id
+	where drug_concept_id = 43011476
+	and drug_source_value ilike '%HEPARIN 100 UNITS/ML%'
+)
+update SITE_pcornet.med_admin
+set MEDADMIN_CODE = '1361048', MEDADMIN_TYPE = 'RX'
+where medadminid in (select medadminid from herapin_100); 
+commit;
+
+begin;
+with sodium_chloride_9 as (
+	select medadminid 
+	from SITE_pcornet.med_admin med
+	inner join SITE_pedsnet.drug_exposure de on med.medadminid::bigint = de.drug_exposure_id
+	where drug_concept_id in (967823,46276153)
+	and drug_source_value ilike '%SODIUM CHLORIDE 0.9%'
+)
+update SITE_pcornet.med_admin
+set MEDADMIN_CODE = '313002', MEDADMIN_TYPE = 'RX'
+where medadminid in (select medadminid from sodium_chloride_9); 
+commit;
+
 begin;
 /* updating norm_modifier_low for the values */
 update SITE_pcornet.lab_result_cm
