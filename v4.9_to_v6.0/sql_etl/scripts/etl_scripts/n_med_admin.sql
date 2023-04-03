@@ -79,10 +79,39 @@ commit;
 begin;
 with 
 tpn as 
-(select drug_exposure_id 
-from SITE_pcornet.med_admin n
-inner join SITE_pedsnet.drug_exposure de on n.medadminid::int = de.drug_exposure_id
-where medadmin_code is null and lower(drug_source_value) ilike any(array['%UNDILUTED DILUENT%','%KCAL/OZ%','%human milk%','%tpn%','%similac%','%fat emulsion%','%parenteral nutrition%','%ZZBREAST MILK%','%FAT EMULSION%','%EMPTY BAG%']))
+(
+	select 
+		drug_exposure_id 
+	from 
+		SITE_pcornet.med_admin n
+inner join 
+	SITE_pedsnet.drug_exposure de 
+	on n.medadminid::int = de.drug_exposure_id
+where 
+	medadmin_code is null 
+	and drug_source_value ilike any
+		(array[
+			'%human milk%',
+			'%breastmilk%',
+			'%breast milk%',
+			'%formula%',
+			'%similac%',
+			'%tpn%',
+			'%parenteral nutrition%',
+			'%fat emulsion%',
+			'%fat emul%',
+			'%fish oil%',
+			'%OMEGA 3%',
+			'%omega-3%',
+			'%UNDILUTED DILUENT%',
+			'%KCAL/OZ%',
+			'%kit%',
+			'%item%',
+			'%custom%',
+			'%EMPTY BAG%',
+			'%UNABLE TO FIND%'
+		])
+)
 delete from SITE_pcornet.med_admin
 where medadminid::int in (select drug_exposure_id from tpn);
 

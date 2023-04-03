@@ -99,12 +99,17 @@ with tpn as (
 			'%tpn%',
 			'%parenteral nutrition%',
 			'%fat emulsion%',
+			'%fat emul%',
+			'%fish oil%',
+			'%OMEGA 3%',
+			'%omega-3%',
 			'%UNDILUTED DILUENT%',
 			'%KCAL/OZ%',
 			'%kit%',
 			'%item%',
 			'%custom%',
-			'%EMPTY BAG%'
+			'%EMPTY BAG%',
+			'%UNABLE TO FIND%'
 			])
 )
 delete from SITE_pcornet.med_admin
