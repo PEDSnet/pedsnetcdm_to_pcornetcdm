@@ -21,7 +21,7 @@ kombu==4.1.0
 MarkupSafe==1.0
 multipledispatch==0.4.9
 networkx==1.11
-numpy==1.13.3
+numpy==1.22.0
 odo==0.5.0
 pandas==0.20.3
 psycopg2==2.7.3.1
