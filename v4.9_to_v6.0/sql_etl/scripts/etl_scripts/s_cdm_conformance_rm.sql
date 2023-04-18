@@ -109,7 +109,12 @@ with tpn as (
 			'%item%',
 			'%custom%',
 			'%EMPTY BAG%',
-			'%UNABLE TO FIND%'
+			'%UNABLE TO FIND%',
+			'%IMS TEMPLATE%',
+			'%EXTEMPORANEOUS TEMPLATE%',
+			'%IV INFUSION BUILDER%',
+			'%PATIENT SUPPLIED MEDICATION%',
+			'%MISC MED%'
 			])
 )
 delete from SITE_pcornet.med_admin

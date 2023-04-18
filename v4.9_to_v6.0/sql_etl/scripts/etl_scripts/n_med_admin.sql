@@ -65,7 +65,7 @@ where
 commit;
 
 begin;
- create index med_admin_enc on SITE_pcornet.med_admin (encounterid);
+create index med_admin_enc on SITE_pcornet.med_admin (encounterid);
 commit;
 begin;
 delete from SITE_pcornet.med_admin
@@ -109,7 +109,12 @@ where
 			'%item%',
 			'%custom%',
 			'%EMPTY BAG%',
-			'%UNABLE TO FIND%'
+			'%UNABLE TO FIND%',
+			'%IMS TEMPLATE%',
+			'%EXTEMPORANEOUS TEMPLATE%',
+			'%IV INFUSION BUILDER%',
+			'%PATIENT SUPPLIED MEDICATION%',
+			'%MISC MED%'
 		])
 )
 delete from SITE_pcornet.med_admin
