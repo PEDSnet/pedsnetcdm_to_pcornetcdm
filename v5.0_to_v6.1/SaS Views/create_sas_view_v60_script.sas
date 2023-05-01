@@ -89,7 +89,6 @@ proc sql;
         rx_order_date_mgmt,  
         rx_start_date_mgmt, 
         specimen_date_mgmt,
-        token_encryption_key, 
         vx_admin_date_mgmt,  
         vx_exp_date_mgmt,  
         vx_record_date_mgmt
