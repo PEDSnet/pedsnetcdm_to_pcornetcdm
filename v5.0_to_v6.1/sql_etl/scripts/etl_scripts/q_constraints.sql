@@ -1,5 +1,5 @@
 begin;
-INSERT INTO SITE_pcornet.version_history (operation, model, model_version, dms_version, dmsa_version) VALUES ('create constraints', 'pcornet', '4.1.0', '1.0.4-beta', '0.6.0');
+INSERT INTO SITE_pcornet.version_history (operation, model, model_version, dms_version, dmsa_version) VALUES ('create constraints', 'pcornet', '6.1.0', '1.0.3-alpha', '0.6.1');
 
 ALTER TABLE SITE_pcornet.encounter ADD CONSTRAINT fk_encounter_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 

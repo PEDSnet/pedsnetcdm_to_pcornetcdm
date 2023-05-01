@@ -26,7 +26,7 @@ temp="scripts/temp/"
 @click.option('--options', '-o', default=False, help='pipeline \ntruncate \netl \nddl \nupdate_valueset \n load_maps')
 @click.option('--harvest', '-H', required=False, help='harvest refresh date in following formatt yyyy-mm-dd')
 @click.option('--testscript', '-ts', required=False, type=click.File('rb'), help='Run single table at a time')
-@click.option('--pcornet_version', '-pv', default='v6.0', help='Pcornet ETL version v3.0 \n v4.0 \n v4.1')
+@click.option('--pcornet_version', '-pv', default='v6.1', help='Pcornet ETL version v3.0 \n v4.0 \n v4.1')
 def cli(searchpath, pwprompt, user, database, host, options, harvest, testscript, pcornet_version):
     """This tool is used to load the data"""
 
