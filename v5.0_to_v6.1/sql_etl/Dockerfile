@@ -40,8 +40,8 @@ COPY . /app/
 RUN cd /app/ \
     && git clone https://github.com/PEDSnet/pedsnetcdm_to_pcornetcdm.git \
     && cd pedsnetcdm_to_pcornetcdm \
-    && git checkout iss-500_v3.7_to_v5.1 \
-    && cd v3.7_to_v5.1/sql_etl \
+    && git checkout v50_to_v61 \
+    && cd v5.0_to_v6.1/sql_etl \
     && python3 -m virtualenv venv \
     && ./venv/bin/activate \
     && python3 -m pip install -r requirements.txt \
@@ -54,7 +54,7 @@ RUN mkdir /output
 
 RUN chmod 755 /output
 
-WORKDIR /app/pedsnetcdm_to_pcornetcdm/v3.7_to_v5.1/sql_etl/
+WORKDIR /app/pedsnetcdm_to_pcornetcdm/v5.0_to_v6.1/sql_etl/
 
 ENTRYPOINT ["loading"]
 CMD ["--help"]
