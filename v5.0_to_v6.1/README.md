@@ -1,7 +1,7 @@
-## The ETL scripts for PEDSnet CDM v4.5 to PCORnet CDM v6.0 transformation
+## The ETL scripts for PEDSnet CDM v5.0 to PCORnet CDM v6.1 transformation
 
 ### Schema Conventions
 
 - The PEDSnet CDM tables are stored in the `dcc_pedsnet` schema
-- The PCORnet v6.0 CDM tables and the OMOP to PCORnet mapping tables are stored in the `pcornet_maps` schemas
+- The PCORnet v6.1 CDM tables and the OMOP to PCORnet mapping tables are stored in the `pcornet_maps` schemas
 - The vocbaulary tables are stored in the `vocabulary` schema 
