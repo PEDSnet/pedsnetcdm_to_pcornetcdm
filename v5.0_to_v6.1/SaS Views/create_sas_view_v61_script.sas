@@ -1,8 +1,8 @@
-/* SAS view definition for PCORnet CDM v6.0 */
+/* SAS view definition for PCORnet CDM v6.1 */
 libname pcordbms ODBC datasrc = <Data_src_name> SCHEMA=<schema_name>;
 
 /* path where you want the views defined */
-libname pcordata '<path>\sas_view_v60';
+libname pcordata '<path>\sas_view_v61';
 
 proc sql;
     /* MED_ADMIN */
@@ -77,7 +77,7 @@ proc sql;
         refresh_obs_clin_date,  
         refresh_obs_gen_date,  
         refresh_pcornet_trial_date, 
-         refresh_prescribing_date,  
+        refresh_prescribing_date,  
         refresh_pro_cm_date,  
         refresh_procedures_date,  
         refresh_provider_date,  
@@ -487,7 +487,34 @@ proc sql;
 		token_03,
 		token_04,
 		token_05,
-		token_16
+        token_06,
+        token_07,
+        token_08,
+        token_09,
+        token_101,
+        token_102,
+        token_103,
+        token_104,
+        token_105,
+        token_106,
+        token_107,
+        token_108,
+        token_109,
+        token_110,
+        token_111,
+        token_12,
+        token_14,
+        token_15,
+        token_16,
+        token_17,
+        token_18,
+        token_23,
+        token_24,
+        token_25,
+        token_26,
+        token_29,
+        token_30,
+        token_encryption_key
 	FROM pcordbms.hash_token;
 
 	
@@ -500,6 +527,7 @@ proc sql;
 			address_type,
 			address_preferred,
 			address_city,
+            address_county,
 			address_state,
 			address_zip5,
 			address_zip9,
