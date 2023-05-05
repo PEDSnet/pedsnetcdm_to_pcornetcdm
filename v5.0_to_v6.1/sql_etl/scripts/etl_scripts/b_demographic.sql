@@ -58,22 +58,7 @@ select distinct
 	coalesce (m1.target_concept,'OT') as Sex,
 	case
 		when s_o.value_as_concept_id = 36307527 then 'BI'
-		when 
-			s_o.value_as_concept_id = 36303203 
-			and (
-				(p.gender_concept_id = 8532 and (gender_iden.value_as_concept_id is null or gender_iden.value_as_concept_id in (0,45877986, 44814653,44814649,44814650 )))
-				or gender_iden.value_as_concept_id = 36308665
-				or gender_iden.value_as_concept_id = 36309198
-				)
-		then 'GA'
-		when 
-			s_o.value_as_concept_id = 36303203 
-			and (
-				(p.gender_concept_id = 8507 and (gender_iden.value_as_concept_id is null or gender_iden.value_as_concept_id in (0,45877986, 44814653,44814649,44814650 )))
-				or gender_iden.value_as_concept_id = 36307702
-				or gender_iden.value_as_concept_id = 36309787
-				)
-		then 'LE'
+		when s_o.value_as_concept_id = 36303203 then 'HO'
 		when s_o.value_as_concept_id = 36310681 then 'ST'
 		when s_o.value_as_concept_id = 36308454 then 'DC' 
 		when s_o.value_as_concept_id = 45878142 then 'OT'
