@@ -192,90 +192,101 @@ left join vocabulary.concept snomed on snomed.concept_id = dev.device_concept_id
 
 commit;
 
+-- start census block group
 begin;
-create table SITE_pcornet.census_block_group
-as
-with person_location_id_dates as (
+create table SITE_pcornet.census_block_group as
+
 /*
 Get person and location id combinations with the first date associated a location id for a given person
 where location history is available
 */
+with person_location_id_dates as (
     select 
-    entity_id as person_id,
-    location_id,
-    site,
-    start_date,
-	end_date
-    from SITE_pedsnet.location_history
-    where trim(lower(domain_id))='person'
+        entity_id as person_id,
+        location_id,
+        site,
+        start_date,
+        end_date
+    from 
+        SITE_pedsnet.location_history
+    where 
+        trim(lower(domain_id))='person'
 ),
+
 /*
 Capture persons with location information in the person table that does not have an entry in location_history
 to associate with a date
 */
 person_current_location_no_dates as (
     select distinct
-    person_id,
-    location_id,
-    site,
-    null::date as start_date,
-	null::date as end_date
-    from SITE_pedsnet.person p
-    where not exists (
-                    select null 
-                    from 
-                    person_location_id_dates plid
-                    where plid.person_id=p.person_id
-                    and plid.location_id=p.location_id)
+        person_id,
+        location_id,
+        site,
+        null::date as start_date,
+        null::date as end_date
+    from 
+        SITE_pedsnet.person p
+    where 
+        not exists 
+            (
+                select null 
+                from person_location_id_dates plid
+                where plid.person_id=p.person_id
+                and plid.location_id=p.location_id
+            )
 )
 select
-('L' ||row_number() over(order by person_locations.person_id,person_locations.location_id))::text as obsgenid,
-person_locations.person_id::text as patid,
-null as encounterid,
-null as obsgen_abn_ind,
-'49084-7' as obsgen_code,
-loc.location_id::text as obsgen_id_modified,
-null as obsgen_providerid,
-null as obsgen_result_modifier,
-null as obsgen_result_num,
-null as obsgen_result_qual,
-loc.census_block_group as obsgen_result_text,
-null as obsgen_result_unit,
-null as obsgen_source,
-coalesce(start_date,current_date)::date as obsgen_start_date,
-null as obsgen_start_time,
-end_date::date as obsgen_stop_date,
-null as obsgen_stop_time,
-'LDS' as obsgen_table_modified,
-'LC' as obsgen_type,
-null as raw_obsgen_code,
-'Census Block Group (2019)' as raw_obsgen_name,
-loc.location_id||'-'||loc.census_block_group as raw_obsgen_result,
-null as raw_obsgen_type,
-null as raw_obsgen_unit,
-person_locations.site
+    ('L' ||row_number() over(order by person_locations.person_id,person_locations.location_id))::text as obsgenid,
+    person_locations.person_id::text as patid,
+    null as encounterid,
+    null as obsgen_abn_ind,
+    '49084-7' as obsgen_code,
+    fips.location_id::text as obsgen_id_modified,
+    null as obsgen_providerid,
+    null as obsgen_result_modifier,
+    null as obsgen_result_num,
+    null as obsgen_result_qual,
+    fips.geocode_state::text || fips.geocode_county::text || fips.geocode_tract::text || fips.geocode_group::text || fips.geocode_block::text as obsgen_result_text,
+    null as obsgen_result_unit,
+    null as obsgen_source,
+    coalesce(start_date,current_date)::date as obsgen_start_date,
+    null as obsgen_start_time,
+    end_date::date as obsgen_stop_date,
+    null as obsgen_stop_time,
+    'LDS' as obsgen_table_modified,
+    'LC' as obsgen_type,
+    null as raw_obsgen_code,
+    'Census Block Group' as raw_obsgen_name,
+    fips.location_id||' - '|| fips.geocode_state::text || fips.geocode_county::text || fips.geocode_tract::text || fips.geocode_group::text || fips.geocode_block::text as raw_obsgen_result,
+    geocode_year::text as raw_obsgen_type,
+    geocode_shapefile::text as raw_obsgen_unit,
+    person_locations.site
 from
     (
-    select person_id,
-    location_id,
-    site,
-    start_date,
-	end_date
-    from person_location_id_dates
-union
-    select person_id,
-    location_id,
-    site,
-    start_date,
-	end_date
-    from person_current_location_no_dates
-) person_locations 
-inner join SITE_pedsnet.location loc on person_locations.location_id=loc.location_id
-where loc.census_block_group is not null
-and person_locations.person_id in (select person_id from SITE_pcornet.person_visit_start2001);
+    select 
+        person_id,
+        location_id,
+        site,
+        start_date,
+        end_date
+    from 
+        person_location_id_dates
+    union
+    select
+         person_id,
+        location_id,
+        site,
+        start_date,
+        end_date
+    from 
+        person_current_location_no_dates
+    ) as person_locations 
+inner join 
+    SITE_pedsnet.location_fips fips 
+    on person_locations.location_id=fips.location_id
+where
+    person_locations.person_id in (select person_id from SITE_pcornet.person_visit_start2001);
 commit;
-
-
 
 begin;
 drop table SITE_pcornet.device_obs_filt;
