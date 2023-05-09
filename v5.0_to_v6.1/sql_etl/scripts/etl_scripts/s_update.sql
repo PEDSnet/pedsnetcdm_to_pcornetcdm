@@ -277,7 +277,7 @@ where
 and result_unit in ('OT','','NI','UN');
 commit;
 
--- DC 3.06 for seattle
+-- DC 2.06 for Seattle
 begin;
 update SITE_pcornet.lab_result_cm 
 set 
@@ -286,6 +286,28 @@ set
 where
 	lab_loinc = '26499-4'
 	and result_unit in ('/mm3','/uL');
+commit;
+
+-- DC 2.06 for CHOP --> BASOPHILS ABSOLUTE
+begin;
+update SITE_pcornet.lab_result_cm 
+set 
+	result_num = result_num / 1000,
+	result_unit = '10*3/uL'
+where
+	lab_loinc = '704-7'
+	and result_unit = '/uL';
+commit;
+
+-- DC 2.06 for CHOP --> MONOCYTES ABSOLUTE
+begin;
+update SITE_pcornet.lab_result_cm 
+set 
+	result_num = result_num / 1000,
+	result_unit = '10*3/uL'
+where
+	lab_loinc = '743-5'
+	and result_unit = '/uL';
 commit;
 
 begin;
