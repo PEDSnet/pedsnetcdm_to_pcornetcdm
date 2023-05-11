@@ -236,7 +236,7 @@ person_current_location_no_dates as (
             )
 )
 select
-    ('L' ||row_number() over(order by person_locations.person_id,person_locations.location_id))::text as obsgenid,
+    ('L' || fips.geocode_id::text || fips.location_id::text || person_locations.person_id::text || (row_number() over(order by person_locations.person_id,person_locations.location_id))::text)::text as obsgenid,
     person_locations.person_id::text as patid,
     null as encounterid,
     null as obsgen_abn_ind,
