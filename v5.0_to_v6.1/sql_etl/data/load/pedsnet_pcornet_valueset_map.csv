@@ -7026,3 +7026,7 @@ source_concept_class,target_concept,pcornet_name,source_concept_id,concept_descr
 "Result unit","dg","Decigram","9485","Decigram",
 "Result unit","U","Units","8510","Units",
 "Result unit","uL","Cubic Millimeter","8686","Cubic Millimeter",
+'Route','INTRACATHETER_INSTILLATION', 'Intracatheter instillation route (qualifier value)','605428','Intracatheter instillation route',
+'Route','INTRADIALYTIC', 'Intradialytic route (qualifier value)','618805','Intradialytic route',
+'Route','INTRAVENTRICULAR','Intraventricular route - cardiac (qualifier value)','4222259','Intraventricular route - cardiac',
+'Route','SUBLABIAL','Sublabial route (qualifier value)','600817','Sublabial route',
