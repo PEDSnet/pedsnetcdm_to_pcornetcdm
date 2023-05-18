@@ -3,7 +3,7 @@
 import configparser
 import click
 import os
-import config
+from config import *
 from loading import process
 import shutil
 
