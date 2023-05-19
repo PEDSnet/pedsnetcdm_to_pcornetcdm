@@ -1,3 +1,5 @@
+create schema if not exists SITE_pcornet;
+
 set search_path to SITE_pcornet;
 
 CREATE TABLE IF NOT EXISTS version_history (
