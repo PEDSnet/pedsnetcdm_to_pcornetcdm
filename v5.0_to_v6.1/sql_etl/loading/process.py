@@ -405,16 +405,20 @@ def load_maps():
             conn.commit()
 
             # region import the file to the database
-            if os.path.isfile('data/concept_map.csv'):
-                f = io.open('data/concept_map.csv', 'r', encoding="utf8")
-                cur.copy_from(f, schema + ".pedsnet_pcornet_valueset_map", columns=(
-                  "source_concept_class",
-                  "target_concept",
-                   "pcornet_name",
-                   "source_concept_id",
-                   "concept_description",
-                   "value_as_concept_id"),
-                            sep=",")
+            if os.path.isfile('data/pedsnet_pcornet_valueset_map.csv'):
+                columns = (
+                    "source_concept_class",
+                    "target_concept",
+                    "pcornet_name",
+                    "source_concept_id",
+                    "concept_description",
+                    "value_as_concept_id"
+                )
+                column_names = ','.join(columns)
+                f = io.open('data/pedsnet_pcornet_valueset_map.csv', 'r', encoding="utf8")
+                copy_cmd = f"copy pedsnet_pcornet_valueset_map({column_names}) from stdout (format csv)"
+                cur.execute("SET search_path TO " + schema + ";")
+                cur.copy_expert(copy_cmd, f)
                 conn.commit()
         except (Exception, psycopg2.OperationalError) as error:
             print(error)
