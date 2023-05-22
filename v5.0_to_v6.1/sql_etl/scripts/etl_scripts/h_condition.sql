@@ -97,7 +97,7 @@ from SITE_pcornet.filter_obs_deriv;
 commit;
 
 begin;
-create table SITE_pcornet.obs_cheif_compl_transform as
+create table SITE_pcornet.obs_chief_compl_transform as
 select distinct on (observation_id)('o'|| observation_id)::text as conditionid,
 cast(person_id as text) as patid,
 cast(visit_occurrence_id as text) as encounterid,
@@ -114,7 +114,7 @@ comp.vocabulary_id as raw_condition_type,
 null as raw_condition_source,
 'SITE' as site
 from SITE_pedsnet.observation obs
-inner join pcornet_maps.cheif_complaint_map comp on lower(obs.observation_source_value) = lower(comp.observation_source_value)
+inner join pcornet_maps.chief_complaint_map comp on lower(obs.observation_source_value) = lower(comp.observation_source_value)
 where obs.observation_concept_id  = '42894222'  and obs.site = 'SITE'
 and EXTRACT(YEAR FROM observation_date)>=2001
 and person_id in (select person_id from SITE_pcornet.person_visit_start2001); -- 2,948,927 -- 5,830,220
@@ -122,7 +122,7 @@ and person_id in (select person_id from SITE_pcornet.person_visit_start2001); --
 commit;
 
 begin;
-create table SITE_pcornet.cond_cheif_compl_transf as
+create table SITE_pcornet.cond_chief_compl_transf as
 select distinct on (co.condition_occurrence_id)('c'||co.condition_occurrence_id)::text as conditionid,
 cast(co.person_id as text) as patid,
 cast(co.visit_occurrence_id as text) as encounterid,
@@ -179,12 +179,12 @@ union
 select conditionid, patid, encounterid, report_date, resolve_date, onset_date,
         condition_status, condition, condition_type, condition_source,
         raw_condition_status, raw_condition, raw_condition_type, raw_condition_source,site
-from SITE_pcornet.obs_cheif_compl_transform
+from SITE_pcornet.obs_chief_compl_transform
 union
 select conditionid, patid, encounterid, report_date, resolve_date, onset_date,
         condition_status, condition, condition_type, condition_source,
         raw_condition_status, raw_condition, raw_condition_type, raw_condition_source,site
-from SITE_pcornet.cond_cheif_compl_transf; 
+from SITE_pcornet.cond_chief_compl_transf; 
 
 commit;	
 begin;
