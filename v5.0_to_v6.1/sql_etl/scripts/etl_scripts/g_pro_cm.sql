@@ -1,7 +1,7 @@
 begin;
 
 -- PHQ2 / PHQ9
-insert into SITE_pcornet.pro_cm(
+insert into SITE_pcornet.pro_cm (
     pro_cm_id,
     encounterid,
     patid,
@@ -16,6 +16,7 @@ insert into SITE_pcornet.pro_cm(
     pro_measure_fullname,
     pro_response_text,
     pro_response_num
+)
 select 
     distinct on (observation_id)(observation_id)::text as pro_cm_id,
     obs.visit_occurrence_id::Varchar as encounterid,
@@ -126,7 +127,7 @@ commit;
 begin;
 
 -- Hunger Vital Signs
-insert into SITE_pcornet.pro_cm(
+insert into SITE_pcornet.pro_cm (
     pro_cm_id,
     encounterid,
     patid,
@@ -141,6 +142,7 @@ insert into SITE_pcornet.pro_cm(
     pro_measure_fullname,
     pro_response_text,
     pro_response_num
+)
 select 
     distinct on (observation_id)(observation_id)::text as pro_cm_id,
     obs.visit_occurrence_id::Varchar as encounterid,
