@@ -416,13 +416,35 @@ def load_maps():
                 )
                 column_names = ','.join(columns)
                 f = io.open('data/pedsnet_pcornet_valueset_map.csv', 'r', encoding="utf8")
-                copy_cmd = f"copy pedsnet_pcornet_valueset_map({column_names}) from stdout (format csv)"
+                copy_cmd = f"copy pedsnet_pcornet_valueset_map({column_names}) from stdout (format csv, HEADER TRUE)"
                 cur.execute("SET search_path TO " + schema + ";")
                 cur.copy_expert(copy_cmd, f)
                 conn.commit()
         except (Exception, psycopg2.OperationalError) as error:
             print(error)
         # endregion
+
+        # populate chief complaint
+        try:
+            print('\nPopulating the Chief complaint table ...')
+            if os.path.isfile('data/chief_complaint_map.csv'):
+                columns = (
+                   "observation_source_value",
+                    "count",
+                    "condition_concept_id",
+                    "condition_concept_name",
+                    "concept_code",
+                    "vocabulary_id",
+                    "pcornet_condition_type"
+                )
+                column_names = ','.join(columns)
+                f = io.open('data/chief_complaint_map.csv', 'r', encoding="utf8")
+                copy_cmd = f"copy chief_complaint_map({column_names}) from stdout (format csv, HEADER TRUE)"
+                cur.execute("SET search_path TO " + schema + ";")
+                cur.copy_expert(copy_cmd, f)
+                conn.commit()
+        except (Exception, psycopg2.OperationalError) as error:
+            print(error)
 
         # region permissions
         try:
