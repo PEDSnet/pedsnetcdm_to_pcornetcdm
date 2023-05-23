@@ -1,6 +1,35 @@
 begin;
+create table SITE_pcornet.observation_extract as
+select 
+    obs.*
+from
+    SITE_pedsnet.observation obs 
+inner join 
+	SITE_pcornet.person_visit_start2001 pvs
+	on obs.person_id = pvs.person_id
+	and obs.visit_occurrence_id = pvs.visit_id   
+where 
+    observation_concept_id in 
+    (
+        3042924, --PHQ 1
+        3045858, --PHQ 2
+        3045933, --PHQ 3
+        3044964, --PHQ 4
+        3044098, --PHQ 5
+        3043801, --PHQ 6
+        3045019, --PHQ 7
+        3043785, --PHQ 8
+        3043462, --PHQ 9
+        3042932, --PHQ2 score
+        40758879, --PHQ9 score
+        40192517, -- Hunger Vital Sign 1
+        40192426, -- Hunger Vital Sign 2
+        37116643  -- General Food Insecurity Flag
+    );
+commit;
 
 -- PHQ2 / PHQ9
+begin;
 insert into SITE_pcornet.pro_cm (
     pro_cm_id,
     encounterid,
@@ -95,13 +124,7 @@ select
         when value_as_concept_id = 45883172 then 3 -- nearly every day
     end as pro_response_num
 from 
-    SITE_pedsnet.observation obs
-inner join 
-    SITE_pcornet.encounter enc 
-    on cast(obs.visit_occurrence_id as text) = enc.encounterid
-inner join 
-    SITE_pcornet.demographic demo 
-    on cast(obs.person_id as text) = demo.patid
+    SITE_pcornet.observation_extract obs
 left join 
     vocabulary.concept question 
     on obs.observation_concept_id = question.concept_id
@@ -203,17 +226,13 @@ select
         when value_as_concept_id = 4188540  or value_as_concept_id = 44814653 or value_as_string in ('Never true', 'No', 'NO') then 0 -- no risk
     end as pro_response_num
 from 
-    SITE_pedsnet.observation obs
-inner join 
-    SITE_pcornet.encounter enc 
-    on cast(obs.visit_occurrence_id as text) = enc.encounterid
-inner join 
-    SITE_pcornet.demographic demo 
-    on cast(obs.person_id as text) = demo.patid
-where observation_concept_id in (
+    SITE_pcornet.observation_extract obs
+where 
+    observation_concept_id in 
+    (
     40192517, -- Hunger Vital Sign 1
     40192426, -- Hunger Vital Sign 2
     37116643  -- General Food Insecurity Flag
-)
+    )
 ;
 commit;
