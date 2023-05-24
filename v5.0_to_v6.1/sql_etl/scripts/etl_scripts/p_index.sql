@@ -62,4 +62,8 @@ CREATE INDEX idx_obsgen_patid ON SITE_pcornet.obs_gen (patid);
 
 CREATE INDEX idx_obsgen_encid ON SITE_pcornet.obs_gen (encounterid);
 
+CREATE INDEX idx_geocode_addr ON SITE_pcornet.private_address_geocode (addressid);
+
+CREATE INDEX idx_procm_patid ON SITE_pcornet.pro_cm (patid);
+
 commit;
