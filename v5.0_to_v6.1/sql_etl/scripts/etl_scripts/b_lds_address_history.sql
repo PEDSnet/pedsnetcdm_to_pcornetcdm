@@ -2,7 +2,7 @@ begin;
 
 INSERT INTO SITE_pcornet.lds_address_history(
 	address_city, address_county, address_period_end, address_period_start, address_preferred, address_state, address_type, address_use, address_zip5, address_zip9, addressid, patid, site)
-select
+select distinct
 	case 
 		when loc.city ~ '^[0-9]+$' then null 
 	    when loc.city ~ '[^[:alnum:] ]' then 
