@@ -1,13 +1,16 @@
 begin;
 create table SITE_pcornet.observation_extract as
-select 
+select distinct
     obs.*
 from
     SITE_pedsnet.observation obs 
 inner join 
 	SITE_pcornet.person_visit_start2001 pvs
 	on obs.person_id = pvs.person_id
-	and obs.visit_occurrence_id = pvs.visit_id   
+	and (
+        obs.visit_occurrence_id is null
+        or obs.visit_occurrence_id = pvs.visit_id
+        )
 where 
     observation_concept_id in 
     (
