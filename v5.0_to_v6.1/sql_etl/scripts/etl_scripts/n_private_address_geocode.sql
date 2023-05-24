@@ -17,9 +17,9 @@ select
     geocode_state as geocode_state,
     geocode_county as geocode_county,
     geocode_tract as geocode_tract, 
-    geocode_group as geocode_group
-    geocode_block as geocode_block
-    geocode_year::varchar as geocode_custom_text
+    geocode_group as geocode_group,
+    geocode_block as geocode_block,
+    geocode_year::varchar as geocode_custom_text,
     geocode_shapefile as shapefile
 from 
     SITE_pedsnet.location_history his
