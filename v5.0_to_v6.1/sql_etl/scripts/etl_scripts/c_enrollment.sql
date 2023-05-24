@@ -14,5 +14,8 @@ select distinct
 	'SITE' as site
 from
 	SITE_pedsnet.observation_period op
-	where person_id IN (select person_id from SITE_pcornet.person_visit_start2001);
+inner join 
+	SITE_pcornet.person_visit_start2001 pvs 
+	on op.person_id = pvs.person_id
+;
 commit;

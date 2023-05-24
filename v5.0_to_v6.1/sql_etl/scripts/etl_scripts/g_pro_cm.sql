@@ -81,7 +81,7 @@ select
             3043462  --PHQ 9
         ) then question.concept_name
     end as pro_item_fullname,
-    'PHQ' || person_id::varchar || coalesce(visit_occurrence_id::varchar,'') || date_part('year',observation_date)::text || LPAD(date_part('month',observation_date)::text,2,'0') || LPAD(date_part('day',observation_date)::text,2,'0') || LPAD(date_part('hour',observation_datetime)::text,2,'0') || LPAD(date_part('minute',observation_date)::text,2,'0') as pro_measure_seq,
+    'PHQ' || obs.person_id::varchar || coalesce(visit_occurrence_id::varchar,'') || date_part('year',observation_date)::text || LPAD(date_part('month',observation_date)::text,2,'0') || LPAD(date_part('day',observation_date)::text,2,'0') || LPAD(date_part('hour',observation_datetime)::text,2,'0') || LPAD(date_part('minute',observation_date)::text,2,'0') as pro_measure_seq,
     case
         when observation_concept_id in 
         (
@@ -181,7 +181,7 @@ select
         when observation_concept_id = 40192517 then 'Within the past 12 months we worried whether our food would run out before we got money to buy more [U.S. Food Security Survey]'
         when observation_concept_id = 40192426 then 'Within the past 12 months the food we bought just didn''t last and we didn''t have money to get more [U.S. Food Security Survey]'
     end as pro_item_fullname,
-    'HVS' || person_id::varchar || coalesce(visit_occurrence_id::varchar,'') || date_part('year',observation_date)::text || LPAD(date_part('month',observation_date)::text,2,'0') || LPAD(date_part('day',observation_date)::text,2,'0') || LPAD(date_part('hour',observation_datetime)::text,2,'0') || LPAD(date_part('minute',observation_date)::text,2,'0') as pro_measure_seq,
+    'HVS' || obs.person_id::varchar || coalesce(visit_occurrence_id::varchar,'') || date_part('year',observation_date)::text || LPAD(date_part('month',observation_date)::text,2,'0') || LPAD(date_part('day',observation_date)::text,2,'0') || LPAD(date_part('hour',observation_datetime)::text,2,'0') || LPAD(date_part('minute',observation_date)::text,2,'0') as pro_measure_seq,
     null as pro_measure_score,
     case
         when observation_concept_id = 37116643 then '88124-3'

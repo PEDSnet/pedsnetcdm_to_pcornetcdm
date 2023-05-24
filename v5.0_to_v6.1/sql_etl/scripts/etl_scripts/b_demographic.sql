@@ -87,13 +87,43 @@ select distinct
 	'SITE' as site
 from
 	SITE_pedsnet.person p
-	left join pcornet_maps.pedsnet_pcornet_valueset_map m1 on case when cast(p.gender_concept_id as text) is null AND m1.source_concept_id is null then true else cast(p.gender_concept_id as text) = m1.source_concept_id end and m1.source_concept_class='Gender'
-	left join pcornet_maps.pedsnet_pcornet_valueset_map m2 on case when p.ethnicity_concept_id is null AND m2.source_concept_id is null then true else cast(p.ethnicity_concept_id as text) = m2.source_concept_id end and m2.source_concept_class='Hispanic'
-	left join pcornet_maps.pedsnet_pcornet_valueset_map m3 on case when p.race_concept_id is null AND m3.source_concept_id is null then true else cast(p.race_concept_id as text) = m3.source_concept_id end and m3.source_concept_class = 'Race'
-	left join pcornet_maps.pedsnet_pcornet_valueset_map m4 on case when p.language_concept_id is null AND m4.source_concept_id is null then true else cast(p.language_concept_id as text) = m4.source_concept_id end and m4.source_concept_class = 'Language'
-	left join s_o on p.person_id = s_o.person_id
-	left join gender_iden on p.person_id = gender_iden.person_id
-where 
-	p.person_id IN (select person_id from SITE_pcornet.person_visit_start2001);
+	inner join 
+		SITE_pcornet.person_visit_start2001 pvs 
+		on p.person_id = pvs.person_id
+	left join 
+		pcornet_maps.pedsnet_pcornet_valueset_map m1 
+		on case 
+			when cast(p.gender_concept_id as text) is null AND m1.source_concept_id is null then true
+			else cast(p.gender_concept_id as text) = m1.source_concept_id 
+			end 
+		and m1.source_concept_class='Gender'
+	left join 
+		pcornet_maps.pedsnet_pcornet_valueset_map m2 
+		on case 
+			when p.ethnicity_concept_id is null AND m2.source_concept_id is null then true 
+			else cast(p.ethnicity_concept_id as text) = m2.source_concept_id 
+		end 
+	and m2.source_concept_class='Hispanic'
+	left join 
+		pcornet_maps.pedsnet_pcornet_valueset_map m3 
+		on case 
+			when p.race_concept_id is null AND m3.source_concept_id is null then true 
+			else cast(p.race_concept_id as text) = m3.source_concept_id 
+		end 
+	and m3.source_concept_class = 'Race'
+	left join 
+		pcornet_maps.pedsnet_pcornet_valueset_map m4 
+		on case 
+			when p.language_concept_id is null AND m4.source_concept_id is null then true 
+			else cast(p.language_concept_id as text) = m4.source_concept_id 
+		end 
+		and m4.source_concept_class = 'Language'
+	left join 
+		s_o 
+		on p.person_id = s_o.person_id
+	left join 
+		gender_iden 
+		on p.person_id = gender_iden.person_id
+;
 
 commit;

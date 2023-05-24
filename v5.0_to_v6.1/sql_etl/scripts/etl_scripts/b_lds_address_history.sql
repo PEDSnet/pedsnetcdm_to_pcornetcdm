@@ -37,6 +37,9 @@ left join
 	SITE_pedsnet.location_history loc_his 
 	on loc.location_id = loc_his.location_id 
 	and lower(loc_his.domain_id) = 'person'
+inner join 
+	SITE_pcornet.person_visit_start2001 pvs 
+	on loc_his.entity_id = pvs.person_id
 left join 
 	pcornet_maps.pedsnet_pcornet_valueset_map addr_pref 
 	on addr_pref.source_concept_id::int = loc_his.location_preferred_concept_id 
@@ -53,8 +56,6 @@ left join
 			else lower(trim(split_part(addr_st.pcornet_name,'=',2))) = lower(loc.state) 
 		end 
     and addr_st.source_concept_class = 'address_state'
-where 
-	loc_his.entity_id in (select person_id from SITE_pcornet.person_visit_start2001)
 ;
 
 commit;
