@@ -37,4 +37,5 @@ drop table IF EXISTS SITE_pcornet.filter_condition;
 drop table IF EXISTS SITE_pcornet.imm_body_site;
 drop table IF EXISTS SITE_pcornet.lab_qual;
 drop table IF EXISTS SITE_pcornet.filter_diag;
+drop table IF EXISTS SITE_pcornet.observation_extract;
 commit;
