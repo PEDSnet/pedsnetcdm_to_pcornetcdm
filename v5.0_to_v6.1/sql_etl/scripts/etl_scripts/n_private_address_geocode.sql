@@ -28,5 +28,5 @@ left join
     on fips.location_id = his.location_id
 inner join
     SITE_pcornet.lds_address_history lds 
-    on lds.addressid = his.location_history_id::varchar
+    on lds.addressid = his.location_history_id::varchar;
 commit;
