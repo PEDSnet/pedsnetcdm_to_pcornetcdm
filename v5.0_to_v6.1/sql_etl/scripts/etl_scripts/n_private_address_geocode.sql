@@ -12,7 +12,7 @@ insert into SITE_pcornet.private_address_geocode(
     shapefile
 )
 select 
-    fips.geocode_id::varchar as geocodeid,
+	fips.geocode_id::varchar || his.location_history_id::varchar as geocodeid,
     his.location_history_id::varchar as addressid,
     geocode_state as geocode_state,
     geocode_county as geocode_county,
@@ -23,7 +23,7 @@ select
     geocode_shapefile as shapefile
 from 
     SITE_pedsnet.location_history his
-left join 
+inner join 
     SITE_pedsnet.location_fips fips
     on fips.location_id = his.location_id
 inner join
