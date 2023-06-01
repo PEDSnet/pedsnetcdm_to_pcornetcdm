@@ -81,7 +81,7 @@ ALTER TABLE SITE_pcornet.immunization ADD CONSTRAINT fk_immun_providerid FOREIGN
 
 ALTER TABLE SITE_pcornet.lds_address_history ADD CONSTRAINT fk_lds_addhist_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
-ALTER TABLE SITE_pcornet.private_address_geocode ADD CONSTRAINT fk_gecode_addressid FOREIGN KEY(addressid) REFERENCES SITE_pcornet.private_address_history (addressid) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE SITE_pcornet.private_address_geocode ADD CONSTRAINT fk_gecode_addressid FOREIGN KEY(addressid) REFERENCES SITE_pcornet.lds_address_history (addressid) DEFERRABLE INITIALLY DEFERRED;
 
 ALTER TABLE SITE_pcornet.private_address_history ADD CONSTRAINT fk_add_history_patid FOREIGN KEY(patid) REFERENCES SITE_pcornet.demographic (patid) DEFERRABLE INITIALLY DEFERRED;
 
