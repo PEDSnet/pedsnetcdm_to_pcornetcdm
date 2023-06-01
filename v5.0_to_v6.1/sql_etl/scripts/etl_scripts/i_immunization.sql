@@ -252,23 +252,22 @@ drop table if exists SITE_pcornet.imm_manuf;
 commit;
 
 begin;
-
 INSERT INTO SITE_pcornet.immunization(immunizationid, patid, encounterid, proceduresid, vx_providerid,
 vx_record_date, vx_admin_date, vx_code_type, vx_code, vx_status, vx_status_reason, vx_source, vx_dose,
 vx_dose_unit, vx_route, vx_body_site, vx_manufacturer, vx_lot_num, vx_exp_date, raw_vx_name,
 raw_vx_code, raw_vx_code_type, raw_vx_dose, raw_vx_dose_unit, raw_vx_route, raw_vx_body_site,
 raw_vx_status, raw_vx_status_reason, site)
-select 
-	distinct on (immunizationid)imm.immunizationid as immunizationid,
-    patid,encounterid,proceduresid, vx_providerid,vx_record_date, vx_admin_date,vx_code_type,
-	vx_code, vx_status,vx_status_reason,vx_source, vx_dose,vx_dose_unit, vx_route,
-	vx_body_site, vx_manufacturer, vx_lot_num, vx_exp_date,raw_vx_name, raw_vx_code, raw_vx_code_type,
-	raw_vx_dose,raw_vx_dose_unit,raw_vx_route,raw_vx_body_site, raw_vx_status,raw_vx_status_reason,site
-from 
-	SITE_pcornet.imm_body_site imm	
-inner join 
-	SITE_pcornet.person_visit_start2001 pvs 
-	on imm.patid::int = pvs.person_id
-	and imm.encounterid::int = pvs.visit_id 
-;
-commit;
+select distinct on (immunizationid)imm.immunizationid as immunizationid,
+         patid,encounterid,proceduresid, vx_providerid,vx_record_date, vx_admin_date,vx_code_type,
+ 		vx_code, vx_status,vx_status_reason,vx_source, vx_dose,vx_dose_unit, vx_route,
+ 		vx_body_site, vx_manufacturer, vx_lot_num, vx_exp_date,raw_vx_name, raw_vx_code, raw_vx_code_type,
+ 		raw_vx_dose,raw_vx_dose_unit,raw_vx_route,raw_vx_body_site, raw_vx_status,raw_vx_status_reason,site
+ from SITE_pcornet.imm_body_site imm																																				 
+ where imm.patid::int IN (select person_id from SITE_pcornet.person_visit_start2001);
+ commit;
+
+ begin;
+ delete from SITE_pcornet.immunization 
+ where encounterid IS NOT null and
+ 	   encounterid::int NOT IN (select visit_id from SITE_pcornet.person_visit_start2001);
+ commit;
