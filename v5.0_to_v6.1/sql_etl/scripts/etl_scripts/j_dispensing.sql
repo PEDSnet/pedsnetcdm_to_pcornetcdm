@@ -67,9 +67,6 @@ select distinct
 	'SITE' as site
 from
 	SITE_pedsnet.drug_exposure de
-inner join 
-	SITE_pcornet.person_visit_start2001 pvs 
-	on de.person_id = pvs.person_id
 left join 
 	SITE_pcornet.rxnorm_ndc_crosswalk 
 	on drug_concept_id = rxnorm_concept_id
@@ -86,6 +83,7 @@ left join
 	and m2.source_concept_class='Route'
 where
 	de.drug_type_concept_id = '38000175' 
+	and person_id in (select person_id from SITE_pcornet.person_visit_start2001)
 	and (
 		rxnorm_ndc_crosswalk.min_ndc_code is not null
 		or ndc.concept_id is not null
