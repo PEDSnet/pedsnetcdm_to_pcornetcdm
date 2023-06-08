@@ -9,7 +9,8 @@ insert into SITE_pcornet.private_address_geocode(
     geocode_group,
     geocode_block,
     geocode_custom_text,
-    shapefile
+    shapefile,
+    site
 )
 select 
 	fips.geocode_id::varchar || his.location_history_id::varchar as geocodeid,
@@ -20,7 +21,8 @@ select
     geocode_group as geocode_group,
     geocode_block as geocode_block,
     geocode_year::varchar as geocode_custom_text,
-    geocode_shapefile as shapefile
+    geocode_shapefile as shapefile,
+    SITE as site
 from 
     SITE_pedsnet.location_history his
 inner join 
