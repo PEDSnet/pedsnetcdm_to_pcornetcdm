@@ -296,7 +296,18 @@ set
 	result_unit = '10*3/uL'
 where
 	lab_loinc = '704-7'
-	and result_unit = '/uL';
+	and result_unit in ('uL','/uL','{#}/uL','{cells}/uL');
+commit;
+
+-- DC 2.06 for CHOP --> LYMPHOCYTES ABSOLUTE
+begin;
+update SITE_pcornet.lab_result_cm 
+set 
+	result_num = result_num / 1000,
+	result_unit = '10*3/uL'
+where
+	lab_loinc = '731-0'
+	and result_unit in ('uL','/uL','{#}/uL','{cells}/uL');
 commit;
 
 -- DC 2.06 for CHOP --> MONOCYTES ABSOLUTE
@@ -306,8 +317,19 @@ set
 	result_num = result_num / 1000,
 	result_unit = '10*3/uL'
 where
-	lab_loinc = '743-5'
-	and result_unit = '/uL';
+	lab_loinc in ('743-5','742-7')
+	and result_unit in ('uL','/uL','{#}/uL','{cells}/uL');
+commit;
+
+-- DC 2.06 for CHOP --> NEUTROPHILS ABSOLUTE
+begin;
+update SITE_pcornet.lab_result_cm 
+set 
+	result_num = result_num / 1000,
+	result_unit = '10*3/uL'
+where
+	lab_loinc in ('26499-4','751-8')
+	and result_unit in ('uL','/uL','{#}/uL','{cells}/uL');
 commit;
 
 begin;
