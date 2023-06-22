@@ -22,7 +22,7 @@ select
     geocode_block as geocode_block,
     geocode_year::varchar as geocode_custom_text,
     geocode_shapefile as shapefile,
-    SITE as site
+    'SITE' as site
 from 
     SITE_pedsnet.location_history his
 inner join 
