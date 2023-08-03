@@ -382,3 +382,117 @@ where
     and norm_range_low is not null
     and norm_range_high is not null;
 commit;
+
+-- solution to DC 3.06
+-- flips 1 diagosis on an encounter to primary if no primaries exist (stratified by enc_type and dx_origin)
+-- dx_orign = OD, enc_type = IP
+begin;
+-- get distribution of the number of primary and secondary OD diagnoses for each IP encounter
+with primary_diagnosis_distribution as (
+select 
+	encounterid, 
+	enc_type,
+	dx_origin,
+	sum(case when pdx = 'P' then 1 else 0 end) as prim,
+	sum(case when pdx <> 'P' then 1 else 0 end) as sec
+from 
+	SITE_pcornet.diagnosis
+where
+	enc_type = 'IP'
+	and dx_origin = 'OD'
+group by 
+	encounterid, 
+	enc_type,
+	dx_origin
+),
+
+-- get all encounters with 0 primary diagnoses
+no_primary_diagnoses as (
+select 
+    *
+from primary_diagnosis_distribution where prim = 0
+),
+
+-- define row numbers for each secondary diagnosis
+secondary_diagnosisids as (
+select 
+	encounterid,
+	diagnosisid,
+	ROW_NUMBER() OVER (PARTITION BY encounterid order by diagnosisid) as rn
+from 
+	SITE_pcornet.diagnosis
+where 
+	encounterid in (select encounterid from no_primary_diagnoses)
+	and enc_type = 'IP'
+	and dx_origin = 'OD'
+),
+
+-- get 1 secondary diagnosis for each encounter
+scondary_to_primary_candidate as (
+select diagnosisid
+from secondary_diagnosisids
+where rn = 1
+)
+
+-- update that secondary diagnosis as primary
+update SITE_pcornet.diagnosis
+set pdx = 'P'
+where diagnosisid in (select diagnosisid from scondary_to_primary_candidate)
+
+commit;
+
+-- dx_orign = OD, enc_type = EI
+begin;
+-- get distribution of the number of primary and secondary OD diagnoses for each IP encounter
+with primary_diagnosis_distribution as (
+select 
+	encounterid, 
+	enc_type,
+	dx_origin,
+	sum(case when pdx = 'P' then 1 else 0 end) as prim,
+	sum(case when pdx <> 'P' then 1 else 0 end) as sec
+from 
+	SITE_pcornet.diagnosis
+where
+	enc_type = 'EI'
+	and dx_origin = 'OD'
+group by 
+	encounterid, 
+	enc_type,
+	dx_origin
+),
+
+-- get all encounters with 0 primary diagnoses
+no_primary_diagnoses as (
+select 
+    *
+from primary_diagnosis_distribution where prim = 0
+),
+
+-- define row numbers for each secondary diagnosis
+secondary_diagnosisids as (
+select 
+	encounterid,
+	diagnosisid,
+	ROW_NUMBER() OVER (PARTITION BY encounterid order by diagnosisid) as rn
+from 
+	SITE_pcornet.diagnosis
+where 
+	encounterid in (select encounterid from no_primary_diagnoses)
+	and enc_type = 'EI'
+	and dx_origin = 'OD'
+),
+
+-- get 1 secondary diagnosis for each encounter
+scondary_to_primary_candidate as (
+select diagnosisid
+from secondary_diagnosisids
+where rn = 1
+)
+
+-- update that secondary diagnosis as primary
+update SITE_pcornet.diagnosis
+set pdx = 'P'
+where diagnosisid in (select diagnosisid from scondary_to_primary_candidate)
+
+commit;
