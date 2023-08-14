@@ -34,5 +34,5 @@ singledispatch==3.4.0.3
 six==1.11.0
 SQLAlchemy>=1.3.0
 toolz==0.8.2
-tornado==4.5.2
+tornado==6.3.3
 vine==1.1.4
