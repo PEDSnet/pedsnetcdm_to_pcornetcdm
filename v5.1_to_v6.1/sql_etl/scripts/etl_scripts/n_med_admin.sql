@@ -114,7 +114,10 @@ where
 			'%EXTEMPORANEOUS TEMPLATE%',
 			'%IV INFUSION BUILDER%',
 			'%PATIENT SUPPLIED MEDICATION%',
-			'%MISC MED%'
+			'%MISC MED%',
+			'%DRUG FORMULATIONZOR%',
+			'%WATER FOR INJECTION%'
+
 		])
 )
 delete from SITE_pcornet.med_admin
