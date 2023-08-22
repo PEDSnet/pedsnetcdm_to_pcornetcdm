@@ -496,3 +496,10 @@ set pdx = 'P'
 where diagnosisid in (select diagnosisid from scondary_to_primary_candidate)
 
 commit;
+
+-- update for Stanford DC 3.13 - White Blood Cell LOINC codes
+begin;
+update SITE_pcornet.lab_result_cm
+set lab_loinc = '26464-8'
+where lab_loinc = '20584-9' and specimen_source = 'BLD';
+commit;
