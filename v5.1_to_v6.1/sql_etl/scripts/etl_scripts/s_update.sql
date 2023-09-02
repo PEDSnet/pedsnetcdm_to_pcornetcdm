@@ -437,7 +437,7 @@ where rn = 1
 -- update that secondary diagnosis as primary
 update SITE_pcornet.diagnosis
 set pdx = 'P'
-where diagnosisid in (select diagnosisid from scondary_to_primary_candidate)
+where diagnosisid in (select diagnosisid from scondary_to_primary_candidate);
 
 commit;
 
@@ -493,7 +493,7 @@ where rn = 1
 -- update that secondary diagnosis as primary
 update SITE_pcornet.diagnosis
 set pdx = 'P'
-where diagnosisid in (select diagnosisid from scondary_to_primary_candidate)
+where diagnosisid in (select diagnosisid from scondary_to_primary_candidate);
 
 commit;
 
