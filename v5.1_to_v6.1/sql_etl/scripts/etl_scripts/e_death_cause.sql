@@ -66,6 +66,7 @@ left join
 where 
 	cause_source_value is not null 
 	and cause_source_concept_id <> 44814650
+	and (cause_source_concept_id <> 0 and cause_concept_id <> 0)
 	and cause_source_value not in 
 	(
 		'NI', -- nemours
