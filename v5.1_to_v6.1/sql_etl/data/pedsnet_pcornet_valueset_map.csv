@@ -6137,9 +6137,7 @@ source_concept_class,target_concept,pcornet_name,source_concept_id,concept_descr
 "tobacco type","01",,"4219336","Smoked tobacco only","4298794"
 "vx_manufacturer_source","SOL","Solvay Pharmaceuticals",,,
 "Encounter type","TH",,"581399","Telehealth",
-"Facility type","HOSPITAL_OUTPATIENT_HEMONC_CLINIC","HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset","8756","outpatient hospital Hematology Oncology","45756811"
-"Facility type","HOSPITAL_OUTPATIENT_CARDIOLOGY_CLINIC","HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset","8756","Outpatient Hospital Cardiology","45756805"
-"Facility type","HOSPITAL_OUTPATIENT_NEUROSURGERY_CLINIC","HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset","8756","Outpatient Hospital Neurosurgery","38004459"
+"Facility type","HOSPITAL_OUTPATIENT_PEDIATRIC_CLINIC","HOSPITAL_OUTPATIENT_PEDIATRIC_CLINIC","8756","outpatient hospital Hematology Oncology",
 "result_qual_source","A NEG","A Neg",,"A Neg",
 "result_qual_source","A POS","A Pos",,"A Pos",
 "result_qual_source","AB NEG","AB Neg",,"AB Negative",
@@ -6213,7 +6211,6 @@ source_concept_class,target_concept,pcornet_name,source_concept_id,concept_descr
 "Provider Specialty","2083A0300X","Preventive Medicine Addiction Medicine",,"Preventive Medicine Addiction Medicine",
 "vx_manufacturer_source","BN","Bavarian Nordic A/S",,,
 "vx_manufacturer_source","TVA","TEVA Pharmaceuticals USA",,,
-"Facility type","HOSPITAL_OUTPATIENT_OBGYN_CLINIC","HOSPITAL_OUTPATIENT_CLINIC-AMBULATORY_CARE-subset","8756","Obstetrics and Gynecology","38004461"
 "result_qual_source","O POS","O POS",,"O positive",
 "Route","EPILESIONAL","Epilesional route (qualifier value)","35608078","Epilesional route",
 "Route","EPILESIONAL","Epilesional route (qualifier value)","45956880","Epilesional",
