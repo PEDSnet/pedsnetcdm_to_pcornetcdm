@@ -1,17 +1,4 @@
-/* ensure effective drug dosage number fits within numeric(15,8)
-If total number of digits > 15, truncate decimal places if able to */
 begin;
-update 
-	SITE_pedsnet.drug_exposure
-set 
-	effective_drug_dose = trunc(effective_drug_dose, (15 - length(split_part(effective_drug_dose::text, '.', 1))))
-where
-	length(effective_drug_dose::text) - 1 > 15
-	and length(split_part(effective_drug_dose::text, '.', 2)) > (15 - length(split_part(effective_drug_dose::text, '.', 1)));
-commit;
-
-begin;
-
 
 create table SITE_pcornet.rxnorm_ndc_crosswalk as
  (
@@ -56,7 +43,7 @@ select distinct
 	    else de.days_supply
 	end as dispense_sup,
 	de.quantity as dispense_amt,
-	de.effective_drug_dose as dispense_dose_disp, 
+	trunc(de.effective_drug_dose, (15 - length(split_part(de.effective_drug_dose::text, '.', 1)))) as dispense_dose_disp, 
 	coalesce(m1.target_concept,'OT') as dispense_dose_disp_unit,
 	coalesce(m2.target_concept,'OT') as dispense_route,
 	'PM' as dispense_source, -- defaulting it to sourced from pharmacy

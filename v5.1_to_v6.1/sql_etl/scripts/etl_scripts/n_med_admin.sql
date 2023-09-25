@@ -38,7 +38,7 @@ select distinct drug_exposure_id as medadminid,
 	end
 	as
 	medadmin_code,
-	de.effective_drug_dose as medadmin_dose_admin, 
+	trunc(de.effective_drug_dose, (15 - length(split_part(de.effective_drug_dose::text, '.', 1)))) as medadmin_dose_admin, 
 	coalesce(m1.target_concept,'OT') as medadmin_dose_admin_unit,
 	coalesce(m2.target_concept,'OT') as medadmin_route, 
 	'OD' as medadmin_source, 
