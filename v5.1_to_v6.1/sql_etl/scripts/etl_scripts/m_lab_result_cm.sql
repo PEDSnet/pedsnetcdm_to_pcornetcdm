@@ -146,7 +146,7 @@ with filter_lab as
 update SITE_pcornet.lab_qual
 set result_qual = coalesce(qual.target_concept)
 from filter_lab l
-inner join pcornet_maps.pedsnet_pcornet_valueset_map qual on lower(value_source_value) ilike '%'|| qual.concept_description || '%' and qual.source_concept_class = 'result_qual_source'
+inner join pcornet_maps.pedsnet_pcornet_valueset_map qual on lower(value_source_value) like '%'|| qual.concept_description || '%' and qual.source_concept_class = 'result_qual_source'
 where l.lab_result_cm_id = SITE_pcornet.lab_qual.lab_result_cm_id
 and SITE_pcornet.lab_qual.result_qual = 'OT';
 commit;

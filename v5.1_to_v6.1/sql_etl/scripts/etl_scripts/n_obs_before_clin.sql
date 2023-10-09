@@ -74,7 +74,7 @@ meas.unit_concept_id, meas.unit_source_value,obsclin_source,raw_obsclin_name,raw
 raw_obsclin_code,raw_obsclin_modifier,raw_obsclin_result,raw_obsclin_unit,meas.site
 from SITE_pcornet.meas_obsclin_loinc meas 
 left join pcornet_maps.pedsnet_pcornet_valueset_map map_qual on cast(meas.value_as_concept_id as text)= map_qual.source_concept_id and map_qual.source_concept_class = 'Result qualifier'
-left join pcornet_maps.pedsnet_pcornet_valueset_map qual on lower(value_source_value) ilike '%'|| qual.concept_description || '%' and qual.source_concept_class = 'result_qual_source';
+left join pcornet_maps.pedsnet_pcornet_valueset_map qual on lower(value_source_value) like '%'|| qual.concept_description || '%' and qual.source_concept_class = 'result_qual_source';
 
 commit;
 

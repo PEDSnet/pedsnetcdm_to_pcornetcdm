@@ -108,7 +108,7 @@ with filter_obsgen as
 update SITE_pcornet.meas_obs_qual
 set obsgen_result_qual = coalesce(qual.target_concept)
 from filter_obsgen l
-inner join pcornet_maps.pedsnet_pcornet_valueset_map qual on lower(value_source_value) ilike '%'|| qual.concept_description || '%' and qual.source_concept_class = 'result_qual_source'
+inner join pcornet_maps.pedsnet_pcornet_valueset_map qual on lower(value_source_value) like '%'|| qual.concept_description || '%' and qual.source_concept_class = 'result_qual_source'
 where l.obsgenid = SITE_pcornet.meas_obs_qual.obsgenid
 and SITE_pcornet.meas_obs_qual.obsgen_result_qual = 'OT';
 commit;
