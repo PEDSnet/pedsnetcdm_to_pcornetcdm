@@ -63,41 +63,41 @@ commit;
 -- commit;
 
 /* vital data - tobacco*/
-begin;
-create table SITE_pcornet.tobacco_obclin as
-select tobac.visit_occurrence_id::int as encounterid, 
-coalesce(code.concept_code, null) as obsclin_code, 
-coalesce(abn.target_concept, 'NI') as obsclin_abn_ind,
-tobac.observation_date as obsclin_start_date, 
-tobac.provider_id as obsclin_providerid, 
-'NI' as obsclin_result_modifier, 
-coalesce(code.concept_code, null) as obsclin_result_snomed, 
-coalesce(qual.target_concept,qual_src.target_concept,'NI') as obsclin_result_qual, 
-case when tobacco is not null and tobacco_type is not null then tobacco
-     when smoking is not null and tobacco_type is not null then smoking 
-end as obsclin_result_text, 
-null as obsclin_result_unit, 
-'HC' as obsclin_source,
-LPAD(date_part('hour',tobac.observation_datetime)::text,2,'0')||':'||LPAD(date_part('minute',tobac.observation_datetime)::text,2,'0') as obsclin_start_time,
-'SM' as obsclin_type, 
-('o'||tobac.observation_id)::text as obsclinid, 
-tobac.person_id::text as patid, 
-coalesce(code.concept_code, null)  as raw_obsclin_code, 
-null as raw_obsclin_modifier, 
-code.concept_name as raw_obsclin_name, 
-value_as_string as raw_obsclin_result, 
-coalesce(code.vocabulary_id, null) as raw_obsclin_type, 
-null as raw_obsclin_unit, 
-null::date as obsclin_stop_date, 
-null as obsclin_stop_time,
-tobac.site as site
-from SITE_pcornet.ob_tobacco_data tobac
-left join vocabulary.concept code on code.concept_id = tobac.observation_concept_id and code.vocabulary_id = 'SNOMED'
-left join pcornet_maps.pedsnet_pcornet_valueset_map qual on qual.source_concept_id = tobac.qualifier_concept_id::text and qual.source_concept_class in ('Result qualifier')
-left join pcornet_maps.pedsnet_pcornet_valueset_map qual_src on lower(tobac.qualifier_source_value) ilike '%'|| qual_src.concept_description || '%' and qual_src.source_concept_class = 'result_qual_source'
-Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id::int = tobac.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator';
+-- begin;
+-- create table SITE_pcornet.tobacco_obclin as
+-- select tobac.visit_occurrence_id::int as encounterid, 
+-- coalesce(code.concept_code, null) as obsclin_code, 
+-- coalesce(abn.target_concept, 'NI') as obsclin_abn_ind,
+-- tobac.observation_date as obsclin_start_date, 
+-- tobac.provider_id as obsclin_providerid, 
+-- 'NI' as obsclin_result_modifier, 
+-- coalesce(code.concept_code, null) as obsclin_result_snomed, 
+-- coalesce(qual.target_concept,qual_src.target_concept,'NI') as obsclin_result_qual, 
+-- case when tobacco is not null and tobacco_type is not null then tobacco
+--      when smoking is not null and tobacco_type is not null then smoking 
+-- end as obsclin_result_text, 
+-- null as obsclin_result_unit, 
+-- 'HC' as obsclin_source,
+-- LPAD(date_part('hour',tobac.observation_datetime)::text,2,'0')||':'||LPAD(date_part('minute',tobac.observation_datetime)::text,2,'0') as obsclin_start_time,
+-- 'SM' as obsclin_type, 
+-- ('o'||tobac.observation_id)::text as obsclinid, 
+-- tobac.person_id::text as patid, 
+-- coalesce(code.concept_code, null)  as raw_obsclin_code, 
+-- null as raw_obsclin_modifier, 
+-- code.concept_name as raw_obsclin_name, 
+-- value_as_string as raw_obsclin_result, 
+-- coalesce(code.vocabulary_id, null) as raw_obsclin_type, 
+-- null as raw_obsclin_unit, 
+-- null::date as obsclin_stop_date, 
+-- null as obsclin_stop_time,
+-- tobac.site as site
+-- from SITE_pcornet.ob_tobacco_data tobac
+-- left join vocabulary.concept code on code.concept_id = tobac.observation_concept_id and code.vocabulary_id = 'SNOMED'
+-- left join pcornet_maps.pedsnet_pcornet_valueset_map qual on qual.source_concept_id = tobac.qualifier_concept_id::text and qual.source_concept_class in ('Result qualifier')
+-- left join pcornet_maps.pedsnet_pcornet_valueset_map qual_src on lower(tobac.qualifier_source_value) ilike '%'|| qual_src.concept_description || '%' and qual_src.source_concept_class = 'result_qual_source'
+-- Left join pcornet_maps.pedsnet_pcornet_valueset_map abn on abn.source_concept_id::int = tobac.value_as_concept_id and abn.source_concept_class = 'abnormal_indicator';
 
-commit;
+-- commit;
 
 begin;
 INSERT INTO SITE_pcornet.obs_clin( obsclinid,encounterid, obsclin_code, obsclin_abn_ind,obsclin_start_date, obsclin_providerid, obsclin_result_modifier, obsclin_result_snomed, obsclin_result_qual, obsclin_result_text, 

@@ -128,27 +128,120 @@ begin;
 create table SITE_pcornet.lab_qual as
 select lab_result_cm_id,patid,encounterid,specimen_source,lab_result_source,lab_loinc_source,lab_loinc,
 	priority,result_loc,lab_px,lab_px_type,lab_order_date,specimen_date,specimen_time,result_date,result_time,
-	coalesce(qual.target_concept,'OT') as result_qual, value_source_value,
+	coalesce(
+		qual.target_concept,
+		case
+            when lower(value_source_value) like '%1+%' then '1+'
+            when lower(value_source_value) like '%2+%' then '2+'
+            when lower(value_source_value) like '%3+%' then '3+'
+            when lower(value_source_value) like '%a neg%' then 'A NEG'
+            when lower(value_source_value) like '%a pos%' then 'A POS'
+            when lower(value_source_value) like '%ab negative%' then 'AB NEG'
+            when lower(value_source_value) like '%ab not detected%' then 'AB NOT DETECTED'
+            when lower(value_source_value) like '%ab positive%' then 'AB POS'
+            when lower(value_source_value) like '%abbnormal%' then 'ABNORMAL'
+            when lower(value_source_value) like '%abnormal%' then 'ABNORMAL'
+            when lower(value_source_value) like '%absent%' then 'ABSENT'
+            when lower(value_source_value) like '%acanthocytes%' then 'ACANTHOCYTES'
+            when lower(value_source_value) like '%adequate%' then 'ADEQUATE'
+            when lower(value_source_value) like '%amber%' then 'AMBER'
+            when lower(value_source_value) like '%amniotic fluid%' then 'AMNIOTIC FLUID'
+            when lower(value_source_value) like '%anisocytosis%' then 'ANISOCYTOSIS'
+            when lower(value_source_value) like '%arterial%' then 'ARTERIAL'
+            when lower(value_source_value) like '%arterial line%' then 'ARTERIAL LINE'
+            when lower(value_source_value) like '%b neg%' then 'B NEG'
+            when lower(value_source_value) like '%b pos%' then 'B POS'
+            when lower(value_source_value) like '%basophilic stippling%' then 'BASOPHILIC STIPPLING'
+            when lower(value_source_value) like '%bite cells%' then 'BITE CELLS'
+            when lower(value_source_value) like '%bizarre%' then 'BIZARRE CELLS'
+            when lower(value_source_value) like '%black%' then 'BLACK'
+            when lower(value_source_value) like '%blister cells%' then 'BLISTER CELLS'
+            when lower(value_source_value) like '%blood%' then 'BLOOD'
+            when lower(value_source_value) like '%bone marrow%' then 'BONE MARROW'
+            when lower(value_source_value) like '%brown%' then 'BROWN'
+            when lower(value_source_value) like '%burr cells%' then 'BURR CELLS'
+            when lower(value_source_value) like '%cerebrospinal fluid%' then 'CEREBROSPINAL FLUID (CSF)'
+            when lower(value_source_value) like '%clean catch%' then 'CLEAN CATCH'
+            when lower(value_source_value) like '%Clear%' then 'CLEAR'
+            when lower(value_source_value) like '%CLEAR%' then 'CLEAR'
+            when lower(value_source_value) like '%clear%' then 'CLEAR'
+            when lower(value_source_value) like '%cloudy%' then 'CLOUDY'
+            when lower(value_source_value) like '%colorless%' then 'COLORLESS'
+            when lower(value_source_value) like '%dacrocytes%' then 'DACROCYTES'
+            when lower(value_source_value) like '%detected%' then 'DETECTED'
+            when lower(value_source_value) like '%elliptocytes%' then 'ELLIPTOCYTES'
+            when lower(value_source_value) like '%equivocal%' then 'EQUIVOCAL'
+            when lower(value_source_value) like '%few%' then 'FEW'
+            when lower(value_source_value) like '%green%' then 'GREEN'
+            when lower(value_source_value) like '%hair%' then 'HAIR'
+            when lower(value_source_value) like '%hazy%' then 'HAZY'
+            when lower(value_source_value) like '%helmet%' then 'HELMET CELLS'
+            when lower(value_source_value) like '%heterozygous%' then 'HETEROZYGOUS'
+            when lower(value_source_value) like '%howelljolly%' then 'HOWELL-JOLLY BODIES'
+            when lower(value_source_value) like '%howell jolly%' then 'HOWELL-JOLLY BODIES'
+            when lower(value_source_value) like '%howell-jolly%' then 'HOWELL-JOLLY BODIES'
+            when lower(value_source_value) like '%immune%' then 'IMMUNE'
+            when lower(value_source_value) like '%Inconclusive%' then 'INCONCLUSIVE'
+            when lower(value_source_value) like '%increased%' then 'INCREASED'
+            when lower(value_source_value) like '%indeterminate%' then 'INDETERMINATE'
+            when lower(value_source_value) like '%influenza A virus%' then 'INFLUENZA A VIRUS'
+            when lower(value_source_value) like '%influenza B virus%' then 'INFLUENZA B VIRUS'
+            when lower(value_source_value) like '%invalid%' then 'INVALID'
+            when lower(value_source_value) like '%large%' then 'LARGE'
+            when lower(value_source_value) like '%left arm%' then 'LEFT ARM'
+            when lower(value_source_value) like '%low%' then 'LOW'
+            when lower(value_source_value) like '%macrocytes%' then 'MACROCYTES'
+            when lower(value_source_value) like '%many%' then 'MANY'
+            when lower(value_source_value) like '%microcytes%' then 'MICROCYTES'
+            when lower(value_source_value) like '%moderate%' then 'MODERATE'
+            when lower(value_source_value) like '%nasopharyngeal%' then 'NASOPHARYNGEAL'
+            when lower(value_source_value) like '%neg%' then 'NEGATIVE'
+            when lower(value_source_value) like '%tnp%' then 'NI'
+            when lower(value_source_value) like '%no growth%' then 'NO GROWTH'
+            when lower(value_source_value) like '%none%' then 'NONE'
+            when lower(value_source_value) like '%nonreactive%' then 'NONREACTIVE'
+            when lower(value_source_value) like '%normal%' then 'NORMAL'
+            when lower(value_source_value) like '%none detected.%' then 'NOT DETECTED'
+            when lower(value_source_value) like '%not detected%' then 'NOT DETECTED'
+            when lower(value_source_value) like '%o negative%' then 'O NEG'
+            when lower(value_source_value) like '%o positive%' then 'O POS'
+            when lower(value_source_value) like '%occasional%' then 'OCCASIONAL'
+            when lower(value_source_value) like '%@%' then 'OT'
+            when lower(value_source_value) like '%see Comment%' then 'OT'
+            when lower(value_source_value) like '%ovalocytes%' then 'OVALOCYTES'
+            when lower(value_source_value) like '%pappenheimer bodies%' then 'PAPPENHEIMER BODIES'
+            when lower(value_source_value) like '%peritoneal fluid%' then 'PERITONEAL FLUID'
+            when lower(value_source_value) like '%pink%' then 'PINK'
+            when lower(value_source_value) like '%plasma%' then 'PLASMA'
+            when lower(value_source_value) like '%pos%' then 'POSITIVE'
+            when lower(value_source_value) like '%rare%' then 'RARE'
+            when lower(value_source_value) like '%reactive%' then 'REACTIVE'
+            when lower(value_source_value) like '%right arm%' then 'RIGHT ARM'
+            when lower(value_source_value) like '%sars coronavirus 2%' then 'SARS CORONAVIRUS 2'
+            when lower(value_source_value) like '%slight%' then 'SLIGHT'
+            when lower(value_source_value) like '%Slightly Cloudy%' then 'SLIGHTLY CLOUDY'
+            when lower(value_source_value) like '%small%' then 'SMALL'
+            when lower(value_source_value) like '%Specimen unsatisfactory for evaluation%' then 'SPECIMEN UNSATISFACTORY FOR EVALUATION'
+            when lower(value_source_value) like '%stomatocytes%' then 'STOMATOCYTES'
+            when lower(value_source_value) like '%stool%' then 'STOOL'
+            when lower(value_source_value) like '%straw%' then 'STRAW'
+            when lower(value_source_value) like '%suspect%' then 'SUSPECTED'
+            when lower(value_source_value) like '%synovial fluid%' then 'SYNOVIAL FLUID'
+            when lower(value_source_value) like '%trace%' then 'TRACE'
+            when lower(value_source_value) like '%turbid%' then 'TURBID'
+            when lower(value_source_value) like '%unknown%' then 'UN'
+            when lower(value_source_value) like '%undetected%' then 'UNDETECTABLE'
+            when lower(value_source_value) like '%inconclusive%' then 'UNDETERMINED'
+            when lower(value_source_value) like '%urine%' then 'URINE'
+            when lower(value_source_value) like '%white%' then 'WHITE'
+            when lower(value_source_value) like '%yellow%' then 'YELLOW'
+	end,
+	'OT') as result_qual, 
+	value_source_value,
 	result_snomed, result_num,result_modifier,result_unit,norm_range_low,norm_modifier_low,norm_range_high,
     norm_modifier_high,abn_ind, raw_lab_name,raw_lab_code,raw_panel,raw_result,raw_unit,raw_order_dept,raw_facility_code,site
 from SITE_pcornet.lab_unit m
 left join pcornet_maps.pedsnet_pcornet_valueset_map qual on cast(m.value_as_concept_id as text)= qual.source_concept_id and qual.source_concept_class = 'Result qualifier';
-commit;
-
-begin;
-with filter_lab as
-(
-	select lab_result_cm_id, result_qual, value_source_value
-	from SITE_pcornet.lab_qual
-	where result_qual = 'OT'
-	and value_source_value ~ '[a-z]'
-)
-update SITE_pcornet.lab_qual
-set result_qual = coalesce(qual.target_concept)
-from filter_lab l
-inner join pcornet_maps.pedsnet_pcornet_valueset_map qual on lower(value_source_value) like '%'|| qual.concept_description || '%' and qual.source_concept_class = 'result_qual_source'
-where l.lab_result_cm_id = SITE_pcornet.lab_qual.lab_result_cm_id
-and SITE_pcornet.lab_qual.result_qual = 'OT';
 commit;
 
 begin;
