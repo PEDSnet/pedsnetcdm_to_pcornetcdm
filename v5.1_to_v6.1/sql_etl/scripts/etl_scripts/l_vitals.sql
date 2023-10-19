@@ -13,7 +13,7 @@ create table SITE_pcornet.ms_ht as
 	,  measurement_concept_id,measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value, value_as_concept_id,
 	value_source_value,measurement_type_concept_id
 	from SITE_pedsnet.measurement
-	where measurement_concept_id = '3023540'
+	where measurement_concept_id in (3023540, 3036277)
 );
 commit;
 
@@ -35,7 +35,7 @@ create table SITE_pcornet.ms_wt as
 	,  measurement_concept_id,measurement_source_value, provider_id,operator_concept_id, unit_concept_id, unit_source_value, value_as_concept_id,
 	value_source_value,measurement_type_concept_id
 	from SITE_pedsnet.measurement
-	where measurement_concept_id = '3013762'
+	where measurement_concept_id in (3013762,3025315)
 );
 commit;
 begin;
@@ -57,7 +57,7 @@ create table SITE_pcornet.ms_bmi as
 	measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value,operator_concept_id, unit_concept_id, unit_source_value,
 	value_source_value,measurement_type_concept_id
     from SITE_pedsnet.measurement
-    where measurement_concept_id = '3038553'
+    where measurement_concept_id = 3038553
 );
 commit;
 begin;
@@ -78,7 +78,7 @@ create table SITE_pcornet.ms_sys as
 		measurement_date, measurement_datetime, value_as_number,  measurement_concept_id,measurement_source_value,operator_concept_id, unit_concept_id, unit_source_value,
 	value_source_value,measurement_type_concept_id
    from SITE_pedsnet.measurement
-   where measurement_concept_id in ('3018586','3035856','3009395','3004249')
+   where measurement_concept_id in (3018586,3035856,3009395,3004249)
 );
 commit;
 begin;
@@ -100,7 +100,7 @@ create table SITE_pcornet.ms_dia as
 			 measurement_concept_id,measurement_source_value,operator_concept_id, unit_concept_id, unit_source_value,
 	value_source_value,measurement_type_concept_id
 	from SITE_pedsnet.measurement
-	where measurement_concept_id in ('3034703','3019962','3013940','3012888')
+	where measurement_concept_id in (3034703,3019962,3013940,3012888)
 );
 commit;
 begin;
