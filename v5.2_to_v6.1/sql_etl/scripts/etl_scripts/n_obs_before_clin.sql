@@ -176,13 +176,17 @@ coalesce(
             when lower(value_source_value) like '%yellow%' then 'YELLOW'
 	end,
 	'OT') as obsclin_result_qual,
-obsclin_abn_ind, meas.value_source_value,
-obsclin_result_snomed, obsclin_result_text,
-meas.operator_concept_id,
-meas.unit_concept_id, meas.unit_source_value,obsclin_source,raw_obsclin_name,raw_obsclin_type,
-raw_obsclin_code,raw_obsclin_modifier,raw_obsclin_result,raw_obsclin_unit,meas.site
-from SITE_pcornet.meas_obsclin_loinc meas 
-left join pcornet_maps.pedsnet_pcornet_valueset_map map_qual on cast(meas.value_as_concept_id as text)= map_qual.source_concept_id and map_qual.source_concept_class = 'Result qualifier'
+	obsclin_abn_ind, meas.value_source_value,
+	obsclin_result_snomed, obsclin_result_text,
+	meas.operator_concept_id,
+	meas.unit_concept_id, meas.unit_source_value,obsclin_source,raw_obsclin_name,raw_obsclin_type,
+	raw_obsclin_code,raw_obsclin_modifier,raw_obsclin_result,raw_obsclin_unit,meas.site
+from 
+	SITE_pcornet.meas_obsclin_loinc meas 
+left join 
+	pcornet_maps.pedsnet_pcornet_valueset_map map_qual 
+	on cast(meas.value_as_concept_id as text) = map_qual.source_concept_id 
+	and map_qual.source_concept_class = 'Result qualifier';
 
 commit;
 
