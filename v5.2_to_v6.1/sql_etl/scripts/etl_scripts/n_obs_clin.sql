@@ -100,7 +100,7 @@ commit;
 -- commit;
 
 -- begin;
---mINSERT INTO SITE_pcornet.obs_clin( obsclinid,encounterid, obsclin_code, obsclin_abn_ind,obsclin_start_date, obsclin_providerid, obsclin_result_modifier, obsclin_result_snomed, obsclin_result_qual, obsclin_result_text, 
+-- INSERT INTO SITE_pcornet.obs_clin( obsclinid,encounterid, obsclin_code, obsclin_abn_ind,obsclin_start_date, obsclin_providerid, obsclin_result_modifier, obsclin_result_snomed, obsclin_result_qual, obsclin_result_text, 
 --	obsclin_result_unit, obsclin_source, obsclin_start_time, obsclin_type, patid, raw_obsclin_code, raw_obsclin_modifier, raw_obsclin_name, raw_obsclin_result, raw_obsclin_type, 
 --	raw_obsclin_unit, obsclin_stop_date, obsclin_stop_time,site)
 -- select distinct on (obsclinid) obsclinid, encounterid, obsclin_code, obsclin_abn_ind,obsclin_start_date, obsclin_providerid, obsclin_result_modifier, obsclin_result_snomed, obsclin_result_qual, obsclin_result_text, 
